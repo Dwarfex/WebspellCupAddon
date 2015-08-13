@@ -10,7 +10,7 @@
 #                                   /                                    #
 #                                                                        #
 #                                                                        #
-#   Copyright 2005-2011 by webspell.org                                  #
+#   Copyright 2005-2010 by webspell.org                                  #
 #                                                                        #
 #   visit webSPELL.org, webspell.info to get webSPELL for free           #
 #   - Script runs under the GNU GENERAL PUBLIC LICENSE                   #
@@ -26,7 +26,7 @@
 */
 
 function isanyadmin($userID) {
-	$anz=mysql_num_rows(safe_query("SELECT userID FROM ".PREFIX."user_groups WHERE userID='".$userID."' AND (page='1' OR forum='1' OR user='1' OR news='1' OR clanwars='1' OR feedback='1' OR super='1' OR gallery='1' OR cash='1' OR files='1') "));
+	$anz=mysql_num_rows(safe_query("SELECT userID FROM ".PREFIX."user_groups WHERE userID='".$userID."' AND (page='1' OR forum='1' OR user='1' OR news='1' OR clanwars='1' OR feedback='1' OR super='1' OR gallery='1' OR cash='1' OR files='1' OR cup='1') "));
 	return $anz;
 }
 
@@ -106,6 +106,16 @@ function isgalleryadmin($userID) {
 	return $anz;
 }
 
+function iscupadmin($userID) {
+	$anz=mysql_num_rows(safe_query("SELECT userID FROM `".PREFIX."user_groups` WHERE (cup='1' OR super='1') AND userID='".$userID."'"));
+	return $anz;
+}
+
+function isladadmin($userID) {
+	$anz=mysql_num_rows(safe_query("SELECT userID FROM `".PREFIX."user_groups` WHERE (lad='1' OR super='1') AND userID='".$userID."'"));
+	return $anz;
+}
+
 function isclanmember($userID) {
 	$anz=mysql_num_rows(safe_query("SELECT userID FROM `".PREFIX."squads_members` WHERE userID='".$userID."'"));
 	if(!$anz) $anz=issuperadmin($userID);
@@ -152,6 +162,13 @@ function isinusergrp($usergrp, $userID, $sp=1) {
 	if(!usergrpexists($usergrp)) return 0;
 	$anz=mysql_num_rows(safe_query("SELECT userID FROM ".PREFIX."user_forum_groups WHERE (`".$usergrp."`=1) AND userID='".$userID."'"));
 	if($sp) if(!$anz) $anz=isforumadmin($userID);
+	return $anz;
+}
+
+/* Other addons cup compatibility */
+
+function isshopadmin($userID) {
+	$anz=mysql_num_rows(safe_query("SELECT userID FROM `".PREFIX."user_groups` WHERE (shop='1' OR super='1') AND userID='".$userID."'"));
 	return $anz;
 }
 

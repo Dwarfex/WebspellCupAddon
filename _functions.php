@@ -280,6 +280,10 @@ systeminc('func/gallery');
 
 systeminc('func/bbcode');
 
+// -- CUP ADDON -- //
+
+systeminc('func/cup');
+
 function cleartext($text, $bbcode=true, $calledfrom='root') {
 	$text = htmlspecialchars($text);
 	$text = strip_tags($text);
@@ -367,6 +371,9 @@ if(!isset($_SERVER['HTTP_REFERER'])) {
 }
 
 // -- BANNED USERS -- //
+
+gettimezone();
+
 if(date("dh",$lastBanCheck) != date("dh")){
 	$get = safe_query("SELECT userID, banned FROM ".PREFIX."user WHERE banned IS NOT NULL");
 	$removeBan = array();
@@ -397,10 +404,13 @@ safe_query("DELETE FROM ".PREFIX."banned_ips WHERE deltime < ".time()."");
 
 // -- WHO IS - WAS ONLINE -- //
 
-$timeout=5; // 1 second
-$deltime = time()-($timeout*60); // IS 1m
+$timeout=1; // 1 second
+$deltime = time()-($timeout*3600); // 
 $wasdeltime = time()-(60*60*24); // WAS 24h
+$afk = time()-($timeout*60);
 
+safe_query("UPDATE ".PREFIX."whoisonline SET afk='1' WHERE time < '".$afk."'"); // AFK
+safe_query("UPDATE ".PREFIX."whoisonline SET afk='0' WHERE time > '".$afk."'"); // AFK return
 safe_query("DELETE FROM ".PREFIX."whoisonline WHERE time < '".$deltime."'");  // IS online
 safe_query("DELETE FROM ".PREFIX."whowasonline WHERE time < '".$wasdeltime."'");  // WAS online
 
@@ -411,23 +421,38 @@ systeminc('help');
 // -- WHOISONLINE -- //
 
 if(mb_strlen($site)) {
-	if($userID) {
-		// IS online
-		if(mysql_num_rows(safe_query("SELECT userID FROM ".PREFIX."whoisonline WHERE userID='$userID'"))) {
-			safe_query("UPDATE ".PREFIX."whoisonline SET time='".time()."', site='$site' WHERE userID='$userID'");
+    $site_url = "?".$_SERVER['QUERY_STRING'];
+    
+    //cup
+      
+    $channelID = (isset($_GET['id']) ? mysql_real_escape_string($_GET['id']) : 0);
+    $type = (isset($_GET['type']) ? mysql_real_escape_string($_GET['type']) : '');
+	$channel = (isset($channel) ? $channel : false);
+    
+    //!cup
+    
+       	if($userID) {
+       		// IS online
+		if(mysql_num_rows(safe_query("SELECT userID FROM ".PREFIX."whoisonline WHERE $channel userID='$userID'"))) {
+			safe_query("UPDATE ".PREFIX."whoisonline SET time='".time()."', ip='$ip', site='$site', url='$site_url', type='$type', channelID='$channelID' WHERE $channel userID='$userID'");
 			safe_query("UPDATE ".PREFIX."user SET lastlogin='".time()."' WHERE userID='$userID'");
 		}
-		else safe_query("INSERT INTO ".PREFIX."whoisonline (time, userID, site) VALUES ('".time()."', '$userID', '$site')");
+		else safe_query("INSERT INTO ".PREFIX."whoisonline (time, userID, ip, site, url, type, channelID) VALUES ('".time()."', '$userID', '$ip', '$site', '$site_url', '$type', '$channelID')");
 	
 		// WAS online
 		if(mysql_num_rows(safe_query("SELECT userID FROM ".PREFIX."whowasonline WHERE userID='$userID'")))
-		safe_query("UPDATE ".PREFIX."whowasonline SET time='".time()."', site='$site' WHERE userID='$userID'");
-		else safe_query("INSERT INTO ".PREFIX."whowasonline (time, userID, site) VALUES ('".time()."', '$userID', '$site')");
+		safe_query("UPDATE ".PREFIX."whowasonline SET time='".time()."', ip='$ip', site='$site', url='$site_url' WHERE userID='$userID'");
+		else safe_query("INSERT INTO ".PREFIX."whowasonline (time, userID, ip, site, url) VALUES ('".time()."', '$userID', '$ip', '$site', '$site_url')");
 	}
 	else {
-		$anz = mysql_num_rows(safe_query("SELECT ip FROM ".PREFIX."whoisonline WHERE ip='".$GLOBALS['ip']."'"));
-		if($anz) safe_query("UPDATE ".PREFIX."whoisonline SET time='".time()."', site='$site' WHERE ip='".$GLOBALS['ip']."'");
-		else safe_query("INSERT INTO ".PREFIX."whoisonline (time, ip, site) VALUES ('".time()."','".$GLOBALS['ip']."', '$site')");
+		$anz = mysql_num_rows(safe_query("SELECT ip FROM ".PREFIX."whoisonline WHERE ip='$ip'"));
+		if($anz) safe_query("UPDATE ".PREFIX."whoisonline SET time='".time()."', site='$site', url='$site_url' WHERE ip='$ip'");
+		else safe_query("INSERT INTO ".PREFIX."whoisonline (time, ip, site, url) VALUES ('".time()."','$ip', '$site', '$site_url')");
+
+		$anz = mysql_num_rows(safe_query("SELECT ip FROM ".PREFIX."whowasonline WHERE ip='$ip'"));
+		if($anz) safe_query("UPDATE ".PREFIX."whowasonline SET time='".time()."', site='$site', url='$site_url' WHERE ip='$ip'");
+		else safe_query("INSERT INTO ".PREFIX."whowasonline (time, ip, site, url) VALUES ('".time()."','$ip', '$site', '$site_url')");
+
 	}
 }
 
@@ -458,8 +483,11 @@ safe_query("UPDATE ".PREFIX."counter SET maxonline = ".$res['maxuser']." WHERE m
 
 $countries='';
 $ergebnis = safe_query("SELECT * FROM `".PREFIX."countries` ORDER BY country");
+$countries= '<option value="0" selected>-- Select Country --</option>';
 while($ds = mysql_fetch_array($ergebnis)) {
+        
 	$countries .= '<option value="'.$ds['short'].'">'.$ds['country'].'</option>';
+    
 }
 
 // -- SEARCH ENGINE OPTIMIZATION (SEO) -- //
@@ -473,4 +501,58 @@ else{
 // -- RSS FEEDS -- //
 
 systeminc('func/feeds');
+
+// -- TCHAT CALL -- //
+
+function curPageURL() {
+ $pageURL = 'http';
+ if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+ $pageURL .= "://";
+ if ($_SERVER["SERVER_PORT"] != "80") {
+  $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+ } else {
+  $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+ }
+ return $pageURL;
+}
+
+function curPageName() {
+ return substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
+}
+
+$tchat_url = curPageName().'?'.pageURL();
+
+  $query = safe_query("SELECT * FROM ".PREFIX."whoisonline WHERE `call`='1' && calltimer!='0'");
+    while($ds=mysql_fetch_array($query)) {
+    
+    ?>
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script>
+    function popupcentree2(page,largeur,hauteur,options) {
+	var top=(screen.height-hauteur)/2;
+	var left=(screen.width-largeur)/2;
+	window.open(page,"","top="+top+",left="+left+",width="+largeur+",height="+hauteur+","+options); 
+    } 
+    var refreshId = setInterval(function() 
+    {
+        $("#live2").load('<?php echo $tchat_url; ?>');
+    },  3000);
+    </script>
+    </head><?php
+    
+      if($loggedin && $userID==$ds['userID'] && $ds['call']==1 && $ds['calltimer']!='0') {
+          echo '<div id="live2"><body onload="popupcentree2(\'popup.php?site=shout&id='.$userID.'&type=userID&call=true\',\'550\',\'300\')"></body></div>';
+          safe_query("UPDATE ".PREFIX."whoisonline SET `call`='0', calltimer='0' WHERE userID='".$ds['userID']."'");
+	  redirect(curPageURL(), '', 2);
+     }
+     echo '</html>';
+  }
+
+// -- CUP DATABASE CHECK -- //
+
+check_database($userID);
+
 ?>
