@@ -15,7 +15,7 @@ else{
 } 
 
 $requete = safe_query("SELECT * FROM ".PREFIX."tchat WHERE $channel ORDER BY ID DESC");
-while($ds=mysql_fetch_assoc($requete)){
+while($ds=mysqli_fetch_assoc($requete)){
 $date = date("d.m.Y", $ds['heure']);
 $time = date("H:i", $ds['heure']);
 ?>

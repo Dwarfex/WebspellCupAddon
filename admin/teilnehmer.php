@@ -30,7 +30,7 @@ match_query_type();
 //date and timezone
 
 $timezone = safe_query("SELECT timezone FROM ".PREFIX."cup_settings");
-$tz = mysql_fetch_array($timezone); $gmt = $tz['timezone'];
+$tz = mysqli_fetch_array($timezone); $gmt = $tz['timezone'];
 date_default_timezone_set($tz['timezone']);
 
 if(!iscupadmin($userID) OR substr(basename($_SERVER['REQUEST_URI']),0,15) != "admincenter.php") die('Access denied.');
@@ -47,7 +47,7 @@ if($_GET['action']=="edit") {
 	$userID = $_GET['userID'];
 	$member = '<option value="0">- Please choose Cup -</option>';
 	$members=safe_query("SELECT cupID FROM ".PREFIX."cup_clans WHERE 1on1='1' && clanID = '$userID'");
-	while($dv=mysql_fetch_array($members)) { 
+	while($dv=mysqli_fetch_array($members)) {
 	
 	$cupname = getcupname($dv['cupID']); $cupID = $dv['cupID'];
 	
@@ -63,7 +63,7 @@ if($_GET['action']=="edit") {
 	}
 	$member2 = '<option value="0">- Please choose Cup -</option>';
 	$members=safe_query("SELECT cupID FROM ".PREFIX."cup_clans WHERE 1on1='1' && clanID = '$userID' && checkin='0'");
-	while($dv=mysql_fetch_array($members)) {
+	while($dv=mysqli_fetch_array($members)) {
 		$member2.='<option value="'.$dv['cupID'].'">'.getcupname($dv['cupID']).'</option>';
 	}
 	
@@ -100,7 +100,7 @@ if($_GET['action']=="edit") {
 }else{
 	$used_users=array();
 	$ergebnis = safe_query("SELECT clanID FROM ".PREFIX."cup_clans WHERE 1on1='1'");
-	$anz=mysql_num_rows($ergebnis);
+	$anz=mysqli_num_rows($ergebnis);
 	if($anz) {
 		echo'<form method="post" name="ws_cups" action="admincenter.php?site=teilnehmer"><table width="100%" cellpadding="4" cellspacing="1" bgcolor="#999999">
 	       		<tr bgcolor="#CCCCCC">
@@ -109,7 +109,7 @@ if($_GET['action']=="edit") {
 		   		</tr>
 				<tr bgcolor="#ffffff"><td colspan="3"></td></tr>';
 	
-		while($ds=mysql_fetch_array($ergebnis)) {
+		while($ds=mysqli_fetch_array($ergebnis)) {
 			if(in_array($ds['clanID'], $used_users))
 				continue;
 			echo'<tr bgcolor="#FFFFFF">

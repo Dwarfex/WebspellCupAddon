@@ -3,7 +3,7 @@
 include("../config.php");
 
 $query = safe_query("SELECT mappack FROM ".PREFIX."cup_maps GROUP BY mappack");
-    while($cm=mysql_fetch_array($query)) {
+    while($cm=mysqli_fetch_array($query)) {
         $mp_exists[]=$cm['mappack'];   
     }
 
@@ -78,7 +78,7 @@ if($_GET['created']=="true")
    echo "<font color='red'><b>Mappack successfully created!</b></font>";
 
 function getmappack($ID) {
-    $ds=mysql_fetch_array(safe_query("SELECT mappack FROM ".PREFIX."cup_maps WHERE mappack='$ID'")); 
+    $ds=mysqli_fetch_array(safe_query("SELECT mappack FROM ".PREFIX."cup_maps WHERE mappack='$ID'"));
     return $ds['mappack'];
 }
 
@@ -88,7 +88,7 @@ if(!isset($_GET['mappack']))
  $maps = '<option value="">-- Edit Mappack -- </option>';
 
   $query = safe_query("SELECT * FROM ".PREFIX."cup_maps GROUP BY mappack");
-      while($ds=mysql_fetch_array($query)) {
+      while($ds=mysqli_fetch_array($query)) {
           $maps.='<option value="'.$ds['mappack'].'">'.$ds['mappack'].'</option>';
       }
 
@@ -133,7 +133,7 @@ else
 	      </tr>';
   
  $query = safe_query("SELECT * FROM ".PREFIX."cup_maps WHERE mappack='".$_GET['mappack']."'");  
- while($ds=mysql_fetch_array($query)) 
+ while($ds=mysqli_fetch_array($query))
  {
  
  if(!$ds['pic']) 

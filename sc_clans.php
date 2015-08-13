@@ -3,10 +3,10 @@ include("config.php");
 
   $clans = safe_query("SELECT * FROM ".PREFIX."cup_all_clans ORDER BY reg DESC LIMIT 0,$sc_clans");
   
-  if(mysql_num_rows($clans)) {
+  if(mysqli_num_rows($clans)) {
       echo '<table width="100%">';
   
-    while($ds = mysql_fetch_array($clans)) {
+    while($ds = mysqli_fetch_array($clans)) {
 	
 	    $length_scc = $sc_clans_length; 
 		$str_clan = strlen($ds['name'])-$length_scc;

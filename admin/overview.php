@@ -42,7 +42,7 @@ if($wsversion == $version) {
 }*/
 $phpversion = phpversion() < '4.3' ? '<font color="#FF0000">'.phpversion().'</font>' : '<font color="#008000">'.phpversion().'</font>';
 $zendversion = zend_version() < '1.3' ? '<font color="#FF0000">'.zend_version().'</font>' : '<font color="#008000">'.zend_version().'</font>';
-$mysqlversion = mysql_get_server_info() < '4.0' ? '<font color="#FF0000">'.mysql_get_server_info().'</font>' : '<font color="#008000">'.mysql_get_server_info().'</font>';
+$mysqlversion = mysqli_get_server_info() < '4.0' ? '<font color="#FF0000">'.mysqli_get_server_info().'</font>' : '<font color="#008000">'.mysqli_get_server_info().'</font>';
 $get_phpini_path = get_cfg_var('cfg_file_path');
 $get_allow_url_fopen= get_cfg_var('allow_url_fopen') ? '<font color="#008000">'.$_language->module['on'].'</font>' : '<font color="#FF0000">'.$_language->module['off'].'</font>';
 $get_allow_url_include= get_cfg_var('allow_url_include') ? '<font color="#FF0000">'.$_language->module['on'].'</font>' : '<font color="#008000">'.$_language->module['off'].'</font>';
@@ -80,7 +80,7 @@ else {
 	$get_gdtypes = '---';
 }
 $get = safe_query("SELECT DATABASE()");
-$ret = mysql_fetch_array($get);
+$ret = mysqli_fetch_array($get);
 $db = $ret[0];
 
 echo '<h1>&curren; '.$_language->module['welcome'].'</h1>';
@@ -111,7 +111,7 @@ echo $_language->module['welcome_message']; ?>
     <td class="td1"><?php echo (($php_r = @php_uname('r')) ? $php_r : $info_na); ?></td>
   </tr>
   <tr>
-    <td class="td2"><b><?php echo $_language->module['mysql_version']; ?></b></td>
+    <td class="td2"><b><?php echo $_language->module['mysqli_version']; ?></b></td>
     <td class="td2"><?php echo $mysqlversion; ?></td>
     <td class="td2"><b><?php echo $_language->module['server_version']; ?></b></td>
     <td class="td2"><?php echo (($php_v = @php_uname('v')) ? $php_v : $info_na); ?></td>

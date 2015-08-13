@@ -3,10 +3,10 @@
 // site info
 
 $settings=safe_query("SELECT * FROM ".PREFIX."settings");
-$do=mysql_fetch_array($settings);
+$do=mysqli_fetch_array($settings);
 
 $styles=safe_query("SELECT * FROM ".PREFIX."styles");
-$dt=mysql_fetch_array($styles);
+$dt=mysqli_fetch_array($styles);
 
 // sender
 $sender_from = $do['adminemail'];

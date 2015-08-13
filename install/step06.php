@@ -53,9 +53,9 @@ if($_POST['installtype'] == 'update') {
 	$type = '<b>'.$_language->module['update_complete'].'</b>';
 
 	include('../_mysql.php');
-	mysql_connect($host, $user, $pwd) or die ($_language->module['error_mysql']);
-	mysql_select_db($db) or die ($_language->module['error_database'].'&nbsp;'.$db.'!');
-	mysql_query("SET NAMES 'utf8'");
+	mysqli_connect($host, $user, $pwd) or die ($_language->module['error_mysql']);
+	mysqli_select_db($db) or die ($_language->module['error_database'].'&nbsp;'.$db.'!');
+	mysqli_query("SET NAMES 'utf8'");
 	
 	update31_4beta4();
 	update4beta4_4beta5();
@@ -127,9 +127,9 @@ elseif($_POST['installtype'] == 'full') {
 
 	//write sql-tables
 
-	mysql_connect($host, $user, $pwd) or die ($_language->module['error_mysql']);
-	mysql_select_db($db) or die ($_language->module['error_database'].'&nbsp;'.$db.'!');
-	mysql_query("SET NAMES 'utf8'");
+	mysqli_connect($host, $user, $pwd) or die ($_language->module['error_mysql']);
+	mysqli_select_db($db) or die ($_language->module['error_database'].'&nbsp;'.$db.'!');
+	mysqli_query("SET NAMES 'utf8'");
 	
 	define("PREFIX", $prefix);
 
@@ -147,9 +147,9 @@ elseif($_POST['installtype'] == 'update_beta') {
 	$type = '<b>'.$_language->module['update_complete'].'</b>';
 
 	include('../_mysql.php');
-	mysql_connect($host, $user, $pwd) or die ($_language->module['error_mysql']);
-	mysql_select_db($db) or die ($_language->module['error_database'].'&nbsp;'.$db.'!');
-	mysql_query("SET NAMES 'utf8'");
+	mysqli_connect($host, $user, $pwd) or die ($_language->module['error_mysql']);
+	mysqli_select_db($db) or die ($_language->module['error_database'].'&nbsp;'.$db.'!');
+	mysqli_query("SET NAMES 'utf8'");
 	
 	update4beta4_4beta5();
 	update4beta5_4beta6();
@@ -164,9 +164,9 @@ elseif($_POST['installtype'] == 'update_beta5') {
 	$type = '<b>'.$_language->module['update_complete'].'</b>';
 
 	include('../_mysql.php');
-	mysql_connect($host, $user, $pwd) or die ($_language->module['error_mysql']);
-	mysql_select_db($db) or die ($_language->module['error_database'].'&nbsp;'.$db.'!');
-	mysql_query("SET NAMES 'utf8'");
+	mysqli_connect($host, $user, $pwd) or die ($_language->module['error_mysql']);
+	mysqli_select_db($db) or die ($_language->module['error_database'].'&nbsp;'.$db.'!');
+	mysqli_query("SET NAMES 'utf8'");
 	
 	update4beta5_4beta6();
 	update4beta6_4final();
@@ -181,9 +181,9 @@ elseif($_POST['installtype'] == 'update_beta6') {
 	$type = '<b>'.$_language->module['update_complete'].'</b>';
 
 	include('../_mysql.php');
-	mysql_connect($host, $user, $pwd) or die ($_language->module['error_mysql']);
-	mysql_select_db($db) or die ($_language->module['error_database'].'&nbsp;'.$db.'!');
-	mysql_query("SET NAMES 'utf8'");
+	mysqli_connect($host, $user, $pwd) or die ($_language->module['error_mysql']);
+	mysqli_select_db($db) or die ($_language->module['error_database'].'&nbsp;'.$db.'!');
+	mysqli_query("SET NAMES 'utf8'");
 	
 	update4beta6_4final();
 	update40000_40100();
@@ -197,9 +197,9 @@ elseif($_POST['installtype'] == 'update_final') {
 	$type = '<b>'.$_language->module['update_complete'].'</b>';
 
 	include('../_mysql.php');
-	mysql_connect($host, $user, $pwd) or die ($_language->module['error_mysql']);
-	mysql_select_db($db) or die ($_language->module['error_database'].'&nbsp;'.$db.'!');
-	mysql_query("SET NAMES 'utf8'");
+	mysqli_connect($host, $user, $pwd) or die ($_language->module['error_mysql']);
+	mysqli_select_db($db) or die ($_language->module['error_database'].'&nbsp;'.$db.'!');
+	mysqli_query("SET NAMES 'utf8'");
 	
 	update40000_40100();
 	update40100_40101();
@@ -212,9 +212,9 @@ elseif($_POST['installtype'] == 'update_40100') {
 	$type = '<b>'.$_language->module['update_complete'].'</b>';
 
 	include('../_mysql.php');
-	mysql_connect($host, $user, $pwd) or die ($_language->module['error_mysql']);
-	mysql_select_db($db) or die ($_language->module['error_database'].'&nbsp;'.$db.'!');
-	mysql_query("SET NAMES 'utf8'");
+	mysqli_connect($host, $user, $pwd) or die ($_language->module['error_mysql']);
+	mysqli_select_db($db) or die ($_language->module['error_database'].'&nbsp;'.$db.'!');
+	mysqli_query("SET NAMES 'utf8'");
 	
 	update40100_40101();
 	update40101_40200();
@@ -225,9 +225,9 @@ elseif($_POST['installtype'] == 'update_40102') {
 	$type = '<b>'.$_language->module['update_complete'].'</b>';
 
 	include('../_mysql.php');
-	mysql_connect($host, $user, $pwd) or die ($_language->module['error_mysql']);
-	mysql_select_db($db) or die ($_language->module['error_database'].'&nbsp;'.$db.'!');
-	mysql_query("SET NAMES 'utf8'");
+	mysqli_connect($host, $user, $pwd) or die ($_language->module['error_mysql']);
+	mysqli_select_db($db) or die ($_language->module['error_database'].'&nbsp;'.$db.'!');
+	mysqli_query("SET NAMES 'utf8'");
 	
 	update40101_40200();
 

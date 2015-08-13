@@ -145,10 +145,10 @@
   - using IMAGETYPE constants instead of their values
   
 * admin/users.php:
-  - replaced mysql_query with safe_query
+  - replaced mysqli_query with safe_query
   
 * articles.php:
-  - replaced mysql_query with safe_query
+  - replaced mysqli_query with safe_query
   
 * asearch.php:
   - security fix: fixed sql injection possibility
@@ -268,7 +268,7 @@
   
 * profile.php:
   - added usage of $GLOBALS['ip']
-  - replaced mysql_query with safe_query
+  - replaced mysqli_query with safe_query
   - fixed user ranks
   
 * rating.php:

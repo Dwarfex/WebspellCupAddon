@@ -112,30 +112,30 @@ if(isset($_GET['action']) && $_GET['action'] == 'register') {
     $checkin_status = $_GET['checkin']==1 ? 1 : 0;
 
     $info = safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='".$ladderID."'");
-    $lad = mysql_fetch_array($info);
+    $lad = mysqli_fetch_array($info);
     
     $ergebnis2 = safe_query("SELECT count(*) as anzahl FROM ".PREFIX."cup_clans WHERE ladID='".$ladderID."' && 1on1='1'");
-    $dm=mysql_fetch_array($ergebnis2);
+    $dm=mysqli_fetch_array($ergebnis2);
 	
   //check group stages
   
     $check_qualifyers = safe_query("SELECT qual, clanID FROM ".PREFIX."cup_clans WHERE groupID='$ladderID' AND qual='1' AND cupID='0'");
-    $is_qualifyers = mysql_num_rows($check_qualifyers); 
+    $is_qualifyers = mysqli_num_rows($check_qualifyers);
     
-    while($iq = mysql_fetch_array($check_qualifyers)) {
+    while($iq = mysqli_fetch_array($check_qualifyers)) {
        $qualified_ID[]=$iq['clanID']; 
     }
     
     $check_fcfs = safe_query("SELECT qual, clanID FROM ".PREFIX."cup_clans WHERE groupID='$ladderID' AND qual='2' AND cupID='0'");
-    $is_fcfs = mysql_num_rows($check_fcfs); 
+    $is_fcfs = mysqli_num_rows($check_fcfs);
     
-    while($fs = mysql_fetch_array($check_fcfs)) {
+    while($fs = mysqli_fetch_array($check_fcfs)) {
        $fcfs_ID[]=$fs['clanID']; 
     }
     
     $c_qualifiers = count($qualified_ID);
 
-    $gs=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='$ladderID'"));
+    $gs=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='$ladderID'"));
     
     if($gs['status']==1 && $gs['gs_start'] <= time() && $gs['gs_end'] >= time())
     { $is_groupstages = true;  }else{ $is_groupstages = false; }
@@ -160,15 +160,15 @@ if(isset($_GET['action']) && $_GET['action'] == 'register') {
 	
 	if(ladderis1on1($ladderID)) {
     	
-		$checkgameacc=mysql_num_rows(safe_query("SELECT * FROM ".PREFIX."user_gameacc WHERE type = '".$lad['gameaccID']."' && userID = '$userID' && log='0'"));
+		$checkgameacc=mysqli_num_rows(safe_query("SELECT * FROM ".PREFIX."user_gameacc WHERE type = '".$lad['gameaccID']."' && userID = '$userID' && log='0'"));
 		$gameacc_sql2 = safe_query("SELECT type FROM ".PREFIX."gameacc WHERE gameaccID = '".$lad['gameaccID']."'");
-	    $dr=mysql_fetch_array($gameacc_sql2);
+	    $dr=mysqli_fetch_array($gameacc_sql2);
   
 		$ergebnis2 = safe_query("SELECT count(*) as participants FROM ".PREFIX."cup_clans WHERE ladID='".$ladderID."' && checkin='1'");
-		$dv=mysql_fetch_array($ergebnis2);	
+		$dv=mysqli_fetch_array($ergebnis2);
 
 		$ergebnis3 = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE clanID= '".$userID."' && 1on1='1' && ladID='".$ladderID."'");
-		$clannum=mysql_num_rows($ergebnis3);
+		$clannum=mysqli_num_rows($ergebnis3);
 		
   	if($is_groupreg) {
             echo '<div class="errorbox">To be an eligible contestant in this tournament you must first signup and qualify to the <a href="?site=groups&laddID='.$ladderID.'">group stages</a>.</div>';
@@ -209,22 +209,22 @@ if(isset($_GET['action']) && $_GET['action'] == 'register') {
     //team participants
   
 		$ergebnis2 = safe_query("SELECT count(*) as participants FROM ".PREFIX."cup_clans WHERE ladID='".$ladderID."' && checkin='1'");
-		$dv=mysql_fetch_array($ergebnis2);
+		$dv=mysqli_fetch_array($ergebnis2);
 
 		$ergebnis3 = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE clanID= '".$clanID."' && 1on1='0' && ladID='".$ladderID."'");
-		$clannum=mysql_num_rows($ergebnis3);
+		$clannum=mysqli_num_rows($ergebnis3);
 		
   //Enough members in team?
 
         $ergebnis = safe_query("SELECT type FROM ".PREFIX."cup_ladders WHERE ID = '".$ladderID."'");
-		$dl=mysql_fetch_array($ergebnis);	
+		$dl=mysqli_fetch_array($ergebnis);
 		$min_anz = strstr($dl['type'], 'on', true);
 		
 		$ergebnis2 = safe_query("SELECT clanID FROM ".PREFIX."cup_clan_members WHERE clanID = '".$clanID."'");
-		$anz_mem = mysql_num_rows($ergebnis2);	
+		$anz_mem = mysqli_num_rows($ergebnis2);
 
         $sql_members = safe_query("SELECT * FROM ".PREFIX."cup_clan_members WHERE clanID = '".$clanID."'");	
-		$members = mysql_num_rows($sql_members);
+		$members = mysqli_num_rows($sql_members);
 		
   //lineup
   
@@ -238,7 +238,7 @@ if(isset($_GET['action']) && $_GET['action'] == 'register') {
         $needed = $lad['type']-$members-$membersin;
         
         $lineup = safe_query("SELECT * FROM ".PREFIX."cup_clan_lineup WHERE ladID='$ladderID' && clanID='$clanID'");
-        $checklineup = mysql_num_rows($lineup); $thelineup = mysql_num_rows($lineup)+$membersin+1;
+        $checklineup = mysqli_num_rows($lineup); $thelineup = mysqli_num_rows($lineup)+$membersin+1;
   
         $lineneeded2 = $lad['type']-$checklineup-$membersin;
 		$lineneeded = ($lineneeded2 < 0 ? 0 : $lineneeded2);
@@ -246,18 +246,18 @@ if(isset($_GET['action']) && $_GET['action'] == 'register') {
   //check gameaccounts & team status
 
 	    $ergebnis2 = safe_query("SELECT status, password FROM ".PREFIX."cup_all_clans WHERE ID = '".$clanID."'");		
-		$dl=mysql_fetch_array($ergebnis2); $password = $dl['password'];
+		$dl=mysqli_fetch_array($ergebnis2); $password = $dl['password'];
 		
 		$gameacc_sql2 = safe_query("SELECT type FROM ".PREFIX."gameacc WHERE gameaccID = '".$lad['gameaccID']."'");
-		$dr=mysql_fetch_array($gameacc_sql2);
+		$dr=mysqli_fetch_array($gameacc_sql2);
 		
   //can not register team to cup if your team is already in cup
  
     $myteams=safe_query("SELECT clanID, userID FROM ".PREFIX."cup_clan_members WHERE userID='$userID'");
-    while($tt=mysql_fetch_array($myteams)) { 
+    while($tt=mysqli_fetch_array($myteams)) {
 
     $cupclans=safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE ladID='$ladderID' AND clanID='".$tt['clanID']."'");
-    while($ee=mysql_fetch_array($cupclans))  {
+    while($ee=mysqli_fetch_array($cupclans))  {
 
   //team register validations
 
@@ -327,18 +327,18 @@ if(isset($_GET['action']) && $_GET['action'] == 'register') {
 }
 elseif(isset($_GET['action']) && $_GET['action'] == 'lineup'){
 
-    $cupID = mysql_real_escape_string($_GET['ID']);
-	$clanID = mysql_real_escape_string($_GET['clanID']);
+    $cupID = mysqli_real_escape_string($_GET['ID']);
+	$clanID = mysqli_real_escape_string($_GET['clanID']);
 	
 	// check if lineup is entered
 	
       $checked = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE clanID='$clanID' && ladID='$cupID' && 1on1='0' && checkin='1'");
-      $checkedinlined=mysql_num_rows($checked); 	
+      $checkedinlined=mysqli_num_rows($checked);
 
 	
 	// check required members for lineup
 	
-	    $lad=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='$cupID'"));
+	    $lad=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='$cupID'"));
 
         $membersin = $lad['cupaclimit']; 
         if($lad['cupaclimit'] <= 0)
@@ -350,7 +350,7 @@ elseif(isset($_GET['action']) && $_GET['action'] == 'lineup'){
         $needed = $lad['type']-$members-$membersin;
         
         $lineup = safe_query("SELECT * FROM ".PREFIX."cup_clan_lineup WHERE ladID='$cupID' && clanID='$clanID'");
-        $checklineup = mysql_num_rows($lineup); $thelineup = mysql_num_rows($lineup)+$membersin+1;
+        $checklineup = mysqli_num_rows($lineup); $thelineup = mysqli_num_rows($lineup)+$membersin+1;
   
         $lineneeded2 = $lad['type']-$checklineup-$membersin;
 		$lineneeded = ($lineneeded2 < 0 ? 0 : $lineneeded2);
@@ -382,10 +382,10 @@ elseif(isset($_GET['action']) && $_GET['action'] == 'lineup'){
 	             $members = safe_query("SELECT * FROM ".PREFIX."cup_clan_members WHERE userID = '".$userID."' AND function = 'Leader'");	
 	             
                   if(!$loggedin) $clan = '<option value="0">(must login)</option>';
-                  elseif(!mysql_num_rows($members)) $clan = '<option value="0">(no team)</option>';  		 
+                  elseif(!mysqli_num_rows($members)) $clan = '<option value="0">(no team)</option>';
 	
 	               $clan = '<option value="0" selected="selected"> - Select Team - </option>';	
-	                 while($dm=mysql_fetch_array($members)) {                       
+	                 while($dm=mysqli_fetch_array($members)) {
 	               $clan .= '<option name="clanID" value="'.$dm['clanID'].'">'.getclanname($dm['clanID']).'</option>';
                  }
 	
@@ -403,20 +403,20 @@ elseif(isset($_GET['action']) && $_GET['action'] == 'lineup'){
 	else{
 	
       $members = safe_query("SELECT clanID FROM ".PREFIX."cup_clan_members WHERE userID='$userID'");
-         while($dd=mysql_fetch_array($members)) {
+         while($dd=mysqli_fetch_array($members)) {
 
                   $checked = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE clanID='".$dd['clanID']."' && ladID='$cupID' && 1on1='0' && checkin='1'");
-                  $checkedinlined=mysql_num_rows($checked); 
+                  $checkedinlined=mysqli_num_rows($checked);
 		  
                           $clanID = $dd['clanID'];
 
                              $query_lineup = safe_query("SELECT userID FROM ".PREFIX."cup_clan_lineup WHERE ladID='$cupID' && clanID = '$clanID'");
       
-                             if(!mysql_num_rows($query_line)) {
+                             if(!mysqli_num_rows($query_line)) {
                                   $members=safe_query("SELECT userID FROM ".PREFIX."cup_clan_members WHERE ladID!='$cupID'  && clanID = '$clanID'"); 
                              }
           
-	                     while($ql = mysql_fetch_array($query_lineup)) {
+	                     while($ql = mysqli_fetch_array($query_lineup)) {
 			     
                                 $all_userIDs = $ql['userID'];
                                 $userIDs .= "userID != '$all_userIDs' && ";
@@ -424,7 +424,7 @@ elseif(isset($_GET['action']) && $_GET['action'] == 'lineup'){
 		                $members=safe_query("SELECT userID FROM ".PREFIX."cup_clan_members WHERE $userIDs userID != '0' && ladID!='$cupID' && clanID = '$clanID'"); 
 	                     }
 			     
-		        while($dv=mysql_fetch_array($members)) {
+		        while($dv=mysqli_fetch_array($members)) {
                     
 		            if($dv['userID']==$userID) { 
 			              $nickname = '(You)'; 
@@ -457,14 +457,14 @@ elseif(isset($_GET['action']) && $_GET['action'] == 'lineup'){
   //get members
 
 		$members=safe_query("SELECT userID FROM ".PREFIX."cup_clan_lineup WHERE ladID='$cupID' && clanID = '$clanID'");
-		while($dr=mysql_fetch_array($members)) {
+		while($dr=mysqli_fetch_array($members)) {
                     if($dr['userID']==$userID) { $nickname = '(You)'; }else{ $nickname = getnickname($dr['userID']); }
 			$member2.='<option value="'.$dr['userID'].'">'.$nickname.'</option>';
 
   //dropdown
   
     $getstart = safe_query("SELECT start FROM ".PREFIX."cup_ladders WHERE ID='$cupID'");
-    $st = mysql_fetch_array($getstart); $start = date('d.m.Y \a\t H:i', $st['start']).'';	 
+    $st = mysqli_fetch_array($getstart); $start = date('d.m.Y \a\t H:i', $st['start']).'';
 
 		if(isleader($userID,$clanID))	{
 		 $form2 = '<font color="#00FF00"><b>Entered in the Ladder:</b></font><br> Hold CTRL and left click to select/deselect members in your team.<br><br>
@@ -500,7 +500,7 @@ elseif(isset($_GET['action']) && $_GET['action'] == 'lineup'){
 						       </tr>
 							 </table>';
 							 
-		  $chk_fch=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='$cupID'"));				 
+		  $chk_fch=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='$cupID'"));
 				
 		  if(isladparticipant($userID,$cupID) && ParticipantID($userID,$cupID)!=$_GET['clanID'])				 
 			       redirect('?site=ladders&action=lineup&ID='.$cupID.'&clanID='.ParticipantID($userID,$cupID), '', 0);				
@@ -521,10 +521,10 @@ elseif(isset($_GET['action']) && $_GET['action'] == 'lineup'){
 	$one = ladderis1on1($laddID) ? "1on1='1'" : "1on1='0'";
    
 	$ergebnis3 = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE clanID='$clanID' && ladID='$laddID' && $one");
-	$notin=mysql_num_rows($ergebnis3);
+	$notin=mysqli_num_rows($ergebnis3);
 	
 	$ergebnis3 = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE clanID='$clanID' && ladID='$laddID' && $one && checkin='1'");
-	$notchecked=mysql_num_rows($ergebnis3);
+	$notchecked=mysqli_num_rows($ergebnis3);
 	
     if(!$loggedin) 
     {
@@ -536,7 +536,7 @@ elseif(isset($_GET['action']) && $_GET['action'] == 'lineup'){
   //can not leave cup if status is not signup phase
   
 	$getstatus=safe_query("SELECT status FROM ".PREFIX."cup_ladders WHERE ID='$laddID'");
-	$st=mysql_fetch_array($getstatus); 
+	$st=mysqli_fetch_array($getstatus);
 	
     if($st['status']==1) 
     {
@@ -585,11 +585,11 @@ elseif(isset($_GET['action']) && $_GET['action'] == 'lineup'){
 //admin entered rules
 		
 	$getrules = safe_query("SELECT * FROM ".PREFIX."cup_rules WHERE ladID= '".$ID."' && cupID='0'");
-	if(!mysql_num_rows($getrules)){
+	if(!mysqli_num_rows($getrules)){
 		echo '<br /><br /><center><b>There were no rules yet registered!</b></center><br /><br />Please try again later!<br /><br />';
 		echo $inctemp; echo base64_decode('');
 	}else{ 
-			$dd=mysql_fetch_array($getrules);
+			$dd=mysqli_fetch_array($getrules);
 					
 			if(empty($dd[value])){ 
 				echo '<br /><br /><center><b>There were no rules yet registered!</b></center><br /><br />Please try again later!<br /><br />';
@@ -621,7 +621,7 @@ elseif(isset($_GET['action']) && $_GET['action'] == 'lineup'){
 elseif(isset($_GET['ID']) && $_GET['ID'] && $action != "rules") { 
 	
 	  $ladder = safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='".$ladID."'");
-	   $ds=mysql_fetch_array($ladder);
+	   $ds=mysqli_fetch_array($ladder);
 	   
 		   getlocaltimezone(0,0,$userID);
 		   
@@ -644,7 +644,7 @@ elseif(isset($_GET['ID']) && $_GET['ID'] && $action != "rules") {
 		//freeagent notification
 		
         $freeagents = safe_query("SELECT * FROM ".PREFIX."cup_agents WHERE ladID='$ladID' && cupID='0'");
-		if(mysql_num_rows($freeagents) && isladparticipant($userID,$ladID)) 
+		if(mysqli_num_rows($freeagents) && isladparticipant($userID,$ladID))
 		echo "<div ".$error_box."> There are free-agents available for this league. Click <a href='?site=freeagents&action=view&laddID=".$ladID."'>here</a> to view.</div>";
 		
 		
@@ -699,7 +699,7 @@ elseif(isset($_GET['ID']) && $_GET['ID'] && $action != "rules") {
     //!winners    	
 		
     $getmatches = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE ladID= '".$ladID."' && cupID='0'");
-    $played_matches = mysql_num_rows($getmatches);
+    $played_matches = mysqli_num_rows($getmatches);
 		
   $ladder_abbrev = '('.$ds['abbrev'].')';		
 		
@@ -745,16 +745,16 @@ elseif(isset($_GET['ID']) && $_GET['ID'] && $action != "rules") {
 			$status = 'Closed';
 	   
 		$ergebnis = safe_query("SELECT count( ID ) as clans FROM ".PREFIX."cup_clans WHERE ladID = '".$ladID."'");
-		$db = mysql_fetch_array($ergebnis);	   
+		$db = mysqli_fetch_array($ergebnis);
 	   
 		$ergebnis2 = safe_query("SELECT count( ID ) as clans2 FROM ".PREFIX."cup_clans WHERE ladID = '".$ladID."' && checkin = '1'");
-		$dd = mysql_fetch_array($ergebnis2);
+		$dd = mysqli_fetch_array($ergebnis2);
 		
 		$ergebnis2 = safe_query("SELECT count( ID ) as clans3 FROM ".PREFIX."cup_clans WHERE groupID = '".$ladID."' && cupID='0'");
-		$dd3 = mysql_fetch_array($ergebnis2);	   
+		$dd3 = mysqli_fetch_array($ergebnis2);
 	   
 		$ergebnis2 = safe_query("SELECT count( ID ) as clans4 FROM ".PREFIX."cup_clans WHERE groupID = '".$ladID."' && checkin = '1' && cupID='0'");
-		$dd4 = mysql_fetch_array($ergebnis2);
+		$dd4 = mysqli_fetch_array($ergebnis2);
 		
 		if($ds['maxclan']== 8)
 			$max = 8;
@@ -776,7 +776,7 @@ elseif(isset($_GET['ID']) && $_GET['ID'] && $action != "rules") {
 		$members4 = $dd4['clans4'].' / '.$group_max;
 			
 		$gameacc_sql = safe_query("SELECT * FROM ".PREFIX."gameacc WHERE gameaccID='".$ds['gameaccID']."'");
-		$dv = mysql_fetch_array($gameacc_sql);
+		$dv = mysqli_fetch_array($gameacc_sql);
 		$gameacc = (!$dv['type'] ? "n/a" : $dv['type']);
 		
 	$show_prts = "
@@ -897,7 +897,7 @@ elseif(isset($_GET['ID']) && $_GET['ID'] && $action != "rules") {
    } 
    
    $alpha_groups = "ladID='a' || ladID='b' || ladID='c' || ladID='d' || ladID='e' || ladID='f' || ladID='g' || ladID='h'";
-   $dt=mysql_fetch_array(safe_query("SELECT count(*) as totalm FROM ".PREFIX."cup_matches WHERE matchno='$ladID' && ($alpha_groups) && cupID='0' && confirmscore='1' && einspruch='0'"));    
+   $dt=mysqli_fetch_array(safe_query("SELECT count(*) as totalm FROM ".PREFIX."cup_matches WHERE matchno='$ladID' && ($alpha_groups) && cupID='0' && confirmscore='1' && einspruch='0'"));
 
    if($ds['gs_staging']==1)
       $total_matches = $max*4;
@@ -1288,7 +1288,7 @@ $tb_legend .= '<div class="slidingDiv_lg">
 }
        
   $c_admins = safe_query("SELECT * FROM ".PREFIX."cup_admins WHERE ladID='$ladID'");
-  $admin_rows = mysql_num_rows($c_admins);
+  $admin_rows = mysqli_num_rows($c_admins);
   
   if($admin_rows) {
    
@@ -1335,13 +1335,13 @@ $tb_legend .= '<div class="slidingDiv_lg">
        		
 
 }elseif($_GET['action'] == 'admins'){
-		$cupID = mysql_escape_string($_GET['ID']);
+		$cupID = mysqli_escape_string($_GET['ID']);
 		
 		$admin_sql=safe_query("SELECT * FROM ".PREFIX."cup_admins WHERE ladID='$cupID'");
-		if(!mysql_num_rows($admin_sql))
+		if(!mysqli_num_rows($admin_sql))
 			echo '<br /><br /><center><b>There were no admins entered!</b></center><br /><br />Please try again later!<br /><br />';
 		else{
-			while($dv=mysql_fetch_array($admin_sql)) {
+			while($dv=mysqli_fetch_array($admin_sql)) {
 			
 				//Variablen
 				$avatar = '<img src="images/avatars/'.getavatar($dv[userID]).'">';
@@ -1355,8 +1355,8 @@ $tb_legend .= '<div class="slidingDiv_lg">
 				if(empty($lastname))
 				$lastname = 'n/a';
 				
-				$res = mysql_query("SELECT birthday, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW()) - TO_DAYS(birthday)), '%y') 'age' FROM ".PREFIX."user WHERE userID = '$dv[userID]'");
-				$cur = mysql_fetch_array($res);
+				$res = mysqli_query("SELECT birthday, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW()) - TO_DAYS(birthday)), '%y') 'age' FROM ".PREFIX."user WHERE userID = '$dv[userID]'");
+				$cur = mysqli_fetch_array($res);
 				$birthday= $cur['age'];
 				if(empty($birthday))
 				$birthday = 'n/a';
@@ -1392,13 +1392,13 @@ $tb_legend .= '<div class="slidingDiv_lg">
        $tourn_ids = '<option selected>-- Select Game --</option>';    
     
 	   $query = safe_query("SELECT * FROM ".PREFIX."cup_ladders");
-	   while($so=mysql_fetch_array($query)) {
+	   while($so=mysqli_fetch_array($query)) {
 	   $tags_in .= 'tag=\''.$so['game'].'\' OR ';
 	   }
 	   
 	   $tags_in.="tag = ''";
        $laddIDs = safe_query("SELECT gameID FROM ".PREFIX."games WHERE $tags_in"); 
-           while($pID = mysql_fetch_array($laddIDs)) {
+           while($pID = mysqli_fetch_array($laddIDs)) {
                $tourn_ids.='<option value="'.$pID['gameID'].'">'.get_gamename($pID['gameID']).'</option>';
            }
 		
@@ -1419,7 +1419,7 @@ $tb_legend .= '<div class="slidingDiv_lg">
        $plat_ids = '<option selected>-- Select Platform --</option>';    
     
        $platIDs = safe_query("SELECT ID FROM ".PREFIX."cup_platforms");
-           while($pID = mysql_fetch_array($platIDs)) {
+           while($pID = mysqli_fetch_array($platIDs)) {
                $plat_ids.='<option value="'.$pID['ID'].'">'.getplatname($pID['ID']).'</option>';
            }
 		   
@@ -1441,7 +1441,7 @@ $tb_legend .= '<div class="slidingDiv_lg">
 	
 	    $ladders = safe_query("SELECT * FROM ".PREFIX."cup_ladders $where $if_ladder $and $if_platform ORDER BY ID DESC");
 	  
-	    if(!mysql_num_rows($ladders)) { 
+	    if(!mysqli_num_rows($ladders)) {
 		        echo '<div '.$error_box.'> No ladders found</div>';
 	    }
 		else{
@@ -1449,10 +1449,10 @@ $tb_legend .= '<div class="slidingDiv_lg">
                echo $inctemp; 
 		
 		
-		while($ds=mysql_fetch_array($ladders)) {
+		while($ds=mysqli_fetch_array($ladders)) {
 	      
-		$fa=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_agents WHERE ladID='".$ds['ID']."' && cupID='0'"));
-		$cm=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE ladID='".$ds['ID']."' && cupID='0'"));
+		$fa=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_agents WHERE ladID='".$ds['ID']."' && cupID='0'"));
+		$cm=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE ladID='".$ds['ID']."' && cupID='0'"));
 	      
 		if(is_array($fa)) 
 		   $free_agents = '<a href="?site=freeagents&action=view&laddID='.$ds['ID'].'"><img src="images/cup/icons/freeagents.png" align="right" width="16" height="16"></a>';

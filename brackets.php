@@ -39,7 +39,7 @@ match_query_type();
 //maintenance
 
 $mode = safe_query("SELECT maintenance FROM ".PREFIX."cup_settings");
-$ds = mysql_fetch_array($mode); 
+$ds = mysqli_fetch_array($mode);
 
     if($ds['maintenance']==0) $maintenance = true;
 elseif($ds['maintenance']==1 && issuperadmin($userID)) $maintenance = true;
@@ -52,7 +52,7 @@ if($maintenance==true) {
 		
 		$cupID = $_GET['cupID'];
 		$ergebnis = safe_query("SELECT * FROM ".PREFIX."cups WHERE ID = '".$cupID."'");
-		$ds = mysql_fetch_array($ergebnis);
+		$ds = mysqli_fetch_array($ergebnis);
 		
 		$cupname = getcupname($ds['ID']);
 		if(!$cpr || !ca_copyr()) die();
@@ -64,7 +64,7 @@ if($maintenance==true) {
 		echo $title_cup;
 		
 		$ergebnis = safe_query("SELECT * FROM ".PREFIX."cup_baum WHERE cupID= '".$cupID."'");
-		$dd=mysql_fetch_array($ergebnis);
+		$dd=mysqli_fetch_array($ergebnis);
 		
 		$flag_type = (is1on1($cupID) ? "getusercountry" : "getclancountry");
 		
@@ -183,8 +183,8 @@ if($maintenance==true) {
 		$i2 = 1;
 		for ($i=1; $i<128; $i++) {
 			$matches=safe_query("SELECT matchID, clan1, clan2, score1, score2, confirmscore, inscribed, einspruch FROM ".PREFIX."cup_matches WHERE cupID = '$cupID' and matchno = '$i'");
-			if(mysql_num_rows($matches)){
-				while($db=mysql_fetch_array($matches)) {
+			if(mysqli_num_rows($matches)){
+				while($db=mysqli_fetch_array($matches)) {
 					if($db['confirmscore']){
 						$score1[$i] = $db['score1'];
 						$score2[$i] = $db['score2'];

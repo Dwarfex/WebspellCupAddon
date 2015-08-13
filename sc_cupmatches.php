@@ -45,12 +45,12 @@ if($call_clanmatches){
 $order_sc=($sc_cupmatches_order ? "ORDER BY confirmed_date" : "ORDER BY date");
 $matches = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE confirmscore='1' && einspruch='0' $cupSC $clanSC && (clan1 != '0' && clan2 != '0') && (clan1 != '2147483647' && clan2 != '2147483647') $teamSC $order_sc DESC LIMIT 0,$limit_recent_matches");
 
-    if(mysql_num_rows($matches)) { 
+    if(mysqli_num_rows($matches)) {
 
        eval ("\$sc_upcomingmatches = \"".gettemplate("sc_cupmatches_head")."\";");
        echo $sc_upcomingmatches;  
 
-    while($ds=mysql_fetch_array($matches)) 
+    while($ds=mysqli_fetch_array($matches))
     { 
     
      $array = array('a','b','c','d','e','f','g','h');
@@ -69,7 +69,7 @@ $matches = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE confirmscore='1
 
      if($ds['type']=='cup') {
         $cupID = $ds['cupID'];
-        $game = $logo=mysql_fetch_array(safe_query("SELECT game FROM ".PREFIX."cups WHERE ID='".$ds['cupID']."'"));
+        $game = $logo=mysqli_fetch_array(safe_query("SELECT game FROM ".PREFIX."cups WHERE ID='".$ds['cupID']."'"));
         $type = '<img src="images/cup/icons/tournament.png" align="right">';
         $var = "cupID";
         $league = "cup";
@@ -78,14 +78,14 @@ $matches = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE confirmscore='1
      elseif($ds['type']=='gs') {
         $cupID = $ds['matchno'];
         $league = (in_array($ds['cupID'],$array) ? "cup" : "ladder");
-        $game = $logo=mysql_fetch_array(safe_query("SELECT game FROM ".PREFIX.($league=='cup' ? 'cups' : 'cup_ladders')." WHERE ID='".$ds['matchno']."'"));
+        $game = $logo=mysqli_fetch_array(safe_query("SELECT game FROM ".PREFIX.($league=='cup' ? 'cups' : 'cup_ladders')." WHERE ID='".$ds['matchno']."'"));
         $type = '<img src="images/cup/icons/groups.png" align="right">';
         $var = "matchno";
         $details_link = '?site=cup_matches&match='.$ds['matchID'].'&'.$t_name.'='.$cupID.'&type=gs';
      }
      elseif($ds['type']=='ladder') {
         $cupID = $ds['ladID'];
-        $game = $logo=mysql_fetch_array(safe_query("SELECT game FROM ".PREFIX."cup_ladders WHERE ID='".$ds['ladID']."'"));
+        $game = $logo=mysqli_fetch_array(safe_query("SELECT game FROM ".PREFIX."cup_ladders WHERE ID='".$ds['ladID']."'"));
         $type = '<img src="images/cup/icons/ladder.png" align="right">';
         $var = "ladID";
         $league = "ladder";

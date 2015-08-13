@@ -40,10 +40,10 @@ header('content-type: text/html; charset=utf-8');
 
 // -- CONNECTION TO MYSQL -- //
 
-mysql_connect($host, $user, $pwd) or system_error('ERROR: Can not connect to MySQL-Server');
-mysql_select_db($db) or system_error('ERROR: Can not connect to database "'.$db.'"');
+mysqli_connect($host, $user, $pwd) or system_error('ERROR: Can not connect to MySQL-Server');
+mysqli_select_db($db) or system_error('ERROR: Can not connect to database "'.$db.'"');
 
-mysql_query("SET NAMES 'utf8'");
+mysqli_query("SET NAMES 'utf8'");
 
 // -- GENERAL PROTECTIONS -- //
 
@@ -93,8 +93,8 @@ function security_slashes(&$array) {
 			else {
 				$tmp = $value;
 			}
-			if(function_exists("mysql_real_escape_string")) {
-				$array[$key] = mysql_real_escape_string($tmp);
+			if(function_exists("mysqli_real_escape_string")) {
+				$array[$key] = mysqli_real_escape_string($tmp);
 			}
 			else {
 				$array[$key] = addslashes($tmp);
@@ -110,17 +110,17 @@ security_slashes($_GET);
 security_slashes($_REQUEST);
 
 // -- MYSQL QUERY FUNCTION -- //
-$_mysql_querys = array();
+$_mysqli_querys = array();
 function safe_query($query="") {
-	global $_mysql_querys;
+	global $_mysqli_querys;
 	if(stristr(str_replace(' ', '', $query), "unionselect")===FALSE AND stristr(str_replace(' ', '', $query), "union(select")===FALSE){
-		$_mysql_querys[] = $query;
+		$_mysqli_querys[] = $query;
 		if(empty($query)) return false;
-		if(DEBUG == "OFF") $result = mysql_query($query) or die('Query failed!');
+		if(DEBUG == "OFF") $result = mysqli_query($query) or die('Query failed!');
 		else {
-			$result = mysql_query($query) or die('Query failed: '
-			.'<li>errorno='.mysql_errno()
-			.'<li>error='.mysql_error()
+			$result = mysqli_query($query) or die('Query failed: '
+			.'<li>errorno='.mysqli_errno()
+			.'<li>error='.mysqli_error()
 			.'<li>query='.$query);
 		}
 		return $result;
@@ -133,7 +133,7 @@ function safe_query($query="") {
 function system_error($text,$system=1) {
 	if($system) {
 		include('version.php');
-		$info='webSPELL Version: '.$version.'<br />PHP Version: '.phpversion().'<br />MySQL Version: '.mysql_get_server_info().'<br />';
+		$info='webSPELL Version: '.$version.'<br />PHP Version: '.phpversion().'<br />MySQL Version: '.mysqli_get_server_info().'<br />';
 	} else {
 		$info = '';
 	}
@@ -175,10 +175,10 @@ function systeminc($file) {
 // -- IGNORED USERS -- //
 
 function isignored($userID, $buddy) {
-	$anz=mysql_num_rows(safe_query("SELECT userID FROM ".PREFIX."buddys WHERE buddy='$buddy' AND userID='$userID' "));
+	$anz=mysqli_num_rows(safe_query("SELECT userID FROM ".PREFIX."buddys WHERE buddy='$buddy' AND userID='$userID' "));
 	if($anz) {
 		$ergebnis=safe_query("SELECT * FROM ".PREFIX."buddys WHERE buddy='$buddy' AND userID='$userID' ");
-		$ds=mysql_fetch_array($ergebnis);
+		$ds=mysqli_fetch_array($ergebnis);
 		if($ds['banned']==1) return 1;
 		else return 0;
 	}
@@ -187,7 +187,7 @@ function isignored($userID, $buddy) {
 
 // -- GLOBAL SETTINGS -- //
 
-$ds = mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."settings"));
+$ds = mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."settings"));
 
 $maxshownnews				=	$ds['news']; 				if(empty($maxshownnews)) $maxshownnews = 10;
 $maxnewsarchiv				=	$ds['newsarchiv']; 			if(empty($maxnewsarchiv)) $maxnewsarchiv = 20;
@@ -244,7 +244,7 @@ $new_chmod = 0666;
 // -- STYLES -- //
 
 $ergebnis=safe_query("SELECT * FROM ".PREFIX."styles");
-$ds=mysql_fetch_array($ergebnis);
+$ds=mysqli_fetch_array($ergebnis);
 
 define('PAGEBG', $ds['bgpage']);
 define('BORDER', $ds['border']);

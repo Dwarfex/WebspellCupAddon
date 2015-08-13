@@ -20,8 +20,8 @@ if($_POST['createdepartment']) {
    
 }elseif(isset($_GET['action']) && $_GET['action']=="showall") {
    $query = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE einspruch='1'");
-     if(!mysql_num_rows($query)) $no_protests = "Oopz! Looks like there are no protest matches!";
-       while($ds = mysql_fetch_array($query)) {
+     if(!mysqli_num_rows($query)) $no_protests = "Oopz! Looks like there are no protest matches!";
+       while($ds = mysqli_fetch_array($query)) {
          safe_query("INSERT INTO ".PREFIX."cup_tickets (`cupID`,`ladID`,`matchID`,`subject`,`desc`) VALUES ('".$ds['cupID']."', '".$ds['ladID']."', '".$ds['matchID']."', '(unspecified subject)', '(unspecified message)')");                
     }    
 }elseif($_GET['action']=="update" && $_GET['departmentID']) {
@@ -46,7 +46,7 @@ if($_POST['createdepartment']) {
   safe_query("DELETE FROM ".PREFIX."cup_tickets WHERE department='".$_GET['department']."'");
   
   $query = safe_query("SELECT ticketID FROM ".PREFIX."cup_tickets WHERE department='".$_GET['department']."'");
-    while($ds=mysql_fetch_array($query)) {    
+    while($ds=mysqli_fetch_array($query)) {
        safe_query("DELETE FROM ".PREFIX."comments WHERE parentID='".$ds['ticketID']."' && type='ts'");
     }
   redirect('?site=cuptickets', '<center><b>Department and tickets assigned to department successfully deleted!</b></center>', 2); 
@@ -62,8 +62,8 @@ $hide_closed = ($hide_closed_tickets ? "AND status!='5'" : "");
 
 $departments = '<option value="" selected>-- Edit Department --</option>';
   $query = safe_query("SELECT ID, department FROM ".PREFIX."cup_departments");
-    $num_departments = mysql_num_rows($query);
-      while($pt = mysql_fetch_array($query)) {
+    $num_departments = mysqli_num_rows($query);
+      while($pt = mysqli_fetch_array($query)) {
          $departments .= '<option value="'.$pt['ID'].'">'.$pt['department'].'</option>';
          $departments_l.='<option value="'.$pt['ID'].'">'.$pt['department'].'</option>';
      }
@@ -97,10 +97,10 @@ if($_GET['department']) {
     $ID = $_GET['tickID'];
  
     $query = safe_query("SELECT * FROM ".PREFIX."cup_tickets WHERE ticketID='$ID'");
-    $ds = mysql_fetch_array($query);
+    $ds = mysqli_fetch_array($query);
     
     $update = safe_query("SELECT * FROM ".PREFIX."comments WHERE type='ts' && parentID='".$ds['ticketID']."' ORDER BY commentID DESC");
-    $tic = mysql_fetch_array($update); $num_rows = mysql_num_rows($update);  
+    $tic = mysqli_fetch_array($update); $num_rows = mysqli_num_rows($update);
     
     $subject = getinput($ds['subject']);
     $date = date('l M dS Y \@\ g:i a', $ds['time']);
@@ -108,7 +108,7 @@ if($_GET['department']) {
     $staff = ($ds['adminID'] ? '<a href="../index.php?site=profile&id='.$ds['adminID'].'"><b>'.getnickname($ds['adminID']).'</b></a>' : "n/a");
     
     if($ds['matchID']) {
-       $dm=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID='".$ds['matchID']."'"));
+       $dm=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID='".$ds['matchID']."'"));
        $desc = getname1($dm['clan1'],getleagueID($ds['matchID']),$ac=1,league($ds['matchID'])).' vs '.getname1($dm['clan2'],getleagueID($ds['matchID']),$ac=1,league($ds['matchID']));
     }else
        $desc = cleartext(stripslashes(str_replace(array('\r\n', '\n'),array("\n","\n" ), $ds['desc'])),$bbcode=true, $calledfrom='admin');
@@ -120,7 +120,7 @@ if($_GET['department']) {
         $updated_by = 'by '.(iscupadmin($userID) ? "admin" : "user").' <a href="../index.php?site=profile&id='.$tic['userID'].'"><b>'.getnickname($tic['userID']).'</b></a>';
    }
        
-              $lc=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."comments WHERE parentID='".$ds['ticketID']."' && type='ts' ORDER BY date DESC LIMIT 0,1"));
+              $lc=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."comments WHERE parentID='".$ds['ticketID']."' && type='ts' ORDER BY date DESC LIMIT 0,1"));
               $autoclose = time()-$ticket_autoclose_time;
             
               if(!$lc['date'] && $ds['time'] <= $autoclose && in_array($ds['status'],$only_autoclose_ticket)) 
@@ -134,7 +134,7 @@ if($_GET['department']) {
             
       if($ds['matchID']) {
 	  
-            $db=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID='".$ds['matchID']."'"));
+            $db=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID='".$ds['matchID']."'"));
             $type = '<font color="red"><b>Match Protest</b></font>';
 			$type2 = ($ds['ladID'] ? "laddID" : "cupID"); 
 			$cupID = ($ds['ladID'] ? $ds['ladID'] : $ds['cupID']);
@@ -185,7 +185,7 @@ if($_GET['department']) {
 	  else{
             $type = departmentname($ds['department']);
 			
-            $dp=mysql_fetch_array(safe_query("SELECT department FROM ".PREFIX."cup_departments WHERE ID='".$ds['department']."'"));
+            $dp=mysqli_fetch_array(safe_query("SELECT department FROM ".PREFIX."cup_departments WHERE ID='".$ds['department']."'"));
             $departments=str_replace(' selected', '', $departments_l);
 	        $departments=str_replace('value="'.$ds['department'].'"', 'value="'.$ds['department'].'" selected', $departments_l);
 			
@@ -216,11 +216,11 @@ if($_GET['department']) {
  /* Ticket Overview */
  
       $tickets_gp = safe_query("SELECT * FROM ".PREFIX."cup_tickets GROUP BY department"); 
-	  $t_num_rows = mysql_num_rows($tickets_gp);
+	  $t_num_rows = mysqli_num_rows($tickets_gp);
 	  
 	  if($_GET['show']=='all') echo '-- <a href="admincenter.php?site=cuptickets">hide closed</a> --';
       
-        while($tgp=mysql_fetch_array($tickets_gp)) {
+        while($tgp=mysqli_fetch_array($tickets_gp)) {
 	
           echo '<table width="100%" border="0" cellspacing="1" cellpadding="3" bgcolor="#DDDDDD">
                 <tr>
@@ -233,7 +233,7 @@ if($_GET['department']) {
       $order_tickets = ($order_by ? "ORDER BY updated DESC" : "ORDER BY time DESC");
       $tickets = safe_query("SELECT * FROM ".PREFIX."cup_tickets WHERE department='".$tgp['department']."' $show_all $order_tickets");
 	  
-        if(!mysql_num_rows($tickets)) 
+        if(!mysqli_num_rows($tickets))
 		    $no_rows = '<tr><td colspan="4" align="center" bgcolor="'.$bg1.'">-- No open tickets found --<br>-- <a href="admincenter.php?site=cuptickets&show=all">show all tickets</a> --</td></tr>'; 
 		else
 		    $no_rows = '';
@@ -246,9 +246,9 @@ if($_GET['department']) {
                   <td class="td_head" width="5%" align="center"><strong>Details</strong></td>
                 </tr>'.$no_rows;
 
-          while($ds=mysql_fetch_array($tickets)) {
+          while($ds=mysqli_fetch_array($tickets)) {
             
-              $lc=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."comments WHERE parentID='".$ds['ticketID']."' && type='ts' ORDER BY date DESC LIMIT 0,1"));
+              $lc=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."comments WHERE parentID='".$ds['ticketID']."' && type='ts' ORDER BY date DESC LIMIT 0,1"));
               $autoclose = time()-$ticket_autoclose_time;
             
               if(!$lc['date'] && $ds['time'] <= $autoclose && in_array($ds['status'],$only_autoclose_ticket)) 

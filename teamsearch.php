@@ -11,7 +11,7 @@ $bg2=BG_1;
 $bg3=BG_1;
 $bg4=BG_1;
 
-$ct=mysql_fetch_array(safe_query("SELECT cupteamlimit FROM ".PREFIX."cup_settings"));
+$ct=mysqli_fetch_array(safe_query("SELECT cupteamlimit FROM ".PREFIX."cup_settings"));
 $cupteamlimit = $ct['cupteamlimit'];
 
 $search = trim ($_GET['search']);

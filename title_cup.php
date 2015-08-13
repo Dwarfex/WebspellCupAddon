@@ -38,12 +38,12 @@
   $type_link = ($_GET['cupID'] ? "cupID" : "laddID");
   $type_link2 =($_GET['cupID'] ?"": "&type=ladders");
   
-  $st = mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."$table_sel WHERE ID='$cupID'"));
+  $st = mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."$table_sel WHERE ID='$cupID'"));
    
      $one = ($type($cupID) ? "1on1='1'" : "1on1='0'");   
   
         $registered = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE $one && $league='$cupID'");
-        $tds = mysql_fetch_array($registered); 
+        $tds = mysqli_fetch_array($registered);
 		
 		$groups_tit = "";
         
@@ -104,9 +104,9 @@
            {
               
            $teams = safe_query("SELECT * FROM ".PREFIX."cup_clan_members WHERE userID='$userID'");
-               while($te=mysql_fetch_array($teams))
+               while($te=mysqli_fetch_array($teams))
                 {             
-                    if(mysql_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE clanID='".$te['clanID']."' && 1on1='0' && cupID='$cupID'")))
+                    if(mysqli_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE clanID='".$te['clanID']."' && 1on1='0' && cupID='$cupID'")))
                     {
                        $mylineup = '<td class="title"><img border="0" src="images/cup/icons/random.png" width="16" height="16"> <a class="titlelink" href="?site=clans&action=lineup&cupID='.$cupID.'">Lineup</a></td>';  
                  }

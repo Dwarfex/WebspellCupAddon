@@ -145,7 +145,7 @@ function percent($sub, $total, $dec) {
 }
 
 function showlock($reason, $time) {
-	$gettitle = mysql_fetch_array(safe_query("SELECT title FROM ".PREFIX."styles"));
+	$gettitle = mysqli_fetch_array(safe_query("SELECT title FROM ".PREFIX."styles"));
 	$pagetitle = $gettitle['title'];
 	eval ("\$lock = \"".gettemplate("lock")."\";");
 	die($lock);
@@ -352,7 +352,7 @@ if($loggedin == false) {
 }
 
 if($login_per_cookie) {
-	$ll=mysql_fetch_array(safe_query("SELECT lastlogin FROM ".PREFIX."user WHERE userID='$userID'"));
+	$ll=mysqli_fetch_array(safe_query("SELECT lastlogin FROM ".PREFIX."user WHERE userID='$userID'"));
 	$_SESSION['ws_lastlogin'] = $ll['lastlogin'];
 }
 
@@ -361,7 +361,7 @@ if($login_per_cookie) {
 if(isset($_GET['site'])) $site = $_GET['site'];
 else $site = '';
 if($closed AND !isanyadmin($userID)) {
-	$dl=mysql_fetch_array(safe_query("SELECT * FROM `".PREFIX."lock` LIMIT 0,1"));
+	$dl=mysqli_fetch_array(safe_query("SELECT * FROM `".PREFIX."lock` LIMIT 0,1"));
 	$reason = $dl['reason'];
 	$time = $dl['time'];
 	showlock($reason, $time);
@@ -377,7 +377,7 @@ if(cupIsInstalled()) {
 if(date("dh",$lastBanCheck) != date("dh")){
 	$get = safe_query("SELECT userID, banned FROM ".PREFIX."user WHERE banned IS NOT NULL");
 	$removeBan = array();
-	while($ds = mysql_fetch_assoc($get)){
+	while($ds = mysqli_fetch_assoc($get)){
 		if($ds['banned'] != "perm"){
 			if($ds['banned'] <= time()){
 				$removeBan[] = 'userID="'.$ds['userID'].'"';
@@ -392,7 +392,7 @@ if(date("dh",$lastBanCheck) != date("dh")){
 }
 
 $banned=safe_query("SELECT userID, banned, ban_reason FROM ".PREFIX."user WHERE (userID='".$userID."' OR ip='".$GLOBALS['ip']."') AND banned IS NOT NULL");
-while($bq=mysql_fetch_array($banned)) {
+while($bq=mysqli_fetch_array($banned)) {
 	if($bq['ban_reason']) $reason = "<br />".$bq['ban_reason'];
 	else $reason = '';
 	if($bq['banned']) system_error('You have been banished.'.$reason,0);
@@ -429,31 +429,31 @@ if(mb_strlen($site)) {
 
     //cup
 
-    $channelID = (isset($_GET['id']) ? mysql_real_escape_string($_GET['id']) : 0);
-    $type = (isset($_GET['type']) ? mysql_real_escape_string($_GET['type']) : '');
+    $channelID = (isset($_GET['id']) ? mysqli_real_escape_string($_GET['id']) : 0);
+    $type = (isset($_GET['type']) ? mysqli_real_escape_string($_GET['type']) : '');
 	$channel = (isset($channel) ? $channel : false);
 
     //!cup
 
        	if($userID) {
        		// IS online
-		if(mysql_num_rows(safe_query("SELECT userID FROM ".PREFIX."whoisonline WHERE $channel userID='$userID'"))) {
+		if(mysqli_num_rows(safe_query("SELECT userID FROM ".PREFIX."whoisonline WHERE $channel userID='$userID'"))) {
 			safe_query("UPDATE ".PREFIX."whoisonline SET time='".time()."', ip='$ip', site='$site', url='$site_url', type='$type', channelID='$channelID' WHERE $channel userID='$userID'");
 			safe_query("UPDATE ".PREFIX."user SET lastlogin='".time()."' WHERE userID='$userID'");
 		}
 		else safe_query("INSERT INTO ".PREFIX."whoisonline (time, userID, ip, site, url, type, channelID) VALUES ('".time()."', '$userID', '$ip', '$site', '$site_url', '$type', '$channelID')");
 	
 		// WAS online
-		if(mysql_num_rows(safe_query("SELECT userID FROM ".PREFIX."whowasonline WHERE userID='$userID'")))
+		if(mysqli_num_rows(safe_query("SELECT userID FROM ".PREFIX."whowasonline WHERE userID='$userID'")))
 		safe_query("UPDATE ".PREFIX."whowasonline SET time='".time()."', ip='$ip', site='$site', url='$site_url' WHERE userID='$userID'");
 		else safe_query("INSERT INTO ".PREFIX."whowasonline (time, userID, ip, site, url) VALUES ('".time()."', '$userID', '$ip', '$site', '$site_url')");
 	}
 	else {
-		$anz = mysql_num_rows(safe_query("SELECT ip FROM ".PREFIX."whoisonline WHERE ip='$ip'"));
+		$anz = mysqli_num_rows(safe_query("SELECT ip FROM ".PREFIX."whoisonline WHERE ip='$ip'"));
 		if($anz) safe_query("UPDATE ".PREFIX."whoisonline SET time='".time()."', site='$site', url='$site_url' WHERE ip='$ip'");
 		else safe_query("INSERT INTO ".PREFIX."whoisonline (time, ip, site, url) VALUES ('".time()."','$ip', '$site', '$site_url')");
 
-		$anz = mysql_num_rows(safe_query("SELECT ip FROM ".PREFIX."whowasonline WHERE ip='$ip'"));
+		$anz = mysqli_num_rows(safe_query("SELECT ip FROM ".PREFIX."whowasonline WHERE ip='$ip'"));
 		if($anz) safe_query("UPDATE ".PREFIX."whowasonline SET time='".time()."', site='$site', url='$site_url' WHERE ip='$ip'");
 		else safe_query("INSERT INTO ".PREFIX."whowasonline (time, ip, site, url) VALUES ('".time()."','$ip', '$site', '$site_url')");
 
@@ -462,19 +462,19 @@ if(mb_strlen($site)) {
 else{
 	if($userID) {
 		// IS online
-		if(mysql_num_rows(safe_query("SELECT userID FROM ".PREFIX."whoisonline WHERE userID='$userID'"))) {
+		if(mysqli_num_rows(safe_query("SELECT userID FROM ".PREFIX."whoisonline WHERE userID='$userID'"))) {
 			safe_query("UPDATE ".PREFIX."whoisonline SET time='".time()."', site='$site' WHERE userID='$userID'");
 			safe_query("UPDATE ".PREFIX."user SET lastlogin='".time()."' WHERE userID='$userID'");
 		}
 		else safe_query("INSERT INTO ".PREFIX."whoisonline (time, userID, site) VALUES ('".time()."', '$userID', '$site')");
 
 		// WAS online
-		if(mysql_num_rows(safe_query("SELECT userID FROM ".PREFIX."whowasonline WHERE userID='$userID'")))
+		if(mysqli_num_rows(safe_query("SELECT userID FROM ".PREFIX."whowasonline WHERE userID='$userID'")))
 		safe_query("UPDATE ".PREFIX."whowasonline SET time='".time()."', site='$site' WHERE userID='$userID'");
 		else safe_query("INSERT INTO ".PREFIX."whowasonline (time, userID, site) VALUES ('".time()."', '$userID', '$site')");
 	}
 	else {
-		$anz = mysql_num_rows(safe_query("SELECT ip FROM ".PREFIX."whoisonline WHERE ip='".$GLOBALS['ip']."'"));
+		$anz = mysqli_num_rows(safe_query("SELECT ip FROM ".PREFIX."whoisonline WHERE ip='".$GLOBALS['ip']."'"));
 		if($anz) safe_query("UPDATE ".PREFIX."whoisonline SET time='".time()."', site='$site' WHERE ip='".$GLOBALS['ip']."'");
 		else safe_query("INSERT INTO ".PREFIX."whoisonline (time, ip, site) VALUES ('".time()."','".$GLOBALS['ip']."', '$site')");
 	}
@@ -487,20 +487,20 @@ $date = date("d.m.Y", $time);
 $deltime = $time-(3600*24);
 safe_query("DELETE FROM ".PREFIX."counter_iplist WHERE del<".$deltime);
 
-if(!mysql_num_rows(safe_query("SELECT ip FROM ".PREFIX."counter_iplist WHERE ip='".$GLOBALS['ip']."'"))) {
+if(!mysqli_num_rows(safe_query("SELECT ip FROM ".PREFIX."counter_iplist WHERE ip='".$GLOBALS['ip']."'"))) {
 	if($userID){
 		safe_query("UPDATE ".PREFIX."user SET ip='".$GLOBALS['ip']."' WHERE userID='".$userID."'");
 	}
 	safe_query("UPDATE ".PREFIX."counter SET hits=hits+1");
 	safe_query("INSERT INTO ".PREFIX."counter_iplist (dates, del, ip) VALUES ('".$date."', '".$time."', '".$GLOBALS['ip']."')");
-	if(!mysql_num_rows(safe_query("SELECT dates FROM ".PREFIX."counter_stats WHERE dates='".$date."'")))
+	if(!mysqli_num_rows(safe_query("SELECT dates FROM ".PREFIX."counter_stats WHERE dates='".$date."'")))
 		safe_query("INSERT INTO `".PREFIX."counter_stats` (`dates`, `count`) VALUES ('".$date."', '1')");
 	else
 		safe_query("UPDATE ".PREFIX."counter_stats SET count=count+1 WHERE dates='".$date."'");
 }
 
 /* update maxonline if necessary */
-$res=mysql_fetch_assoc(safe_query("SELECT count(*) as maxuser FROM ".PREFIX."whoisonline"));
+$res=mysqli_fetch_assoc(safe_query("SELECT count(*) as maxuser FROM ".PREFIX."whoisonline"));
 safe_query("UPDATE ".PREFIX."counter SET maxonline = ".$res['maxuser']." WHERE maxonline < ".$res['maxuser']);
 
 // -- COUNTRY LIST -- //
@@ -510,7 +510,7 @@ $ergebnis = safe_query("SELECT * FROM `".PREFIX."countries` ORDER BY country");
 if(cupIsInstalled()){
 	$countries= '<option value="0" selected>-- Select Country --</option>';
 }
-while($ds = mysql_fetch_array($ergebnis)) {
+while($ds = mysqli_fetch_array($ergebnis)) {
 	$countries .= '<option value="'.$ds['short'].'">'.$ds['country'].'</option>';
 }
 
@@ -551,7 +551,7 @@ if(cupIsInstalled()) {
 	$tchat_url = curPageName() . '?' . pageURL();
 
 	$query = safe_query("SELECT * FROM " . PREFIX . "whoisonline WHERE `call`='1' && calltimer!='0'");
-	while ($ds = mysql_fetch_array($query)) {
+	while ($ds = mysqli_fetch_array($query)) {
 
 		?>
 		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"

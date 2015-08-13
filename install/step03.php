@@ -56,8 +56,8 @@
          <td align="left"><?php echo phpversion() < '4.3' ? '<b><font color="red">'.$_language->module['no'].'</font></b>' : '<b><font color="green">'.$_language->module['yes'].'</font></b>';?></td>
         </tr>
         <tr>
-         <td><?php echo $_language->module['mysql_support']; ?></td>
-         <td align="left"><?php echo function_exists( 'mysql_connect' ) ? '<b><font color="green">'.$_language->module['available'].'</font></b>' : '<b><font color="red">'.$_language->module['unavailable'].'</font></b>';?></td>
+         <td><?php echo $_language->module['mysqli_support']; ?></td>
+         <td align="left"><?php echo function_exists( 'mysqli_connect' ) ? '<b><font color="green">'.$_language->module['available'].'</font></b>' : '<b><font color="red">'.$_language->module['unavailable'].'</font></b>';?></td>
         </tr>
         <tr>
          <td>&nbsp;</td>
@@ -72,7 +72,7 @@
            echo '<b><font color="green">'.$_language->module['writeable'].'</font></b>';
          } else {
            echo '<b><font color="red">'.$_language->module['unwriteable'].'</font></b><br />
-           <small>'.$_language->module['mysql_error'].'</small>';
+           <small>'.$_language->module['mysqli_error'].'</small>';
          } ?></td>
         </tr>
         <tr>

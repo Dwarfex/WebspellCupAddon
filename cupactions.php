@@ -17,7 +17,7 @@ match_query_type();
  $league_type = isset($_GET['cupID']) ?  "cupID" : "ladID";
  $match_link = matchlink($_GET['matchID'],$ac=0,$tg=0,$redirect=1);
 
- $tn=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID='".$_GET['matchID']."'"));
+ $tn=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID='".$_GET['matchID']."'"));
  $t_name=($tn['ladID'] ? "laddID" : "cupID");
 
   if(isset($_GET['cupID']))
@@ -78,11 +78,11 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
 	
 	if(isset($_POST['post'])){
 		if($mm_typename3($mm_r_cupID)){
-			if($loggedin && mysql_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && (clan1 = '$userID' OR clan2 = '$userID')"))){
+			if($loggedin && mysqli_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && (clan1 = '$userID' OR clan2 = '$userID')"))){
 				safe_query("INSERT INTO ".PREFIX."cup_requests SET matchID = '".$matchID."', userID = '".$userID."', reason = '".$_POST['reason']."', time = '".time()."'");
 				
 				$ergebnis=safe_query("SELECT matchno FROM ".PREFIX."cup_matches WHERE matchID = '$matchID'");
-				$dd=mysql_fetch_array($ergebnis);
+				$dd=mysqli_fetch_array($ergebnis);
 				
 				redirect($match_link, $_language->module['matchmedia_requested'].'<br />'.$_language->module['redirect'], 3);
 			}
@@ -91,7 +91,7 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
 				safe_query("INSERT INTO ".PREFIX."cup_requests SET matchID = '".$matchID."', userID = '".$userID."', reason = '".$_POST['reason']."', time = '".time()."'");
 			
 			$ergebnis=safe_query("SELECT matchno FROM ".PREFIX."cup_matches WHERE matchID = '$matchID'");
-			$dd=mysql_fetch_array($ergebnis);
+			$dd=mysqli_fetch_array($ergebnis);
 			
 			redirect($match_link, $_language->module['matchmedia_requested'].'<br />'.$_language->module['redirect'], 3);
 		}
@@ -107,36 +107,36 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
 	
 	if(isset($_POST['submit'])){
 		if($typename3($cupID)){
-			if($loggedin && mysql_num_rows(safe_query("SELECT matchID FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && (clan1 = '$userID' OR clan2 = '$userID')"))){
+			if($loggedin && mysqli_num_rows(safe_query("SELECT matchID FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && (clan1 = '$userID' OR clan2 = '$userID')"))){
 				$clan_return = safe_query("SELECT matchID FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && clan1 = '$userID'");
-				$report_clan = mysql_num_rows($clan_return) ? '1' : '2';
+				$report_clan = mysqli_num_rows($clan_return) ? '1' : '2';
 				
-				safe_query("UPDATE ".PREFIX."cup_matches SET report_team".$report_clan."='".mysql_escape_string($_POST['report'])."', server='".$_POST['server']."', hltv='".$_POST['hltv']."' WHERE matchID = '$matchID' && clan".$report_clan." = '$userID'");
+				safe_query("UPDATE ".PREFIX."cup_matches SET report_team".$report_clan."='".mysqli_escape_string($_POST['report'])."', server='".$_POST['server']."', hltv='".$_POST['hltv']."' WHERE matchID = '$matchID' && clan".$report_clan." = '$userID'");
 
 				$ergebnis = safe_query("SELECT matchno FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && clan".$report_clan."='$userID'");
-				$dd = mysql_fetch_array($ergebnis);
+				$dd = mysqli_fetch_array($ergebnis);
 				
 				redirect($match_link, $_language->module['matchdetails_edited'].'<br />'.$_language->module['redirect'], 3);
 			}
 		}else{
 			if(isleader($userID, $clanID)){
 				$clan_return = safe_query("SELECT matchID FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && clan1 = '$clanID'");
-				$report_clan = mysql_num_rows($clan_return) ? '1' : '2';
+				$report_clan = mysqli_num_rows($clan_return) ? '1' : '2';
 				
-				safe_query("UPDATE ".PREFIX."cup_matches SET report_team".$report_clan." = '".mysql_escape_string($_POST['report'])."', server = '".$_POST['server']."', hltv='".$_POST['hltv']."' WHERE matchID = '$matchID' && clan".$report_clan." = '$clanID'");
+				safe_query("UPDATE ".PREFIX."cup_matches SET report_team".$report_clan." = '".mysqli_escape_string($_POST['report'])."', server = '".$_POST['server']."', hltv='".$_POST['hltv']."' WHERE matchID = '$matchID' && clan".$report_clan." = '$clanID'");
 			}
 
 			$ergebnis = safe_query("SELECT matchno FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && clan".$report_clan."='$clanID'");
-			$dd = mysql_fetch_array($ergebnis);
+			$dd = mysqli_fetch_array($ergebnis);
 			
 			redirect($match_link, $_language->module['matchdetails_edited'].'<br />'.$_language->module['redirect'], 3);
 		}
 	}else{
 		if($typename3($cupID)){
-			if($loggedin && mysql_num_rows(safe_query("SELECT matchID FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && (clan1 = '$userID' OR clan2 = '$userID')"))){
+			if($loggedin && mysqli_num_rows(safe_query("SELECT matchID FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && (clan1 = '$userID' OR clan2 = '$userID')"))){
 				$clan_return = safe_query("SELECT matchID FROM ".PREFIX."cup_matches WHERE $name1 AND matchID = '$matchID' && clan1 = '$userID'");
-				$report_clan = mysql_num_rows($clan_return) ? '1' : '2';
-				$dd = mysql_fetch_array(safe_query("SELECT report_team".$report_clan." as thereport, server, hltv FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && clan".$report_clan." = '$userID'"));
+				$report_clan = mysqli_num_rows($clan_return) ? '1' : '2';
+				$dd = mysqli_fetch_array(safe_query("SELECT report_team".$report_clan." as thereport, server, hltv FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && clan".$report_clan." = '$userID'"));
 				$report = $dd['thereport'];
 				$server = $dd['server'];
 				$hltv = $dd['hltv'];
@@ -150,8 +150,8 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
 		}else{
 			if(isleader($userID, $clanID)){
 				$clan_return = safe_query("SELECT matchID FROM ".PREFIX."cup_matches WHERE $name1 AND matchID = '$matchID' && clan1 = '$clanID'");
-				$report_clan = mysql_num_rows($clan_return) ? '1' : '2';
-				$dd = mysql_fetch_array(safe_query("SELECT report_team".$report_clan." as thereport, server, hltv FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && clan".$report_clan." = '$clanID'"));
+				$report_clan = mysqli_num_rows($clan_return) ? '1' : '2';
+				$dd = mysqli_fetch_array(safe_query("SELECT report_team".$report_clan." as thereport, server, hltv FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && clan".$report_clan." = '$clanID'"));
 				$report = $dd['thereport'];
 				$server = $dd['server'];
 				$hltv = $dd['hltv'];
@@ -172,7 +172,7 @@ $matchID = $_GET['matchID'];
 $clanID = $_GET['clanID'];
 
 $getaccess = safe_query("SELECT comment FROM ".PREFIX."cup_matches WHERE matchID='$matchID'");
-  $dr=mysql_fetch_array($getaccess);	
+  $dr=mysqli_fetch_array($getaccess);
   
     switch($dr['comment']) {
       case 0: $comment = 'Comments disabled for this match';
@@ -214,7 +214,7 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
 	
 	if(isset($_POST['submit'])){
 		if($su_typename3($su_r_cupID)){
-			if($loggedin && mysql_num_rows(safe_query("SELECT matchID FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && (clan1 = '$userID' || clan2 = '$userID')"))){
+			if($loggedin && mysqli_num_rows(safe_query("SELECT matchID FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && (clan1 = '$userID' || clan2 = '$userID')"))){
 				$screen = $_FILES['screenshots'];
 				$anz = count($screen['name']);		
 				
@@ -226,21 +226,21 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
 						$file = $i.'_'.time().'.jpg';
 						rename($filepath.$screen['name'][$i], $filepath.$file);
 						$ergebnis = safe_query("SELECT screens FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && (clan1 = '$userID' || clan2 = '$userID')");
-						$ds=mysql_fetch_array($ergebnis);
+						$ds=mysqli_fetch_array($ergebnis);
 						$screens = explode("|", $ds['screens']);
 						$screens[] = $file;
 						$screens_string = implode("|", $screens);
 						safe_query("UPDATE ".PREFIX."cup_matches SET screens = '$screens_string' WHERE matchID = '$matchID' && '$su_r_cupID' && (clan1 = '$userID' || clan2 = '$userID')");
 						// Name eintragen
 						$ergebnis2 = safe_query("SELECT screen_name FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && (clan1 = '$userID' || clan2 = '$userID')");
-						$ds= mysql_fetch_array($ergebnis2);
+						$ds= mysqli_fetch_array($ergebnis2);
 						$screens_name_ar = explode("||", $ds['screen_name']);
 						$screens_name_ar[] = $_POST['screen_name'][$i];
 						$screens_name = implode("||", $screens_name_ar);
 						safe_query("UPDATE ".PREFIX."cup_matches SET screen_name ='$screens_name' WHERE matchID = '$matchID' && (clan1 = '$userID' || clan2 = '$userID')");
 						// Upper eintragen
 						$ergebnis3 = safe_query("SELECT screen_upper FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && (clan1 = '$userID' || clan2 = '$userID')");
-						$ds = mysql_fetch_array($ergebnis3);
+						$ds = mysqli_fetch_array($ergebnis3);
 						$screens_upper_ar = explode("|", $ds['screen_upper']);
 						$screens_upper_ar[] = $userID;
 						$screens_upper = implode("|", $screens_upper_ar);
@@ -249,7 +249,7 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
 	  				}  
 				}
 				$ergebnis = safe_query("SELECT matchno FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && (clan1 = '$userID' || clan2 = '$userID')");
-				$dd = mysql_fetch_array($ergebnis);
+				$dd = mysqli_fetch_array($ergebnis);
 				redirect($match_link, $_language->module['screen_upload'].'.<br />'.$_language->module['redirect'], 3);
 			}
 		}else{
@@ -264,21 +264,21 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
 					$file = $i.'_'.time().'.jpg';
 					rename($filepath.$screen['name'][$i], $filepath.$file);
 					$ergebnis = safe_query("SELECT screens FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && (clan1='$clanID' || clan2='$clanID')");
-					$ds = mysql_fetch_array($ergebnis);
+					$ds = mysqli_fetch_array($ergebnis);
 					$screens = explode("|", $ds['screens']);
 					$screens[] = $file;
 					$screens_string = implode("|", $screens);
 					safe_query("UPDATE ".PREFIX."cup_matches SET screens='$screens_string' WHERE matchID = '$matchID' && (clan1='$clanID' || clan2='$clanID')");
 					// Name eintragen
 					$ergebnis2 = safe_query("SELECT screen_name FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && (clan1='$clanID' || clan2='$clanID')");
-					$ds = mysql_fetch_array($ergebnis2);
+					$ds = mysqli_fetch_array($ergebnis2);
 					$screens_name_ar = explode("||", $ds['screen_name']);
 					$screens_name_ar[] = $_POST['screen_name'][$i];
 					$screens_name = implode("||", $screens_name_ar);
 					safe_query("UPDATE ".PREFIX."cup_matches SET screen_name ='$screens_name' WHERE matchID = '$matchID' && (clan1='$clanID' || clan2='$clanID')");
 					// Upper eintragen
 					$ergebnis3 = safe_query("SELECT screen_upper FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && (clan1='$clanID' || clan2='$clanID')");
-					$ds = mysql_fetch_array($ergebnis3);
+					$ds = mysqli_fetch_array($ergebnis3);
 					$screens_upper_ar = explode("|", $ds['screen_upper']);
 					$screens_upper_ar[] = $userID;
 					$screens_upper = implode("|", $screens_upper_ar);
@@ -287,12 +287,12 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
 				}  
 			}
 			$ergebnis = safe_query("SELECT matchno FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && (clan1='$clanID' || clan2='$clanID')");
-			$dd = mysql_fetch_array($ergebnis);
+			$dd = mysqli_fetch_array($ergebnis);
 			redirect($match_link, $_language->module['screen_upload'].'.<br />'.$_language->module['redirect'], 3);
 		}
 
 	}else{
-		if(memin($userID,$clanID) OR ($su_typename3($su_r_cupID) && ($loggedin && mysql_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && (clan1 = '$userID' || clan2 = '$userID')"))))){
+		if(memin($userID,$clanID) OR ($su_typename3($su_r_cupID) && ($loggedin && mysqli_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && (clan1 = '$userID' || clan2 = '$userID')"))))){
 			$bg1 = BG_1;
 			$bg2 = BG_2;
 			eval ("\$cupactions_scrupload = \"".gettemplate("cupactions_scrupload")."\";");
@@ -308,12 +308,12 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
 		$clanID = isset($_GET['clanID']) ? $_GET['clanID'] : 0;
 		$partID = isset($_GET['clanID']) ? $_GET['clanID'] : $userID;
 		$us_one = (ladderis1on1($laddID) ? 1 : 0);
-		$db=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID='$matchID'"));
+		$db=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID='$matchID'"));
 		
 		 if($matchID && $partID && (ismatchparticipant($userID,$matchID,$all=1) || iscupadmin($userID)) && !$db['si']) {
 
-				$rk1=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE ladID='".$db['ladID']."' && clanID='".$db['clan1']."' && 1on1='$us_one'"));	  
-				$rk2=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE ladID='".$db['ladID']."' && clanID='".$db['clan2']."' && 1on1='$us_one'"));
+				$rk1=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE ladID='".$db['ladID']."' && clanID='".$db['clan1']."' && 1on1='$us_one'"));
+				$rk2=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE ladID='".$db['ladID']."' && clanID='".$db['clan2']."' && 1on1='$us_one'"));
                         
                   $t1_totalp = $rk1['credit']+$rk1['xp'];
                   $t2_totalp = $rk2['credit']+$rk2['xp'];                        
@@ -342,9 +342,9 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
                             $match_t = 'match='.$db['matchno'];
                             
                         $query = safe_query("SELECT * FROM ".PREFIX."cup_tickets WHERE matchID='".$db['matchID']."'");
-                        $ti=mysql_fetch_array($query);
+                        $ti=mysqli_fetch_array($query);
                         
-                        if(mysql_num_rows($query)) $this_ticket = '<input type="button" class="button" onClick="MM_goToURL(\'parent\',\'admin/admincenter.php?site=cuptickets&action=view_ticket&tickID='.$ti['ticketID'].'\');return document.MM_returnValue" value="This Ticket">';
+                        if(mysqli_num_rows($query)) $this_ticket = '<input type="button" class="button" onClick="MM_goToURL(\'parent\',\'admin/admincenter.php?site=cuptickets&action=view_ticket&tickID='.$ti['ticketID'].'\');return document.MM_returnValue" value="This Ticket">';
                             
                         if(isset($_GET['type'])=="protest" && iscupadmin($userID))
                            echo '<center><b>Standings have been updated!</b><br><input type="button" class="button" onClick="MM_goToURL(\'parent\',\'admin/admincenter.php?site=cuptickets\');return document.MM_returnValue" value="All Tickets"> '.$this_ticket.' <input type="button" class="button" onClick="javascript:self.close()" value="Close Window"></center>';   
@@ -377,7 +377,7 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
 		 echo '<br />';
 	  }
 	  
-	  $ct = mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID='$matchID'"));
+	  $ct = mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID='$matchID'"));
 	  
 	  if(empty($matchID))
 	  {
@@ -396,27 +396,27 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
 	if(isset($_POST['submit'])){
 		if($clanID == 'onecup'){ 
 			$ergebnis = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && confirmscore = '0' && inscribed != '$userID' LIMIT 0,1");
-			if(mysql_num_rows($ergebnis)){ 
-				$db=mysql_fetch_array($ergebnis);
+			if(mysqli_num_rows($ergebnis)){
+				$db=mysqli_fetch_array($ergebnis);
 				$clan_return = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && (clan1 = '$userID' || clan2 = '$userID')");
-			    $report_clan=mysql_num_rows($clan_return) ? 'team1' : 'team2';
+			    $report_clan=mysqli_num_rows($clan_return) ? 'team1' : 'team2';
 			       
-			    while($mm=mysql_fetch_array($clan_return)) {
+			    while($mm=mysqli_fetch_array($clan_return)) {
 			    
 			    if($mm['clan1']==$userID) { 
-				safe_query("UPDATE `".PREFIX."cup_matches` SET `confirmscore` = '1', `confirmed_date` = '".time()."', `report_team1` = '".mysql_escape_string($_POST['report'])."' WHERE matchID = '$matchID'");
+				safe_query("UPDATE `".PREFIX."cup_matches` SET `confirmscore` = '1', `confirmed_date` = '".time()."', `report_team1` = '".mysqli_escape_string($_POST['report'])."' WHERE matchID = '$matchID'");
 				
 				}else 
-				safe_query("UPDATE `".PREFIX."cup_matches` SET `confirmscore` = '1', `confirmed_date` = '".time()."', `report_team2` = '".mysql_escape_string($_POST['report'])."' WHERE matchID = '$matchID'");
+				safe_query("UPDATE `".PREFIX."cup_matches` SET `confirmscore` = '1', `confirmed_date` = '".time()."', `report_team2` = '".mysqli_escape_string($_POST['report'])."' WHERE matchID = '$matchID'");
 				
 		//tournament autoswitch (getnextmatch)	
 		
 			}if(isset($_GET['cupID']) && $_GET['type']!="group") {	
 			
-			 $mc=mysql_fetch_array(safe_query("SELECT maxclan FROM ".PREFIX."cups WHERE ID='$cupID'"));
+			 $mc=mysqli_fetch_array(safe_query("SELECT maxclan FROM ".PREFIX."cups WHERE ID='$cupID'"));
 			 
 			 $query = safe_query("SELECT matchno FROM ".PREFIX."cup_matches WHERE cupID='$cupID'");
-			     while($cm=mysql_fetch_array($query)) {
+			     while($cm=mysqli_fetch_array($query)) {
 			         $matchnos[]=$cm['matchno'];			     
 			     }
 			 
@@ -426,7 +426,7 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
 			     $returnNo = "64";
 			   }  
 			   
-			    $sw1=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchno='$initNo1'"));
+			    $sw1=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchno='$initNo1'"));
 			    
 			    if($sw1['clan1']==$userID && $sw1['score1'] < $sw1['score2']) {
 			       $to_switch1 = $sw1['clan1'];
@@ -442,7 +442,7 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
 			       $returnPlace1 = "clan2";
 			    }
 			    
-			    $sw2=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchno='$initNo2'"));
+			    $sw2=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchno='$initNo2'"));
 			    
 			    if($sw2['clan1']==$userID && $sw2['score1'] < $sw2['score2']) {
 			       $to_switch = $sw2['clan1'];
@@ -461,13 +461,13 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
 			     $type_cup=(is1on1($cupID) ? "1" : "0");
 			   
 			     if(in_array($initNo1,$matchnos) && !$sw1[$returnPlace]) {
-				  	 if(!mysql_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE cupID='".$cupID."' && matchno='$returnNo'"))) {	
+				  	 if(!mysqli_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE cupID='".$cupID."' && matchno='$returnNo'"))) {
 						safe_query("INSERT INTO ".PREFIX."cup_matches (cupID, ladID, matchno, date, ".$returnPlace1.", comment, 1on1) VALUES ('".$cupID."', '0', '$returnNo', '".time()."', '$to_switch1', '2', '$type_cup')");
 					 }else
 						 safe_query("UPDATE ".PREFIX."cup_matches SET ".$returnPlace1." = '".$to_switch1."' WHERE cupID='".$cupID."' && matchno='$returnNo'");
 				    
 			    }if(in_array($initNo2,$matchnos) && !$sw2[$returnPlace]) {
-					 if(!mysql_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE cupID='".$cupID."' && matchno='$returnNo'"))) { 	
+					 if(!mysqli_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE cupID='".$cupID."' && matchno='$returnNo'"))) {
 						 safe_query("INSERT INTO ".PREFIX."cup_matches (cupID, ladID, matchno, date, ".$returnPlace.", comment, 1on1) VALUES ('".$cupID."', '0', '$returnNo', '".time()."', '$to_switch', '2', '$type_cup')");
 					 }else
 						 safe_query("UPDATE ".PREFIX."cup_matches SET ".$returnPlace." = '".$to_switch."' WHERE cupID='".$cupID."' && matchno='$returnNo'");
@@ -487,7 +487,7 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
                 elseif($matchinfo['third_winner']) 
 	               safe_query("UPDATE ".PREFIX."cup_baum SET third_winner = '".($db['score1'] > $db['score2'] ? $db['clan1'] : $db['clan2'])."' WHERE $typename = '".$cupID."'"); 
 			
-				if($matchinfo['matchno'] && !mysql_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE $typename='".$cupID."' && matchno='".$matchinfo['matchno']."'"))) 
+				if($matchinfo['matchno'] && !mysqli_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE $typename='".$cupID."' && matchno='".$matchinfo['matchno']."'")))
 				   safe_query("INSERT INTO ".PREFIX."cup_matches (cupID, ladID, matchno, date, ".$matchinfo['place'].", comment, 1on1) VALUES ('".$cupID."', '0', '".$matchinfo['matchno']."', '".time()."', '".($db['score1'] > $db['score2'] ? $db['clan1'] : $db['clan2'])."', '2', '$type_cup')");
 				elseif($matchinfo['matchno'])
 				   safe_query("UPDATE ".PREFIX."cup_matches SET ".$matchinfo['place']." = '".($db['score1'] > $db['score2'] ? $db['clan1'] : $db['clan2'])."' WHERE $typename = '".$cupID."' && matchno = '".$matchinfo['matchno']."'");
@@ -499,7 +499,7 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
 				    
 		//tournament autoswitch (place looser)
 						
-				if($looserswitch && !mysql_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE $typename='".$cupID."' && matchno='$looserswitch'"))) 
+				if($looserswitch && !mysqli_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE $typename='".$cupID."' && matchno='$looserswitch'")))
 					safe_query("INSERT INTO ".PREFIX."cup_matches (cupID, ladID, matchno, date, ".$matchinfo['place'].", comment, 1on1) VALUES ('".$cupID."', '0', '$looserswitch', '".time()."', '".($db['score1'] < $db['score2'] ? $db['clan1'] : $db['clan2'])."', '2', '$type_cup')");
 			    elseif($looserswitch)
 	                safe_query("UPDATE ".PREFIX."cup_matches SET ".$matchinfo['place']." = '".($db['score1'] < $db['score2'] ? $db['clan1'] : $db['clan2'])."' WHERE $typename = '".$cupID."' && matchno = '$looserswitch'");
@@ -512,12 +512,12 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
                   $lrs_one = (ladderis1on1($_GET['laddID']) ? "&& 1on1='1'" : "&& 1on1='0'");			
 			
 				  $rank1 = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE ladID='".$db['ladID']."' && clanID='".$db['clan1']."' $lrs_one");
-				  $rk1 = mysql_fetch_array($rank1); 
+				  $rk1 = mysqli_fetch_array($rank1);
 				  
 				  $rank2 = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE ladID='".$db['ladID']."' && clanID='".$db['clan2']."' $lrs_one");
-				  $rk2 = mysql_fetch_array($rank2); 
+				  $rk2 = mysqli_fetch_array($rank2);
 				  				
-				   $rs=mysql_fetch_array(safe_query("SELECT ranksys, mode, d_xp FROM ".PREFIX."cup_ladders WHERE ID='".$db['ladID']."' $lrs_one"));
+				   $rs=mysqli_fetch_array(safe_query("SELECT ranksys, mode, d_xp FROM ".PREFIX."cup_ladders WHERE ID='".$db['ladID']."' $lrs_one"));
 				   
 				   if($rs['ranksys']==1) {
 				      $team1_rank = $rk1['credit'];
@@ -642,13 +642,13 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
 		}else{		
 			if(isleader($userID,$clanID)){
 				$ergebnis = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && confirmscore = '0' && inscribed != '$clanID' LIMIT 0,1");
-				if(mysql_num_rows($ergebnis)){
+				if(mysqli_num_rows($ergebnis)){
 					if(isleader($userID, $clanID)){
-						$db=mysql_fetch_array($ergebnis);
+						$db=mysqli_fetch_array($ergebnis);
 						$clan_return = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && (clan1 = '$clanID'  || clan2 = '$clanID')");
-				        $report_clan=mysql_num_rows($clan_return) ? 'team1' : 'team2';
+				        $report_clan=mysqli_num_rows($clan_return) ? 'team1' : 'team2';
 				        				        
-			            while($mm=mysql_fetch_array($clan_return)) {
+			            while($mm=mysqli_fetch_array($clan_return)) {
 			            
 			            if(isset($_GET['type']) && $_GET['type'] == 'group')
 				           $details_link = '?site=cup_matches&match='.$db['matchID'].'&'.$t_name.'='.$cupID.'&type=gs';
@@ -658,11 +658,11 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
 				           $details_link = '?site=cup_matches&match='.$db['matchno'].'&'.$typename2.'='.$cupID.'';
 			    
 			            if($mm['clan1']==$clanID) {
-						safe_query("UPDATE `".PREFIX."cup_matches` SET `confirmscore` = '1', `confirmed_date` = '".time()."', `report_team1` = '".mysql_escape_string($_POST[report])."' WHERE `".PREFIX."cup_matches`.`matchID` = '$matchID'");
+						safe_query("UPDATE `".PREFIX."cup_matches` SET `confirmscore` = '1', `confirmed_date` = '".time()."', `report_team1` = '".mysqli_escape_string($_POST[report])."' WHERE `".PREFIX."cup_matches`.`matchID` = '$matchID'");
 						echo'<center><br /><br /><br /><br /><b>'.$_language->module['score_confirmed'].'<br /><br/><br /><a href='.matchlink($db['matchID'],$ac=0,$tg=0,$redirect=0).'>Match-Details</a> '.$name4.'';
 						
                         }else
-                        safe_query("UPDATE `".PREFIX."cup_matches` SET `confirmscore` = '1', `confirmed_date` = '".time()."', `report_team2` = '".mysql_escape_string($_POST[report])."' WHERE `".PREFIX."cup_matches`.`matchID` = '$matchID'");
+                        safe_query("UPDATE `".PREFIX."cup_matches` SET `confirmscore` = '1', `confirmed_date` = '".time()."', `report_team2` = '".mysqli_escape_string($_POST[report])."' WHERE `".PREFIX."cup_matches`.`matchID` = '$matchID'");
                         echo'<center><br /><br /><br /><br /><b>'.$_language->module['score_confirmed'].'<br /><br/><br /><a href='.matchlink($db['matchID'],$ac=0,$tg=0,$redirect=0).'>Match-Details</a> '.$name4.'';
                         }
                         					
@@ -670,10 +670,10 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
 				 
 			}if(isset($_GET['cupID']) && $_GET['type']!="group") {
 			   	
-			 $mc=mysql_fetch_array(safe_query("SELECT maxclan FROM ".PREFIX."cups WHERE ID='$cupID'"));
+			 $mc=mysqli_fetch_array(safe_query("SELECT maxclan FROM ".PREFIX."cups WHERE ID='$cupID'"));
 			 
 			 $query = safe_query("SELECT matchno FROM ".PREFIX."cup_matches WHERE cupID='$cupID'");
-			     while($cm=mysql_fetch_array($query)) {
+			     while($cm=mysqli_fetch_array($query)) {
 			         $matchnos[]=$cm['matchno'];			     
 			     }
 			 
@@ -683,7 +683,7 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
 			     $returnNo = "64";
 			   }  
 			   
-			    $sw1=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchno='$initNo1'"));
+			    $sw1=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchno='$initNo1'"));
 			    
 			    if($sw1['clan1']==$userID && $sw1['score1'] < $sw1['score2']) {
 			       $to_switch1 = $sw1['clan1'];
@@ -699,7 +699,7 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
 			       $returnPlace1 = "clan2";
 			    }
 			    
-			    $sw2=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchno='$initNo2'"));
+			    $sw2=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchno='$initNo2'"));
 			    
 			    if($sw2['clan1']==$userID && $sw2['score1'] < $sw2['score2']) {
 			       $to_switch = $sw2['clan1'];
@@ -718,13 +718,13 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
 			  	   $type_cup=(is1on1($cupID) ? "1" : "0");	   
 			  		   
 			     if(in_array($initNo1,$matchnos) && !$sw1[$returnPlace]) {
-				  	 if(!mysql_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE cupID='".$cupID."' && matchno='$returnNo'"))) { 	
+				  	 if(!mysqli_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE cupID='".$cupID."' && matchno='$returnNo'"))) {
 						safe_query("INSERT INTO ".PREFIX."cup_matches (cupID, ladID, matchno, date, ".$returnPlace1.", comment, 1on1) VALUES ('".$cupID."', '0', '$returnNo', '".time()."', '$to_switch1', '2', '$type_cup')");
 					 }else
 						 safe_query("UPDATE ".PREFIX."cup_matches SET ".$returnPlace1." = '".$to_switch1."' WHERE cupID='".$cupID."' && matchno='$returnNo'");
 				    
 			    }if(in_array($initNo2,$matchnos) && !$sw2[$returnPlace]) {
-					 if(!mysql_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE cupID='".$cupID."' && matchno='$returnNo'"))) { 	
+					 if(!mysqli_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE cupID='".$cupID."' && matchno='$returnNo'"))) {
 						 safe_query("INSERT INTO ".PREFIX."cup_matches (cupID, ladID, matchno, date, ".$returnPlace.", comment, 1on1) VALUES ('".$cupID."', '0', '$returnNo', '".time()."', '$to_switch', '2', '$type_cup')");
 					 }else
 						 safe_query("UPDATE ".PREFIX."cup_matches SET ".$returnPlace." = '".$to_switch."' WHERE cupID='".$cupID."' && matchno='$returnNo'");
@@ -744,14 +744,14 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
                 elseif($matchinfo['third_winner'])
 	               safe_query("UPDATE ".PREFIX."cup_baum SET third_winner = '".($db['score1'] > $db['score2'] ? $db['clan1'] : $db['clan2'])."' WHERE $typename = '".$cupID."'"); 
 
-				if($matchinfo['matchno'] && !mysql_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE $typename='".$cupID."' && matchno='".$matchinfo['matchno']."'"))) { 
+				if($matchinfo['matchno'] && !mysqli_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE $typename='".$cupID."' && matchno='".$matchinfo['matchno']."'"))) {
 				   safe_query("INSERT INTO ".PREFIX."cup_matches (cupID, ladID, matchno, date, ".$matchinfo['place'].", comment, 1on1) VALUES ('".$cupID."', '0', '".$matchinfo['matchno']."', '".time()."', '".($db['score1'] > $db['score2'] ? $db['clan1'] : $db['clan2'])."', '2', '$type_cup')");
 				}elseif($matchinfo['matchno'])
 				   safe_query("UPDATE ".PREFIX."cup_matches SET ".$matchinfo['place']." = '".($db['score1'] > $db['score2'] ? $db['clan1'] : $db['clan2'])."' WHERE $typename = '".$cupID."' && matchno = '".$matchinfo['matchno']."'");
 				    
 		//tournament autoswitch (place looser)
 						
-				if(!mysql_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE $typename='".$cupID."' && matchno='$looserswitch'"))) { 
+				if(!mysqli_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE $typename='".$cupID."' && matchno='$looserswitch'"))) {
 					safe_query("INSERT INTO ".PREFIX."cup_matches (cupID, ladID, matchno, date, ".$matchinfo['place'].", comment, 1on1) VALUES ('".$cupID."', '0', '$looserswitch', '".time()."', '".($db['score1'] < $db['score2'] ? $db['clan1'] : $db['clan2'])."', '2', '$type_cup')");
 				}elseif($looserswitch)
 	                safe_query("UPDATE ".PREFIX."cup_matches SET ".$matchinfo['place']." = '".($db['score1'] < $db['score2'] ? $db['clan1'] : $db['clan2'])."' WHERE $typename = '".$cupID."' && matchno = '$looserswitch'");
@@ -768,12 +768,12 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
                   $lrs_one = (ladderis1on1($_GET['laddID']) ? "&& 1on1='1'" : "&& 1on1='0'");
 				
 				  $rank1 = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE ladID='".$db['ladID']."' && clanID='".$db['clan1']."' $lrs_one");
-				  $rk1 = mysql_fetch_array($rank1); 
+				  $rk1 = mysqli_fetch_array($rank1);
 				  
 				  $rank2 = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE ladID='".$db['ladID']."' && clanID='".$db['clan2']."' $lrs_one");
-				  $rk2 = mysql_fetch_array($rank2); 
+				  $rk2 = mysqli_fetch_array($rank2);
 				  
-				   $rs=mysql_fetch_array(safe_query("SELECT ranksys, mode, d_xp FROM ".PREFIX."cup_ladders WHERE ID='".$db['ladID']."' $lrs_one"));
+				   $rs=mysqli_fetch_array(safe_query("SELECT ranksys, mode, d_xp FROM ".PREFIX."cup_ladders WHERE ID='".$db['ladID']."' $lrs_one"));
 				   
 				   if($rs['ranksys']==1) {
 				      $team1_rank = $rk1['credit'];
@@ -895,12 +895,12 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
 	}else{
 	
 	$query1 = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID='".$_GET['matchID']."'");
-	$q1=mysql_fetch_array($query1);
+	$q1=mysqli_fetch_array($query1);
 	
   if($_GET['laddID']) {
 	
 	$query2 = safe_query("SELECT * FROM ".PREFIX."cup_challenges WHERE chalID='".$q1['matchno']."'");
-	$ch=mysql_fetch_array($query2);
+	$ch=mysqli_fetch_array($query2);
 	
     if($ch['map1_final']) 
        $map1_pic = mapPic($ch['map1_final'],$_GET['laddID']);
@@ -940,10 +940,10 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
 	
 		if($_GET['one'] == 1){
 			$data=safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' LIMIT 0,1");
-			$db=mysql_fetch_array($data);
+			$db=mysqli_fetch_array($data);
 			
 				$date=safe_query("SELECT date FROM ".PREFIX."cup_matches WHERE matchID = '$matchID'");
-				$da=mysql_fetch_array($date);
+				$da=mysqli_fetch_array($date);
 				
 			    $date = date('l M dS Y \@\ g:i a', $da['date']);
 							
@@ -1037,10 +1037,10 @@ if(ismatchparticipant($userID,$_GET['matchID'],$all=1)) {
 		}else{
 			if(isleader($userID, $clanID)){
 				$data=safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' LIMIT 0,1");
-				$db=mysql_fetch_array($data);
+				$db=mysqli_fetch_array($data);
 				
 				$date=safe_query("SELECT date FROM ".PREFIX."cup_matches WHERE matchID = '$matchID'");
-				$da=mysql_fetch_array($date); 
+				$da=mysqli_fetch_array($date);
 				
 			    $date = date('l M dS Y \@\ g:i a', $da['date']);
 							
@@ -1130,10 +1130,10 @@ $clanID = isset($_GET['clan1']) ? $_GET['clan1'] : 0;
  if(isset($_POST['submit'])){
  
    $participants = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID='".$_GET['matchID']."'");
-       while($dp=mysql_fetch_array($participants)) {
+       while($dp=mysqli_fetch_array($participants)) {
        
         $challenge_info = safe_query("SELECT * FROM ".PREFIX."cup_challenges WHERE chalID='".$dp['matchno']."'");
-        $ch = mysql_fetch_array($challenge_info);
+        $ch = mysqli_fetch_array($challenge_info);
        
      if($ch['map4_final']) {  
        $numeric_array = array();
@@ -1241,7 +1241,7 @@ $clanID = isset($_GET['clan1']) ? $_GET['clan1'] : 0;
            else
               $cup_type = $clanID; 
             
-		   if(safe_query("UPDATE `".PREFIX."cup_matches` SET $post_score1 $post_score2 $post_scores `report_team1` = '".mysql_escape_string($_POST['report'])."', `inscribed` = '".$cup_type."', `inscribed_date` = '".time()."' WHERE matchID = '".$_GET['matchID']."' && inscribed = '0'") &&
+		   if(safe_query("UPDATE `".PREFIX."cup_matches` SET $post_score1 $post_score2 $post_scores `report_team1` = '".mysqli_escape_string($_POST['report'])."', `inscribed` = '".$cup_type."', `inscribed_date` = '".time()."' WHERE matchID = '".$_GET['matchID']."' && inscribed = '0'") &&
 		      safe_query("UPDATE `".PREFIX."cup_clans` SET lastact='".time()."' WHERE $typename='$cupID' AND clanID='$cup_type'"))
 			   echo'<center><br /><br /><br /><br /><b>'.$_language->module['match_score'].'<br /><br/><br /><a href='.matchlink($dp['matchID'],$ac=0,$tg=0,$redirect=0).'>Match-Details</a> '.$name4.'';
 		   else
@@ -1257,23 +1257,23 @@ $clanID = isset($_GET['clan1']) ? $_GET['clan1'] : 0;
 	$laddID = isset($_GET['laddID']) ? $_GET['laddID'] : 0;
 	
     $started = safe_query("SELECT * FROM ".PREFIX."cups WHERE ID='$cupID' AND status='2'");
-    $st1=mysql_fetch_array($started); $cup_started = mysql_num_rows($started);
+    $st1=mysqli_fetch_array($started); $cup_started = mysqli_num_rows($started);
     
     $ladd_started = safe_query("SELECT status FROM ".PREFIX."cup_ladders WHERE ID='$laddID' AND status='2'");
-    $st2=mysql_fetch_array($ladd_started); $ladd_started = mysql_num_rows($ladd_started);
+    $st2=mysqli_fetch_array($ladd_started); $ladd_started = mysqli_num_rows($ladd_started);
     
      if($_GET['matchID']!="directmatch" && $matchID && !ismatchparticipant($userID,$_GET['matchID'],$all=0))
         die('You are not a valid participant of this match.');
 
 		$ergebnis2 = safe_query("SELECT count(*) as anzahl FROM ".PREFIX."cup_clans WHERE groupID='$laddID'");
-		$dv=mysql_fetch_array($ergebnis2);
+		$dv=mysqli_fetch_array($ergebnis2);
 		
             if(!$laddID) {
                $link_typ = '?site=cups&action=details&cupID='.$cupID.'';
-               $ds=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cups WHERE ID='".$_GET['cupID']."'"));
+               $ds=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cups WHERE ID='".$_GET['cupID']."'"));
             }else{
                $link_typ = '?site=ladders&ID='.$cupID.'';
-               $ds=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='".$_GET['laddID']."'"));
+               $ds=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='".$_GET['laddID']."'"));
             }
     
     //if(($_GET['cupID'] && $cup_started) || 
@@ -1281,9 +1281,9 @@ $clanID = isset($_GET['clan1']) ? $_GET['clan1'] : 0;
     //   ($dv['anzahl'] >= $ds['maxclan']+$ds['maxclan'])) {
 	
 	if(!$_GET['cupID'])
-	   $gs_t = mysql_fetch_array(safe_query("SELECT gs_start, gs_end FROM ".PREFIX."cup_ladders WHERE ID='".$_GET['laddID']."'"));
+	   $gs_t = mysqli_fetch_array(safe_query("SELECT gs_start, gs_end FROM ".PREFIX."cup_ladders WHERE ID='".$_GET['laddID']."'"));
 	else
-	   $gs_t = mysql_fetch_array(safe_query("SELECT gs_start, gs_end FROM ".PREFIX."cups WHERE ID='$cupID'"));
+	   $gs_t = mysqli_fetch_array(safe_query("SELECT gs_start, gs_end FROM ".PREFIX."cups WHERE ID='$cupID'"));
 	   
 	if(($_GET['type']=='group' && $gs_t['gs_start'] <= time() && $gs_t['gs_end'] >= time()) || 
 	   (($_GET['cupID'] && $cup_started && $_GET['type']!='group') || ($_GET['laddID'] && $ladd_started && $_GET['type']!='group')))
@@ -1351,7 +1351,7 @@ if(isset($_GET['matchID']) && $_GET['matchID']=="directmatch") {
                                                       '1',
 													  '0',
 													  'ladder')");  
-                      $matchID = mysql_insert_id();       
+                      $matchID = mysqli_insert_id();
                       
        safe_query("UPDATE ".PREFIX."cup_clans SET lastact = '".time()."' WHERE ladID = '".$_GET['laddID']."' AND clanID = '$userID'");
                                               
@@ -1361,9 +1361,9 @@ if(isset($_GET['matchID']) && $_GET['matchID']=="directmatch") {
 /* END Ladder Open-Play */		
 					
 			$clan_return = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' AND $name3");
-			$report_clan = mysql_num_rows($clan_return) ? 'team1' : 'team2';
-			$score1 = mysql_num_rows($clan_return) ? $_POST['score1'] : $_POST['score2'];
-			$score2 = mysql_num_rows($clan_return) ? $_POST['score2'] : $_POST['score1'];
+			$report_clan = mysqli_num_rows($clan_return) ? 'team1' : 'team2';
+			$score1 = mysqli_num_rows($clan_return) ? $_POST['score1'] : $_POST['score2'];
+			$score2 = mysqli_num_rows($clan_return) ? $_POST['score2'] : $_POST['score1'];
 			$report = $_POST['report'];
 			
             if($_GET['laddID']) {                          
@@ -1371,21 +1371,21 @@ if(isset($_GET['matchID']) && $_GET['matchID']=="directmatch") {
              $postmap_score2 = "`map1_score2` = '$score2',";
             }
 			
-			while($mm=mysql_fetch_array($clan_return)) { 
+			while($mm=mysqli_fetch_array($clan_return)) {
 			
             
             if($mm['clan1']==$userID) { 
             
-			if(safe_query("UPDATE `".PREFIX."cup_matches` SET `score1` = '$score1', `score2` = '$score2', $postmap_score1 $postmap_score2 `report_team1` = '".mysql_escape_string($report)."', `inscribed` = '$userID', `inscribed_date` = '".time()."' WHERE matchID = '$matchID' && inscribed = '0'")){
-				$db = mysql_fetch_array($clan_return);
+			if(safe_query("UPDATE `".PREFIX."cup_matches` SET `score1` = '$score1', `score2` = '$score2', $postmap_score1 $postmap_score2 `report_team1` = '".mysqli_escape_string($report)."', `inscribed` = '$userID', `inscribed_date` = '".time()."' WHERE matchID = '$matchID' && inscribed = '0'")){
+				$db = mysqli_fetch_array($clan_return);
 				echo'<center><br /><br /><br /><br /><b>'.$_language->module['match_score'].'<br /><br/><br /><a href='.matchlink($matchID,$ac=0,$tg=0,$redirect=0).'>Match-Details</a> '.$name4.'';
 			}else
 			    echo $_language->module['error'];
 			    
 			}else 
 			
-			if(safe_query("UPDATE `".PREFIX."cup_matches` SET `score1` = '$score2', `score2` = '$score1', `report_team2` = '".mysql_escape_string($report)."', `inscribed` = '$userID', `inscribed_date` = '".time()."' WHERE matchID = '$matchID' && inscribed = '0'")){
-				$db = mysql_fetch_array($clan_return);
+			if(safe_query("UPDATE `".PREFIX."cup_matches` SET `score1` = '$score2', `score2` = '$score1', `report_team2` = '".mysqli_escape_string($report)."', `inscribed` = '$userID', `inscribed_date` = '".time()."' WHERE matchID = '$matchID' && inscribed = '0'")){
+				$db = mysqli_fetch_array($clan_return);
 				echo'<center><br /><br /><br /><br /><b>'.$_language->module['match_score'].'<br /><br/><br /><a href='.matchlink($matchID,$ac=0,$tg=0,$redirect=0).'>Match-Details</a> '.$name4.'';
 			}else
 			    echo $_language->module['error'];
@@ -1449,7 +1449,7 @@ if(isset($_GET['matchID']) && $_GET['matchID']=="directmatch") {
                                                       '0',
 													  '0',
 													  'ladder')");
-                      $matchID = mysql_insert_id();      
+                      $matchID = mysqli_insert_id();
                       
                       safe_query("UPDATE ".PREFIX."cup_clans SET lastact = '".time()."' WHERE ladID = '".$_GET['laddID']."' AND clanID = '".$_GET['clan1']."'");
                                                
@@ -1460,9 +1460,9 @@ if(isset($_GET['matchID']) && $_GET['matchID']=="directmatch") {
 /* END Ladder Open-Play */	
 			
 			    $clan_return = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' AND (clan1 = '$clanID' || clan2 = '$clanID')");
-			    $report_clan = mysql_num_rows($clan_return) ? 'team1' : 'team2';
-				$score1 = mysql_num_rows($clan_return) ? $_POST['score1'] : $_POST['score2'];
-				$score2 = mysql_num_rows($clan_return) ? $_POST['score2'] : $_POST['score1'];
+			    $report_clan = mysqli_num_rows($clan_return) ? 'team1' : 'team2';
+				$score1 = mysqli_num_rows($clan_return) ? $_POST['score1'] : $_POST['score2'];
+				$score2 = mysqli_num_rows($clan_return) ? $_POST['score2'] : $_POST['score1'];
 				$report = $_POST['report'];
 				
             if($_GET['laddID']) {                          
@@ -1470,21 +1470,21 @@ if(isset($_GET['matchID']) && $_GET['matchID']=="directmatch") {
              $postmap_score2 = "`map1_score2` = '$score2',";
             }
 				
-            while($mm=mysql_fetch_array($clan_return)) {     
+            while($mm=mysqli_fetch_array($clan_return)) {
                 
             
             if($mm['clan1']==$clanID) { 
 					
-				if(safe_query("UPDATE `".PREFIX."cup_matches` SET `score1` = '$score1', `score2` = '$score2', $postmap_score1 $postmap_score2 `report_team1` = '".mysql_escape_string($report)."', `inscribed` = '$clanID', `inscribed_date` = '".time()."' WHERE `".PREFIX."cup_matches`.`matchID` = '$matchID' && `".PREFIX."cup_matches`.`inscribed` = '0'")){
-					$db = mysql_fetch_array($clan_return);
+				if(safe_query("UPDATE `".PREFIX."cup_matches` SET `score1` = '$score1', `score2` = '$score2', $postmap_score1 $postmap_score2 `report_team1` = '".mysqli_escape_string($report)."', `inscribed` = '$clanID', `inscribed_date` = '".time()."' WHERE `".PREFIX."cup_matches`.`matchID` = '$matchID' && `".PREFIX."cup_matches`.`inscribed` = '0'")){
+					$db = mysqli_fetch_array($clan_return);
 					echo'<center><br /><br /><br /><br /><b>'.$_language->module['match_score'].'.<br /><br/><br /><a href='.matchlink($matchID,$ac=0,$tg=0,$redirect=0).'>Match-Details</a> '.$name4.'';
 			   }else
 			        echo $_language->module['error'];
 			        
 			   }else 
 			   
-				if(safe_query("UPDATE `".PREFIX."cup_matches` SET `score1` = '$score2', `score2` = '$score1', `report_team2` = '".mysql_escape_string($report)."', `inscribed` = '$clanID', `inscribed_date` = '".time()."' WHERE `".PREFIX."cup_matches`.`matchID` = '$matchID' && `".PREFIX."cup_matches`.`inscribed` = '0'")){
-					$db = mysql_fetch_array($clan_return);
+				if(safe_query("UPDATE `".PREFIX."cup_matches` SET `score1` = '$score2', `score2` = '$score1', `report_team2` = '".mysqli_escape_string($report)."', `inscribed` = '$clanID', `inscribed_date` = '".time()."' WHERE `".PREFIX."cup_matches`.`matchID` = '$matchID' && `".PREFIX."cup_matches`.`inscribed` = '0'")){
+					$db = mysqli_fetch_array($clan_return);
 					echo'<center><br /><br /><br /><br /><b>'.$_language->module['match_score'].'.<br /><br/><br /><a href='.matchlink($matchID,$ac=0,$tg=0,$redirect=0).'>Match-Details</a> '.$name4.'';
 			   }else
 			        echo $_language->module['error']; 
@@ -1495,10 +1495,10 @@ if(isset($_GET['matchID']) && $_GET['matchID']=="directmatch") {
 	}else{
 		if($typename3($cupID)){
 			$data=safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && inscribed = '0' LIMIT 0,1");
-			$db = mysql_fetch_array($data);
+			$db = mysqli_fetch_array($data);
 			
 				$date=safe_query("SELECT date FROM ".PREFIX."cup_matches WHERE matchID = '$matchID'");
-				$da=mysql_fetch_array($date); 
+				$da=mysqli_fetch_array($date);
 				
 			    $date = date('l M dS Y \@\ g:i a', $da['date']);
 			
@@ -1514,14 +1514,14 @@ if(isset($_GET['matchID']) && $_GET['matchID']=="directmatch") {
 			$bg2 = BG_2;
 			
 				$result=safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID = '$matchID'");
-				$ds=mysql_fetch_array($result);
+				$ds=mysqli_fetch_array($result);
 				
 				if($ds['score1']>0 || $ds['score2']>0)
 				die("A score for this match has already been entered!");
 				
 /* V4.1.4d */				
 			    $notchecked = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE $name1 && clanID='$userID' && 1on1='1' && checkin='0'");
-		        $unchecked=mysql_num_rows($notchecked);
+		        $unchecked=mysqli_num_rows($notchecked);
 		        
 		        if($unchecked) die('<div style="margin: 5px; padding: 6px; border: 4px solid #D6B4B4; text-align: center;"><b>You are not checked into this cup!</b> <img src="images/cup/error.png" width="16" height="16"><br> Please <a href="?site=cups&action=admins&'.$typename2.'='.$cupID.'">contact an admin</a> to check you in.</div>');
 	            if($ds['einspruch']==1) die('<div style="margin: 5px; padding: 6px; border: 4px solid #D6B4B4; text-align: center;"><b>There is an open protest for this match!</b> <img src="images/cup/error.png" width="16" height="16"><br> Please wait or <a href="?site=cups&action=admins&'.$typename2.'='.$cupID.'">contact an admin</a> for details.</div>');
@@ -1534,7 +1534,7 @@ if(isset($_GET['matchID']) && $_GET['matchID']=="directmatch") {
             if(isset($_GET['laddID']) && $_GET['type']!="group") {
             
                $challenge_info = safe_query("SELECT * FROM ".PREFIX."cup_challenges WHERE chalID='".$db['matchno']."'");
-               $ch=mysql_fetch_array($challenge_info); $map2 = $ch['map2_final'];
+               $ch=mysqli_fetch_array($challenge_info); $map2 = $ch['map2_final'];
                
                if($_GET['clan1']==$db['clan1']) {
                   $score1 = 1;
@@ -1624,7 +1624,7 @@ if(isset($_GET['matchID']) && $_GET['matchID']=="directmatch") {
 			    }
             }
 			
-			$c_ldd=mysql_fetch_array(safe_query("SELECT ad_report FROM ".PREFIX."cup_ladders WHERE ID='$laddID'"));
+			$c_ldd=mysqli_fetch_array(safe_query("SELECT ad_report FROM ".PREFIX."cup_ladders WHERE ID='$laddID'"));
             
 			if(!isset($map2))
 			$map2 = false;
@@ -1659,10 +1659,10 @@ if(isset($_GET['matchID']) && $_GET['matchID']=="directmatch") {
 		 else{
 			if(isleader($userID,$clanID)){
 				$data=safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID = '$matchID' && inscribed = '0' LIMIT 0,1");
-				$db=mysql_fetch_array($data);
+				$db=mysqli_fetch_array($data);
 				
 				$date=safe_query("SELECT date FROM ".PREFIX."cup_matches WHERE matchID = '$matchID'");
-				$da=mysql_fetch_array($date); 
+				$da=mysqli_fetch_array($date);
 				
 			  	$date = date('l M dS Y \@\ g:i a', $da['date']);
 			  							
@@ -1677,7 +1677,7 @@ if(isset($_GET['matchID']) && $_GET['matchID']=="directmatch") {
 				$bg2 = BG_2;
 				
 				$result=safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID = '$matchID'");
-				$ds=mysql_fetch_array($result);
+				$ds=mysqli_fetch_array($result);
 				
 				if($ds['score1']>0 || $ds['score2']>0)
 				die("A score for this match has already been entered!");
@@ -1685,7 +1685,7 @@ if(isset($_GET['matchID']) && $_GET['matchID']=="directmatch") {
 				
 /* V4.1.4d */				
 			    $notchecked = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE $name1 && clanID='$clanID' && 1on1='0' && checkin='0'");
-		        $unchecked=mysql_num_rows($notchecked);
+		        $unchecked=mysqli_num_rows($notchecked);
 		        
 		        if($unchecked) die('<div style="margin: 5px; padding: 6px; border: 4px solid #D6B4B4; text-align: center;"><b>You are not checked into this cup!</b> <img src="images/cup/error.png" width="16" height="16"><br> Please <a href="?site=cups&action=admins&'.$typename2.'='.$cupID.'">contact an admin</a> to check you in.</div>');
 		        if($ds['einspruch']==1) die('<div style="margin: 5px; padding: 6px; border: 4px solid #D6B4B4; text-align: center;"><b>There is an open protest for this match!</b> <img src="images/cup/error.png" width="16" height="16"><br> Please wait or <a href="?site=cups&action=admins&'.$typename2.'='.$cupID.'">contact an admin</a> for details.</div>');					
@@ -1697,7 +1697,7 @@ if(isset($_GET['matchID']) && $_GET['matchID']=="directmatch") {
             if($_GET['laddID']) {
             
                $challenge_info = safe_query("SELECT * FROM ".PREFIX."cup_challenges WHERE chalID='".$db['matchno']."'");
-               $ch=mysql_fetch_array($challenge_info); $map2 = $ch['map2_final'];
+               $ch=mysqli_fetch_array($challenge_info); $map2 = $ch['map2_final'];
                
                if($_GET['clan1']==$db['clan1']) {
                   $score1 = 1;
@@ -1787,7 +1787,7 @@ if(isset($_GET['matchID']) && $_GET['matchID']=="directmatch") {
 			    }
             }
 			
-			$c_ldd=mysql_fetch_array(safe_query("SELECT ad_report FROM ".PREFIX."cup_ladders WHERE ID='".$_GET['laddID']."'"));
+			$c_ldd=mysqli_fetch_array(safe_query("SELECT ad_report FROM ".PREFIX."cup_ladders WHERE ID='".$_GET['laddID']."'"));
             
             if(!$map2) {
 		
@@ -1845,7 +1845,7 @@ if($_POST['saveticket']) {
                                                        '1')");
                                                 
                                                      
-      $inserted_ticketID = mysql_insert_id();
+      $inserted_ticketID = mysqli_insert_id();
       redirect('?site=cupactions&action=mytickets&tickID='.$inserted_ticketID .'', 'Ticket successfully created!', 2);
   }                                             
 
@@ -1858,8 +1858,8 @@ echo '<a href="?site=cupactions&action=mytickets"><img src="images/cup/icons/gob
 
     $departments = '<option selected value="">-- Select Department --</option>';
       $query = safe_query("SELECT ID FROM ".PREFIX."cup_departments");
-	  if(!mysql_num_rows($query)) { $departments.='<option value="0">- no departments created -</option>'; }
-        while($ds=mysql_fetch_array($query)) {
+	  if(!mysqli_num_rows($query)) { $departments.='<option value="0">- no departments created -</option>'; }
+        while($ds=mysqli_fetch_array($query)) {
             $departments.='<option value="'.$ds['ID'].'">'.departmentname($ds['ID']).'</option>';
         }
   
@@ -1876,15 +1876,15 @@ if(!$userID)
     
  else{
     
-    $ID = mysql_escape_string($_GET['tickID']);
+    $ID = mysqli_escape_string($_GET['tickID']);
     
-    $ds=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_tickets WHERE ticketID='$ID'"));
-    $db=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID='".$ds['matchID']."'"));
+    $ds=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_tickets WHERE ticketID='$ID'"));
+    $db=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID='".$ds['matchID']."'"));
     
     $league = league($ds['matchID']);
     
     $update = safe_query("SELECT * FROM ".PREFIX."comments WHERE type='ts' && parentID='".$ID."' ORDER BY commentID DESC");
-    $tic = mysql_fetch_array($update); $num_rows = mysql_num_rows($update);
+    $tic = mysqli_fetch_array($update); $num_rows = mysqli_num_rows($update);
     
     $subject = getinput($ds['subject']);
     $date = date('l M dS Y \@\ g:i a', $ds['time']);
@@ -1892,7 +1892,7 @@ if(!$userID)
     $staff = ($ds['adminID'] ? '<a href="index.php?site=profile&id='.$ds['adminID'].'"><b>'.getnickname($ds['adminID']).'</b></a>' : "n/a");
 
     if($ds['matchID']) {
-       $dm=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID='".$ds['matchID']."'"));
+       $dm=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID='".$ds['matchID']."'"));
        $desc = getname1($dm['clan1'],getleagueID($ds['matchID']),$ac=0,$league).' vs '.getname1($dm['clan2'],getleagueID($ds['matchID']),$ac=0,$league);
     }
 	else
@@ -1959,7 +1959,7 @@ if(valid_ticketer($_GET['tickID'],$userID)) {
 	  eval ("\$mytickets = \"".gettemplate("view_ticket")."\";");
 	  echo $mytickets;
 	  
-              $lc=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."comments WHERE parentID='".$ds['ticketID']."' && type='ts' ORDER BY date DESC LIMIT 0,1"));
+              $lc=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."comments WHERE parentID='".$ds['ticketID']."' && type='ts' ORDER BY date DESC LIMIT 0,1"));
               $autoclose = time()-$ticket_autoclose_time;
             
               if(!$lc['date'] && $ds['time'] <= $autoclose && in_array($ds['status'],$only_autoclose_ticket)) 
@@ -1981,9 +1981,9 @@ if(valid_ticketer($_GET['tickID'],$userID)) {
      echo '<div '.$error_box.'><a href="?site=cupactions&action=newticket"><img src="images/cup/icons/addresult.gif" width="16" height="16"> <strong>Create a Ticket</b></a></div>';
      
       $tickets_gp = safe_query("SELECT * FROM ".PREFIX."cup_tickets GROUP BY department"); 
-	  $t_num_rows = mysql_num_rows($tickets_gp);
+	  $t_num_rows = mysqli_num_rows($tickets_gp);
       
-        while($tgp=mysql_fetch_array($tickets_gp)) {
+        while($tgp=mysqli_fetch_array($tickets_gp)) {
 	
           echo '<table width="100%" cellspacing="'.$cellspacing.'" border="0" cellspacing="'.$cellspacing.'" bgcolor="'.$border.'">
                 <tr>
@@ -1994,9 +1994,9 @@ if(valid_ticketer($_GET['tickID'],$userID)) {
       $tickets = safe_query("SELECT * FROM ".PREFIX."cup_tickets WHERE department='".$tgp['department']."' $order_tickets");
 
 	  $tickets_user = safe_query("SELECT * FROM ".PREFIX."cup_tickets WHERE userID='$userID' AND department='".$tgp['department']."' $order_tickets");
-	  $t_num_rows2 = mysql_num_rows($tickets_user); $t_ds = mysql_fetch_array($tickets_user);
+	  $t_num_rows2 = mysqli_num_rows($tickets_user); $t_ds = mysqli_fetch_array($tickets_user);
 	  
-	  if(!mysql_num_rows($tickets)) { 
+	  if(!mysqli_num_rows($tickets)) {
 	      $no_rows1 = '<tr><td colspan="4" align="center" bgcolor="'.$bg1.'">-- No tickets --</td></tr>'; 
       }
 	  elseif(!$t_num_rows2 && !valid_ticketer($t_ds['ticketID'],$userID)) {
@@ -2011,12 +2011,12 @@ if(valid_ticketer($_GET['tickID'],$userID)) {
                   <td class="title2" width="5%" align="center">Details</td>
                 </tr>'.$no_rows1.$no_rows2;
 
-          while($ds=mysql_fetch_array($tickets)) {
+          while($ds=mysqli_fetch_array($tickets)) {
           
 	    if(!valid_ticketer($ds['ticketID'],$userID)) $no_inner_rows = 1;
             if(!valid_ticketer($ds['ticketID'],$userID)) continue;
             
-              $lc=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."comments WHERE parentID='".$ds['ticketID']."' && type='ts' ORDER BY date DESC LIMIT 0,1"));
+              $lc=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."comments WHERE parentID='".$ds['ticketID']."' && type='ts' ORDER BY date DESC LIMIT 0,1"));
               $autoclose = time()-$ticket_autoclose_time;
             
               if(!$lc['date'] && $ds['time'] <= $autoclose && in_array($ds['status'],$only_autoclose_ticket)) 
@@ -2060,7 +2060,7 @@ if(valid_ticketer($_GET['tickID'],$userID)) {
 	eval ("\$title_cup = \"".gettemplate("title_cup")."\";");
 	echo $title_cup;
 	
-  $dm=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID='".$matchID."'"));
+  $dm=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID='".$matchID."'"));
   
   if(!$dm['einspruch']) {
 	
@@ -2095,14 +2095,14 @@ if(valid_ticketer($_GET['tickID'],$userID)) {
 			echo '<center><br /><br /><br /><br /><b>'.$_language->module['protest'];
 			
 			$ergebnis = safe_query("SELECT userID FROM ".PREFIX."user_groups WHERE cup='1' || super='1'");
-	 		while($ds = mysql_fetch_array($ergebnis))
+	 		while($ds = mysqli_fetch_array($ergebnis))
 				$touser[] = $ds['userID'];
 
 			$data=safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID = '$matchID'");
-			$db=mysql_fetch_array($data);
+			$db=mysqli_fetch_array($data);
 			
 				$date=safe_query("SELECT date FROM ".PREFIX."cup_matches WHERE matchID = '$matchID'");
-				$da=mysql_fetch_array($date); 
+				$da=mysqli_fetch_array($date);
 				
 				$date = date('l M dS Y \@\ g:i a', $da['date']);
 			
@@ -2129,14 +2129,14 @@ if(valid_ticketer($_GET['tickID'],$userID)) {
 				echo '<center><br /><br /><br /><br /><b>'.$_language->module['protest'];
 
 				$ergebnis = safe_query("SELECT userID FROM ".PREFIX."user_groups WHERE cup='1' || super='1'");
-		 		while($ds = mysql_fetch_array($ergebnis))
+		 		while($ds = mysqli_fetch_array($ergebnis))
 					$touser[] = $ds['userID'];
 		 		
 				$data=safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID = '$matchID'");
-				$db=mysql_fetch_array($data);
+				$db=mysqli_fetch_array($data);
 				
 				$date=safe_query("SELECT date FROM ".PREFIX."cup_matches WHERE matchID = '$matchID'");
-				$da=mysql_fetch_array($date); 
+				$da=mysqli_fetch_array($date);
 				
                 $date = date('l M dS Y \@\ g:i a', $da['date']);
 				

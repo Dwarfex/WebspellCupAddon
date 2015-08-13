@@ -12,7 +12,7 @@ $_language->read_module('shout');
 <?php 
 $test="";
 $requete = safe_query("SELECT DISTINCT userID, friend FROM ".PREFIX."tchat_private WHERE friend =".$userID."");
-while($ds = mysql_fetch_array($requete)){
+while($ds = mysqli_fetch_array($requete)){
 	echo'<a style="cursor:pointer;" onclick="popupcentree(\'shout_popup_guess.php?guess='.$ds['friend'].'&user='.$ds['userID'].'\',\'550\',\'300\')">'.getnickname($ds['userID']).'</a><br>';	
 }
 ?> 

@@ -10,7 +10,7 @@ $bg4=BG_1;
 if(isset($id) and getnickname($id) != '') {
 
 		$livecontact = safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$id."'");
-		$lc = mysql_fetch_array($livecontact);
+		$lc = mysqli_fetch_array($livecontact);
 
 		if(!$lc['email_hide']) $email = '<a href="mailto:'.mail_protect(cleartext($lc['email'])).'"><img src="images/icons/email.gif" border="0" alt="email" /></a>';
 		

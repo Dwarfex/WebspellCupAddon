@@ -55,7 +55,7 @@ $(document).ready(function(){
 
 <head>
 <script language="javascript">wmtt = null; document.onmousemove = updateWMTT; function updateWMTT(e) { x = (document.all) ? window.event.x + document.body.scrollLeft : e.pageX; y = (document.all) ? window.event.y + document.body.scrollTop  : e.pageY; if (wmtt != null) { wmtt.style.left=(x + 20) + "px"; wmtt.style.top=(y + 20) + "px"; } } function showWMTT(id) {	wmtt = document.getElementById(id);	wmtt.style.display = "block" } function hideWMTT() { wmtt.style.display = "none"; }</script>
-<?php $lad2=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='".$_GET['ladderID']."'")); ?>
+<?php $lad2=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='".$_GET['ladderID']."'")); ?>
 
 <div class="tooltip" id="deducted" align="center"><strong><?php echo $lad2['deduct_credits']; ?></strong> credits deducted every <strong><?php echo Sec2Time($lad2['inactivity']); ?></strong> participant is inactive.</div>
 <div class="tooltip" id="remaining" align="center">The remaining credits after deduction. Reaching zero credits will result in unranking. To be ranked again you must go against another unranked participant and win the match. <br /><br />Participants inactive for <strong><?php echo Sec2Time($lad2['remove_inactive']); ?></strong> will result in automatic removal from the ladder.</div>
@@ -127,7 +127,7 @@ $limit_by = 'LIMIT ' . ($start - 1) . ', 20';
 $dis_unrank = ((isset($_GET['display']) && $_GET['display']=='unranked') ? "checkin='0'" : "checkin='1'");
 $dis_user_only= ($participantID!=0 ? 'AND clanID='.$participantID : "");
 
-$ap=mysql_fetch_array(safe_query("SELECT count(*) as number FROM ".PREFIX."cup_clans WHERE ladID='".$_GET['ladderID']."' && $dis_unrank $dis_user_only"));
+$ap=mysqli_fetch_array(safe_query("SELECT count(*) as number FROM ".PREFIX."cup_clans WHERE ladID='".$_GET['ladderID']."' && $dis_unrank $dis_user_only"));
 
 for($i = 1; $i <= $ap['number']; $i += $num_per_page){
     $rows++;
@@ -160,7 +160,7 @@ for($i = 1; $i <= $ap['number']; $i += $num_per_page){
 	
 	$getladder = safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='".$_GET['ladderID']."'");
 	
-    $ld=mysql_fetch_array($getladder);
+    $ld=mysqli_fetch_array($getladder);
     $laddID = $ld['ID'];
  
     switch($ld['ranksys']) 
@@ -193,8 +193,8 @@ for($i = 1; $i <= $ap['number']; $i += $num_per_page){
     }
    
 	
-    if(mysql_num_rows($participants) < 20) {
-	      $height = 12.5 * mysql_num_rows($participants);
+    if(mysqli_num_rows($participants) < 20) {
+	      $height = 12.5 * mysqli_num_rows($participants);
 	}
 	elseif($ap['number'] < 21) {
 	      $height = 430;
@@ -268,19 +268,19 @@ if(isset($_GET['challID']))
 $_challID = $_GET['challID'];
 else $_challID = false;
 
-$laddID = mysql_real_escape_string($_ladderID);
-$ladID = mysql_real_escape_string($_laddID);
-$ID = mysql_real_escape_string($_challID);
+$laddID = mysqli_real_escape_string($_ladderID);
+$ladID = mysqli_real_escape_string($_laddID);
+$ID = mysqli_real_escape_string($_challID);
 $laddname = getladname($ladID);
 
   if(platform_enabled($laddID)=="true" || platform_enabled($_GET['laddID'])=="true") {
 
     $ladder_settings = safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='$laddID' || ID='$ladID'");
-    $lad = mysql_fetch_array($ladder_settings);
+    $lad = mysqli_fetch_array($ladder_settings);
 
 
 $getstatus = safe_query("SELECT * FROM ".PREFIX."cup_challenges WHERE chalID='$ID'");
-$ch = mysql_fetch_array($getstatus); {
+$ch = mysqli_fetch_array($getstatus); {
 
 if(ladderis1on1($ch['ladID'])) {
 
@@ -345,7 +345,7 @@ if(ladderis1on1($ch['ladID'])) {
  else{
 
    $userteams = safe_query("SELECT clanID FROM ".PREFIX."cup_clan_members WHERE userID='$userID'");
-   while($ut=mysql_fetch_array($userteams)) 
+   while($ut=mysqli_fetch_array($userteams))
    { 
    
     if($ut['clanID']==$ch['challenger']) {
@@ -368,13 +368,13 @@ if(ladderis1on1($ch['ladID'])) {
 
 
 $laddsettings = safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='$ladID'");
-$ds = mysql_fetch_array($laddsettings);
+$ds = mysqli_fetch_array($laddsettings);
 
 $credits1 = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE ladID='".$ladID."' AND clanID='".$ch['challenger']."'");
 $credits2 = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE ladID='".$ladID."' AND clanID='".$ch['challenged']."'");
 
-$cd1 = mysql_fetch_array($credits1);
-$cd2 = mysql_fetch_array($credits2); 
+$cd1 = mysqli_fetch_array($credits1);
+$cd2 = mysqli_fetch_array($credits2);
 
 $team1_forfeit_loss = $cd1['credit']-$forfeitloss;
 $team2_forfeit_loss = $cd2['credit']-$forfeitloss;
@@ -400,15 +400,15 @@ $team2_streak_won = $cd2['streak']+1;
 
         safe_query("UPDATE ".PREFIX."cup_clans SET lastact = '".time()."' WHERE clanID='".$_POST['challenger']."' AND ladID='".$_GET['laddID']."'");
         safe_query("INSERT INTO ".PREFIX."cup_challenges (ladID, challenger, challenged, new_date, server, port, serverc, challenger_info, status) VALUES ('".$_GET['laddID']."', '".$_POST['challenger']."', '".$_GET['challenged']."', '$date', '".$_POST['server']."', '".$_POST['port']."', '".$_POST['serverc']."', '".$_POST['info']."', '1')");
-      $challID = mysql_insert_id();
+      $challID = mysqli_insert_id();
 	  
 /* EMAIL (1ST STEP)*/
 
-$to_ds1=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$_POST['challenger']."'"));
-$to_ds2=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$_POST['challenged']."'"));
-$c_clan=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_challenges WHERE chalID='$challID'"));
-$do=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."settings"));
-$dt=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."styles"));
+$to_ds1=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$_POST['challenger']."'"));
+$to_ds2=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$_POST['challenged']."'"));
+$c_clan=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_challenges WHERE chalID='$challID'"));
+$do=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."settings"));
+$dt=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."styles"));
 
 $sender_from = $do['adminemail'];
 $challenger_ma = $c_clan['challenger'];
@@ -427,9 +427,9 @@ $ni = array($to_ds1[nickname], $to_ds2[nickname]);
 else{
 
 $query = safe_query("SELECT * FROM ".PREFIX."cup_clan_members WHERE clanID='$challenger_ma'");
-  while($to_ds3 = mysql_fetch_array($query)) {
+  while($to_ds3 = mysqli_fetch_array($query)) {
   
-    $to_email1=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$to_ds3['userID']."'"));
+    $to_email1=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$to_ds3['userID']."'"));
 	
 	if(isleader($to_ds3['userID'],$challenger_ma)) {
       $to[]=$to_email1['email'];
@@ -438,9 +438,9 @@ $query = safe_query("SELECT * FROM ".PREFIX."cup_clan_members WHERE clanID='$cha
 }
 
 $query = safe_query("SELECT * FROM ".PREFIX."cup_clan_members WHERE clanID='$challenged_ma'");
-  while($to_ds4 = mysql_fetch_array($query)) {
+  while($to_ds4 = mysqli_fetch_array($query)) {
   
-    $to_email2=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$to_ds4['userID']."'"));
+    $to_email2=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$to_ds4['userID']."'"));
     
 	if(isleader($to_ds4['userID'],$challenged_ma)) {
 	  $to[]=$to_email2['email'];
@@ -454,7 +454,7 @@ $subject = 'Ladder Challenge Notification (1st Step)';
 
 foreach($ni as $nick) {
 
-$get_userd=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE nickname='$nick'"));
+$get_userd=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE nickname='$nick'"));
 $nicks[] = $nick;
 
 // message
@@ -796,12 +796,12 @@ foreach($to as $email) {
    
 /* EMAIL (2ND STEP) */
 
-$c_clan=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_challenges WHERE chalID='".$_GET['challID']."'"));
-$lad=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='".$c_clan['ladID']."'"));
-$to_ds1=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$c_clan['challenger']."'"));
-$to_ds2=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$c_clan['challenged']."'"));
-$do=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."settings"));
-$dt=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."styles"));
+$c_clan=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_challenges WHERE chalID='".$_GET['challID']."'"));
+$lad=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='".$c_clan['ladID']."'"));
+$to_ds1=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$c_clan['challenger']."'"));
+$to_ds2=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$c_clan['challenged']."'"));
+$do=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."settings"));
+$dt=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."styles"));
 
 $sender_from = $do['adminemail'];
 $challID = $c_clan['chalID'];
@@ -821,9 +821,9 @@ $ni = array($to_ds1[nickname], $to_ds2[nickname]);
 else{
 
 $query = safe_query("SELECT * FROM ".PREFIX."cup_clan_members WHERE clanID='$challenger_ma'");
-  while($to_ds3 = mysql_fetch_array($query)) {
+  while($to_ds3 = mysqli_fetch_array($query)) {
   
-    $to_email1=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$to_ds3['userID']."'"));
+    $to_email1=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$to_ds3['userID']."'"));
 	
 	if(isleader($to_ds3['userID'],$challenger_ma)) {
       $to[]=$to_email1['email'];
@@ -832,9 +832,9 @@ $query = safe_query("SELECT * FROM ".PREFIX."cup_clan_members WHERE clanID='$cha
 }
 
 $query = safe_query("SELECT * FROM ".PREFIX."cup_clan_members WHERE clanID='$challenged_ma'");
-  while($to_ds4 = mysql_fetch_array($query)) {
+  while($to_ds4 = mysqli_fetch_array($query)) {
   
-    $to_email2=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$to_ds4['userID']."'"));
+    $to_email2=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$to_ds4['userID']."'"));
     
 	if(isleader($to_ds4['userID'],$challenged_ma)) {
 	  $to[]=$to_email2['email'];
@@ -848,7 +848,7 @@ $subject = 'Ladder Challenge Notification (2nd Step)';
 
 foreach($ni as $nick) {
 
-$get_userd=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE nickname='$nick'"));
+$get_userd=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE nickname='$nick'"));
 $nicks[] = $nick;
 
 // message
@@ -1043,12 +1043,12 @@ foreach($to as $email) {
    	 
 /* EMAIL (3RD STEP) */
 
-$c_clan=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_challenges WHERE chalID='".$_GET['challID']."'"));
-$lad=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='".$c_clan['ladID']."'"));
-$to_ds1=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$c_clan['challenger']."'"));
-$to_ds2=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$c_clan['challenged']."'"));
-$do=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."settings"));
-$dt=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."styles"));
+$c_clan=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_challenges WHERE chalID='".$_GET['challID']."'"));
+$lad=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='".$c_clan['ladID']."'"));
+$to_ds1=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$c_clan['challenger']."'"));
+$to_ds2=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$c_clan['challenged']."'"));
+$do=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."settings"));
+$dt=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."styles"));
 
 $sender_from = $do['adminemail'];
 $challID = $c_clan['chalID'];
@@ -1067,9 +1067,9 @@ $ni = array($to_ds1[nickname], $to_ds2[nickname]);
 else{
 
 $query = safe_query("SELECT * FROM ".PREFIX."cup_clan_members WHERE clanID='$challenger_ma'");
-  while($to_ds3 = mysql_fetch_array($query)) {
+  while($to_ds3 = mysqli_fetch_array($query)) {
   
-    $to_email1=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$to_ds3['userID']."'"));
+    $to_email1=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$to_ds3['userID']."'"));
 	
 	if(isleader($to_ds3['userID'],$challenger_ma)) {
       $to[]=$to_email1['email'];
@@ -1078,9 +1078,9 @@ $query = safe_query("SELECT * FROM ".PREFIX."cup_clan_members WHERE clanID='$cha
 }
 
 $query = safe_query("SELECT * FROM ".PREFIX."cup_clan_members WHERE clanID='$challenged_ma'");
-  while($to_ds4 = mysql_fetch_array($query)) {
+  while($to_ds4 = mysqli_fetch_array($query)) {
   
-    $to_email2=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$to_ds4['userID']."'"));
+    $to_email2=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$to_ds4['userID']."'"));
     
 	if(isleader($to_ds4['userID'],$challenged_ma)) {
 	  $to[]=$to_email2['email'];
@@ -1094,7 +1094,7 @@ $subject = 'Ladder Challenge Notification (Match Ready)';
 
 foreach($ni as $nick) {
 
-$get_userd=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE nickname='$nick'"));
+$get_userd=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."user WHERE nickname='$nick'"));
 $nicks[] = $nick;
 
 // message
@@ -1151,12 +1151,12 @@ if(isset($_GET['action']) && $_GET['action'] == 'report' && isset($_GET['laddID'
  $challenged = $_GET['challenged'];
  
   $ergebnis2 = safe_query("SELECT count(*) as number FROM ".PREFIX."cup_clans WHERE ladID='".$ladID."'");
-  $dv=mysql_fetch_array($ergebnis2);
+  $dv=mysqli_fetch_array($ergebnis2);
  
   $partID = (ladderis1on1($ladID) ? $userID : participantID($userID,$ladID));
 
   $match = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE ladID='$ladID' AND (clan1='$partID' AND clan2='$challenged') || (clan2='$partID' AND clan1='$challenged') ORDER by matchID DESC LIMIT 0,1"); 
-  $num_rows = mysql_num_rows($match); $dm=mysql_fetch_array($match);
+  $num_rows = mysqli_num_rows($match); $dm=mysqli_fetch_array($match);
    
  
  if($lad['status']==3) 
@@ -1224,7 +1224,7 @@ if(isset($_GET['action']) && $_GET['action'] == 'report' && isset($_GET['laddID'
         die('You can not report yourself!');
         
       $query = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE ladID='$ladID' AND clanID='$userID' AND 1on1='1'");
-       if(mysql_num_rows($query)) 
+       if(mysqli_num_rows($query))
        {
        
           if($rep_error) {
@@ -1250,7 +1250,7 @@ if($loggedin)
     
 
     $ergebnis2 = safe_query("SELECT count(*) as number FROM ".PREFIX."cup_clans WHERE ladID='".$ladID."'");
-    $dv=mysql_fetch_array($ergebnis2); 
+    $dv=mysqli_fetch_array($ergebnis2);
     
     if($lad['status']==3) {
       $chal_error = 'The ladder has now ended!';
@@ -1270,7 +1270,7 @@ if($loggedin)
  
     if(ladderis1on1($ladID)) {
        $entered = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE ladID='$ladID' && clanID='$userID' && 1on1='1'");
-       if(!mysql_num_rows($entered)) $chal_error = 'You are not a participant in this ladder!';     
+       if(!mysqli_num_rows($entered)) $chal_error = 'You are not a participant in this ladder!';
     }
     else{ 
        if(!isladparticipant($userID,$ladID,$checkin=0)){
@@ -1280,8 +1280,8 @@ if($loggedin)
 
 //challenging up/down by credits
 
-  $cd_c=mysql_fetch_array(safe_query("SELECT credit, xp, tp, wc FROM ".PREFIX."cup_clans WHERE ladID='$ladID' AND clanID='$challenged'"));
-  $cr_c=mysql_fetch_array(safe_query("SELECT credit, xp, tp, wc FROM ".PREFIX."cup_clans WHERE ladID='$ladID' AND clanID='".participantID($userID,$ladID)."'"));
+  $cd_c=mysqli_fetch_array(safe_query("SELECT credit, xp, tp, wc FROM ".PREFIX."cup_clans WHERE ladID='$ladID' AND clanID='$challenged'"));
+  $cr_c=mysqli_fetch_array(safe_query("SELECT credit, xp, tp, wc FROM ".PREFIX."cup_clans WHERE ladID='$ladID' AND clanID='".participantID($userID,$ladID)."'"));
   
   if($lad['ranksys']==1) {
      $rank_type = "credit";
@@ -1352,11 +1352,11 @@ if($loggedin)
      $participants = '<option value="0" selected">-- Select User --</option>';
      $players = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE ladID='$ladID' AND clanID!='$userID' AND 1on1='1'");
 
-     if(!mysql_num_rows($players)) { 
+     if(!mysqli_num_rows($players)) {
         echo 'There are currently no active players on this ladder!';      
      }
      else{
-	    while($ds=mysql_fetch_array($players)) { 
+	    while($ds=mysqli_fetch_array($players)) {
         $participants.='<option value="'.$ds['clanID'].'">('.$ds['clanID'].') '.getnickname($ds['clanID']).'</option>';      
 	 } 
 	  
@@ -1368,7 +1368,7 @@ if($loggedin)
  {			              
 
    $userteams = safe_query("SELECT * FROM ".PREFIX."cup_clan_members WHERE userID='$userID'");
-   while($dp=mysql_fetch_array($userteams)) 
+   while($dp=mysqli_fetch_array($userteams))
    {	         
 
    $teams = '<option value="0" selected">-- Select Team --</option>';
@@ -1376,13 +1376,13 @@ if($loggedin)
 
    }		 
 
-     if(!mysql_num_rows($getteams)) { 
+     if(!mysqli_num_rows($getteams)) {
         echo 'There are currently no active teams on this ladder!';
       
      }
      else{
    
-        while($ds=mysql_fetch_array($getteams)) 
+        while($ds=mysqli_fetch_array($getteams))
         { 
         $teams.='<option value="'.$ds['clanID'].'">('.$ds['clanID'].') '.getclanname($ds['clanID']).'</option>';
 
@@ -1411,12 +1411,12 @@ if($loggedin)
     $no = 1;
       $userchallenges = safe_query("SELECT * FROM ".PREFIX."cup_challenges WHERE ladID='$ladID' AND (challenger='$userID' || challenged='$userID') ORDER BY chalID DESC");
       
-      if(!mysql_num_rows($userchallenges)) {
+      if(!mysqli_num_rows($userchallenges)) {
           echo '<tr><td bgcolor="'.$pagebg.'" colspan="5"></td></tr>
 	        <tr><td bgcolor="'.$bg1.'" colspan="5" align="center">- you have no challenges -</td></tr>';
       }
       
-      while($ds=mysql_fetch_array($userchallenges)) 
+      while($ds=mysqli_fetch_array($userchallenges))
       {
 
     if($ds['forfeit']==$ds['challenger']) 
@@ -1457,13 +1457,13 @@ if($loggedin)
   {
 
    $userteams = safe_query("SELECT * FROM ".PREFIX."cup_clan_members WHERE userID='$userID'");
-   while($dp=mysql_fetch_array($userteams)) 
+   while($dp=mysqli_fetch_array($userteams))
    {
    
     $no = 1;
     
      $teamchallenges = safe_query("SELECT * FROM ".PREFIX."cup_challenges WHERE ladID='$ladID' AND (challenger='".$dp['clanID']."' || challenged='".$dp['clanID']."') ORDER BY chalID DESC"); }
-     while($ds=mysql_fetch_array($teamchallenges)) 
+     while($ds=mysqli_fetch_array($teamchallenges))
      { 
      
         if($ds['forfeit']==$ds['challenger']) 
@@ -1515,11 +1515,11 @@ if($loggedin)
      $opponent = getnickname($challenged);
 
      $challenges = safe_query("SELECT * FROM ".PREFIX."cup_challenges WHERE ladID='$ladID' && (challenger='$challenger' && challenged='$challenged') || (challenger='$challenged' && challenged='$challenger') ORDER BY chalID DESC");
-     $challexists = mysql_num_rows($challenges);
-     $info = mysql_fetch_array($challenges);
+     $challexists = mysqli_num_rows($challenges);
+     $info = mysqli_fetch_array($challenges);
 
      $match = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE ladID='$ladID' AND (clan1='$challenger' AND clan2='$challenged') || (clan2='$challenger' AND clan1='$challenged') ORDER BY matchno DESC"); 
-     $num_rows = mysql_num_rows($match); $dm = mysql_fetch_array($match); 
+     $num_rows = mysqli_num_rows($match); $dm = mysqli_fetch_array($match);
 
      $opponent1 = getnickname($info['challenged']);
      $challenger1 = getnickname($info['challenger']);
@@ -1551,11 +1551,11 @@ if($loggedin)
    $opponent = getclanname($challenged);
    
    $challenges = safe_query("SELECT * FROM ".PREFIX."cup_challenges WHERE ladID='$ladID' && (challenger='$challenger' && challenged='$challenged') || (challenger='$challenged' && challenged='$challenger') ORDER BY chalID DESC");
-   $challexists = mysql_num_rows($challenges);
-   $info = mysql_fetch_array($challenges);
+   $challexists = mysqli_num_rows($challenges);
+   $info = mysqli_fetch_array($challenges);
    
    $match = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE ladID='$ladID' AND (clan1='$challenger' AND clan2='$challenged') || (clan2='$challenger' AND clan1='$challenged') ORDER BY matchno DESC"); 
-   $num_rows = mysql_num_rows($match); $dm = mysql_fetch_array($match);
+   $num_rows = mysqli_num_rows($match); $dm = mysqli_fetch_array($match);
 
    $opponent1 = getclanname($info['challenged']);
    $challenger1 = getclanname($info['challenger']);
@@ -1585,7 +1585,7 @@ if($loggedin)
 //challenges quantity
 
    $challenges = safe_query("SELECT * FROM ".PREFIX."cup_challenges WHERE ladID='$ladID' && challenger='".participantID($userID,$ladID)."'");
-   $quant_challenges = mysql_num_rows($challenges);
+   $quant_challenges = mysqli_num_rows($challenges);
    
    if(getcredits($_GET['challenged'],$ladID) <= 0)
    $unrking_ch = 1; else $unrking_ch = 0;
@@ -1616,7 +1616,7 @@ if($loggedin)
    elseif(!$chall_error && !$chall_error2 && !$chall_error3) {
 
    $participants = safe_query("SELECT clanID FROM ".PREFIX."cup_clans WHERE ladID='$ladID'");
-   while($pp = mysql_fetch_array($participants)) 
+   while($pp = mysqli_fetch_array($participants))
    
       if($challenged==$pp['clanID']) {
       
@@ -1641,14 +1641,14 @@ elseif(isset($_GET['action']) && $_GET['action'] == 'viewchallenge')
   //check if not exists
 
   $query = safe_query("SELECT chalID FROM ".PREFIX."cup_challenges");
-  if(mysql_num_rows($query)) {
+  if(mysqli_num_rows($query)) {
 
-  while($ex=mysql_fetch_array($query)) 
+  while($ex=mysqli_fetch_array($query))
   if($ID==$ex['chalID']) {
 
 
     $getchallenge = safe_query("SELECT * FROM ".PREFIX."cup_challenges WHERE chalID='$ID' AND ladID='$ladID'");
-    $ds = mysql_fetch_array($getchallenge);
+    $ds = mysqli_fetch_array($getchallenge);
 
  if(ladderis1on1($ladID)) {
     $challenger = '<a href="index.php?site=profile&id='.$ds['challenger'].'" target="_blank"><b>'.getnickname($ds['challenger']).'</b></a>';
@@ -1688,7 +1688,7 @@ elseif(isset($_GET['action']) && $_GET['action'] == 'viewchallenge')
 //ladder settings  
 
  $laddsettings = safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='$ladID'");
- $set = mysql_fetch_array($laddsettings);
+ $set = mysqli_fetch_array($laddsettings);
  
 //timeset
 
@@ -1702,7 +1702,7 @@ elseif(isset($_GET['action']) && $_GET['action'] == 'viewchallenge')
 //ladder maps 
 
  $getmaps = safe_query("SELECT * FROM ".PREFIX."cup_maps WHERE mappack='".$set['mappack']."'");
-   while($mp=mysql_fetch_array($getmaps)) {
+   while($mp=mysqli_fetch_array($getmaps)) {
        $maps.='<option value="'.$mp['map'].'">'.$mp['map'].'</option>'; 
    }
 
@@ -2146,21 +2146,21 @@ else echo '';
   { 
 
     $checkedteams = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE ladID='$laddID' AND checkin='1'");
-    $active_teams = mysql_num_rows($checkedteams);
+    $active_teams = mysqli_num_rows($checkedteams);
 
     $unranked = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE ladID='$laddID' AND checkin='0'");
-    $unranked_teams = mysql_num_rows($unranked);
+    $unranked_teams = mysqli_num_rows($unranked);
 
     $getmatches = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE ladID= '".$laddID."' && cupID='0'");
-    $played_matches = mysql_num_rows($getmatches);
+    $played_matches = mysqli_num_rows($getmatches);
 
     if(ladderis1on1($laddID)) $participants = 'Players';
     else $participants = 'Teams';
 
-    $dd=mysql_fetch_array(safe_query("SELECT platID FROM ".PREFIX."cup_ladders WHERE ID='$laddID'"));
+    $dd=mysqli_fetch_array(safe_query("SELECT platID FROM ".PREFIX."cup_ladders WHERE ID='$laddID'"));
 
     $ergebnis2 = safe_query("SELECT count(*) as number FROM ".PREFIX."cup_clans WHERE ladID='".$laddID."'");
-    $dv=mysql_fetch_array($ergebnis2);
+    $dv=mysqli_fetch_array($ergebnis2);
 
   if(ladderis1on1($laddID)) 
   {
@@ -2179,7 +2179,7 @@ else echo '';
 		elseif(isset($_GET['leave']) && $_GET['leave']=="true")
 		      echo "Either the ladder is already full or you are not a registered participant.";
  
-    $ads=mysql_fetch_array(safe_query("SELECT xp FROM ".PREFIX."cup_clans WHERE clanID='$userID' AND ladID='$laddID' AND 1on1='1'"));   
+    $ads=mysqli_fetch_array(safe_query("SELECT xp FROM ".PREFIX."cup_clans WHERE clanID='$userID' AND ladID='$laddID' AND 1on1='1'"));
     $yourXP = $ads['xp']; 
     
     if(isladparticipant($userID,$laddID,$checkin=0))
@@ -2204,7 +2204,7 @@ else echo '';
 	  }
    }
 
-   $ads=mysql_fetch_array(safe_query("SELECT xp FROM ".PREFIX."cup_clans WHERE clanID='".participantID($userID,$laddID)."' AND ladID='$laddID' AND 1on1='0'")); 
+   $ads=mysqli_fetch_array(safe_query("SELECT xp FROM ".PREFIX."cup_clans WHERE clanID='".participantID($userID,$laddID)."' AND ladID='$laddID' AND 1on1='0'"));
    $yourXP = $ads['xp'];  
 
      if(isladparticipant($userID,$laddID,$checkin=0))
@@ -2224,7 +2224,7 @@ else echo '';
 
     $ergebnis = safe_query("SELECT * FROM ".PREFIX."cup_clan_members WHERE userID = '".$userID."' AND function = 'Leader'");		
       $clan = '<option value="" selected="selected"> - Select Team - </option>';	
-        while($dm=mysql_fetch_array($ergebnis)) 
+        while($dm=mysqli_fetch_array($ergebnis))
       $clan .= '<option name="clanID" value="'.$dm['clanID'].'">'.getclanname($dm['clanID']).'</option>';
 
    if($loggedin && !isladparticipant($userID,$laddID,$checkin=0))
@@ -2248,7 +2248,7 @@ else echo '';
      }else
     $participants = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE ladID='$laddID' AND 1on1='0' ORDER BY tp DESC");
 
-    while($ls=mysql_fetch_array($participants)) { 
+    while($ls=mysqli_fetch_array($participants)) {
        $asdf []= getstreak($ls['clanID'],$laddID) . "." . $ls['clanID'];
    }
    
@@ -2271,7 +2271,7 @@ else echo '';
    $team2='';
 
    $getmatches = safe_query("SELECT clan1, clan2 FROM ".PREFIX."cup_matches WHERE ladID='$laddID'");
-   while($ds=mysql_fetch_array($getmatches)) { $team1.= ''.$ds['clan1'].','; $team2.= ''.$ds['clan2'].','; }
+   while($ds=mysqli_fetch_array($getmatches)) { $team1.= ''.$ds['clan1'].','; $team2.= ''.$ds['clan2'].','; }
  
  
 if(isset($_GET['view']) && $_GET['view']=='hof') 
@@ -2325,7 +2325,7 @@ if(isset($_GET['view']) && $_GET['view']=='hof')
     $partID = participantID($userID,$laddID);
 
     $query = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE ladID='$laddID' && (clan1='$partID' || clan2='$partID')");
-        while($si=mysql_fetch_array($query))
+        while($si=mysqli_fetch_array($query))
         {
         
             if(!$si['si'] && $si['confirmscore'] && ismatchparticipant($userID,$si['matchID'],$all=1)) 
@@ -2336,7 +2336,7 @@ if(isset($_GET['view']) && $_GET['view']=='hof')
 //get ladders
 
  $getladder = safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='$laddID'");
-  if(!mysql_num_rows($getladder)) { die('Ladder does not exist.'); }
+  if(!mysqli_num_rows($getladder)) { die('Ladder does not exist.'); }
 
   
   if(!$hide_credits_column) {
@@ -2359,16 +2359,16 @@ if(isset($_GET['view']) && $_GET['view']=='hof')
    $dis_unrank = ($display=='unranked' ? "checkin='0'" : "checkin='1'");
 
    $result = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE ladID='".$laddID."' && $dis_unrank");
-   $are_participants = mysql_num_rows($result);
+   $are_participants = mysqli_num_rows($result);
    
    $result1 = safe_query("SELECT * FROM ".PREFIX."cup_challenges WHERE ladID='".$laddID."'");
-   $are_challenges = mysql_num_rows($result1);
+   $are_challenges = mysqli_num_rows($result1);
    
    $result2 = safe_query("SELECT * FROM ".PREFIX."cup_deduction WHERE ladID='".$laddID."' AND credit <= ".$lad['deduct_credits']);
-   $are_deductions = mysql_num_rows($result2);
+   $are_deductions = mysqli_num_rows($result2);
    
    $result3 = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE ladID='".$laddID."' && confirmscore='1' && $one_query");
-   $are_matches = mysql_num_rows($result3);
+   $are_matches = mysqli_num_rows($result3);
 
 //standings table head
 
@@ -2386,11 +2386,11 @@ if(isset($_GET['view']) && $_GET['view']=='hof')
    
 		//freeagent notification
 		
-		$qk_fch=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='$laddID'"));
+		$qk_fch=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='$laddID'"));
 		
 		if(($qk_fch['sign'] && $qk_fch['status']==2) OR $qk_fch['status']==1) {
            $freeagents = safe_query("SELECT * FROM ".PREFIX."cup_agents WHERE ladID='$laddID' && cupID='0'");
-		   if(mysql_num_rows($freeagents) && isladparticipant($userID,$laddID)) 
+		   if(mysqli_num_rows($freeagents) && isladparticipant($userID,$laddID))
 		   echo "<div ".$error_box."> There are free-agents available for this league. Click <a href='?site=freeagents&action=view&laddID=".$laddID."'>here</a> to view.</div>";
 		}
    
@@ -2417,7 +2417,7 @@ if(isset($_GET['view']) && $_GET['view']=='hof')
    if((getrank(participantID($userID,$laddID),$laddID,'now',$unranking_vl) > 20 || $unranking_st) && isladparticipant_memin($userID,$laddID,0) && $display!='unranked') {
           $info_sh1 = 'Your are rank <strong>'.getrank(participantID($userID,$laddID),$laddID,$type_rk='now',$unranking_vl).'</strong>'.$unranking_st;
    }
-   elseif($_GET['display']!='unranked' && mysql_num_rows($chk_unranked) && !$_GET['participantID'] && !mysql_num_rows($chk_ranked) && $unranking==1) {
+   elseif($_GET['display']!='unranked' && mysqli_num_rows($chk_unranked) && !$_GET['participantID'] && !mysqli_num_rows($chk_ranked) && $unranking==1) {
           $info_sh1 = 'No ranked participants >> <a href="?site=standings&ladderID='.$laddID.'&display=unranked"> View Unranked</a>'; 
    }
    else{
@@ -2561,7 +2561,7 @@ $points_head = (ladder_ranksys($laddID) == "elo" ? "ELO" : "Points");
   }
  
 
- $ld=mysql_fetch_array($getladder);
+ $ld=mysqli_fetch_array($getladder);
  $laddID = $ld['ID'];
  
  $order_sort = (isset($_GET['order']) && $_GET['order']=='asc' ? "ASC" : "DESC");
@@ -2625,22 +2625,22 @@ $points_head = (ladder_ranksys($laddID) == "elo" ? "ELO" : "Points");
       $participants = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE ladID='".$_GET['ladderID']."' AND 1on1='0' AND checkin = '$display_unranked' $display_user_only $rank_by $display_limit");
    }
    
-   $table_num_rows = mysql_num_rows($participants);
+   $table_num_rows = mysqli_num_rows($participants);
    $chk_unranked = safe_query("SELECT credit FROM ".PREFIX."cup_clans WHERE ladID='".$_GET['ladderID']."' && credit < 1");
 
-   if(empty($table_num_rows) && !mysql_num_rows($chk_unranked)) {
+   if(empty($table_num_rows) && !mysqli_num_rows($chk_unranked)) {
       echo '<div class="infobox">No participants found. Visit <a href="?site=quicknavi&type=ladders&cup='.getalphaladname($_GET['ladderID']).'">this link</a> for sign-ups.</div>';
    }
    
 //check next button
 
-   $qp1=mysql_fetch_array(safe_query("SELECT clanID FROM ".PREFIX."cup_clans WHERE ladID='".$_GET['ladderID']."' ORDER BY rank_now DESC LIMIT 0,1"));
+   $qp1=mysqli_fetch_array(safe_query("SELECT clanID FROM ".PREFIX."cup_clans WHERE ladID='".$_GET['ladderID']."' ORDER BY rank_now DESC LIMIT 0,1"));
    
    if(!isset($show_rankings))
    $show_rankings = '';
    
    $query = safe_query("SELECT clanID FROM ".PREFIX."cup_clans WHERE ladID='".$_GET['ladderID']."'  $show_rankings");
-     while( $row = mysql_fetch_assoc($query)) {
+     while( $row = mysqli_fetch_assoc($query)) {
        $array[] = $row['clanID'];   	   
    }
    
@@ -2664,7 +2664,7 @@ $points_head = (ladder_ranksys($laddID) == "elo" ? "ELO" : "Points");
    
    //anas loop query 
 
-   while($ds=mysql_fetch_array($participants)) 
+   while($ds=mysqli_fetch_array($participants))
    { 
    
    $teamID = $ds['clanID']; 
@@ -2676,7 +2676,7 @@ $points_head = (ladder_ranksys($laddID) == "elo" ? "ELO" : "Points");
    } 
    
    $getmatches = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE ladID='$laddID' AND (clan1='$teamID' || clan2='$teamID')");
-   $dm = mysql_fetch_array($getmatches);
+   $dm = mysqli_fetch_array($getmatches);
 
 //last activity
 
@@ -2729,7 +2729,7 @@ $points_head = (ladder_ranksys($laddID) == "elo" ? "ELO" : "Points");
 
 
    $getchallenges = safe_query("SELECT * FROM ".PREFIX."cup_challenges WHERE ladID='$laddID' AND (challenger='".$teamID."' || challenged='".$teamID."')");
-     while($ch=mysql_fetch_array($getchallenges)) 
+     while($ch=mysqli_fetch_array($getchallenges))
      {
 
      $challID = $ch['chalID'];
@@ -2749,8 +2749,8 @@ $points_head = (ladder_ranksys($laddID) == "elo" ? "ELO" : "Points");
      $credits1 = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE ladID='".$ch['ladID']."' AND clanID='".$ch['challenger']."'");
      $credits2 = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE ladID='".$ch['ladID']."' AND clanID='".$ch['challenged']."'");
 
-     $cd1 = mysql_fetch_array($credits1);
-     $cd2 = mysql_fetch_array($credits2); 
+     $cd1 = mysqli_fetch_array($credits1);
+     $cd2 = mysqli_fetch_array($credits2);
 
      $team1_forfeit_loss = $cd1['credit']-$forfeitloss;
      $team2_forfeit_loss = $cd2['credit']-$forfeitloss;
@@ -2787,11 +2787,11 @@ $points_head = (ladder_ranksys($laddID) == "elo" ? "ELO" : "Points");
 /* MATCH STATS */
 
   if(ladderis1on1($laddID)) {
-    $ads=mysql_fetch_array(safe_query("SELECT won, draw, lost, xp FROM ".PREFIX."cup_clans WHERE clanID='$teamID' AND ladID='$laddID' AND 1on1='1'")); 
+    $ads=mysqli_fetch_array(safe_query("SELECT won, draw, lost, xp FROM ".PREFIX."cup_clans WHERE clanID='$teamID' AND ladID='$laddID' AND 1on1='1'"));
 	$ucp_team = 0;
   }
   else{
-    $ads=mysql_fetch_array(safe_query("SELECT won, draw, lost, xp FROM ".PREFIX."cup_clans WHERE clanID='$teamID' AND ladID='$laddID' AND 1on1='0'")); 
+    $ads=mysqli_fetch_array(safe_query("SELECT won, draw, lost, xp FROM ".PREFIX."cup_clans WHERE clanID='$teamID' AND ladID='$laddID' AND 1on1='0'"));
 	$ucp_team = 1;
   }
 
@@ -2803,7 +2803,7 @@ $points_head = (ladder_ranksys($laddID) == "elo" ? "ELO" : "Points");
 //ratio
 
   $man_stats = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE ladID='".$laddID."' AND clanID='$teamID'");
-  $ms = mysql_fetch_array($man_stats);
+  $ms = mysqli_fetch_array($man_stats);
 
   if($ratio_determination) {
      $challenger_ratio=percent($ms['won'], $ms['won']+$ms['draw']+$ms['lost'], 2);
@@ -2887,7 +2887,7 @@ $points_head = (ladder_ranksys($laddID) == "elo" ? "ELO" : "Points");
     if(empty($lost_matches)) $lost = 0;
     else $lost = $lost_matches;
     
- $cc=mysql_fetch_array(safe_query("SELECT clanID FROM ".PREFIX."cup_clan_members WHERE userID='$userID'"));
+ $cc=mysqli_fetch_array(safe_query("SELECT clanID FROM ".PREFIX."cup_clan_members WHERE userID='$userID'"));
 
 if(!$userID || !$cc['clanID'])
    $new_challenge = '<img id="myImage" src="images/cup/icons/challenge.gif" border="0">';
@@ -2941,9 +2941,9 @@ if($lad['challallow']==1 || $lad['challallow']==2)
     $rating = getrating($teamID,$laddID,'rating');
 	$level = getrating($teamID,$laddID,'level');
     
-    $first=mysql_fetch_array(safe_query("SELECT clanID FROM ".PREFIX."cup_clans WHERE ladID='".$ds['ladID']."' ORDER BY $ranksys DESC LIMIT 0,1"));
-    $second=mysql_fetch_array(safe_query("SELECT clanID FROM ".PREFIX."cup_clans WHERE ladID='".$ds['ladID']."' ORDER BY $ranksys DESC LIMIT 1,1"));
-    $third=mysql_fetch_array(safe_query("SELECT clanID FROM ".PREFIX."cup_clans WHERE ladID='".$ds['ladID']."' ORDER BY $ranksys DESC LIMIT 2,1")); 
+    $first=mysqli_fetch_array(safe_query("SELECT clanID FROM ".PREFIX."cup_clans WHERE ladID='".$ds['ladID']."' ORDER BY $ranksys DESC LIMIT 0,1"));
+    $second=mysqli_fetch_array(safe_query("SELECT clanID FROM ".PREFIX."cup_clans WHERE ladID='".$ds['ladID']."' ORDER BY $ranksys DESC LIMIT 1,1"));
+    $third=mysqli_fetch_array(safe_query("SELECT clanID FROM ".PREFIX."cup_clans WHERE ladID='".$ds['ladID']."' ORDER BY $ranksys DESC LIMIT 2,1"));
     
     if($first['clanID']==$teamID) {
 	   $class = 'class="moveDown"';
@@ -2974,7 +2974,7 @@ if($lad['challallow']==1 || $lad['challallow']==2)
   if(ladderis1on1($ds['ladID'])) { 
 
 
-    $site = mysql_fetch_array(safe_query("SELECT hpurl FROM ".PREFIX."settings"));
+    $site = mysqli_fetch_array(safe_query("SELECT hpurl FROM ".PREFIX."settings"));
     $img = 'http://'.$site['hpurl'].'/images/avatars/'.getavatar($teamID);
     $avatar = 'images/avatars/'.getavatar($teamID);
 
@@ -2989,7 +2989,7 @@ if($lad['challallow']==1 || $lad['challallow']==2)
   else
   { 
        
-     $cl = mysql_fetch_array(safe_query("SELECT clanlogo FROM ".PREFIX."cup_all_clans WHERE ID='$teamID'"));
+     $cl = mysqli_fetch_array(safe_query("SELECT clanlogo FROM ".PREFIX."cup_all_clans WHERE ID='$teamID'"));
      
      $url = $cl['clanlogo'];     
      $avatar = (empty($cl['clanlogo']) || !is_array($url) ? 'images/avatars/noavatar.gif' : $cl['clanlogo']);   
@@ -3001,8 +3001,8 @@ if($lad['challallow']==1 || $lad['challallow']==2)
         $new_challenge = '<a href="?site=standings&action=newchallenge&laddID='.$laddID.'&challenger='.participantID($userID,$laddID).'&challenged='.$teamID.'"><img src="images/cup/icons/challenge.gif" border="0" width="24" height="24"></a>';
      }
   }
-				$lastmatch = mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE ladID='$laddID' && (clan1='$teamID' || clan2='$teamID') && (clan1 != '0' AND clan2 != '0') && (clan1 !='2147483647' AND clan2 !='2147483647') && $one_query && confirmscore='1' ORDER BY confirmed_date DESC LIMIT 0,1"));
-				$lastchallenge = mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_challenges WHERE ladID='$laddID' && (challenger='$teamID' || challenged='$teamID') && forfeit!='0' ORDER BY chalID DESC LIMIT 0,1"));
+				$lastmatch = mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE ladID='$laddID' && (clan1='$teamID' || clan2='$teamID') && (clan1 != '0' AND clan2 != '0') && (clan1 !='2147483647' AND clan2 !='2147483647') && $one_query && confirmscore='1' ORDER BY confirmed_date DESC LIMIT 0,1"));
+				$lastchallenge = mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_challenges WHERE ladID='$laddID' && (challenger='$teamID' || challenged='$teamID') && forfeit!='0' ORDER BY chalID DESC LIMIT 0,1"));
 				
 				if($teamID==$lastmatch['clan1'] && $lastmatch['score1'] > $lastmatch['score2']){
 				   $last_points = '<a href='.matchlink($lastmatch['matchID'],0,1,0).'><font color="'.$wincolor.'"><strong>+'.($differential ? $lastmatch['score1']-$lastmatch['score2'] : $lastmatch['score1']).'</strong></font></a>';
@@ -3275,9 +3275,9 @@ if($lad['1st'] && $lad['status']==3) {
 				$gameacc_typ = safe_query("SELECT type FROM ".PREFIX."gameacc WHERE gameaccID='".$lad['gameaccID']."'");
 				
 				
-				if(mysql_num_rows($gameacc_sql)){
-					  $dl=mysql_fetch_array($gameacc_sql);
-					  $dp=mysql_fetch_array($gameacc_typ);
+				if(mysqli_num_rows($gameacc_sql)){
+					  $dl=mysqli_fetch_array($gameacc_sql);
+					  $dp=mysqli_fetch_array($gameacc_typ);
 					  $dis_gacc = '<img src="images/cup/icons/edit.png">&nbsp;<strong>'.$dp['type'].'</strong>&nbsp;'.$dl['value'];
 					  
 				}
@@ -3327,7 +3327,7 @@ echo '<tr bgcolor="'.$bg_color_dd.'" onMouseOver="this.style.backgroundColor=\''
    }
    
    $chk_unranked = safe_query("SELECT credit FROM ".PREFIX."cup_clans WHERE ladID='$laddID' && credit < 1");
-   if(mysql_num_rows($chk_unranked)) {
+   if(mysqli_num_rows($chk_unranked)) {
       if( isset($_GET['display']) && $_GET['display']=='unranked') {
 	     $view_unrked = '<a href="?site=standings&ladderID='.$laddID.'"><img src="images/cup/icons/bullet.gif"> View Ranked</a>';
 	  } elseif($unranking==1) {
@@ -3373,7 +3373,7 @@ if($view != 'credit_statement' && $view != 'credit_statement_extended') {
   else $part_chal = ""; 
    
   $getchallenges = safe_query("SELECT * FROM ".PREFIX."cup_challenges WHERE ladID='$laddID' ".$part_chal." ORDER BY chalID DESC LIMIT 0,$chall_limit");
-      while($gc=mysql_fetch_array($getchallenges)) 
+      while($gc=mysqli_fetch_array($getchallenges))
       {
 
       if(ladderis1on1($laddID)) 
@@ -3462,10 +3462,10 @@ else
    }    
        
     $max_idle1 = safe_query("SELECT MAX(new_date) as maxnew, MAX(finalized_date) as maxfinalized FROM ".PREFIX."cup_challenges WHERE chalID='".$gc['chalID']."' AND ladID='$laddID' && challenger='".$gc['challenger']."' && (new_date='".$gc['new_date']."' || finalized_date='".$gc['finalized_date']."')");
-    $idle1 = mysql_fetch_array($max_idle1); 
+    $idle1 = mysqli_fetch_array($max_idle1);
     
     $max_idle2 = safe_query("SELECT MAX(reply_date) as maxreply FROM ".PREFIX."cup_challenges WHERE chalID='".$gc['chalID']."' AND ladID='$laddID' && challenged='".$gc['challenged']."' && reply_date='".$gc['reply_date']."'");
-    $idle2 = mysql_fetch_array($max_idle2); 
+    $idle2 = mysqli_fetch_array($max_idle2);
     
     if(!$idle1['maxnew'] && !$idle1['maxfinalized'])
     {
@@ -3515,8 +3515,8 @@ else
   else
   {
 
-     $cl1 = mysql_fetch_array(safe_query("SELECT clanlogo FROM ".PREFIX."cup_all_clans WHERE ID='".$gc['challenger']."'"));
-     $cl2 = mysql_fetch_array(safe_query("SELECT clanlogo FROM ".PREFIX."cup_all_clans WHERE ID='".$gc['challenged']."'"));
+     $cl1 = mysqli_fetch_array(safe_query("SELECT clanlogo FROM ".PREFIX."cup_all_clans WHERE ID='".$gc['challenger']."'"));
+     $cl2 = mysqli_fetch_array(safe_query("SELECT clanlogo FROM ".PREFIX."cup_all_clans WHERE ID='".$gc['challenged']."'"));
 
      $url1 = $cl1['clanlogo'];  
      $url2 = $cl2['clanlogo']; 
@@ -3630,7 +3630,7 @@ if($view != 'credit_statement' && $view != 'credit_statement_extended') {
 	     $match_no = 1;
                      
 	         $getmatches = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE ladID='$laddID' $show_prt_qry && (clan1 != '0' AND clan2 != '0') && (clan1 !='2147483647' AND clan2 !='2147483647') && $one_query && confirmscore='1' ORDER BY date DESC LIMIT 0,$show_matches_s");
-	             while($dm = mysql_fetch_array($getmatches)) 
+	             while($dm = mysqli_fetch_array($getmatches))
 	              {  		      
                        
                        $participant1 = getname1($dm['clan1'],$laddID,$ac=0,$var="ladder",1);
@@ -3680,7 +3680,7 @@ if($view != 'credit_statement' && $view != 'credit_statement_extended') {
                        $match_link = matchlink($dm['matchID'],$ac=0,$tg=0,$redirect=1);
                        $matchlink = "onclick=\"location.href='index.php".$match_link."';\"";
                        
-                       $ds=mysql_fetch_array(safe_query("SELECT count(*) AS comments FROM ".PREFIX."comments WHERE parentID='".$dm['matchID']."' && type='cm'"));
+                       $ds=mysqli_fetch_array(safe_query("SELECT count(*) AS comments FROM ".PREFIX."comments WHERE parentID='".$dm['matchID']."' && type='cm'"));
                        $comments = $ds['comments'];
                        
                        //$date = date("d.m", $dm['date']);
@@ -3699,8 +3699,8 @@ if($view != 'credit_statement' && $view != 'credit_statement_extended') {
   else
   {
 
-     $cl1 = mysql_fetch_array(safe_query("SELECT clanlogo FROM ".PREFIX."cup_all_clans WHERE ID='".$dm['clan1']."'"));
-     $cl2 = mysql_fetch_array(safe_query("SELECT clanlogo FROM ".PREFIX."cup_all_clans WHERE ID='".$dm['clan2']."'"));
+     $cl1 = mysqli_fetch_array(safe_query("SELECT clanlogo FROM ".PREFIX."cup_all_clans WHERE ID='".$dm['clan1']."'"));
+     $cl2 = mysqli_fetch_array(safe_query("SELECT clanlogo FROM ".PREFIX."cup_all_clans WHERE ID='".$dm['clan2']."'"));
 
      $url1 = $cl1['clanlogo'];  
      $url2 = $cl2['clanlogo']; 
@@ -3747,7 +3747,7 @@ if($view != 'credit_statement' && $view != 'credit_statement_extended') {
   redirect('?site=standings&ladderID='.$laddID.'&view=credit_statement#creditstatement', '', 0);
   
   $deductions = safe_query("SELECT * FROM ".PREFIX."cup_deduction WHERE ladID='$laddID' $sh_qry_part ORDER BY time DESC");
-      while($ds=mysql_fetch_array($deductions)) 
+      while($ds=mysqli_fetch_array($deductions))
       {
 	  
 		  $participant = getname1($ds['clanID'],$ds['ladID'],0,'ladder',1);
@@ -3774,7 +3774,7 @@ if($view != 'credit_statement' && $view != 'credit_statement_extended') {
 	$sh_qry_part = (isset($_GET['participantID']) ? "&& clan1='$partID'" : '');
 
 	$getmatches = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE ladID='$laddID' && (clan1 != '0' AND clan2 != '0') && (clan1 !='2147483647' AND clan2 !='2147483647') && $one_query && confirmscore='1' $sh_qry_part ORDER BY date DESC");
-      while($ds = mysql_fetch_array($getmatches)) 
+      while($ds = mysqli_fetch_array($getmatches))
       {
 	  
 	    if($ds['clan1']) {
@@ -3817,7 +3817,7 @@ if($view != 'credit_statement' && $view != 'credit_statement_extended') {
 	$sh_qry_part = (isset($_GET['participantID']) ? "&& clan2='$partID'" : '');
 	
 	$getmatches = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE ladID='$laddID' && (clan1 != '0' AND clan2 != '0') && (clan1 !='2147483647' AND clan2 !='2147483647') && $one_query && confirmscore='1' $sh_qry_part ORDER BY date DESC");
-      while($ds = mysql_fetch_array($getmatches)) 
+      while($ds = mysqli_fetch_array($getmatches))
       {
 	  
 	    if($ds['clan2']) {
@@ -3862,7 +3862,7 @@ if($view != 'credit_statement' && $view != 'credit_statement_extended') {
     $sh_qry_part = (isset($_GET['participantID']) ? "&& (challenger='$partID' OR challenged='$partID')" : '');		
 	
     $getchallenges = safe_query("SELECT * FROM ".PREFIX."cup_challenges WHERE ladID='$laddID' ".$part_chal." ".$sh_qry_part." ORDER BY chalID DESC");
-      while($ds=mysql_fetch_array($getchallenges)) 
+      while($ds=mysqli_fetch_array($getchallenges))
       {
 	
 	    if($partID && $partID!=$ds['challenged'])
@@ -3915,7 +3915,7 @@ if($view != 'credit_statement' && $view != 'credit_statement_extended') {
 	  }
 	  
     $getchallenges = safe_query("SELECT * FROM ".PREFIX."cup_challenges WHERE ladID='$laddID' ".$part_chal." ".$sh_qry_part." ORDER BY chalID DESC");
-      while($ds=mysql_fetch_array($getchallenges)) 
+      while($ds=mysqli_fetch_array($getchallenges))
       {
 
 	    if($partID && $partID!=$ds['challenger'])
@@ -3986,11 +3986,11 @@ if($view != 'credit_statement' && $view != 'credit_statement_extended') {
 // SHORT CREDIT STATEMENT
   elseif(isset($_GET['view']) && $_GET['view']=='credit_statement') {
   
-      $laddID = mysql_real_escape_string($_GET['ladderID']);
+      $laddID = mysqli_real_escape_string($_GET['ladderID']);
 	  $sh_qry_part = (isset($_GET['participantID']) ? "&& clanID='".$_GET['participantID']."'" : '');
       $participants = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE ladID='$laddID' AND 1on1='".(ladderis1on1($laddID) ? 1 : 0)."' $sh_qry_part");
 	  
-	  if(mysql_num_rows($participants)) {
+	  if(mysqli_num_rows($participants)) {
 	  
            echo '<br />
            <table width="100%" bgcolor="'.$border.'" cellspacing="'.$cellspacing.'" cellpadding="'.$cellpadding.'">
@@ -4006,7 +4006,7 @@ if($view != 'credit_statement' && $view != 'credit_statement_extended') {
 			 </tr>';  
 	  
 
-	      while($ds = mysql_fetch_assoc($participants)) {
+	      while($ds = mysqli_fetch_assoc($participants)) {
 		  
 		    $teamID = $ds['clanID'];
 			$participant = getname1($teamID,$laddID,0,'ladder',1);

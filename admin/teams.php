@@ -65,7 +65,7 @@ if(!$_GET['laddID'])
     $t_name2 = "cupID";
     $t_name3 = "cupID";
     $typename = "is1on1";
-    $info = mysql_query("SELECT * FROM ".PREFIX."cups WHERE ID='$cupID'");
+    $info = mysqli_query("SELECT * FROM ".PREFIX."cups WHERE ID='$cupID'");
 	qualifiersToLeague($cupID);
 }
 else
@@ -74,13 +74,13 @@ else
     $t_name2 = "laddID";
     $t_name3 = "ladID";
     $typename = "ladderis1on1";
-    $info = mysql_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='$cupID'");
+    $info = mysqli_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='$cupID'");
     $platID = '\''.getplatID($cupID).'\',';
     $plat = "`platID`,";
 	qualifiersToLeague($cupID);
 }
 
-    $set = mysql_fetch_array($info);
+    $set = mysqli_fetch_array($info);
 
 if($_GET['type']=="gs") {
     $t_name = "groupID";
@@ -137,7 +137,7 @@ if($_GET['action']==uncheck) {
 }if($_GET['randomize']=='scores') {
 
     $gs_matches = safe_query("SELECT * FROM ".PREFIX."cup_matches  WHERE matchno='$cupID' && type='gs' && $type_opp && $one_type");
-	    while($gm = mysql_fetch_array($gs_matches)) {
+	    while($gm = mysqli_fetch_array($gs_matches)) {
 		
 		    $score1 = rand(1,14);
 			$score2 = rand(1,14);
@@ -175,7 +175,7 @@ $clanID = $_GET['clanID'];
 
     safe_query("DELETE FROM ".PREFIX."cup_clans WHERE clanID='".$_GET['clanID']."' && groupID='$cupID' && ($alpha_groups) && $type_opp && $one_type");
 
-    if(mysql_num_rows(mysql_query("SELECT * FROM ".PREFIX."cup_matches WHERE clan1='".$_GET['clanID']."' AND matchno='$cupID' AND clan1!='0' AND clan2!='0' && $one_type"))) 
+    if(mysqli_num_rows(mysqli_query("SELECT * FROM ".PREFIX."cup_matches WHERE clan1='".$_GET['clanID']."' AND matchno='$cupID' AND clan1!='0' AND clan2!='0' && $one_type")))
     {	  
        safe_query("UPDATE ".PREFIX."cup_matches SET clan1='0' WHERE clan1='".$_GET['clanID']."' AND matchno='$cupID' AND clan2!='0'");  
     }
@@ -184,7 +184,7 @@ $clanID = $_GET['clanID'];
        safe_query("DELETE FROM ".PREFIX."cup_matches WHERE matchno='".$cupID."' && ($alpha_groups) && $type_opp='0' && (clan1='".$_GET['clanID']."' || clan2='".$_GET['clanID']."') && $one_type");		      
     }
     
-    if(mysql_num_rows(mysql_query("SELECT * FROM ".PREFIX."cup_matches WHERE clan2='".$_GET['clanID']."' AND matchno='$cupID' AND clan1!='0' AND clan2!='0' && $one_type"))) 
+    if(mysqli_num_rows(mysqli_query("SELECT * FROM ".PREFIX."cup_matches WHERE clan2='".$_GET['clanID']."' AND matchno='$cupID' AND clan1!='0' AND clan2!='0' && $one_type")))
     {	
        safe_query("UPDATE ".PREFIX."cup_matches SET clan2='0' WHERE clan2='".$_GET['clanID']."' AND matchno='$cupID' AND clan1!='0'");  
     }
@@ -229,19 +229,19 @@ $type = ($_GET['cupID'] ? 'cupID' : 'ladID');
  //if checked, note to admin
  
     $checked = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE clanID='$clanID' && $t_name='$cupID' && 1on1='0' && checkin='1'");
-	if(mysql_num_rows($checked)) echo '<div style="margin: 5px; padding: 6px; border: 4px solid #D6B4B4; text-align: center;"> <b>This team is already checked!</b> <br> Click <a href="../?site=clans&action=show&clanID='.$clanID.'&'.$t_name2.'='.$cupID.'#members" target="_blank">here</a> to view the lineup of this team in this cup.</div>';	
+	if(mysqli_num_rows($checked)) echo '<div style="margin: 5px; padding: 6px; border: 4px solid #D6B4B4; text-align: center;"> <b>This team is already checked!</b> <br> Click <a href="../?site=clans&action=show&clanID='.$clanID.'&'.$t_name2.'='.$cupID.'#members" target="_blank">here</a> to view the lineup of this team in this cup.</div>';
 
   //get members
 
       $query_lineup = safe_query("SELECT userID FROM ".PREFIX."cup_clan_lineup WHERE $type='$cupID' && clanID = '$clanID'");
-        if(!mysql_num_rows($query_line))
+        if(!mysqli_num_rows($query_line))
         {
 		    if($_GET['cupID'])
             $members=safe_query("SELECT userID FROM ".PREFIX."cup_clan_members WHERE cupID!='".$_GET['cupID']."'  && clanID = '$clanID'"); 
 			else
 			$members=safe_query("SELECT userID FROM ".PREFIX."cup_clan_members WHERE ladID!='".$_GET['laddID']."'  && clanID = '$clanID'"); 
         }
-          while($ql = mysql_fetch_array($query_lineup))
+          while($ql = mysqli_fetch_array($query_lineup))
           {
                 $all_userIDs = $ql['userID'];
                 $userIDs .= "userID != '$all_userIDs' && ";
@@ -251,7 +251,7 @@ $type = ($_GET['cupID'] ? 'cupID' : 'ladID');
             else
             $members=safe_query("SELECT userID FROM ".PREFIX."cup_clan_members WHERE $userIDs userID != '0' && ladID!='".$_GET['laddID']."' && clanID = '$clanID'"); 		
           }
-		while($dv=mysql_fetch_array($members)) {
+		while($dv=mysqli_fetch_array($members)) {
                     if($dv['userID']==$userID) { $nickname = '(You)'; }else{ $nickname = getnickname($dv['userID']); }
 			        $member.='<option value="'.$dv['userID'].'">'.$nickname.'</option>';
 		}			
@@ -270,8 +270,8 @@ $type = ($_GET['cupID'] ? 'cupID' : 'ladID');
 
     $allIDs=$_POST['member'];
       foreach ($allIDs as $s) {
-        //mysql_query("UPDATE ".PREFIX."cup_clan_members SET $t_name = '".$cupID."' WHERE userID = '".$s."' && clanID = '".$clanID."'");
-        mysql_query("INSERT INTO ".PREFIX."cup_clan_lineup ($type, clanID, userID) VALUES ('$cupID', '".$clanID."', '".$s."')"); 
+        //mysqli_query("UPDATE ".PREFIX."cup_clan_members SET $t_name = '".$cupID."' WHERE userID = '".$s."' && clanID = '".$clanID."'");
+        mysqli_query("INSERT INTO ".PREFIX."cup_clan_lineup ($type, clanID, userID) VALUES ('$cupID', '".$clanID."', '".$s."')");
       redirect('admincenter.php?site=teams&action=lineup&'.$t_name2.'='.$cupID.'&clanID='.$_GET['clanID'], '', 0);
      }  
    }
@@ -279,7 +279,7 @@ $type = ($_GET['cupID'] ? 'cupID' : 'ladID');
   //get members
 
 		$members=safe_query("SELECT userID FROM ".PREFIX."cup_clan_lineup WHERE $type='$cupID' && clanID = '$clanID'");
-		while($dr=mysql_fetch_array($members)) {
+		while($dr=mysqli_fetch_array($members)) {
                     if($dr['userID']==$userID) { $nickname = '(You)'; }else{ $nickname = getnickname($dr['userID']); }
 			        $member2.='<option value="'.$dr['userID'].'">'.$nickname.'</option>';
 
@@ -340,76 +340,76 @@ $type = ($_GET['cupID'] ? 'cupID' : 'ladID');
         $type_opp = ($_GET['laddID'] ? "cupID" : "ladID");
         $alpha_groups = "type='gs'";
            
-        $participant_ent = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND ($alpha_groups) AND $type_opp='0'");
-        $ent_part = mysql_num_rows($participant_ent);
+        $participant_ent = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND ($alpha_groups) AND $type_opp='0'");
+        $ent_part = mysqli_num_rows($participant_ent);
 		
 		//groups
 		
-		$rowsa = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='a'  AND $type_opp='0'");
-		$rowsb = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='b'  AND $type_opp='0'");
-		$rowsc = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='c'  AND $type_opp='0'");
-		$rowsd = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='d'  AND $type_opp='0'");
-		$rowse = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='e'  AND $type_opp='0'");
-		$rowsf = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='f'  AND $type_opp='0'");
-		$rowsg = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='g'  AND $type_opp='0'");
-		$rowsh = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='h'  AND $type_opp='0'");
-		$rowsi = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='i'  AND $type_opp='0'");
-		$rowsj = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='j'  AND $type_opp='0'");
-		$rowsk = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='k'  AND $type_opp='0'");
-		$rowsl = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='l'  AND $type_opp='0'");
-		$rowsm = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='m'  AND $type_opp='0'");
-		$rowsn = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='n'  AND $type_opp='0'");
-		$rowso = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='o'  AND $type_opp='0'");
-		$rowsp = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='p'  AND $type_opp='0'");
-		$rowsq = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='q'  AND $type_opp='0'");
-		$rowsr = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='r'  AND $type_opp='0'");
-		$rowss = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='s'  AND $type_opp='0'");
-		$rowst = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='t'  AND $type_opp='0'");
-		$rowsu = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='u'  AND $type_opp='0'");
-		$rowsv = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='v'  AND $type_opp='0'");
-		$rowsw = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='w'  AND $type_opp='0'");
-		$rowsx = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='x'  AND $type_opp='0'");
-		$rowsy = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='y'  AND $type_opp='0'");
-		$rowsz = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='z'  AND $type_opp='0'");
-		$rowsa2 = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='a2'  AND $type_opp='0'");
-		$rowsb2 = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='b2'  AND $type_opp='0'");
-		$rowsc2 = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='c2'  AND $type_opp='0'");
-		$rowsd2 = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='d2'  AND $type_opp='0'");
-		$rowse2 = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='e2'  AND $type_opp='0'");
-		$rowsf2 = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='f2'  AND $type_opp='0'");
+		$rowsa = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='a'  AND $type_opp='0'");
+		$rowsb = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='b'  AND $type_opp='0'");
+		$rowsc = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='c'  AND $type_opp='0'");
+		$rowsd = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='d'  AND $type_opp='0'");
+		$rowse = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='e'  AND $type_opp='0'");
+		$rowsf = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='f'  AND $type_opp='0'");
+		$rowsg = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='g'  AND $type_opp='0'");
+		$rowsh = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='h'  AND $type_opp='0'");
+		$rowsi = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='i'  AND $type_opp='0'");
+		$rowsj = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='j'  AND $type_opp='0'");
+		$rowsk = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='k'  AND $type_opp='0'");
+		$rowsl = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='l'  AND $type_opp='0'");
+		$rowsm = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='m'  AND $type_opp='0'");
+		$rowsn = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='n'  AND $type_opp='0'");
+		$rowso = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='o'  AND $type_opp='0'");
+		$rowsp = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='p'  AND $type_opp='0'");
+		$rowsq = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='q'  AND $type_opp='0'");
+		$rowsr = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='r'  AND $type_opp='0'");
+		$rowss = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='s'  AND $type_opp='0'");
+		$rowst = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='t'  AND $type_opp='0'");
+		$rowsu = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='u'  AND $type_opp='0'");
+		$rowsv = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='v'  AND $type_opp='0'");
+		$rowsw = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='w'  AND $type_opp='0'");
+		$rowsx = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='x'  AND $type_opp='0'");
+		$rowsy = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='y'  AND $type_opp='0'");
+		$rowsz = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='z'  AND $type_opp='0'");
+		$rowsa2 = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='a2'  AND $type_opp='0'");
+		$rowsb2 = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='b2'  AND $type_opp='0'");
+		$rowsc2 = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='c2'  AND $type_opp='0'");
+		$rowsd2 = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='d2'  AND $type_opp='0'");
+		$rowse2 = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='e2'  AND $type_opp='0'");
+		$rowsf2 = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='f2'  AND $type_opp='0'");
 		
-		$a_rows = mysql_num_rows($rowsa);
-		$b_rows = mysql_num_rows($rowsb);
-		$c_rows = mysql_num_rows($rowsc);
-		$d_rows = mysql_num_rows($rowsd);
-		$e_rows = mysql_num_rows($rowse);
-		$f_rows = mysql_num_rows($rowsf);
-		$g_rows = mysql_num_rows($rowsg);
-		$h_rows = mysql_num_rows($rowsh);
-		$i_rows = mysql_num_rows($rowsi);
-		$j_rows = mysql_num_rows($rowsj);
-		$k_rows = mysql_num_rows($rowsk);
-		$l_rows = mysql_num_rows($rowsl);
-		$m_rows = mysql_num_rows($rowsm);
-		$n_rows = mysql_num_rows($rowsn);
-		$o_rows = mysql_num_rows($rowso);
-		$p_rows = mysql_num_rows($rowsp);
-		$q_rows = mysql_num_rows($rowsq);
-		$r_rows = mysql_num_rows($rowsr);
-		$s_rows = mysql_num_rows($rowss);
-		$t_rows = mysql_num_rows($rowst);
-		$u_rows = mysql_num_rows($rowsu);
-		$v_rows = mysql_num_rows($rowsv);
-		$w_rows = mysql_num_rows($rowsw);
-		$x_rows = mysql_num_rows($rowsx);
-		$y_rows = mysql_num_rows($rowsy);
-		$z_rows = mysql_num_rows($rowsz);
-		$a2_rows = mysql_num_rows($rowsa2);
-		$b2_rows = mysql_num_rows($rowsb2);
-		$c2_rows = mysql_num_rows($rowsc2);
-		$d2_rows = mysql_num_rows($rowsd2);
-		$e2_rows = mysql_num_rows($rowse2);
-		$f2_rows = mysql_num_rows($rowsf2);
+		$a_rows = mysqli_num_rows($rowsa);
+		$b_rows = mysqli_num_rows($rowsb);
+		$c_rows = mysqli_num_rows($rowsc);
+		$d_rows = mysqli_num_rows($rowsd);
+		$e_rows = mysqli_num_rows($rowse);
+		$f_rows = mysqli_num_rows($rowsf);
+		$g_rows = mysqli_num_rows($rowsg);
+		$h_rows = mysqli_num_rows($rowsh);
+		$i_rows = mysqli_num_rows($rowsi);
+		$j_rows = mysqli_num_rows($rowsj);
+		$k_rows = mysqli_num_rows($rowsk);
+		$l_rows = mysqli_num_rows($rowsl);
+		$m_rows = mysqli_num_rows($rowsm);
+		$n_rows = mysqli_num_rows($rowsn);
+		$o_rows = mysqli_num_rows($rowso);
+		$p_rows = mysqli_num_rows($rowsp);
+		$q_rows = mysqli_num_rows($rowsq);
+		$r_rows = mysqli_num_rows($rowsr);
+		$s_rows = mysqli_num_rows($rowss);
+		$t_rows = mysqli_num_rows($rowst);
+		$u_rows = mysqli_num_rows($rowsu);
+		$v_rows = mysqli_num_rows($rowsv);
+		$w_rows = mysqli_num_rows($rowsw);
+		$x_rows = mysqli_num_rows($rowsx);
+		$y_rows = mysqli_num_rows($rowsy);
+		$z_rows = mysqli_num_rows($rowsz);
+		$a2_rows = mysqli_num_rows($rowsa2);
+		$b2_rows = mysqli_num_rows($rowsb2);
+		$c2_rows = mysqli_num_rows($rowsc2);
+		$d2_rows = mysqli_num_rows($rowsd2);
+		$e2_rows = mysqli_num_rows($rowse2);
+		$f2_rows = mysqli_num_rows($rowsf2);
 		//end check
 
 	    $day = date('d');
@@ -419,8 +419,8 @@ $type = ($_GET['cupID'] ? 'cupID' : 'ladID');
 	    $min = date('i');
      	$date = @mktime($hour, $min, 0, $month, $day, $year);
      	 
-		$ergebnis2 = mysql_query("SELECT count(*) as anzahl FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type_opp='0' AND type='gs'");
-		$dv=mysql_fetch_array($ergebnis2);
+		$ergebnis2 = mysqli_query("SELECT count(*) as anzahl FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type_opp='0' AND type='gs'");
+		$dv=mysqli_fetch_array($ergebnis2);
 
 //check what group
 		         
@@ -593,8 +593,8 @@ else $participants = 'Manage Teams';
 		  $participants = safe_query("SELECT count(*) as entered FROM ".PREFIX."cup_clans WHERE $t_name='$cupID' && 1on1='1'");
 		  $checked = safe_query("SELECT count(*) as checked FROM ".PREFIX."cup_clans WHERE $t_name='$cupID' && 1on1='1' && checkin='1'");
 		
-		  $all=mysql_fetch_array($participants); 
-		  $is=mysql_fetch_array($checked); 
+		  $all=mysqli_fetch_array($participants);
+		  $is=mysqli_fetch_array($checked);
 		
 		  if(isset($_GET['cupID'])) {
 		         $info = safe_query("SELECT * FROM ".PREFIX."cups WHERE ID='$cupID'");
@@ -605,11 +605,11 @@ else $participants = 'Manage Teams';
 		  
 		  $type_opp = ($_GET['cupID'] ? 'ladID' : 'cupID');
 		  
-		  $sp=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchno='".$cupID."' && $type_opp='0' && type='gs' && si='0' && 1on1='1'"));		
+		  $sp=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchno='".$cupID."' && $type_opp='0' && type='gs' && si='0' && 1on1='1'"));
 		  $all_vs_all = (is_array($sp) ? true : false);
 
-		  $lad = mysql_fetch_array($info);		  
-          $dv=mysql_fetch_array(safe_query("SELECT count(*) as anzahl FROM ".PREFIX."cup_clans WHERE groupID='".$cupID."' && $type_opp='0' && 1on1='1' AND type='gs'"));  
+		  $lad = mysqli_fetch_array($info);
+          $dv=mysqli_fetch_array(safe_query("SELECT count(*) as anzahl FROM ".PREFIX."cup_clans WHERE groupID='".$cupID."' && $type_opp='0' && 1on1='1' AND type='gs'"));
 		  
 		  if($lad['maxclan'] == 80 || $lad['maxclan']== 8)
 			  $max = 8;
@@ -632,7 +632,7 @@ else $participants = 'Manage Teams';
           } 
 
 		  $ergebnis = safe_query("SELECT count( ID ) as clans FROM ".PREFIX."cup_clans WHERE ".($_GET['cupID'] ? 'cupID' : 'ladID')." = '".$cupID."' && 1on1='1'");
-		  $db = mysql_fetch_array($ergebnis);		  
+		  $db = mysqli_fetch_array($ergebnis);
 		  
 		  if($_GET['type']=='gs') {	 
 		         $num = $slots.' ('.$dv['anzahl'].$slots_ext.')';
@@ -682,7 +682,7 @@ else $participants = 'Manage Teams';
 						
 			$ergebnis = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE $t_name = '$cupID' $add_ex && 1on1='1' && type='$tb_typ' $group_order");
 			
-            if(mysql_num_rows($ergebnis)) {			
+            if(mysqli_num_rows($ergebnis)) {
 			 			eval ("\$one_head = \"".gettemplate("1on1_head")."\";");
 			            echo $one_head;			
 			}
@@ -690,9 +690,9 @@ else $participants = 'Manage Teams';
 			            echo '<div '.$error_box.'> No participants found</div>';
 			}
 			
-			while($db=mysql_fetch_array($ergebnis)) {
+			while($db=mysqli_fetch_array($ergebnis)) {
 				$ergebnis2 = safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$db['clanID']."'");
-				$ds=mysql_fetch_array($ergebnis2);
+				$ds=mysqli_fetch_array($ergebnis2);
 				
 				$nickname='<a href="../?site=profile&id='.$ds['userID'].'" target="_blank"><b>'.getnickname($ds['userID']).'</b></a>';
 				$nickname1 = getnickname($ds['userID']);
@@ -711,12 +711,12 @@ else $participants = 'Manage Teams';
 				else
                     $ergebnis2 = safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID = $cupID");	
 				    
-			    $cup=mysql_fetch_array($ergebnis2);
+			    $cup=mysqli_fetch_array($ergebnis2);
 					
 				$gameacc_sql = safe_query("SELECT * FROM ".PREFIX."user_gameacc WHERE type='".$cup['gameaccID']."' AND userID='".$ds['userID']."'");
 				
-				if(mysql_num_rows($gameacc_sql)){
-					  $dl=mysql_fetch_array($gameacc_sql);
+				if(mysqli_num_rows($gameacc_sql)){
+					  $dl=mysqli_fetch_array($gameacc_sql);
 					  $game_acc = $dl[value];
 				}
 				else{
@@ -747,10 +747,10 @@ else $participants = 'Manage Teams';
 			    //check if blocked
 			    
 					 $getpoints = safe_query("SELECT SUM(points) as totalpoints FROM ".PREFIX."cup_warnings WHERE clanID='".$ds['userID']."' && expired='0' && 1on1='1'");
-					 $do=mysql_fetch_array($getpoints);
+					 $do=mysqli_fetch_array($getpoints);
              
              	     $block = safe_query("SELECT cupblockage FROM ".PREFIX."cup_settings");	
-	                 $dt=mysql_fetch_array($block); $cupblockage = $dt['cupblockage']-$do['totalpoints'];  
+	                 $dt=mysqli_fetch_array($block); $cupblockage = $dt['cupblockage']-$do['totalpoints'];
 
                      if($do['totalpoints'] >= $dt['cupblockage']) { 
 					        $blockstatus = '<font color="#DD0000"><b>Locked</b></font>'; 
@@ -772,13 +772,13 @@ else $participants = 'Manage Teams';
 				echo $one_content;
 			}
 			
-			if(mysql_num_rows($ergebnis)) {		
+			if(mysqli_num_rows($ergebnis)) {
 			
 			    eval ("\$team_foot = \"".gettemplate("footer")."\";");
 			    echo $team_foot;	
 			}
 			
-			if($_GET['type']=='gs' && mysql_num_rows($ergebnis))
+			if($_GET['type']=='gs' && mysqli_num_rows($ergebnis))
 			
                         echo '<br /><a href="admincenter.php?site=teams&'.$t_name2.'='.$cupID.'&delete=all" onclick="return confirm(\'Do you really want to remove matches and participants for this group league? \');"><img src="../images/cup/icons/go.png"> <strong>Delete all group participants and matches</strong></a>
 						      <br /><a href="admincenter.php?site=teams&'.$t_name2.'='.$cupID.'&randomize=scores" onclick="return confirm(\'Finish matches and randomize scores? (Testing purposes) \');"><img src="../images/cup/icons/go.png"> <strong>Randomize scores and finish matches</strong></a>';			
@@ -796,7 +796,7 @@ else $participants = 'Manage Teams';
 			 
 			 
                          $participants = safe_query("SELECT clanID FROM ".PREFIX."cup_clans WHERE ".$qry_type." && 1on1='1'");
-                            while($up=mysql_fetch_array($participants)) {  
+                            while($up=mysqli_fetch_array($participants)) {
 				               $ent_IDs[]=$up['clanID'];
                          }
 						 
@@ -806,7 +806,7 @@ else $participants = 'Manage Teams';
 			         <form method="post" action="admincenter.php?site=teams&'.$t_name2.'='.$cupID.'">
 			           <select name="users[]" multiple size="10" onblur="countit(this)">';
 				   
-				     while($dv=mysql_fetch_assoc($users)) {
+				     while($dv=mysqli_fetch_assoc($users)) {
 				     
 				       if(!in_array($dv['userID'],$ent_IDs)) {
 				         echo '<option value="'.$dv['userID'].'">('.$dv['userID'].') '.getnickname($dv['userID']).'</option>';
@@ -833,12 +833,12 @@ else $participants = 'Manage Teams';
 			   }
 			 
 			   $participants = safe_query("SELECT clanID FROM ".PREFIX."cup_clans WHERE $t_name='".$cupID."' && $type_opp = '0' && 1on1='1' AND type='$lg_type'");
-			   if(mysql_num_rows($participants)) {
+			   if(mysqli_num_rows($participants)) {
 			           
 			   echo '<br><br><form method="post" action="admincenter.php?site=teams&'.$t_name2.'='.$cupID.'">
 			                   <select name="users[]" multiple size="10">';
 			                   
-					while($dv=mysql_fetch_array($participants)) {
+					while($dv=mysqli_fetch_array($participants)) {
 					           echo '<option value="'.$dv['clanID'].'">('.$dv['clanID'].') '.getnickname($dv['clanID']).'</option>';
 		            }
 		          
@@ -856,7 +856,7 @@ else $participants = 'Manage Teams';
 
 //remove participants from group
 
-if($_GET['type']=='gs' && mysql_num_rows($ergebnis)) {
+if($_GET['type']=='gs' && mysqli_num_rows($ergebnis)) {
 
 			   echo '<br><br><form method="post" action="admincenter.php?site=teams&'.$t_name2.'='.$cupID.'&type=gs">
 			                   <select name="group">
@@ -893,76 +893,76 @@ if($_POST['enterusers']) {
 		
 		if($_POST['group']) {
 		 
-                $participant_ent = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND ($alpha_groups) AND $type_opp='0'");
-                $ent_part = mysql_num_rows($participant_ent);
+                $participant_ent = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND ($alpha_groups) AND $type_opp='0'");
+                $ent_part = mysqli_num_rows($participant_ent);
 		
 		//groups
 		
-		$rowsa = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='a'  AND $type_opp='0'");
-		$rowsb = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='b'  AND $type_opp='0'");
-		$rowsc = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='c'  AND $type_opp='0'");
-		$rowsd = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='d'  AND $type_opp='0'");
-		$rowse = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='e'  AND $type_opp='0'");
-		$rowsf = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='f'  AND $type_opp='0'");
-		$rowsg = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='g'  AND $type_opp='0'");
-		$rowsh = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='h'  AND $type_opp='0'");
-		$rowsi = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='i'  AND $type_opp='0'");
-		$rowsj = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='j'  AND $type_opp='0'");
-		$rowsk = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='k'  AND $type_opp='0'");
-		$rowsl = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='l'  AND $type_opp='0'");
-		$rowsm = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='m'  AND $type_opp='0'");
-		$rowsn = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='n'  AND $type_opp='0'");
-		$rowso = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='o'  AND $type_opp='0'");
-		$rowsp = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='p'  AND $type_opp='0'");
-		$rowsq = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='q'  AND $type_opp='0'");
-		$rowsr = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='r'  AND $type_opp='0'");
-		$rowss = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='s'  AND $type_opp='0'");
-		$rowst = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='t'  AND $type_opp='0'");
-		$rowsu = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='u'  AND $type_opp='0'");
-		$rowsv = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='v'  AND $type_opp='0'");
-		$rowsw = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='w'  AND $type_opp='0'");
-		$rowsx = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='x'  AND $type_opp='0'");
-		$rowsy = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='y'  AND $type_opp='0'");
-		$rowsz = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='z'  AND $type_opp='0'");
-		$rowsa2 = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='a2'  AND $type_opp='0'");
-		$rowsb2 = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='b2'  AND $type_opp='0'");
-		$rowsc2 = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='c2'  AND $type_opp='0'");
-		$rowsd2 = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='d2'  AND $type_opp='0'");
-		$rowse2 = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='e2'  AND $type_opp='0'");
-		$rowsf2 = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='f2'  AND $type_opp='0'");
+		$rowsa = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='a'  AND $type_opp='0'");
+		$rowsb = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='b'  AND $type_opp='0'");
+		$rowsc = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='c'  AND $type_opp='0'");
+		$rowsd = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='d'  AND $type_opp='0'");
+		$rowse = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='e'  AND $type_opp='0'");
+		$rowsf = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='f'  AND $type_opp='0'");
+		$rowsg = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='g'  AND $type_opp='0'");
+		$rowsh = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='h'  AND $type_opp='0'");
+		$rowsi = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='i'  AND $type_opp='0'");
+		$rowsj = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='j'  AND $type_opp='0'");
+		$rowsk = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='k'  AND $type_opp='0'");
+		$rowsl = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='l'  AND $type_opp='0'");
+		$rowsm = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='m'  AND $type_opp='0'");
+		$rowsn = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='n'  AND $type_opp='0'");
+		$rowso = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='o'  AND $type_opp='0'");
+		$rowsp = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='p'  AND $type_opp='0'");
+		$rowsq = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='q'  AND $type_opp='0'");
+		$rowsr = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='r'  AND $type_opp='0'");
+		$rowss = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='s'  AND $type_opp='0'");
+		$rowst = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='t'  AND $type_opp='0'");
+		$rowsu = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='u'  AND $type_opp='0'");
+		$rowsv = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='v'  AND $type_opp='0'");
+		$rowsw = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='w'  AND $type_opp='0'");
+		$rowsx = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='x'  AND $type_opp='0'");
+		$rowsy = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='y'  AND $type_opp='0'");
+		$rowsz = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='z'  AND $type_opp='0'");
+		$rowsa2 = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='a2'  AND $type_opp='0'");
+		$rowsb2 = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='b2'  AND $type_opp='0'");
+		$rowsc2 = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='c2'  AND $type_opp='0'");
+		$rowsd2 = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='d2'  AND $type_opp='0'");
+		$rowse2 = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='e2'  AND $type_opp='0'");
+		$rowsf2 = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='f2'  AND $type_opp='0'");
 		
-		$a_rows = mysql_num_rows($rowsa);
-		$b_rows = mysql_num_rows($rowsb);
-		$c_rows = mysql_num_rows($rowsc);
-		$d_rows = mysql_num_rows($rowsd);
-		$e_rows = mysql_num_rows($rowse);
-		$f_rows = mysql_num_rows($rowsf);
-		$g_rows = mysql_num_rows($rowsg);
-		$h_rows = mysql_num_rows($rowsh);
-		$i_rows = mysql_num_rows($rowsi);
-		$j_rows = mysql_num_rows($rowsj);
-		$k_rows = mysql_num_rows($rowsk);
-		$l_rows = mysql_num_rows($rowsl);
-		$m_rows = mysql_num_rows($rowsm);
-		$n_rows = mysql_num_rows($rowsn);
-		$o_rows = mysql_num_rows($rowso);
-		$p_rows = mysql_num_rows($rowsp);
-		$q_rows = mysql_num_rows($rowsq);
-		$r_rows = mysql_num_rows($rowsr);
-		$s_rows = mysql_num_rows($rowss);
-		$t_rows = mysql_num_rows($rowst);
-		$u_rows = mysql_num_rows($rowsu);
-		$v_rows = mysql_num_rows($rowsv);
-		$w_rows = mysql_num_rows($rowsw);
-		$x_rows = mysql_num_rows($rowsx);
-		$y_rows = mysql_num_rows($rowsy);
-		$z_rows = mysql_num_rows($rowsz);
-		$a2_rows = mysql_num_rows($rowsa2);
-		$b2_rows = mysql_num_rows($rowsb2);
-		$c2_rows = mysql_num_rows($rowsc2);
-		$d2_rows = mysql_num_rows($rowsd2);
-		$e2_rows = mysql_num_rows($rowse2);
-		$f2_rows = mysql_num_rows($rowsf2);
+		$a_rows = mysqli_num_rows($rowsa);
+		$b_rows = mysqli_num_rows($rowsb);
+		$c_rows = mysqli_num_rows($rowsc);
+		$d_rows = mysqli_num_rows($rowsd);
+		$e_rows = mysqli_num_rows($rowse);
+		$f_rows = mysqli_num_rows($rowsf);
+		$g_rows = mysqli_num_rows($rowsg);
+		$h_rows = mysqli_num_rows($rowsh);
+		$i_rows = mysqli_num_rows($rowsi);
+		$j_rows = mysqli_num_rows($rowsj);
+		$k_rows = mysqli_num_rows($rowsk);
+		$l_rows = mysqli_num_rows($rowsl);
+		$m_rows = mysqli_num_rows($rowsm);
+		$n_rows = mysqli_num_rows($rowsn);
+		$o_rows = mysqli_num_rows($rowso);
+		$p_rows = mysqli_num_rows($rowsp);
+		$q_rows = mysqli_num_rows($rowsq);
+		$r_rows = mysqli_num_rows($rowsr);
+		$s_rows = mysqli_num_rows($rowss);
+		$t_rows = mysqli_num_rows($rowst);
+		$u_rows = mysqli_num_rows($rowsu);
+		$v_rows = mysqli_num_rows($rowsv);
+		$w_rows = mysqli_num_rows($rowsw);
+		$x_rows = mysqli_num_rows($rowsx);
+		$y_rows = mysqli_num_rows($rowsy);
+		$z_rows = mysqli_num_rows($rowsz);
+		$a2_rows = mysqli_num_rows($rowsa2);
+		$b2_rows = mysqli_num_rows($rowsb2);
+		$c2_rows = mysqli_num_rows($rowsc2);
+		$d2_rows = mysqli_num_rows($rowsd2);
+		$e2_rows = mysqli_num_rows($rowse2);
+		$f2_rows = mysqli_num_rows($rowsf2);
 		//end check
 
 
@@ -973,8 +973,8 @@ if($_POST['enterusers']) {
 	        $min = date('i');
      	    $date = @mktime($hour, $min, 0, $month, $day, $year);
      	
-		$ergebnis2 = mysql_query("SELECT count(*) as anzahl FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type_opp='0' AND type='gs'");
-		$dv=mysql_fetch_array($ergebnis2);
+		$ergebnis2 = mysqli_query("SELECT count(*) as anzahl FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type_opp='0' AND type='gs'");
+		$dv=mysqli_fetch_array($ergebnis2);
 
 //check what group
  
@@ -1228,22 +1228,22 @@ if($_POST['enterusers']) {
    if($name2($ID)) {
           
              if($_POST['group']!="randomized") {    
-                mysql_query("INSERT INTO ".PREFIX."cup_clans (`$type`, $plat `groupID`, `clanID`, `1on1`, `type`) VALUES ('".$_POST['group']."', $platID '$ID', '$id', '1', 'gs')");
-                  if(mysql_num_rows(mysql_query("SELECT * FROM ".PREFIX."cup_matches WHERE $type='".$_POST['group']."' AND matchno='$ID' AND clan1!='0' AND clan2='0'"))) {
-                     mysql_query("UPDATE ".PREFIX."cup_matches SET clan2='$id' WHERE $type='".$_POST['group']."' AND matchno='$ID' AND clan2='0'"); 
+                mysqli_query("INSERT INTO ".PREFIX."cup_clans (`$type`, $plat `groupID`, `clanID`, `1on1`, `type`) VALUES ('".$_POST['group']."', $platID '$ID', '$id', '1', 'gs')");
+                  if(mysqli_num_rows(mysqli_query("SELECT * FROM ".PREFIX."cup_matches WHERE $type='".$_POST['group']."' AND matchno='$ID' AND clan1!='0' AND clan2='0'"))) {
+                     mysqli_query("UPDATE ".PREFIX."cup_matches SET clan2='$id' WHERE $type='".$_POST['group']."' AND matchno='$ID' AND clan2='0'");
                      redirect('admincenter.php?site=teams&'.$t_name2.'='.$ID.'&type=gs', '', 0);         
                   }else{ 
-                     mysql_query("INSERT INTO ".PREFIX."cup_matches (`$type`, `$type_opp`, `date`, `matchno`, `clan1`, `comment`, `1on1`, `si`, `type`) VALUES ('".$_POST['group']."', '0', '$date', '$ID', '$id', '2', '1', '1', 'gs')");
+                     mysqli_query("INSERT INTO ".PREFIX."cup_matches (`$type`, `$type_opp`, `date`, `matchno`, `clan1`, `comment`, `1on1`, `si`, `type`) VALUES ('".$_POST['group']."', '0', '$date', '$ID', '$id', '2', '1', '1', 'gs')");
                      redirect('admincenter.php?site=teams&'.$t_name2.'='.$ID.'&type=gs', '', 0);
                   }
              }else{               
              
-                mysql_query("INSERT INTO ".PREFIX."cup_clans (`$type`, $plat `groupID`, `clanID`, `1on1`, `type`) VALUES ('$rg', $platID '$ID', '$id', '1', 'gs')");
-                  if(mysql_num_rows(mysql_query("SELECT * FROM ".PREFIX."cup_matches WHERE $type='$rg' AND matchno='$ID' AND clan1!='0' AND clan2='0'"))) {
-                     mysql_query("UPDATE ".PREFIX."cup_matches SET clan2='$id' WHERE $type='$rg' AND matchno='$ID' AND clan2='0'"); 
+                mysqli_query("INSERT INTO ".PREFIX."cup_clans (`$type`, $plat `groupID`, `clanID`, `1on1`, `type`) VALUES ('$rg', $platID '$ID', '$id', '1', 'gs')");
+                  if(mysqli_num_rows(mysqli_query("SELECT * FROM ".PREFIX."cup_matches WHERE $type='$rg' AND matchno='$ID' AND clan1!='0' AND clan2='0'"))) {
+                     mysqli_query("UPDATE ".PREFIX."cup_matches SET clan2='$id' WHERE $type='$rg' AND matchno='$ID' AND clan2='0'");
                      redirect('admincenter.php?site=teams&'.$t_name2.'='.$ID.'&type=gs', '', 0);
                   }else{
-                     mysql_query("INSERT INTO ".PREFIX."cup_matches (`$type`, `$type_opp`, `date`, `matchno`, `clan1`, `comment`, `1on1`, `si`, `type`) VALUES ('$rg', '0', '$date', '$ID', '$id', '2', '1', '1', 'gs')"); 
+                     mysqli_query("INSERT INTO ".PREFIX."cup_matches (`$type`, `$type_opp`, `date`, `matchno`, `clan1`, `comment`, `1on1`, `si`, `type`) VALUES ('$rg', '0', '$date', '$ID', '$id', '2', '1', '1', 'gs')");
                      redirect('admincenter.php?site=teams&'.$t_name2.'='.$ID.'&type=gs', '', 0);
                   }
              }
@@ -1251,22 +1251,22 @@ if($_POST['enterusers']) {
           }else{
                 
             if($_POST['group']!="randomized") { 
-                mysql_query("INSERT INTO ".PREFIX."cup_clans (`$type`, $plat `groupID`, `clanID`, `1on1`, `type`) VALUES ('".$_POST['group']."', $platID '$ID', '$id', '0', 'gs')");
-                  if(mysql_num_rows(mysql_query("SELECT * FROM ".PREFIX."cup_matches WHERE $type='".$_POST['group']."' AND matchno='$ID' AND clan1!='0' AND clan2='0'"))) {
-                     mysql_query("UPDATE ".PREFIX."cup_matches SET clan2='$id' WHERE $type='".$_POST['group']."' AND matchno='$ID' AND clan2='0'"); 
+                mysqli_query("INSERT INTO ".PREFIX."cup_clans (`$type`, $plat `groupID`, `clanID`, `1on1`, `type`) VALUES ('".$_POST['group']."', $platID '$ID', '$id', '0', 'gs')");
+                  if(mysqli_num_rows(mysqli_query("SELECT * FROM ".PREFIX."cup_matches WHERE $type='".$_POST['group']."' AND matchno='$ID' AND clan1!='0' AND clan2='0'"))) {
+                     mysqli_query("UPDATE ".PREFIX."cup_matches SET clan2='$id' WHERE $type='".$_POST['group']."' AND matchno='$ID' AND clan2='0'");
                      redirect('admincenter.php?site=teams&'.$t_name2.'='.$ID.'&type=gs', '', 0);         
                   }else{ 
-                     mysql_query("INSERT INTO ".PREFIX."cup_matches (`$type`, `$type_opp`, `date`, `matchno`, `clan1`, `comment`, `1on1`, `si`, `type`) VALUES ('".$_POST['group']."', '0', '$date', '$ID', '$id', '2', '0', '1', 'gs')");
+                     mysqli_query("INSERT INTO ".PREFIX."cup_matches (`$type`, `$type_opp`, `date`, `matchno`, `clan1`, `comment`, `1on1`, `si`, `type`) VALUES ('".$_POST['group']."', '0', '$date', '$ID', '$id', '2', '0', '1', 'gs')");
                      redirect('admincenter.php?site=teams&'.$t_name2.'='.$ID.'&type=gs', '', 0);
                   }
              }else{
              
-                mysql_query("INSERT INTO ".PREFIX."cup_clans (`$type`, $plat `groupID`, `clanID`, `1on1`, `type`) VALUES ('$rg', $platID '$ID', '$id', '0', 'gs')");
-                  if(mysql_num_rows(mysql_query("SELECT * FROM ".PREFIX."cup_matches WHERE $type='$rg' AND matchno='$ID' AND clan1!='0' AND clan2='0'"))) {
-                     mysql_query("UPDATE ".PREFIX."cup_matches SET clan2='$id' WHERE $type='$rg' AND matchno='$ID' AND clan2='0'"); 
+                mysqli_query("INSERT INTO ".PREFIX."cup_clans (`$type`, $plat `groupID`, `clanID`, `1on1`, `type`) VALUES ('$rg', $platID '$ID', '$id', '0', 'gs')");
+                  if(mysqli_num_rows(mysqli_query("SELECT * FROM ".PREFIX."cup_matches WHERE $type='$rg' AND matchno='$ID' AND clan1!='0' AND clan2='0'"))) {
+                     mysqli_query("UPDATE ".PREFIX."cup_matches SET clan2='$id' WHERE $type='$rg' AND matchno='$ID' AND clan2='0'");
                      redirect('admincenter.php?site=teams&'.$t_name2.'='.$ID.'&type=gs', '', 0);
                   }else{
-                     mysql_query("INSERT INTO ".PREFIX."cup_matches (`$type`, `$type_opp`, `date`, `matchno`, `clan1`, `comment`, `1on1`, `si`, `type`) VALUES ('$rg', '0', '$date', '$ID', '$id', '2', '0', '1', 'gs')"); 
+                     mysqli_query("INSERT INTO ".PREFIX."cup_matches (`$type`, `$type_opp`, `date`, `matchno`, `clan1`, `comment`, `1on1`, `si`, `type`) VALUES ('$rg', '0', '$date', '$ID', '$id', '2', '0', '1', 'gs')");
                      redirect('admincenter.php?site=teams&'.$t_name2.'='.$ID.'&type=gs', '', 0);
                  }
                }
@@ -1314,7 +1314,7 @@ if($_POST['enterusers']) {
 		  
 		  if($_POST['groups_true']==1) {
 	  		  
-                    if(mysql_num_rows(mysql_query("SELECT * FROM ".PREFIX."cup_matches WHERE clan1='$id' AND matchno='$cupID' AND clan1!='0' AND clan2!='0' && $one_type"))) 
+                    if(mysqli_num_rows(mysqli_query("SELECT * FROM ".PREFIX."cup_matches WHERE clan1='$id' AND matchno='$cupID' AND clan1!='0' AND clan2!='0' && $one_type")))
                     {	  
                       safe_query("UPDATE ".PREFIX."cup_matches SET clan1='0' WHERE clan1='$id' AND matchno='$cupID' AND clan2!='0'");  
                     }
@@ -1323,7 +1323,7 @@ if($_POST['enterusers']) {
                       safe_query("DELETE FROM ".PREFIX."cup_matches WHERE matchno='".$cupID."' && ($alpha_groups) && $type_opp='0' && (clan1='$id' || clan2='$id') && $one_type");		      
                     }
     
-                    if(mysql_num_rows(mysql_query("SELECT * FROM ".PREFIX."cup_matches WHERE clan2='$id' AND matchno='$cupID' AND clan1!='0' AND clan2!='0' && $one_type"))) 
+                    if(mysqli_num_rows(mysqli_query("SELECT * FROM ".PREFIX."cup_matches WHERE clan2='$id' AND matchno='$cupID' AND clan1!='0' AND clan2!='0' && $one_type")))
                     {	
                       safe_query("UPDATE ".PREFIX."cup_matches SET clan2='0' WHERE clan2='$id' AND matchno='$cupID' AND clan1!='0'");  
                     }
@@ -1413,8 +1413,8 @@ echo '<h2>'.getcupname($_GET['cupID']).'</h2>
 		  $participants = safe_query("SELECT count(*) as entered FROM ".PREFIX."cup_clans WHERE $t_name='$cupID' && 1on1='0'");
 		  $checked = safe_query("SELECT count(*) as checked FROM ".PREFIX."cup_clans WHERE $t_name='$cupID' && 1on1='0' && checkin='1'");
 		
-		  $all=mysql_fetch_array($participants); 
-		  $is=mysql_fetch_array($checked); 
+		  $all=mysqli_fetch_array($participants);
+		  $is=mysqli_fetch_array($checked);
 		  
 		  if(isset($_GET['cupID'])) {
 		         $info = safe_query("SELECT * FROM ".PREFIX."cups WHERE ID='$cupID'");
@@ -1425,11 +1425,11 @@ echo '<h2>'.getcupname($_GET['cupID']).'</h2>
 		  
 		  $type_opp = ($_GET['cupID'] ? 'ladID' : 'cupID');
 		  
-		  $sp=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchno='".$cupID."' && $type_opp='0' && type='gs' && si='0' && 1on1='0'"));		
+		  $sp=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchno='".$cupID."' && $type_opp='0' && type='gs' && si='0' && 1on1='0'"));
 		  $all_vs_all = (is_array($sp) ? true : false);
 		  
-		  $lad = mysql_fetch_array($info);		  
-          $dv=mysql_fetch_array(safe_query("SELECT count(*) as anzahl FROM ".PREFIX."cup_clans WHERE groupID='".$cupID."' && $type_opp='0' && 1on1='0' && type='gs'"));  
+		  $lad = mysqli_fetch_array($info);
+          $dv=mysqli_fetch_array(safe_query("SELECT count(*) as anzahl FROM ".PREFIX."cup_clans WHERE groupID='".$cupID."' && $type_opp='0' && 1on1='0' && type='gs'"));
 		  
 		  if($lad['maxclan'] == 80 || $lad['maxclan']== 8)
 			  $max = 8;
@@ -1452,7 +1452,7 @@ echo '<h2>'.getcupname($_GET['cupID']).'</h2>
           }    
 		  		  
 		  $ergebnis = safe_query("SELECT count( ID ) as clans FROM ".PREFIX."cup_clans WHERE ".($_GET['cupID'] ? 'cupID' : 'ladID')." = '".$cupID."' && 1on1='0'");
-		  $db = mysql_fetch_array($ergebnis);	
+		  $db = mysqli_fetch_array($ergebnis);
 		  
 		  if($_GET['type']=='gs') {	 
 		         $num = $slots.' ('.$dv['anzahl'].$slots_ext.')';
@@ -1493,7 +1493,7 @@ echo '<h2>'.getcupname($_GET['cupID']).'</h2>
 			  $type_opp = ($_GET['cupID'] ? "ladID" : "cupID");				  
 			  $ergebnis = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE $t_name = '$cupID' $add_ex &&  1on1 = '0' && type = '$tb_typ' $group_order");
 			  
-            if(mysql_num_rows($ergebnis)) {
+            if(mysqli_num_rows($ergebnis)) {
 			
 			            if($_GET['type']!='gs') {
 			                   $show_lineup_hd = '<td class="title2" align="center"><b>Lineup</b></td>';
@@ -1514,12 +1514,12 @@ echo '<h2>'.getcupname($_GET['cupID']).'</h2>
 			}
 			
 			$i = 1;
-			while($db=mysql_fetch_array($ergebnis)) {
+			while($db=mysqli_fetch_array($ergebnis)) {
 				$ergebnis2 = safe_query("SELECT ID, name, clantag, clanhp, leader, clanlogo, password, server, status FROM ".PREFIX."cup_all_clans WHERE ID = '".$db['clanID']."' ORDER BY name ASC");		
-				$ds=mysql_fetch_array($ergebnis2);
+				$ds=mysqli_fetch_array($ergebnis2);
 				
 				$getflag = safe_query("SELECT country FROM ".PREFIX."cup_all_clans WHERE ID='".$ds[ID]."'");
-                $dp=mysql_fetch_array($getflag);
+                $dp=mysqli_fetch_array($getflag);
                 
               if($_GET['type']=="gs") 
                  $gs_group_content = '<td align="center"><b>'.strtoupper($db[$t_name3]).'</b></td>';
@@ -1538,9 +1538,9 @@ echo '<h2>'.getcupname($_GET['cupID']).'</h2>
 		        $clanhp = $ds[clanhp];
 
                 $members=safe_query("SELECT userID FROM ".PREFIX."cup_clan_members WHERE clanID = '$clanID'");
-		          while($dv=mysql_fetch_array($members)) { }
+		          while($dv=mysqli_fetch_array($members)) { }
                   $sql_members = safe_query("SELECT * FROM ".PREFIX."cup_clan_members WHERE clanID = '".$db['clanID']."'");	
-		        $members = mysql_num_rows($sql_members);
+		        $members = mysqli_num_rows($sql_members);
 
 
                 $details = '<a href="../?site=clans&action=show&clanID='.$ds['ID'].'&'.$t_name2.'='.$cupID.'"><img border="0" src="../images/icons/foldericons/folder.gif"></a> href="../?site=clans&action=clanjoin&clanID='.$ds['ID'].'"><img border="0" src="../images/cup/icons/go.png" width="16" height="16"></a> href="../?site=clans&action=clanedit&clanID='.$ds['ID'].'"><img border="0" src="../images/icons/manage.gif"></a> href="../?site=clans&action=editpwd&clanID='.$ds['ID'].'"><img border="0" src="../images/icons/key.png"></a>';
@@ -1569,15 +1569,15 @@ echo '<h2>'.getcupname($_GET['cupID']).'</h2>
                 //check members in lineup
     
 					$lineup = safe_query("SELECT userID FROM ".PREFIX."cup_clan_lineup WHERE ".($_GET['cupID'] ? 'cupID' : 'ladID')." = '".($_GET['cupID'] ? $_GET['cupID'] : $_GET['laddID'])."' && clanID='".$ds['ID']."'");
-					$checklineup = mysql_num_rows($lineup); 
+					$checklineup = mysqli_num_rows($lineup);
 					
 			    //check if blocked
 			    
 					$getpoints = safe_query("SELECT SUM(points) as totalpoints FROM ".PREFIX."cup_warnings WHERE clanID='".$ds['ID']."' && expired='0' && 1on1='0'");
-					$do=mysql_fetch_array($getpoints);
+					$do=mysqli_fetch_array($getpoints);
              
              	     $block = safe_query("SELECT cupblockage FROM ".PREFIX."cup_settings");	
-	                 $dt=mysql_fetch_array($block); $cupblockage = $dt['cupblockage']-$do['totalpoints'];  
+	                 $dt=mysqli_fetch_array($block); $cupblockage = $dt['cupblockage']-$do['totalpoints'];
 
                      if($do['totalpoints'] >= $dt['cupblockage']) { 
 					        $blockstatus = '<font color="#DD0000"><b>Locked</b></font>'; 
@@ -1591,21 +1591,21 @@ echo '<h2>'.getcupname($_GET['cupID']).'</h2>
 //
 
         $sql_members = safe_query("SELECT * FROM ".PREFIX."cup_clan_members WHERE clanID = '".$ds['ID']."'");	
-	    $members = mysql_num_rows($sql_members);
+	    $members = mysqli_num_rows($sql_members);
 		
 		$qk_tb = ($_GET['cupID'] ? 'cups' : 'cup_ladders');
 		$qk_id = ($_GET['cupID'] ? $_GET['cupID'] : $_GET['laddID']);
         $qk_tp = ($_GET['cupID'] ? "typ" : "type");
         $qk_ty = ($_GET['cupID'] ? "cupID" : "laddID");		
 		
-		$dbl = mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX.$qk_tb." WHERE ID='$qk_id'"));	
+		$dbl = mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX.$qk_tb." WHERE ID='$qk_id'"));
         $membersin = $dbl['cupaclimit']; 
 		
 	    $membersin = ($dbl['cupaclimit'] <= 0 ? '' : $dbl['cupaclimit']);           
         $needed = $dbl[$qk_tp]-$members-$membersin;
 					 
         $lineup = safe_query("SELECT * FROM ".PREFIX."cup_clan_lineup WHERE ".($_GET['cupID'] ? 'cupID' : 'ladID')." = '".($_GET['cupID'] ? $_GET['cupID'] : $_GET['laddID'])."' && clanID='".$ds[ID]."'");
-        $checklineup = mysql_num_rows($lineup); $thelineup = mysql_num_rows($lineup)+$membersin+1;
+        $checklineup = mysqli_num_rows($lineup); $thelineup = mysqli_num_rows($lineup)+$membersin+1;
   
         $linedmembers = '<a href="../popup.php?site=clans&action=show&clanID='.$ds['ID'].'&'.$qk_ty.'='.$qk_id.'#members" onClick="MM_openBrWindow(this.href,\'MEMBER LIST WINDOW\',\'toolbar=no,status=no,scrollbars=yes,width=800,height=600\');return false">'.$checklineup.'</a>';
 		
@@ -1635,13 +1635,13 @@ echo '<h2>'.getcupname($_GET['cupID']).'</h2>
 				echo $teams_content;
 			}
 			
-			if(mysql_num_rows($ergebnis)) {		
+			if(mysqli_num_rows($ergebnis)) {
 			
 			    eval ("\$team_foot = \"".gettemplate("footer")."\";");
 			    echo $team_foot;	
 			}
 			
-			if($_GET['type']=='gs' && mysql_num_rows($ergebnis)) {		
+			if($_GET['type']=='gs' && mysqli_num_rows($ergebnis)) {
                         echo '<br /><a href="admincenter.php?site=teams&'.$t_name2.'='.$cupID.'&delete=all" onclick="return confirm(\'Do you really want to remove matches and participants for this group league? \');"><img src="../images/cup/icons/go.png"> <strong>Delete all group participants and matches</strong></a>
 						      <br /><a href="admincenter.php?site=teams&'.$t_name2.'='.$cupID.'&randomize=scores" onclick="return confirm(\'Finish matches and randomize scores? (Testing purposes) \');"><img src="../images/cup/icons/go.png"> <strong>Randomize scores and finish matches</strong></a>';
 			}
@@ -1659,7 +1659,7 @@ echo '<h2>'.getcupname($_GET['cupID']).'</h2>
 			 
 			 
                          $participants = safe_query("SELECT clanID FROM ".PREFIX."cup_clans WHERE ".$qry_type." && 1on1='0'");
-                            while($up=mysql_fetch_array($participants)) {  
+                            while($up=mysqli_fetch_array($participants)) {
 				               $ent_IDs[]=$up['clanID'];
                          }
 
@@ -1669,7 +1669,7 @@ echo '<h2>'.getcupname($_GET['cupID']).'</h2>
 			         <form method="post" action="admincenter.php?site=teams&'.$t_name2.'='.$cupID.'">
 			           <select name="ID[]" multiple size="10" onblur="countit(this)">';
 				   
-				     while($dv=mysql_fetch_assoc($teams)) {
+				     while($dv=mysqli_fetch_assoc($teams)) {
 				     
 				       if(!in_array($dv['ID'],$ent_IDs)) {
 				         echo '<option value="'.$dv['ID'].'">('.$dv['ID'].') '.getclanname2($dv['ID']).'</option>';
@@ -1698,11 +1698,11 @@ echo '<h2>'.getcupname($_GET['cupID']).'</h2>
 			   
 			 
 			   $participants = safe_query("SELECT clanID FROM ".PREFIX."cup_clans WHERE $t_name='".$cupID."' && $type_opp = '0' && 1on1='0' && type='$lg_type'");
-               if(mysql_num_rows($participants)) {			   
+               if(mysqli_num_rows($participants)) {
 			   
 			    echo '<br><br><form method="post" action="admincenter.php?site=teams&'.$t_name2.'='.$cupID.'"><select name="clanID[]" multiple size="10">';
 			                   
-					 while($dv=mysql_fetch_array($participants)) {
+					 while($dv=mysqli_fetch_array($participants)) {
 					      echo '<option value="'.$dv['clanID'].'">('.$dv['clanID'].') '.getclanname2($dv['clanID']).'</option>';
 		            }
 		          
@@ -1728,76 +1728,76 @@ if($_POST['enterteams']) {
 		
 		if($_POST['group']) {
 		
-        $participant_ent = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND ($alpha_groups) AND $type_opp='0'");
-        $ent_part = mysql_num_rows($participant_ent);
+        $participant_ent = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND ($alpha_groups) AND $type_opp='0'");
+        $ent_part = mysqli_num_rows($participant_ent);
 		
 		//groups
 		
-		$rowsa = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='a'  AND $type_opp='0' AND type='gs'");
-		$rowsb = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='b'  AND $type_opp='0' AND type='gs'");
-		$rowsc = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='c'  AND $type_opp='0' AND type='gs'");
-		$rowsd = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='d'  AND $type_opp='0' AND type='gs'");
-		$rowse = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='e'  AND $type_opp='0' AND type='gs'");
-		$rowsf = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='f'  AND $type_opp='0' AND type='gs'");
-		$rowsg = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='g'  AND $type_opp='0' AND type='gs'");
-		$rowsh = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='h'  AND $type_opp='0' AND type='gs'");
-		$rowsi = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='i'  AND $type_opp='0' AND type='gs'");
-		$rowsj = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='j'  AND $type_opp='0' AND type='gs'");
-		$rowsk = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='k'  AND $type_opp='0' AND type='gs'");
-		$rowsl = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='l'  AND $type_opp='0' AND type='gs'");
-		$rowsm = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='m'  AND $type_opp='0' AND type='gs'");
-		$rowsn = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='n'  AND $type_opp='0' AND type='gs'");
-		$rowso = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='o'  AND $type_opp='0' AND type='gs'");
-		$rowsp = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='p'  AND $type_opp='0' AND type='gs'");
-		$rowsq = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='q'  AND $type_opp='0' AND type='gs'");
-		$rowsr = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='r'  AND $type_opp='0' AND type='gs'");
-		$rowss = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='s'  AND $type_opp='0' AND type='gs'");
-		$rowst = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='t'  AND $type_opp='0' AND type='gs'");
-		$rowsu = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='u'  AND $type_opp='0' AND type='gs'");
-		$rowsv = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='v'  AND $type_opp='0' AND type='gs'");
-		$rowsw = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='w'  AND $type_opp='0' AND type='gs'");
-		$rowsx = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='x'  AND $type_opp='0' AND type='gs'");
-		$rowsy = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='y'  AND $type_opp='0' AND type='gs'");
-		$rowsz = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='z'  AND $type_opp='0' AND type='gs'");
-		$rowsa2 = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='a2'  AND $type_opp='0' AND type='gs'");
-		$rowsb2 = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='b2'  AND $type_opp='0' AND type='gs'");
-		$rowsc2 = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='c2'  AND $type_opp='0' AND type='gs'");
-		$rowsd2 = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='d2'  AND $type_opp='0' AND type='gs'");
-		$rowse2 = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='e2'  AND $type_opp='0' AND type='gs'");
-		$rowsf2 = mysql_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='f2'  AND $type_opp='0' AND type='gs'");
+		$rowsa = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='a'  AND $type_opp='0' AND type='gs'");
+		$rowsb = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='b'  AND $type_opp='0' AND type='gs'");
+		$rowsc = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='c'  AND $type_opp='0' AND type='gs'");
+		$rowsd = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='d'  AND $type_opp='0' AND type='gs'");
+		$rowse = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='e'  AND $type_opp='0' AND type='gs'");
+		$rowsf = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='f'  AND $type_opp='0' AND type='gs'");
+		$rowsg = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='g'  AND $type_opp='0' AND type='gs'");
+		$rowsh = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='h'  AND $type_opp='0' AND type='gs'");
+		$rowsi = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='i'  AND $type_opp='0' AND type='gs'");
+		$rowsj = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='j'  AND $type_opp='0' AND type='gs'");
+		$rowsk = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='k'  AND $type_opp='0' AND type='gs'");
+		$rowsl = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='l'  AND $type_opp='0' AND type='gs'");
+		$rowsm = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='m'  AND $type_opp='0' AND type='gs'");
+		$rowsn = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='n'  AND $type_opp='0' AND type='gs'");
+		$rowso = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='o'  AND $type_opp='0' AND type='gs'");
+		$rowsp = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='p'  AND $type_opp='0' AND type='gs'");
+		$rowsq = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='q'  AND $type_opp='0' AND type='gs'");
+		$rowsr = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='r'  AND $type_opp='0' AND type='gs'");
+		$rowss = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='s'  AND $type_opp='0' AND type='gs'");
+		$rowst = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='t'  AND $type_opp='0' AND type='gs'");
+		$rowsu = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='u'  AND $type_opp='0' AND type='gs'");
+		$rowsv = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='v'  AND $type_opp='0' AND type='gs'");
+		$rowsw = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='w'  AND $type_opp='0' AND type='gs'");
+		$rowsx = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='x'  AND $type_opp='0' AND type='gs'");
+		$rowsy = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='y'  AND $type_opp='0' AND type='gs'");
+		$rowsz = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='z'  AND $type_opp='0' AND type='gs'");
+		$rowsa2 = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='a2'  AND $type_opp='0' AND type='gs'");
+		$rowsb2 = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='b2'  AND $type_opp='0' AND type='gs'");
+		$rowsc2 = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='c2'  AND $type_opp='0' AND type='gs'");
+		$rowsd2 = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='d2'  AND $type_opp='0' AND type='gs'");
+		$rowse2 = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='e2'  AND $type_opp='0' AND type='gs'");
+		$rowsf2 = mysqli_query("SELECT $type FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type='f2'  AND $type_opp='0' AND type='gs'");
 		
-		$a_rows = mysql_num_rows($rowsa);
-		$b_rows = mysql_num_rows($rowsb);
-		$c_rows = mysql_num_rows($rowsc);
-		$d_rows = mysql_num_rows($rowsd);
-		$e_rows = mysql_num_rows($rowse);
-		$f_rows = mysql_num_rows($rowsf);
-		$g_rows = mysql_num_rows($rowsg);
-		$h_rows = mysql_num_rows($rowsh);
-		$i_rows = mysql_num_rows($rowsi);
-		$j_rows = mysql_num_rows($rowsj);
-		$k_rows = mysql_num_rows($rowsk);
-		$l_rows = mysql_num_rows($rowsl);
-		$m_rows = mysql_num_rows($rowsm);
-		$n_rows = mysql_num_rows($rowsn);
-		$o_rows = mysql_num_rows($rowso);
-		$p_rows = mysql_num_rows($rowsp);
-		$q_rows = mysql_num_rows($rowsq);
-		$r_rows = mysql_num_rows($rowsr);
-		$s_rows = mysql_num_rows($rowss);
-		$t_rows = mysql_num_rows($rowst);
-		$u_rows = mysql_num_rows($rowsu);
-		$v_rows = mysql_num_rows($rowsv);
-		$w_rows = mysql_num_rows($rowsw);
-		$x_rows = mysql_num_rows($rowsx);
-		$y_rows = mysql_num_rows($rowsy);
-		$z_rows = mysql_num_rows($rowsz);
-		$a2_rows = mysql_num_rows($rowsa2);
-		$b2_rows = mysql_num_rows($rowsb2);
-		$c2_rows = mysql_num_rows($rowsc2);
-		$d2_rows = mysql_num_rows($rowsd2);
-		$e2_rows = mysql_num_rows($rowse2);
-		$f2_rows = mysql_num_rows($rowsf2);
+		$a_rows = mysqli_num_rows($rowsa);
+		$b_rows = mysqli_num_rows($rowsb);
+		$c_rows = mysqli_num_rows($rowsc);
+		$d_rows = mysqli_num_rows($rowsd);
+		$e_rows = mysqli_num_rows($rowse);
+		$f_rows = mysqli_num_rows($rowsf);
+		$g_rows = mysqli_num_rows($rowsg);
+		$h_rows = mysqli_num_rows($rowsh);
+		$i_rows = mysqli_num_rows($rowsi);
+		$j_rows = mysqli_num_rows($rowsj);
+		$k_rows = mysqli_num_rows($rowsk);
+		$l_rows = mysqli_num_rows($rowsl);
+		$m_rows = mysqli_num_rows($rowsm);
+		$n_rows = mysqli_num_rows($rowsn);
+		$o_rows = mysqli_num_rows($rowso);
+		$p_rows = mysqli_num_rows($rowsp);
+		$q_rows = mysqli_num_rows($rowsq);
+		$r_rows = mysqli_num_rows($rowsr);
+		$s_rows = mysqli_num_rows($rowss);
+		$t_rows = mysqli_num_rows($rowst);
+		$u_rows = mysqli_num_rows($rowsu);
+		$v_rows = mysqli_num_rows($rowsv);
+		$w_rows = mysqli_num_rows($rowsw);
+		$x_rows = mysqli_num_rows($rowsx);
+		$y_rows = mysqli_num_rows($rowsy);
+		$z_rows = mysqli_num_rows($rowsz);
+		$a2_rows = mysqli_num_rows($rowsa2);
+		$b2_rows = mysqli_num_rows($rowsb2);
+		$c2_rows = mysqli_num_rows($rowsc2);
+		$d2_rows = mysqli_num_rows($rowsd2);
+		$e2_rows = mysqli_num_rows($rowse2);
+		$f2_rows = mysqli_num_rows($rowsf2);
 		//end check
 
 
@@ -1808,8 +1808,8 @@ if($_POST['enterteams']) {
 	        $min = date('i');
      	    $date = @mktime($hour, $min, 0, $month, $day, $year);
      	 
-		$ergebnis2 = mysql_query("SELECT count(*) as anzahl FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type_opp='0' AND type='gs'");
-		$dv=mysql_fetch_array($ergebnis2);
+		$ergebnis2 = mysqli_query("SELECT count(*) as anzahl FROM ".PREFIX."cup_clans WHERE groupID='".$ID."' AND $type_opp='0' AND type='gs'");
+		$dv=mysqli_fetch_array($ergebnis2);
 
 // check what group		
 		         
@@ -2064,22 +2064,22 @@ if($_POST['enterteams']) {
    if($name2($ID)) {
           
              if($_POST['group']!="randomized") { 
-                mysql_query("INSERT INTO ".PREFIX."cup_clans (`$type`, $plat `groupID`, `clanID`, `1on1`, `type`) VALUES ('".$_POST['group']."', $platID '$ID', '$id', '1', 'gs')");
-                  if(mysql_num_rows(mysql_query("SELECT * FROM ".PREFIX."cup_matches WHERE $type='".$_POST['group']."' AND matchno='$ID' AND clan1!='0' AND clan2='0'"))) {
-                     mysql_query("UPDATE ".PREFIX."cup_matches SET clan2='$id' WHERE $type='".$_POST['group']."' AND matchno='$ID' AND clan2='0'"); 
+                mysqli_query("INSERT INTO ".PREFIX."cup_clans (`$type`, $plat `groupID`, `clanID`, `1on1`, `type`) VALUES ('".$_POST['group']."', $platID '$ID', '$id', '1', 'gs')");
+                  if(mysqli_num_rows(mysqli_query("SELECT * FROM ".PREFIX."cup_matches WHERE $type='".$_POST['group']."' AND matchno='$ID' AND clan1!='0' AND clan2='0'"))) {
+                     mysqli_query("UPDATE ".PREFIX."cup_matches SET clan2='$id' WHERE $type='".$_POST['group']."' AND matchno='$ID' AND clan2='0'");
                      redirect('admincenter.php?site=teams&'.$t_name2.'='.$ID.'&type=gs', '', 0);         
                   }else{ 
-                     mysql_query("INSERT INTO ".PREFIX."cup_matches (`$type`, `$type_opp`, `date`, `matchno`, `clan1`, `comment`, `1on1`, `si`, `type`) VALUES ('".$_POST['group']."', '0', '$date', '$ID', '$id', '2', '1', '1', 'gs')");
+                     mysqli_query("INSERT INTO ".PREFIX."cup_matches (`$type`, `$type_opp`, `date`, `matchno`, `clan1`, `comment`, `1on1`, `si`, `type`) VALUES ('".$_POST['group']."', '0', '$date', '$ID', '$id', '2', '1', '1', 'gs')");
                      redirect('admincenter.php?site=teams&'.$t_name2.'='.$ID.'&type=gs', '', 0);
                   }
              }else{
              
-                mysql_query("INSERT INTO ".PREFIX."cup_clans (`$type`, $plat `groupID`, `clanID`, `1on1`, `type`) VALUES ('$random_group', $platID '$ID', '$id', '1', 'gs')");
-                  if(mysql_num_rows(mysql_query("SELECT * FROM ".PREFIX."cup_matches WHERE $type='$random_group' AND matchno='$ID' AND clan1!='0' AND clan2='0'"))) {
-                     mysql_query("UPDATE ".PREFIX."cup_matches SET clan2='$id' WHERE $type='$random_group' AND matchno='$ID' AND clan2='0'"); 
+                mysqli_query("INSERT INTO ".PREFIX."cup_clans (`$type`, $plat `groupID`, `clanID`, `1on1`, `type`) VALUES ('$random_group', $platID '$ID', '$id', '1', 'gs')");
+                  if(mysqli_num_rows(mysqli_query("SELECT * FROM ".PREFIX."cup_matches WHERE $type='$random_group' AND matchno='$ID' AND clan1!='0' AND clan2='0'"))) {
+                     mysqli_query("UPDATE ".PREFIX."cup_matches SET clan2='$id' WHERE $type='$random_group' AND matchno='$ID' AND clan2='0'");
                      redirect('admincenter.php?site=teams&'.$t_name2.'='.$ID.'&type=gs', '', 0);
                   }else{
-                     mysql_query("INSERT INTO ".PREFIX."cup_matches (`$type`, `$type_opp`, `date`, `matchno`, `clan1`, `comment`, `1on1`, `si`, `type`) VALUES ('$random_group', '0', '$date', '$ID', '$id', '2', '1', '1', 'gs')"); 
+                     mysqli_query("INSERT INTO ".PREFIX."cup_matches (`$type`, `$type_opp`, `date`, `matchno`, `clan1`, `comment`, `1on1`, `si`, `type`) VALUES ('$random_group', '0', '$date', '$ID', '$id', '2', '1', '1', 'gs')");
                      redirect('admincenter.php?site=teams&'.$t_name2.'='.$ID.'&type=gs', '', 0);
                   }
              }
@@ -2087,23 +2087,23 @@ if($_POST['enterteams']) {
           }else{
                 
             if($_POST['group']!="randomized") { 
-                mysql_query("INSERT INTO ".PREFIX."cup_clans (`$type`, $plat `groupID`, `clanID`, `1on1`, `type`) VALUES ('".$_POST['group']."', $platID '$ID', '$id', '0', 'gs')");
-                  if(mysql_num_rows(mysql_query("SELECT * FROM ".PREFIX."cup_matches WHERE $type='".$_POST['group']."' AND matchno='$ID' AND clan1!='0' AND clan2='0'"))) {
-                     mysql_query("UPDATE ".PREFIX."cup_matches SET clan2='$id' WHERE $type='".$_POST['group']."' AND matchno='$ID' AND clan2='0'"); 
+                mysqli_query("INSERT INTO ".PREFIX."cup_clans (`$type`, $plat `groupID`, `clanID`, `1on1`, `type`) VALUES ('".$_POST['group']."', $platID '$ID', '$id', '0', 'gs')");
+                  if(mysqli_num_rows(mysqli_query("SELECT * FROM ".PREFIX."cup_matches WHERE $type='".$_POST['group']."' AND matchno='$ID' AND clan1!='0' AND clan2='0'"))) {
+                     mysqli_query("UPDATE ".PREFIX."cup_matches SET clan2='$id' WHERE $type='".$_POST['group']."' AND matchno='$ID' AND clan2='0'");
                      redirect('admincenter.php?site=teams&'.$t_name2.'='.$ID.'&type=gs', '', 0);         
                   }else{ 
-                     mysql_query("INSERT INTO ".PREFIX."cup_matches (`$type`, `$type_opp`, `date`, `matchno`, `clan1`, `comment`, `1on1`, `si`, `type`) VALUES ('".$_POST['group']."', '0', '$date', '$ID', '$id', '2', '0', '1', 'gs')");
+                     mysqli_query("INSERT INTO ".PREFIX."cup_matches (`$type`, `$type_opp`, `date`, `matchno`, `clan1`, `comment`, `1on1`, `si`, `type`) VALUES ('".$_POST['group']."', '0', '$date', '$ID', '$id', '2', '0', '1', 'gs')");
                      redirect('admincenter.php?site=teams&'.$t_name2.'='.$ID.'&type=gs', '', 0);
                   }
              }else{
              
-                mysql_query("INSERT INTO ".PREFIX."cup_clans (`$type`, $plat `groupID`, `clanID`, `1on1`, `type`) VALUES ('$random_group', $platID '$ID', '$id', '0', 'gs')");
-                  if(mysql_num_rows(mysql_query("SELECT * FROM ".PREFIX."cup_matches WHERE $type='$random_group' AND matchno='$ID' AND clan1!='0' AND clan2='0'"))) {
-                     mysql_query("UPDATE ".PREFIX."cup_matches SET clan2='$id' WHERE $type='$random_group' AND matchno='$ID' AND clan2='0'"); 
+                mysqli_query("INSERT INTO ".PREFIX."cup_clans (`$type`, $plat `groupID`, `clanID`, `1on1`, `type`) VALUES ('$random_group', $platID '$ID', '$id', '0', 'gs')");
+                  if(mysqli_num_rows(mysqli_query("SELECT * FROM ".PREFIX."cup_matches WHERE $type='$random_group' AND matchno='$ID' AND clan1!='0' AND clan2='0'"))) {
+                     mysqli_query("UPDATE ".PREFIX."cup_matches SET clan2='$id' WHERE $type='$random_group' AND matchno='$ID' AND clan2='0'");
                      redirect('admincenter.php?site=teams&'.$t_name2.'='.$ID.'&type=gs', '', 0);
                   }else{
 
-                     mysql_query("INSERT INTO ".PREFIX."cup_matches (`$type`, `$type_opp`, `date`, `matchno`, `clan1`, `comment`, `1on1`, `si`, `type`) VALUES ('$random_group', '0', '$date', '$ID', '$id', '2', '0', '1', 'gs')"); 
+                     mysqli_query("INSERT INTO ".PREFIX."cup_matches (`$type`, `$type_opp`, `date`, `matchno`, `clan1`, `comment`, `1on1`, `si`, `type`) VALUES ('$random_group', '0', '$date', '$ID', '$id', '2', '0', '1', 'gs')");
                      redirect('admincenter.php?site=teams&'.$t_name2.'='.$ID.'&type=gs', '', 0);
                  }
                }
@@ -2115,11 +2115,11 @@ if($_POST['enterteams']) {
 		
 		    if($_GET['laddID'])
 		    {
-		       mysql_query("INSERT INTO ".PREFIX."cup_clans (platID, ladID, credit, elo, registered, clanID, 1on1, checkin, tp) VALUES ($platID '$cupID', '$startupcredit', '$elo_rating_default', '".time()."', '$id', '0', '1', '$startupcredit')"); 
+		       mysqli_query("INSERT INTO ".PREFIX."cup_clans (platID, ladID, credit, elo, registered, clanID, 1on1, checkin, tp) VALUES ($platID '$cupID', '$startupcredit', '$elo_rating_default', '".time()."', '$id', '0', '1', '$startupcredit')");
 		    }
 		    else
 		    {
-	           mysql_query("INSERT INTO ".PREFIX."cup_clans (cupID, clanID, 1on1, checkin) VALUES ('$cupID', '$id', '0', '1')");
+	           mysqli_query("INSERT INTO ".PREFIX."cup_clans (cupID, clanID, 1on1, checkin) VALUES ('$cupID', '$id', '0', '1')");
 	        }
 	           redirect('admincenter.php?site=teams&'.$t_name2.'='.$cupID, '', 0);
 	      }  
@@ -2149,7 +2149,7 @@ if($_POST['enterteams']) {
 	              	                
 		   if($_POST['groups_true']==1) {
 		  		  
-                    if(mysql_num_rows(mysql_query("SELECT * FROM ".PREFIX."cup_matches WHERE clan1='$id' AND matchno='$cupID' AND clan1!='0' AND clan2!='0' && $one_type"))) 
+                    if(mysqli_num_rows(mysqli_query("SELECT * FROM ".PREFIX."cup_matches WHERE clan1='$id' AND matchno='$cupID' AND clan1!='0' AND clan2!='0' && $one_type")))
                     {	  
                       safe_query("UPDATE ".PREFIX."cup_matches SET clan1='0' WHERE clan1='$id' AND matchno='$cupID' AND clan2!='0'");  
                     }
@@ -2158,7 +2158,7 @@ if($_POST['enterteams']) {
                       safe_query("DELETE FROM ".PREFIX."cup_matches WHERE matchno='".$cupID."' && ($alpha_groups) && $type_opp='0' && (clan1='$id' || clan2='$id') && $one_type");		      
                     }
     
-                    if(mysql_num_rows(mysql_query("SELECT * FROM ".PREFIX."cup_matches WHERE clan2='$id' AND matchno='$cupID' AND clan1!='0' AND clan2!='0' && $one_type"))) 
+                    if(mysqli_num_rows(mysqli_query("SELECT * FROM ".PREFIX."cup_matches WHERE clan2='$id' AND matchno='$cupID' AND clan1!='0' AND clan2!='0' && $one_type")))
                     {	
                       safe_query("UPDATE ".PREFIX."cup_matches SET clan2='0' WHERE clan2='$id' AND matchno='$cupID' AND clan1!='0'");  
                     }

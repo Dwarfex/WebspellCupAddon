@@ -39,8 +39,8 @@ $length_qn = $quicknavi_length;
      
 	    $onecup = '';
         $one_cups = safe_query("SELECT * FROM ".PREFIX."cups WHERE status='1' && 1on1='1'");
-	    $a_rows = mysql_num_rows($one_cups);
-           while($ds=mysql_fetch_array($one_cups))
+	    $a_rows = mysqli_num_rows($one_cups);
+           while($ds=mysqli_fetch_array($one_cups))
             {   
 			
 			   getcuptimezone(0,$ds['ID']);
@@ -89,8 +89,8 @@ $length_qn = $quicknavi_length;
            if(empty($a_rows)) $onecup = '<tr><td bgcolor="'.$bg1.'" align="center" colspan="5">-- No current 1on1 tournaments in signup-phase --</td>';
            
         $team_cups = safe_query("SELECT * FROM ".PREFIX."cups WHERE status='1' && 1on1='0'");
-	  $b_rows = mysql_num_rows($team_cups);
-            while($ds=mysql_fetch_array($team_cups))
+	  $b_rows = mysqli_num_rows($team_cups);
+            while($ds=mysqli_fetch_array($team_cups))
              {    
 			 
 			     getcuptimezone(0,$ds['ID']);
@@ -98,12 +98,12 @@ $length_qn = $quicknavi_length;
 	             $members = safe_query("SELECT * FROM ".PREFIX."cup_clan_members WHERE userID = '".$userID."' AND function = 'Leader'");	
                    
                   if(!$loggedin) $clan = '<option value="0">(must login)</option>';
-                  elseif(!mysql_num_rows($members)) $clan = '<option value="0">(no team)</option>';
+                  elseif(!mysqli_num_rows($members)) $clan = '<option value="0">(no team)</option>';
 
                   $start = date('d.m.Y \a\t H:i', $ds['start']); 	          
 	
 	               $clan = '<option value="0" selected="selected"> - Select Team - </option>';	
-	                 while($dm=mysql_fetch_array($members)) {                       
+	                 while($dm=mysqli_fetch_array($members)) {
 	               $clan .= '<option name="clanID" value="'.$dm['clanID'].'">'.getclanname($dm['clanID']).'</option>';
                  }
             
@@ -189,8 +189,8 @@ $length_qn = $quicknavi_length;
        {
      
          $one_cups = safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE (status='1' || (status='2' && sign='1')) && 1on1='1'");
-	     $a_rows = mysql_num_rows($one_cups);
-           while($ds=mysql_fetch_array($one_cups))
+	     $a_rows = mysqli_num_rows($one_cups);
+           while($ds=mysqli_fetch_array($one_cups))
             {   
 			
 			   getladtimezone(0,$ds['ID']);
@@ -238,8 +238,8 @@ $length_qn = $quicknavi_length;
            if(empty($a_rows)) $onecup = '<tr><td bgcolor="'.$bg1.'" align="center" colspan="5">-- No current 1on1 ladders in signup-phase --</td>';
            
          $team_cups = safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE (status='1' || (status='2' && sign='1')) && 1on1='0'");
-	  $b_rows = mysql_num_rows($team_cups);
-           while($ds=mysql_fetch_array($team_cups))
+	  $b_rows = mysqli_num_rows($team_cups);
+           while($ds=mysqli_fetch_array($team_cups))
             {    
 			
 			     getladtimezone(0,$ds['ID']);
@@ -247,10 +247,10 @@ $length_qn = $quicknavi_length;
 	             $members = safe_query("SELECT * FROM ".PREFIX."cup_clan_members WHERE userID = '".$userID."' AND function = 'Leader'");	
 	             
                   if(!$loggedin) $clan = '<option value="0">(must login)</option>';
-                  elseif(!mysql_num_rows($members)) $clan = '<option value="0">(no team)</option>';  		 
+                  elseif(!mysqli_num_rows($members)) $clan = '<option value="0">(no team)</option>';
 	
 	               $clan = '<option value="0" selected="selected"> - Select Team - </option>';	
-	                 while($dm=mysql_fetch_array($members)) {                       
+	                 while($dm=mysqli_fetch_array($members)) {
 	               $clan .= '<option name="clanID" value="'.$dm['clanID'].'">'.getclanname($dm['clanID']).'</option>';
                  }
 

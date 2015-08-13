@@ -11,14 +11,14 @@ $release_date = "29/12/2013";
 //(V5.2 6th Release: 31/12/2012)
 //(V5.2 5th Release: 10/09/2012)
 
-$db_query_type = ($run_without_admin==1 ? 'mysql_query' : 'safe_query');
+$db_query_type = ($run_without_admin==1 ? 'mysqli_query' : 'safe_query');
 $validation = 0;
 
 if($run_without_admin == 1) {
 
    include ("_mysql.php");
-   mysql_connect($host, $user, $pwd) or die ('ERROR: Can not connect to SQL.');
-   mysql_select_db($db) or die ('ERROR: Could not connect to "'.$db.'", please check connection in _mysql.php!');
+   mysqli_connect($host, $user, $pwd) or die ('ERROR: Can not connect to SQL.');
+   mysqli_select_db($db) or die ('ERROR: Could not connect to "'.$db.'", please check connection in _mysql.php!');
    
    $validation = 1;
 }

@@ -62,7 +62,7 @@ elseif($_GET['action']=="edit") {
 
   $gameaccID = $_GET['gameaccID'];
   $ergebnis=safe_query("SELECT * FROM ".PREFIX."gameacc WHERE gameaccID='$gameaccID'");
-	$ds=mysql_fetch_array($ergebnis);
+	$ds=mysqli_fetch_array($ergebnis);
 
 	echo'<form method="post" action="admincenter.php?site=gameaccounts">
 	     <table cellpadding="4" cellspacing="0">
@@ -88,7 +88,7 @@ else {
    		</tr>
 		<tr bgcolor="#FFFFFF"><td colspan="3"></td></tr>';
 
-	while($ds=mysql_fetch_array($ergebnis)) {
+	while($ds=mysqli_fetch_array($ergebnis)) {
     	echo'<tr bgcolor="#FFFFFF">
 	       		<td align="center"><b>'.$ds[type].'</b></td>
 		   		<td align="center"><input type="button" class="button" onClick="MM_goToURL(\'parent\',\'admincenter.php?site=gameaccounts&action=edit&gameaccID='.$ds[gameaccID].'\');return document.MM_returnValue" value="edit"></td>

@@ -23,7 +23,7 @@ if(isset($_POST['submit'])) {
 } 
 
 $settings = safe_query("SELECT * FROM ".PREFIX."cup_settings");
-$ds = mysql_fetch_array($settings);
+$ds = mysqli_fetch_array($settings);
 
 if($ds['maintenance']==1) echo '<div style="margin: 5px; padding: 6px; border: 4px solid #D6B4B4; text-align: center;"> <b>Note: The cup addon is only accessible to superadmins</b></div>';
 if($ds['maintenance']==2) echo '<div style="margin: 5px; padding: 6px; border: 4px solid #D6B4B4; text-align: center;"> <b>Note: The cup addon is only accessible to both superadmins and cupadmins!</b></div>';
@@ -83,11 +83,11 @@ if($ds['maintenance']==2) echo '<div style="margin: 5px; padding: 6px; border: 4
 			 
 			           $users = '<option value="0" selected">-- Select User --</option>';
 			       $admin = safe_query("SELECT * FROM ".PREFIX."user_groups WHERE cup='1' OR super='1'");
-			        if(!mysql_num_rows($admin)) { $admins=safe_query("SELECT userID FROM ".PREFIX."user");
+			        if(!mysqli_num_rows($admin)) { $admins=safe_query("SELECT userID FROM ".PREFIX."user");
 			          }else
-			            while($up=mysql_fetch_array($admin)) { 
+			            while($up=mysqli_fetch_array($admin)) {
 					  $admins=safe_query("SELECT userID FROM ".PREFIX."user WHERE userID != '".$up['userID']."'");
-                   } while($dv=mysql_fetch_array($admins)) {
+                   } while($dv=mysqli_fetch_array($admins)) {
 			           $users.='<option value="'.$dv['userID'].'">('.$dv['userID'].') '.getnickname($dv['userID']).'</option>';
 			              }   
 			              
@@ -95,7 +95,7 @@ if($ds['maintenance']==2) echo '<div style="margin: 5px; padding: 6px; border: 4
 			 
 			           $isadmins = '<option value="0" selected">-- Select User --</option>';
 			       $admins = safe_query("SELECT * FROM ".PREFIX."user_groups WHERE cup='1'");
-			          while($dv=mysql_fetch_array($admins)) {
+			          while($dv=mysqli_fetch_array($admins)) {
 			         $isadmins.='<option value="'.$dv['userID'].'">('.$dv['userID'].') '.getnickname($dv['userID']).'</option>';
 			        }             
 //timezone 	  

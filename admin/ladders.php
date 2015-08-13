@@ -264,7 +264,7 @@ if(isset($_POST['save'])) {
 											'".$_POST['elo_bet1']."',
 											'".$_POST['elo_bet2']."',
 											'".$_POST['elo_abo']."')");				
-    $laddID=mysql_insert_id();
+    $laddID=mysqli_insert_id();
 	safe_query("INSERT INTO ".PREFIX."cup_rules SET value='', lastedit='', ladID='".$laddID."'");
 	redirect("admincenter.php?site=ladders","<center><b>Ladder successfully created!</b></center>",2);
    }
@@ -278,9 +278,9 @@ if(isset($_POST['save'])) {
 //add or takeaway
 
 if(ladderis1on1($_POST['ladID'])) 
-  $ads=mysql_fetch_array(safe_query("SELECT won, draw, lost, streak, xp FROM ".PREFIX."cup_clans WHERE clanID='".$_POST['clanID']."' AND ladID='".$_POST['ladID']."' AND 1on1='1' AND checkin = '1'")); 
+  $ads=mysqli_fetch_array(safe_query("SELECT won, draw, lost, streak, xp FROM ".PREFIX."cup_clans WHERE clanID='".$_POST['clanID']."' AND ladID='".$_POST['ladID']."' AND 1on1='1' AND checkin = '1'"));
 else
-  $ads=mysql_fetch_array(safe_query("SELECT won, draw, lost, streak, xp FROM ".PREFIX."cup_clans WHERE clanID='".$_POST['clanID']."' AND ladID='".$_POST['ladID']."' AND 1on1='0' AND checkin = '1'"));
+  $ads=mysqli_fetch_array(safe_query("SELECT won, draw, lost, streak, xp FROM ".PREFIX."cup_clans WHERE clanID='".$_POST['clanID']."' AND ladID='".$_POST['ladID']."' AND 1on1='0' AND checkin = '1'"));
 
     $inc_xp=($_POST['plusminus_xp']=='1' ? $ads['xp']+$_POST['xp'] : $ads['xp']-$_POST['xp']);
     $inc_won=($_POST['plusminus_w']=='1' ? $ads['won']+$_POST['won'] : $ads['won']-$_POST['won']);
@@ -490,7 +490,7 @@ else
 }
 
 $gamesa=safe_query("SELECT tag, name FROM ".PREFIX."games ORDER BY name");
-while($dv=mysql_fetch_array($gamesa)) {
+while($dv=mysqli_fetch_array($gamesa)) {
 		$games.='<option value="'.$dv['tag'].'">'.$dv['name'].'</option>';
 }
 
@@ -498,7 +498,7 @@ if($_GET['action']=="duplicate") {
 
     $ladders = '<option selected value="">-- Select Ladder --</option>';
       $ladders_query = safe_query("SELECT ID  FROM ".PREFIX."cup_ladders");
-        while($ds=mysql_fetch_array($ladders_query)) {
+        while($ds=mysqli_fetch_array($ladders_query)) {
           $ladders.='<option value="'.$ds['ID'].'">('.$ds['ID'].') '.getladname($ds['ID']).'</option>';
         }
         
@@ -506,7 +506,7 @@ if($_GET['action']=="duplicate") {
        
   if($_GET['duplicate']) {
   
-     $ds=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='".$_GET['duplicate']."'"));
+     $ds=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='".$_GET['duplicate']."'"));
      
      	safe_query("INSERT INTO ".PREFIX."cup_ladders ( `platID`, `mappack`, `gameaccID`, `name`, `abbrev`, `game`, `desc`, gametype, maxclan, 
 	                                                 start, end, gs_start, gs_end, ratio_low, ratio_high, type, mode, ranksys, 
@@ -579,7 +579,7 @@ if($_GET['action']=="duplicate") {
 											'".$ds['elo_bet2']."',
 											'".$ds['elo_abo']."')");									
 											
-    $laddID=mysql_insert_id();
+    $laddID=mysqli_insert_id();
 	safe_query("INSERT INTO ".PREFIX."cup_rules SET value='', lastedit='', ladID='".$laddID."'");
 	redirect("admincenter.php?site=ladders","<center><b>Ladder successfully duplicated!</b></center>",2);
      
@@ -590,19 +590,19 @@ if($_GET['action']=="duplicate") {
 echo'<h2>Ladder</h2>';
 
 	$ergebnis=safe_query("SELECT * FROM ".PREFIX."gameacc ORDER BY type");
-	while($ds=mysql_fetch_array($ergebnis)) {
+	while($ds=mysqli_fetch_array($ergebnis)) {
 		$gameaccs.='<option value="'.$ds['gameaccID'].'">'.$ds['type'].'</option>';
 	}	
 	
   $query = safe_query("SELECT * FROM ".PREFIX."cup_platforms");
-    $num_platforms = mysql_num_rows($query);
-      while($pt = mysql_fetch_array($query)) {
+    $num_platforms = mysqli_num_rows($query);
+      while($pt = mysqli_fetch_array($query)) {
          $platforms.='<option value="'.$pt['ID'].'">'.$pt['name'].' ('.$pt['platform'].')</option>';
      }
      
   $query = safe_query("SELECT * FROM ".PREFIX."cup_maps GROUP BY mappack ORDER BY mappack");
-    $num_mappacks = mysql_num_rows($query);
-      while($mp=mysql_fetch_array($query)) {
+    $num_mappacks = mysqli_num_rows($query);
+      while($mp=mysqli_fetch_array($query)) {
          $mappack.='<option value="'.$mp['mappack'].'">'.$mp['mappack'].'</option>';
 	}
      
@@ -817,7 +817,7 @@ echo'<h2>Ladder</h2>';
   
 //timezones
 
-$tz=mysql_fetch_array(safe_query("SELECT timezone FROM ".PREFIX."cup_settings"));
+$tz=mysqli_fetch_array(safe_query("SELECT timezone FROM ".PREFIX."cup_settings"));
 
 if(!$_POST['timezone']) $sh_timez = $tz['timezone'];
 else $sh_timez = $_POST['timezone'];
@@ -1215,26 +1215,26 @@ echo '
 echo'<h2>Edit Ladder (<a href="../?site=ladders&ID='.$_GET['ID'].'" target="_blank">View ladder</a>) </h2>';
  
  
-  $ds = mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='".$_GET['ID']."'"));
+  $ds = mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='".$_GET['ID']."'"));
   
   $gamesa=safe_query("SELECT tag, name FROM ".PREFIX."games ORDER BY name");
-      while($dv=mysql_fetch_array($gamesa)) {
+      while($dv=mysqli_fetch_array($gamesa)) {
          $games.='<option value="'.$dv['tag'].'">'.$dv['name'].'</option>';
      }
 	
   $query = safe_query("SELECT * FROM ".PREFIX."cup_platforms");
-    $num_platforms = mysql_num_rows($query);
-      while($pt = mysql_fetch_array($query)) {
+    $num_platforms = mysqli_num_rows($query);
+      while($pt = mysqli_fetch_array($query)) {
          $platforms.='<option value="'.$pt['ID'].'">'.$pt['name'].' ('.$pt['platform'].')</option>';
      }
      
   $query = safe_query("SELECT * FROM ".PREFIX."gameacc ORDER BY type");
-      while($gs=mysql_fetch_array($query)) {
+      while($gs=mysqli_fetch_array($query)) {
          $gameaccs.='<option value="'.$gs['gameaccID'].'">'.$gs['type'].'</option>';
 	}
 	
   $query = safe_query("SELECT * FROM ".PREFIX."cup_maps GROUP BY mappack ORDER BY mappack");
-      while($mp=mysql_fetch_array($query)) {
+      while($mp=mysqli_fetch_array($query)) {
          $mappack.='<option value="'.$mp['mappack'].'">'.$mp['mappack'].'</option>';
 	}
 	
@@ -1527,7 +1527,7 @@ if(!in_array($ds['timestart'], $timestart_array))
   
 //
 
-$tz=mysql_fetch_array(safe_query("SELECT timezone FROM ".PREFIX."cup_settings"));
+$tz=mysqli_fetch_array(safe_query("SELECT timezone FROM ".PREFIX."cup_settings"));
 
 if(!$ds['timezone']) $sh_timez = $tz['timezone'];
 else $sh_timez = $ds['timezone'];
@@ -1947,9 +1947,9 @@ echo '
 	echo'<form method="post" action="admincenter.php?site=ladders">
 	       <select name="admins[]" multiple size="10">';
 		   
-	while($dm=mysql_fetch_array($admins)) {
+	while($dm=mysqli_fetch_array($admins)) {
 	    $nick=getnickname($dm['userID']);
-	    $isadmin=mysql_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_admins WHERE ladID='$laddID' AND userID='".$dm['userID']."'"));
+	    $isadmin=mysqli_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_admins WHERE ladID='$laddID' AND userID='".$dm['userID']."'"));
 		if($isadmin) 
 			echo'<option value="'.$dm['userID'].'" selected>'.$nick.'</option>';
 		else 
@@ -1984,7 +1984,7 @@ else $participants = 'Manage Teams';
 	
 	
 	$rule=safe_query("SELECT * FROM ".PREFIX."cup_rules WHERE ladID='".$laddID."'");
-	$dd=mysql_fetch_array($rule);
+	$dd=mysqli_fetch_array($rule);
 	echo '<form method="post" name="post" action="admincenter.php?site=ladders">
 		     <table cellpadding="4" cellspacing="0">
 	    <tr> 
@@ -2058,7 +2058,7 @@ if($_GET['edit']!='true') {
 }
 
 $getladders = safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='$laddID'");
-$ld=mysql_fetch_array($getladders); 
+$ld=mysqli_fetch_array($getladders);
 
  $order_sort = ($_GET['order']=='asc' ? "ASC" : "DESC");
  
@@ -2129,7 +2129,7 @@ $ld=mysql_fetch_array($getladders);
    
    $view_rk = $display_unranked==1 ? "<a href='?site=ladders&action=standings&ID=".$laddID."&view=unranked'>(View Unranked)</a>" : "<a href='?site=ladders&action=standings&ID=".$laddID."'>(View Unranked)</a>";
 
-	if(!mysql_num_rows($participants)) {
+	if(!mysqli_num_rows($participants)) {
 	       echo '<div class="warningbox">No participants found '.$view_rk.'</div>';
 	}
 	else
@@ -2153,17 +2153,17 @@ $ld=mysql_fetch_array($getladders);
 	
 	}
 	
-   while($ds=mysql_fetch_array($participants)) { $teamID = $ds['clanID'];
+   while($ds=mysqli_fetch_array($participants)) { $teamID = $ds['clanID'];
       
    $getmatches = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE ladID='$laddID' AND (clan1='$teamID' || clan2='$teamID')");
-    $dm = mysql_fetch_array($getmatches);
+    $dm = mysqli_fetch_array($getmatches);
     
 /* ADMIN MANUAL ADDED STATS */
 
 if(ladderis1on1($laddID)) 
-  $ms=mysql_fetch_array(safe_query("SELECT won, draw, lost, streak, xp FROM ".PREFIX."cup_clans WHERE clanID='$teamID' AND ladID='$laddID' AND 1on1='1'")); 
+  $ms=mysqli_fetch_array(safe_query("SELECT won, draw, lost, streak, xp FROM ".PREFIX."cup_clans WHERE clanID='$teamID' AND ladID='$laddID' AND 1on1='1'"));
 else
-  $ms=mysql_fetch_array(safe_query("SELECT won, draw, lost, streak, xp FROM ".PREFIX."cup_clans WHERE clanID='$teamID' AND ladID='$laddID' AND 1on1='0'"));  
+  $ms=mysqli_fetch_array(safe_query("SELECT won, draw, lost, streak, xp FROM ".PREFIX."cup_clans WHERE clanID='$teamID' AND ladID='$laddID' AND 1on1='0'"));
 
     $won_matches = $ms['won'];
     $lost_matches = $ms['lost']; 
@@ -2236,14 +2236,14 @@ if(isset($_GET['edit']) && $_GET['edit']=='true') {
 }else{
 
   $query = safe_query("SELECT ID, platform FROM ".PREFIX."cup_platforms GROUP BY platform");
-   if(!mysql_num_rows($query)) echo 'You must create at least one platform before you can create ladders. (<a href="admincenter.php?site=platforms&action=add">add platform</a>)';
+   if(!mysqli_num_rows($query)) echo 'You must create at least one platform before you can create ladders. (<a href="admincenter.php?site=platforms&action=add">add platform</a>)';
    
   else{
 
 	echo'<input type="button" class="button" onClick="MM_goToURL(\'parent\',\'admincenter.php?site=ladders&action=add\');return document.MM_returnValue" value="New Ladder"> <input type="button" class="button" onClick="MM_goToURL(\'parent\',\'admincenter.php?site=ladders&action=duplicate\');return document.MM_returnValue" value="Duplicate Ladder"> <input type="button" class="button" onClick="MM_goToURL(\'parent\',\'admincenter.php?site=gameaccounts\');return document.MM_returnValue" value="Gameaccounts"><br><br>';
 
 	$ergebnis=safe_query("SELECT * FROM ".PREFIX."cup_ladders ORDER BY ID DESC");
-	$anz=mysql_num_rows($ergebnis);
+	$anz=mysqli_num_rows($ergebnis);
 	if($anz) {
    		echo'<form method="post" name="ws_cups" action="admincenter.php?site=ladders"><table width="100%" cellpadding="4" cellspacing="1" bgcolor="#999999">
 	       		<tr bgcolor="#CCCCCC">
@@ -2258,7 +2258,7 @@ if(isset($_GET['edit']) && $_GET['edit']=='true') {
 				</td>
 				</tr>';
 	
-		while($ds=mysql_fetch_array($ergebnis)) {
+		while($ds=mysqli_fetch_array($ergebnis)) {
 			if(ladderis1on1($ds['ID'])) {
 				$cupinfo='(1on1)';
 				$participants = 'Players';

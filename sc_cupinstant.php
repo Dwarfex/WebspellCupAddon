@@ -60,7 +60,7 @@ $s = '';
  }$for_query1 = "$s status=''";
  
 if($userID)			 
-$user_DS=mysql_fetch_array(safe_query("SELECT jgrowl FROM ".PREFIX."user WHERE userID='$userID'"));
+$user_DS=mysqli_fetch_array(safe_query("SELECT jgrowl FROM ".PREFIX."user WHERE userID='$userID'"));
  
  if(pageURL()=="site=sc_cupinstant") 
  {
@@ -79,12 +79,12 @@ $user_DS=mysql_fetch_array(safe_query("SELECT jgrowl FROM ".PREFIX."user WHERE u
   if(iscupadmin($userID)) {  
   
      $query=safe_query("SELECT * FROM ".PREFIX."cup_tickets WHERE $for_query1 ORDER BY ticketID DESC");
-        while($cids=mysql_fetch_array($query)) 
+        while($cids=mysqli_fetch_array($query))
         {  
      
            echo '<tr>
                    <td bgcolor="'.$bg1.'" align="center">'.date("l M dS Y", $cids['time']).'</td>
-                   <td bgcolor="'.$bg1.'" align="center">'.$unresolved_ticket_a.(mysql_num_rows($query)>1 ? "s" : "").'</td>
+                   <td bgcolor="'.$bg1.'" align="center">'.$unresolved_ticket_a.(mysqli_num_rows($query)>1 ? "s" : "").'</td>
                    <td bgcolor="'.$bg1.'" align="center">'.ticket_status($cids['ticketID']).'</td>
                    <td bgcolor="'.$bg1.'" align="center">'.getnickname($cids['userID']).'</td>
                    <td bgcolor="'.$bg1.'" align="center"><a href="admin/admincenter.php?site=cuptickets&action=view_ticket&tickID='.$cids['ticketID'].'" target="_blank"><img border="0" src="images/icons/foldericons/newhotfolder.gif"></a></td>
@@ -121,15 +121,15 @@ if($loggedin && ($user_DS['jgrowl']==1 OR $user_DS['jgrowl']==2 OR $user_DS['jgr
      
      $query2=safe_query("SELECT * FROM ".PREFIX."cup_tickets WHERE $for_query1");
      
-	 if(mysql_num_rows($query2)>4) $more_rows0 = '(<a href="?site=sc_cupinstant"><b>View All</b></a>)';
+	 if(mysqli_num_rows($query2)>4) $more_rows0 = '(<a href="?site=sc_cupinstant"><b>View All</b></a>)';
 	 else $more_rows0 = '';
      
      $query=safe_query("SELECT * FROM ".PREFIX."cup_tickets WHERE $for_query1 ORDER BY ticketID DESC LIMIT 0,4");
 	 
-     if(mysql_num_rows($query)) $header0 = $unresolved_ticket_a.(mysql_num_rows($query)>1 ? "s" : "");
+     if(mysqli_num_rows($query)) $header0 = $unresolved_ticket_a.(mysqli_num_rows($query)>1 ? "s" : "");
 	 else $header0 = '';
      
-     while($cids=mysql_fetch_array($query)) 
+     while($cids=mysqli_fetch_array($query))
      {  
         if($cids['userID']) $s_nick = '('.getnickname($cids['userID']).')';
      
@@ -153,14 +153,14 @@ if($loggedin && ($user_DS['jgrowl']==1 OR $user_DS['jgrowl']==2 OR $user_DS['jgr
         $query_teams=safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE (clan1='".participantTeamID($userID)."' || clan2='".participantTeamID($userID)."') && (clan1 != '0' AND clan2 != '0') && (clan1 !='2147483647' AND clan2 !='2147483647') AND confirmscore='0' AND 1on1='0'");
      }
 
-     $totalRows = mysql_num_rows($query_1on1)+mysql_num_rows($query_teams);
+     $totalRows = mysqli_num_rows($query_1on1)+mysqli_num_rows($query_teams);
 
-     if(mysql_num_rows($query_1on1) || mysql_num_rows($query_teams)) 
+     if(mysqli_num_rows($query_1on1) || mysqli_num_rows($query_teams))
         $header1 = $unconfirmed_result.($totalRows>1 ? "s" : "");
 	 else
 	    $header1 = '';
      
-     while($cids=mysql_fetch_array($query_1on1)) {
+     while($cids=mysqli_fetch_array($query_1on1)) {
      
        if($cids['type']=='gs') {
                 $csID = $cids['matchno'];
@@ -179,7 +179,7 @@ if($loggedin && ($user_DS['jgrowl']==1 OR $user_DS['jgrowl']==2 OR $user_DS['jgr
           $get_status_cs = safe_query("SELECT status FROM ".PREFIX.$csTB." WHERE ID='$csID' && status='2'");
        }
        
-       if(mysql_num_rows($get_status_cs)) {
+       if(mysqli_num_rows($get_status_cs)) {
           
         $league = league($cids['matchID']);  
         $type = getleagueType($cids['matchID']);
@@ -214,7 +214,7 @@ if($loggedin && ($user_DS['jgrowl']==1 OR $user_DS['jgrowl']==2 OR $user_DS['jgr
         }
       }
      }
-     while($cids1=mysql_fetch_array($query_teams)) 
+     while($cids1=mysqli_fetch_array($query_teams))
      {
      
        if($cids1['type']=='gs') {
@@ -234,7 +234,7 @@ if($loggedin && ($user_DS['jgrowl']==1 OR $user_DS['jgrowl']==2 OR $user_DS['jgr
           $get_status_cs = safe_query("SELECT status FROM ".PREFIX.$csTB." WHERE ID='$csID' && status='2'");
        }
        
-       if(mysql_num_rows($get_status_cs)) {
+       if(mysqli_num_rows($get_status_cs)) {
      
         $league = league($cids1['matchID']);  
         $type = getleagueType($cids1['matchID']);
@@ -281,19 +281,19 @@ if($loggedin && ($user_DS['jgrowl']==1 OR $user_DS['jgrowl']==2 OR $user_DS['jgr
         $query2=safe_query("SELECT * FROM ".PREFIX."cup_challenges WHERE (status='1' || status='2') && (challenger='".participantTeamID($userID)."' || challenged='".participantTeamID($userID)."') && 1on1='0'");     
      }
 
-     $totalRows = mysql_num_rows($query1)+mysql_num_rows($query2);
+     $totalRows = mysqli_num_rows($query1)+mysqli_num_rows($query2);
 
-     if(mysql_num_rows($query1) || mysql_num_rows($query2)) $header2 = 'Unfinalized Challenge'.($totalRows>1 ? "s" : "");
+     if(mysqli_num_rows($query1) || mysqli_num_rows($query2)) $header2 = 'Unfinalized Challenge'.($totalRows>1 ? "s" : "");
 	 else $header2 = '';
      
-     while($cids=mysql_fetch_array($query1)) 
+     while($cids=mysqli_fetch_array($query1))
      {
         if($cids[challenger] && $cids[challenged])
         {
            $content2.=getname1($cids['challenger'],$cids['ladID'],$ac=0,$league="ladder").' vs '.getname1($cids['challenged'],$cids['ladID'],$ac=0,$league="ladder").' <a href="?site=standings&action=viewchallenge&laddID='.$cids['ladID'].'&challID='.$cids['chalID'].'"><img border="0" src="images/cup/icons/challenge.gif" align="right" width="14" height="14"></a><br>';
         }
      }
-     while($cidst=mysql_fetch_array($query2)) 
+     while($cidst=mysqli_fetch_array($query2))
      {
         if($cidst[challenger] && $cidst[challenged])
         {
@@ -320,10 +320,10 @@ $content3 = '';
   { 
      $query=safe_query("SELECT * FROM ".PREFIX."cup_tickets WHERE userID='$userID' && ($for_query2)");
 
-     if(mysql_num_rows($query)) $header3 = $unresolved_ticket_u.(mysql_num_rows($query)>1 ? "s" : "");
+     if(mysqli_num_rows($query)) $header3 = $unresolved_ticket_u.(mysqli_num_rows($query)>1 ? "s" : "");
 	 else $header3 = '';
      
-     while($cids=mysql_fetch_array($query1)) 
+     while($cids=mysqli_fetch_array($query1))
      {  
            $content3.=ticket_status($cids['ticketID']).' ('.getnickname($cids['userID']).') <a href="?site=cupactions&action=mytickets&tickID='.$cids['ticketID'].'"><img border="0" src="images/icons/foldericons/newhotfolder.gif" align="right"></a><br>';
      }
@@ -344,10 +344,10 @@ $content3 = '';
 	$content4 = '';
 
     $query = safe_query("SELECT * FROM ".PREFIX."cups ORDER BY ID DESC");
-      while($cids1=mysql_fetch_array($query))
+      while($cids1=mysqli_fetch_array($query))
       {
 	  
-		$chk_fa=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_agents WHERE cupID='".$cids1['ID']."' && ladID='0'"));
+		$chk_fa=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_agents WHERE cupID='".$cids1['ID']."' && ladID='0'"));
       
         $game1='<img src="images/games/'.$cids1['game'].'.gif" width="14" height="14" border="0">';     
       
@@ -394,10 +394,10 @@ $content3 = '';
       }
 
     $query = safe_query("SELECT * FROM ".PREFIX."cup_ladders ORDER BY ID DESC");
-      while($cids2=mysql_fetch_array($query))
+      while($cids2=mysqli_fetch_array($query))
       {
 	  
-		$chk_fa=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_agents WHERE ladID='".$cids2['ID']."' && cupID='0'"));  
+		$chk_fa=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_agents WHERE ladID='".$cids2['ID']."' && cupID='0'"));
       
         $game2='<img src="images/games/'.$cids2['game'].'.gif" width="14" height="14" border="0">'; 
       
@@ -456,7 +456,7 @@ $content3 = '';
 	$content5 ='';
 
     $query = safe_query("SELECT * FROM ".PREFIX."cups ORDER BY ID DESC");
-      while($cids1=mysql_fetch_array($query))
+      while($cids1=mysqli_fetch_array($query))
       {
       
         $game1='<img src="images/games/'.$cids1['game'].'.gif" width="14" height="14" border="0">';
@@ -500,7 +500,7 @@ $content3 = '';
       }
 
     $query = safe_query("SELECT * FROM ".PREFIX."cup_ladders ORDER BY ID DESC");
-      while($cids2=mysql_fetch_array($query))
+      while($cids2=mysqli_fetch_array($query))
       {
       
         $game2='<img src="images/games/'.$cids2['game'].'.gif" width="14" height="14" border="0">';

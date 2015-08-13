@@ -178,7 +178,7 @@ match_query_type();
 if(isset($_GET['edit']) && $_GET['edit']=="account" && isset($_GET['gameaccID']) && isset($_GET['type'])) { 
     
     $getvalue = safe_query("SELECT value FROM ".PREFIX."user_gameacc WHERE userID='$id' && gameaccID='".$_GET['gameaccID']."'");
-    $dr = mysql_fetch_array($getvalue);
+    $dr = mysqli_fetch_array($getvalue);
     
       $game.='<option selected value="'.$_GET['gameaccID'].'">'.$_GET['type'].'</option>';
     
@@ -214,13 +214,13 @@ if(isset($_GET['edit']) && $_GET['edit']=="account" && isset($_GET['gameaccID'])
 	  $id = $_POST['id'];
 
 	  $ergebnis=safe_query("SELECT * FROM ".PREFIX."user_gameacc WHERE userID='$id'");
-		$ds=mysql_fetch_array($ergebnis);
+		$ds=mysqli_fetch_array($ergebnis);
 		
 	  $inlog=safe_query("SELECT * FROM ".PREFIX."user_gameacc WHERE userID='$id' AND gameaccID='$type'");
-		$dd=mysql_fetch_array($inlog);
+		$dd=mysqli_fetch_array($inlog);
 		
 	$ergebnis2 = safe_query("SELECT value FROM ".PREFIX."user_gameacc WHERE value = '$value' && type = '".$dd['type']."' && log='0'");
-		$num_gameacc = mysql_num_rows($ergebnis2);
+		$num_gameacc = mysqli_num_rows($ergebnis2);
 		
 		//echo "SELECT value FROM ".PREFIX."user_gameacc WHERE value = '$value' && type = '".$dd['type']."'";
 		
@@ -244,7 +244,7 @@ if(isset($_GET['edit']) && $_GET['edit']=="account" && isset($_GET['gameaccID'])
 /* GET TEAMS */
 
 $getteams = safe_query("SELECT * FROM ".PREFIX."cup_clan_members WHERE userID='$id'");
-if(mysql_num_rows($getteams)) {
+if(mysqli_num_rows($getteams)) {
 
 $profile_teams = '<table width="100%" cellpadding="'.$cellpadding.'" cellspacing="'.$cellspacing.'" bgcolor="'.$border.'">
                  <td class="title" bgcolor="$bghead" colspan="12">&nbsp; &#8226; Teams</td>    
@@ -259,7 +259,7 @@ $profile_teams = '<table width="100%" cellpadding="'.$cellpadding.'" cellspacing
 		  </tr>';
 
   $n=1;
-    while($dd=mysql_fetch_array($getteams)) {
+    while($dd=mysqli_fetch_array($getteams)) {
     
       $n%2 ? $bgcolor=BG_1 : $bgcolor=BG_2;
   
@@ -269,7 +269,7 @@ $profile_teams = '<table width="100%" cellpadding="'.$cellpadding.'" cellspacing
       if(!getclanname2($clanID)) $clanname = '<font color="red">(Removed Team)</font>';
     
       $getowner = safe_query("SELECT * FROM ".PREFIX."cup_all_clans WHERE ID='$clanID' AND leader='$id'");
-      $ds=mysql_fetch_array($getowner); 
+      $ds=mysqli_fetch_array($getowner);
 
       if($id==$ds['leader'] && $dd['function']=='Leader') { 
               $isowner = 'Owner'; 
@@ -282,7 +282,7 @@ $profile_teams = '<table width="100%" cellpadding="'.$cellpadding.'" cellspacing
       }
 
       $cups_t = (!cupawards($clanID,0) && !ladawards($clanID,0) ? "<img src='images/cup/icons/nok_32.png' width='16' height='16'>" : cupawards($clanID,0).ladawards($clanID,0));
-      $cm=mysql_fetch_array(safe_query("SELECT count(*) as members FROM ".PREFIX."cup_clan_members WHERE clanID='$clanID'"));
+      $cm=mysqli_fetch_array(safe_query("SELECT count(*) as members FROM ".PREFIX."cup_clan_members WHERE clanID='$clanID'"));
 
 	  $clanhp = (!empty($ds['clanhp']) && $ds['clanhp']!='http://' ? '<a href="'.$ds['clanhp'].'" target="_blank"><img src="images/profile/hp.gif" width="20" height="20" align="right"></a>' : ''); 
       $cup_ID = isset($_GET['cupID']) ? $_GET['cupID'] : 0;
@@ -313,7 +313,7 @@ else{
 /* GET USER CUPS */
 		
            $cups_ft = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE clanID='$id' && 1on1='1' && (cupID!='0' || ladID!='0')");
-	        if(mysql_num_rows($cups_ft)) {
+	        if(mysqli_num_rows($cups_ft)) {
 		
 		   $all_cups = '<table width="100%" cellpadding="'.$cellpadding.'" cellspacing="'.$cellspacing.'" bgcolor="'.$border.'">
 		                <tr>
@@ -329,7 +329,7 @@ else{
 		   $all_cups = '';
 		}
 		
-	         while($ds = mysql_fetch_assoc($cups_ft)) {
+	         while($ds = mysqli_fetch_assoc($cups_ft)) {
 		 
 		    if($ds['type']=='ladder') {
 		        $tit = "Ladder";
@@ -386,14 +386,14 @@ else{
 			    </tr>';	    
 		    }
      	    
-			if(mysql_num_rows($cups_ft)) echo '</table>';
+			if(mysqli_num_rows($cups_ft)) echo '</table>';
 	       
 /* GET USER PENALTY POINTS */
 	
 	$userpoints = '';
 	$all_points = getuserpenaltypoints($id);	
 	$ergebnis2 = safe_query("SELECT * FROM ".PREFIX."cup_warnings WHERE clanID = '$id' && expired='0' && 1on1='1' ORDER BY time DESC");	
-	$warn_num = mysql_num_rows($ergebnis2); 
+	$warn_num = mysqli_num_rows($ergebnis2);
 	if($warn_num){
 		$userpoints= '
 		   <tr>
@@ -411,7 +411,7 @@ else{
 		    </tr>';
 	
 		$n=1;
-		while($dr=mysql_fetch_array($ergebnis2)) {
+		while($dr=mysqli_fetch_array($ergebnis2)) {
 			$userpoints.= '<a name="points"></a>
 					<tr>
 						<td align="center" bgcolor="'.$bg1.'">'.$dr['points'].'</td>
@@ -462,9 +462,9 @@ if(isset($id) and getnickname($id) != '') {
 
     $buddylist="";
     $buddys = safe_query("SELECT buddy FROM ".PREFIX."buddys WHERE userID='".$id."'");
-		if(mysql_num_rows($buddys)) {
+		if(mysqli_num_rows($buddys)) {
 			$n = 1;
-			while($db = mysql_fetch_array($buddys)) {
+			while($db = mysqli_fetch_array($buddys)) {
 				$n % 2 ? $bgcolor = BG_1 : $bgcolor = BG_2;
 				$flag = '[flag]'.getcountry($db['buddy']).'[/flag]';
 				$country = flags($flag);
@@ -524,20 +524,20 @@ echo '<br><table width="100%" border="0" cellspacing="'.$cellspacing.'" cellpadd
   </tr>';
 
 if($usergalleries) {
- if(mysql_num_rows($galleries)) {
+ if(mysqli_num_rows($galleries)) {
     $n=1;
-	while($ds=mysql_fetch_array($galleries)) {
+	while($ds=mysqli_fetch_array($galleries)) {
 		$n%2 ? $bg=BG_1 : $bg=BG_2;
 
-    $piccount=mysql_num_rows(safe_query("SELECT * FROM ".PREFIX."gallery_pictures WHERE galleryID='".$ds[galleryID]."'"));
-    $commentcount=mysql_num_rows(safe_query("SELECT * FROM ".PREFIX."comments WHERE parentID='".$ds[galleryID]."' AND type='ga'"));
+    $piccount=mysqli_num_rows(safe_query("SELECT * FROM ".PREFIX."gallery_pictures WHERE galleryID='".$ds[galleryID]."'"));
+    $commentcount=mysqli_num_rows(safe_query("SELECT * FROM ".PREFIX."comments WHERE parentID='".$ds[galleryID]."' AND type='ga'"));
 
 
 		$gallery[date] = date("d.m.Y",$ds[date]);
 		$gallery[title] = cleartext($ds[name]);
 	  $gallery[picture] = $galclass->randompic($ds[galleryID]);
 		$gallery[galleryID] = $ds[galleryID];
-		$gallery[count] = mysql_num_rows(safe_query("SELECT picID FROM `".PREFIX."gallery_pictures` WHERE galleryID='".$ds[galleryID]."'"));
+		$gallery[count] = mysqli_num_rows(safe_query("SELECT picID FROM `".PREFIX."gallery_pictures` WHERE galleryID='".$ds[galleryID]."'"));
 
     eval ("\$profile = \"".gettemplate("profile_galleries")."\";");
     echo $profile;
@@ -583,20 +583,20 @@ echo '</table>';
       </tr>';
 
 		if($usergalleries) {
-			if(mysql_num_rows($galleries)) {
+			if(mysqli_num_rows($galleries)) {
 				$n = 1;
-				while($ds = mysql_fetch_array($galleries)) {
+				while($ds = mysqli_fetch_array($galleries)) {
 					$n % 2 ? $bg = BG_1 : $bg = BG_2;
 
-					$piccount = mysql_num_rows(safe_query("SELECT * FROM ".PREFIX."gallery_pictures WHERE galleryID='".$ds['galleryID']."'"));
-					$commentcount = mysql_num_rows(safe_query("SELECT * FROM ".PREFIX."comments WHERE parentID='".$ds['galleryID']."' AND type='ga'"));
+					$piccount = mysqli_num_rows(safe_query("SELECT * FROM ".PREFIX."gallery_pictures WHERE galleryID='".$ds['galleryID']."'"));
+					$commentcount = mysqli_num_rows(safe_query("SELECT * FROM ".PREFIX."comments WHERE parentID='".$ds['galleryID']."' AND type='ga'"));
 
 
 					$gallery['date'] = date("d.m.Y",$ds['date']);
 					$gallery['title'] = cleartext($ds['name']);
 					$gallery['picture'] = $galclass->randompic($ds['galleryID']);
 					$gallery['galleryID'] = $ds['galleryID'];
-					$gallery['count'] = mysql_num_rows(safe_query("SELECT picID FROM `".PREFIX."gallery_pictures` WHERE galleryID='".$ds['galleryID']."'"));
+					$gallery['count'] = mysqli_num_rows(safe_query("SELECT picID FROM `".PREFIX."gallery_pictures` WHERE galleryID='".$ds['galleryID']."'"));
 
 					eval("\$profile = \"".gettemplate("profile_galleries")."\";");
 					echo $profile;
@@ -624,9 +624,9 @@ echo '</table>';
 
 		$topiclist="";
 		$topics=safe_query("SELECT * FROM ".PREFIX."forum_topics WHERE userID='".$id."' AND moveID=0 ORDER BY date DESC");
-		if(mysql_num_rows($topics)) {
+		if(mysqli_num_rows($topics)) {
 			$n = 1;
-			while($db = mysql_fetch_array($topics)) {
+			while($db = mysqli_fetch_array($topics)) {
 				if($db['readgrps'] != "") {
 					$usergrps = explode(";", $db['readgrps']);
 					$usergrp = 0;
@@ -661,9 +661,9 @@ echo '</table>';
 
 		$postlist="";
 		$posts=safe_query("SELECT ".PREFIX."forum_topics.boardID, ".PREFIX."forum_topics.readgrps, ".PREFIX."forum_topics.topicID, ".PREFIX."forum_topics.topic, ".PREFIX."forum_posts.date, ".PREFIX."forum_posts.message FROM ".PREFIX."forum_posts, ".PREFIX."forum_topics WHERE ".PREFIX."forum_posts.poster='".$id."' AND ".PREFIX."forum_posts.topicID=".PREFIX."forum_topics.topicID ORDER BY date DESC");
-		if(mysql_num_rows($posts)) {
+		if(mysqli_num_rows($posts)) {
 			$n = 1;
-			while($db = mysql_fetch_array($posts)) {
+			while($db = mysqli_fetch_array($posts)) {
 				if($db['readgrps'] != "") {
 					$usergrps = explode(";", $db['readgrps']);
 					$usergrp = 0;
@@ -762,7 +762,7 @@ echo '</table>';
 			$bg1 = BG_1;
 			$bg2 = BG_2;
 
-			$gesamt = mysql_num_rows(safe_query("SELECT gbID FROM ".PREFIX."user_gbook WHERE userID='".$id."'"));
+			$gesamt = mysqli_num_rows(safe_query("SELECT gbID FROM ".PREFIX."user_gbook WHERE userID='".$id."'"));
 
 			if(isset($_GET['page'])) $page = (int)$_GET['page'];
 			$type="DESC";
@@ -805,7 +805,7 @@ echo '</table>';
 			</table>';
 
 			echo '<form method="post" name="form" action="index.php?site=profile&amp;id='.$id.'&amp;action=guestbook&amp;delete=true">';
-			while ($ds = mysql_fetch_array($ergebnis)) {
+			while ($ds = mysqli_fetch_array($ergebnis)) {
 				$n % 2 ? $bg1 = BG_1 : $bg1 = BG_2;
 				$date = date("d.m.Y - H:i", $ds['date']);
 
@@ -893,12 +893,12 @@ echo '</table>';
 
 		$date = time();
 		$ergebnis = safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$id."'");
-		$anz = mysql_num_rows($ergebnis);
-		$ds = mysql_fetch_array($ergebnis);
+		$anz = mysqli_num_rows($ergebnis);
+		$ds = mysqli_fetch_array($ergebnis);
 
 		if($userID != $id && $userID != 0) {
 			safe_query("UPDATE ".PREFIX."user SET visits=visits+1 WHERE userID='".$id."'");
-			if(mysql_num_rows(safe_query("SELECT visitID FROM ".PREFIX."user_visitors WHERE userID='".$id."' AND visitor='".$userID."'")))
+			if(mysqli_num_rows(safe_query("SELECT visitID FROM ".PREFIX."user_visitors WHERE userID='".$id."' AND visitor='".$userID."'")))
 			safe_query("UPDATE ".PREFIX."user_visitors SET date='".$date."' WHERE userID='".$id."' AND visitor='".$userID."'");
 			else safe_query("INSERT INTO ".PREFIX."user_visitors (userID, visitor, date) values ('".$id."', '".$userID."', '".$date."')");
 		}
@@ -1099,8 +1099,8 @@ else{
 
 		$birthday = mb_substr($ds['birthday'], 0, 10);
 
-		$res = mysql_query("SELECT birthday, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW()) - TO_DAYS(birthday)), '%y') 'age' FROM ".PREFIX."user WHERE userID = '".$id."'");
-		$cur = mysql_fetch_array($res);
+		$res = mysqli_query("SELECT birthday, DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW()) - TO_DAYS(birthday)), '%y') 'age' FROM ".PREFIX."user WHERE userID = '".$id."'");
+		$cur = mysqli_fetch_array($res);
 		$birthday = $birthday." (".$cur['age']." ".$_language->module['years'].")";
 
 		if(!$ds['timezone'] OR $ds['timezone']==1)
@@ -1482,7 +1482,7 @@ $player = '<a href="http://www.esl-europe.de/de/player/'.$esl_id.'" target="_bla
 		else {
 			$posts = getuserforumposts($ds['userID']);
 			$ergebnis = safe_query("SELECT * FROM ".PREFIX."forum_ranks WHERE ".$posts." >= postmin AND ".$posts." <= postmax");
-			$ds = mysql_fetch_array($ergebnis);
+			$ds = mysqli_fetch_array($ergebnis);
 			$usertype = $ds['rank'];
 			$rang = '<img src="images/icons/ranks/'.$ds['pic'].'" alt="" />';
 		}
@@ -1505,9 +1505,9 @@ $player = '<a href="http://www.esl-europe.de/de/player/'.$esl_id.'" target="_bla
 		}
 		
 		$gameacclog = safe_query("SELECT * FROM ".PREFIX."user_gameacc WHERE userID='$id' && log='1' ORDER BY type");
-		while($dl=mysql_fetch_array($gameacclog)) {
+		while($dl=mysqli_fetch_array($gameacclog)) {
 		
-		if(mysql_num_rows($gameacclog) && $_GET['gameacc']!='changelog') {
+		if(mysqli_num_rows($gameacclog) && $_GET['gameacc']!='changelog') {
 		
 		    if($userID==$id) { 
 		          $userhas = 'You have'; 
@@ -1522,7 +1522,7 @@ $player = '<a href="http://www.esl-europe.de/de/player/'.$esl_id.'" target="_bla
 		}
 		
 		$getvalue=safe_query("SELECT type FROM ".PREFIX."gameacc WHERE gameaccID='".$dl[type]."'");
-	        $dp = mysql_fetch_array($getvalue);
+	        $dp = mysqli_fetch_array($getvalue);
 		
 		if(isset($_GET['gameacc']) && $_GET['gameacc']=='changelog'){
 		
@@ -1545,7 +1545,7 @@ $player = '<a href="http://www.esl-europe.de/de/player/'.$esl_id.'" target="_bla
 		$game1=safe_query("SELECT * FROM ".PREFIX."user_gameacc WHERE userID='$id' && log='0' ORDER BY type");
 		$cs = ($userID==$id ? 2 : 5);
 						
-if(mysql_num_rows($game1)) {
+if(mysqli_num_rows($game1)) {
 
       $game4 = '<tr>
 		  <td class="title" colspan="12">&nbsp; &#8226; '.$gameacc_tit.' '.$addgacc.'</td>
@@ -1565,10 +1565,10 @@ if(mysql_num_rows($game1)) {
 		</tr>';
 
     $n=1;
-	while($db=mysql_fetch_array($game1)) {
+	while($db=mysqli_fetch_array($game1)) {
 	
 		$game3=safe_query("SELECT type FROM ".PREFIX."gameacc WHERE gameaccID='".$db[type]."'");
-	    $dp = mysql_fetch_array($game3);
+	    $dp = mysqli_fetch_array($game3);
 	 
 		$n%2 ? $bgcolor=BG_1 : $bgcolor=BG_2;
 		
@@ -1589,9 +1589,9 @@ else $game4='';
                  
 		$lastvisits="";
 		$visitors = safe_query("SELECT * FROM ".PREFIX."user_visitors WHERE userID='".$id."' ORDER BY date DESC LIMIT 0,10");
-		if(mysql_num_rows($visitors)) {
+		if(mysqli_num_rows($visitors)) {
 			$n = 1;
-			while($dv = mysql_fetch_array($visitors)) {
+			while($dv = mysqli_fetch_array($visitors)) {
 				$n % 2 ? $bgcolor = BG_1 : $bgcolor = BG_2;
 				$flag = '[flag]'.getcountry($dv['visitor']).'[/flag]';
 				$country = flags($flag);

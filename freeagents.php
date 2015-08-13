@@ -67,7 +67,7 @@ if(isset($_POST['post'])) {
 	
         	if(safe_query("INSERT INTO ".PREFIX."cup_agents (`userID`, `cupID`, `ladID`, `avail`, `name`, `play`, `info`, `time`) VALUES ('$userID', '$cupID', '$ladID', '".$_POST['avail']."', '".$_POST['name']."', '".$_POST['play']."', '".$_POST['info']."', '".time()."')")) 
         	{
-                   redirect('?site=freeagents&agent='.mysql_insert_id(), '<div '.$error_box.'> You are now a free agent and being redirected...</div>', 3);
+                   redirect('?site=freeagents&agent='.mysqli_insert_id(), '<div '.$error_box.'> You are now a free agent and being redirected...</div>', 3);
         	}
         	else
         	{
@@ -113,17 +113,17 @@ echo '<table width="100%" cellspacing="'.$cellspacing.'" cellpadding="'.$cellpad
 
 if(isset($_GET['action']) && $_GET['action']=='new') {
 
-  $cin=mysql_fetch_array(safe_query("SELECT userID FROM ".PREFIX."cup_clan_members WHERE userID='$userID' && agent='1'"));
+  $cin=mysqli_fetch_array(safe_query("SELECT userID FROM ".PREFIX."cup_clan_members WHERE userID='$userID' && agent='1'"));
 
   if($loggedin && !is_array($cin)) {
   
    $cups = '<option value="0" selected">-- Select League --</option><optgroup label="Tournaments">';
 
     $query = safe_query("SELECT * FROM ".PREFIX."cups WHERE 1on1='0' && agents='1' ORDER BY ID DESC");
-      while($cids1=mysql_fetch_array($query))
+      while($cids1=mysqli_fetch_array($query))
       {
       
-        $db=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_agents WHERE userID='$userID' && cupID='".$cids1['ID']."'"));
+        $db=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_agents WHERE userID='$userID' && cupID='".$cids1['ID']."'"));
       
         if(is_array($db)) 
 	{
@@ -150,10 +150,10 @@ if(isset($_GET['action']) && $_GET['action']=='new') {
     $cups .= '<optgroup label="Ladders">';
       
     $query = safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE 1on1='0' && agents='1' ORDER BY ID DESC");
-      while($cids2=mysql_fetch_array($query))
+      while($cids2=mysqli_fetch_array($query))
       {
       
-        $db=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_agents WHERE userID='$userID' && ladID='".$cids2['ID']."'"));
+        $db=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_agents WHERE userID='$userID' && ladID='".$cids2['ID']."'"));
       
         if(is_array($db)) 
 	    {
@@ -189,7 +189,7 @@ if(isset($_GET['action']) && $_GET['action']=='new') {
 	$dd_avail=str_replace(' selected', '', $dd_avail);
 	$dd_avail=str_replace('value="'.$_POST['avail'].'"', 'value="'.$_POST['avail'].'" selected', $dd_avail);
         
-	$cup_info=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."$table WHERE ID='$ID'"));
+	$cup_info=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."$table WHERE ID='$ID'"));
 	
 	if(!is_array($cup_info) && isset($_GET[$type])) {
          	die($sys_err);
@@ -265,7 +265,7 @@ elseif(isset($_GET['action']) && $_GET['action']=='view') {
 	     
 	     $freeagents = safe_query("SELECT * FROM ".PREFIX."cup_agents $query");
 		 
-            if(!mysql_num_rows($freeagents)) { echo '<div class="errorbox"> No results found</div>'; }
+            if(!mysqli_num_rows($freeagents)) { echo '<div class="errorbox"> No results found</div>'; }
 			else 
 			
    echo '<tr>
@@ -278,7 +278,7 @@ elseif(isset($_GET['action']) && $_GET['action']=='view') {
 	       <td class="title2" align="center">Details</td>
 	     </tr>';
 		 
-	        while($ds= mysql_fetch_array($freeagents)) {
+	        while($ds= mysqli_fetch_array($freeagents)) {
 		
 		   if($ds['cupID']==0 && $ds['ladID']!=0) {
 		      $league_name = '<a href="?site=ladders&ID='.$ds['ladID'].'">'.getladdername($ds['ladID']).'</a>';
@@ -289,7 +289,7 @@ elseif(isset($_GET['action']) && $_GET['action']=='view') {
 		      $league_type = "cup";
 		   }
 		   
-		   $cin=mysql_fetch_array(safe_query("SELECT userID FROM ".PREFIX."cup_clan_members WHERE userID='".$ds['userID']."' && agent='1'"));
+		   $cin=mysqli_fetch_array(safe_query("SELECT userID FROM ".PREFIX."cup_clan_members WHERE userID='".$ds['userID']."' && agent='1'"));
 		   
 		   if(is_array($cin)) {
 		      safe_query("DELETE FROM ".PREFIX."cup_agents WHERE userID='".$ds['userID']."'");
@@ -369,9 +369,9 @@ elseif(isset($_GET['action']) && $_GET['action']=='view') {
 		
 }elseif(isset($_POST['invite']) && $_POST['invite']) {
 
-    $clanID = mysql_escape_string($_POST['clanID']);
-	$invite = mysql_escape_string($_POST['invite']);
-	$cupID = ($_POST['cupID'] ? mysql_escape_string($_POST['cupID']) : mysql_escape_string($_POST['laddID']));
+    $clanID = mysqli_escape_string($_POST['clanID']);
+	$invite = mysqli_escape_string($_POST['invite']);
+	$cupID = ($_POST['cupID'] ? mysqli_escape_string($_POST['cupID']) : mysqli_escape_string($_POST['laddID']));
 	$lg_type = ($_POST['cupID'] ? "cupParticipantID" : "participantID");
 
 	
@@ -379,7 +379,7 @@ elseif(isset($_GET['action']) && $_GET['action']=='view') {
 	
 	  $query = safe_query("SELECT userID FROM ".PREFIX."cup_clan_members WHERE userID='$invite' && agent='1'");	  
 
-	    if(mysql_num_rows($query)) {
+	    if(mysqli_num_rows($query)) {
 	        safe_query("DELETE FROM ".PREFIX."cup_agents WHERE userID='$invite'");	
                 redirect('?site=freeagents', '<strong><font color="'.$loosecolor.'">Error:</font> This user is a already an agent of another team.</strong>', 4);
 	    }
@@ -398,10 +398,10 @@ elseif(isset($_GET['action']) && $_GET['action']=='view') {
 }elseif(isset($_GET['agent']) && $_GET['agent']) {
 	
 	   
-	   $ID = mysql_escape_string($_GET['agent']);
-	   $ds=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_agents WHERE ID='$ID'"));	
+	   $ID = mysqli_escape_string($_GET['agent']);
+	   $ds=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_agents WHERE ID='$ID'"));
 	   $cupID = ($ds['cupID'] && $ds['ladID']==0 ? $ds['cupID'] : $ds['ladID']);
-	   $cup_info=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."$table WHERE ID='$cupID'"));
+	   $cup_info=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."$table WHERE ID='$cupID'"));
 	   
 	     if(is_array($ds)) {
 	   
@@ -495,9 +495,9 @@ elseif(isset($_GET['action']) && $_GET['action']=='view') {
 		   //invite
 		   
 	           $agents_lp = safe_query("SELECT * FROM ".PREFIX."cup_clan_members WHERE userID = '".$userID."' AND function = 'Leader'");	           
-		   if(!mysql_num_rows($agents_lp)) $no_team = '<a href="?site=clans&action=clanadd">(leading no team - create team now!)</a>';		
+		   if(!mysqli_num_rows($agents_lp)) $no_team = '<a href="?site=clans&action=clanadd">(leading no team - create team now!)</a>';
 	           $clan = '<option value="" selected="selected"> - Select Team - </option>';	
-	           while($dm=mysql_fetch_array($agents_lp)) {                     
+	           while($dm=mysqli_fetch_array($agents_lp)) {
 	               $clan.= '<option name="clanID" value="'.$dm['clanID'].'">'.getclanname($dm['clanID']).'</option>'; 
 		   }
 		   
@@ -524,7 +524,7 @@ elseif(isset($_GET['action']) && $_GET['action']=='view') {
                                      </form>'; 
 				     
 				     
-                   $st=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX.($ds['cupID'] && $ds['ladID']==0 ? 'cups' : 'cup_ladders')." WHERE ID='$cupID'"));
+                   $st=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX.($ds['cupID'] && $ds['ladID']==0 ? 'cups' : 'cup_ladders')." WHERE ID='$cupID'"));
 			
             if($st['status']==1 OR ($ds['ladID'] && $ds['cupID']==0 && $st['status']==2 && $st['sign']==1)) {
 			
@@ -571,7 +571,7 @@ elseif(isset($_GET['action']) && $_GET['action']=='view') {
 		    $show_play = '';
 		}
 	    
-	    $cin=mysql_fetch_array(safe_query("SELECT userID FROM ".PREFIX."cup_clan_members WHERE userID='$agent' && agent='1'"));
+	    $cin=mysqli_fetch_array(safe_query("SELECT userID FROM ".PREFIX."cup_clan_members WHERE userID='$agent' && agent='1'"));
 		   
 	    if(is_array($cin)) {
 	       safe_query("DELETE FROM ".PREFIX."cup_agents WHERE userID='$agent'");

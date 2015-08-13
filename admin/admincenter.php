@@ -145,7 +145,7 @@ if(!isset($_SERVER['REQUEST_URI'])) {
       <li><a href="admincenter.php?site=faqcategories"><?php echo $_language->module['faq_categories']; ?></a></li>
       <li><a href="admincenter.php?site=linkcategorys"><?php echo $_language->module['link_categories']; ?></a></li>
     </ul>
-    <?php }if(cupIsInstalled()){ if(iscupadmin($userID)) { $query=safe_query("SELECT * FROM ".PREFIX."cup_tickets"); while($ds=mysql_fetch_array($query)) {  if($ds['status']==1 || $ds['status']==2) $star = '*'; }  ?>
+    <?php }if(cupIsInstalled()){ if(iscupadmin($userID)) { $query=safe_query("SELECT * FROM ".PREFIX."cup_tickets"); while($ds=mysqli_fetch_array($query)) {  if($ds['status']==1 || $ds['status']==2) $star = '*'; }  ?>
     <h2>&not; Cup Menu</h2>
     <ul>
       <li><a href="admincenter.php?site=ladders">Ladders</a></li>

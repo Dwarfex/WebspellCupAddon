@@ -115,7 +115,7 @@ $cpr=ca_copyr();
 //date and timezone
 
 $timezone = safe_query("SELECT timezone FROM ".PREFIX."cup_settings");
-$tz = mysql_fetch_array($timezone); $gmt = $tz['timezone'];
+$tz = mysqli_fetch_array($timezone); $gmt = $tz['timezone'];
 date_default_timezone_set($tz['timezone']);
 
 if(!$cpr || !ca_copyr()) die();
@@ -155,8 +155,8 @@ if(!isset($_GET['gameID'])) {
        $league_ids = '';    
     
 	   $query = safe_query("SELECT * FROM ".PREFIX."cups WHERE status='3'");
-	   $rowsrt1 = mysql_num_rows($query);
-	   while($so=mysql_fetch_array($query)) {
+	   $rowsrt1 = mysqli_num_rows($query);
+	   while($so=mysqli_fetch_array($query)) {
 	   
 	     if($so['1on1']==1) {
 	       $tags_in_1on1.= 'tag=\''.$so['game'].'\' OR ';
@@ -167,8 +167,8 @@ if(!isset($_GET['gameID'])) {
 	   }
 	   
 	   $query = safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE 1st!='' AND status='3'");
-	   $rowsrt2 = mysql_num_rows($query);
-	   while($so=mysql_fetch_array($query)) {
+	   $rowsrt2 = mysqli_num_rows($query);
+	   while($so=mysqli_fetch_array($query)) {
 	   
 	     if($so['1on1']==1) {
 	       $tags_in_1on1.= 'tag=\''.$so['game'].'\' OR ';
@@ -182,12 +182,12 @@ if(!isset($_GET['gameID'])) {
 	   $tags_in_team.="tag = ''";
 	   
        $leagueIDs = safe_query("SELECT gameID FROM ".PREFIX."games WHERE $tags_in_1on1"); 
-           while($pID = mysql_fetch_array($leagueIDs)) {
+           while($pID = mysqli_fetch_array($leagueIDs)) {
                $league_ids.='<option value="?site=halloffame&gameID='.$pID['gameID'].'&type=one">'.get_gamename($pID['gameID']).' - 1on1</option>';
            }
 		   
        $leagueIDs = safe_query("SELECT gameID FROM ".PREFIX."games WHERE $tags_in_team"); 
-           while($pID = mysql_fetch_array($leagueIDs)) {
+           while($pID = mysqli_fetch_array($leagueIDs)) {
                $league_ids.='<option value="?site=halloffame&gameID='.$pID['gameID'].'">'.get_gamename($pID['gameID']).' - Team</option>';
            }
 		   
@@ -223,19 +223,19 @@ $n=1;
 
 $ergebnis = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE 1on1='$one' $tag_query ORDER BY rt DESC");	
 
-if(!mysql_num_rows($ergebnis)) { 
+if(!mysqli_num_rows($ergebnis)) {
        echo '<div '.$error_box.'> No records found</div>'; 
 }
 else{
        eval ("\$inctemp = \"".gettemplate("hof_head")."\";");
        echo $inctemp;
 	
-while($db=mysql_fetch_array($ergebnis)) {
+while($db=mysqli_fetch_array($ergebnis)) {
 	if(in_array($db['clanID'], $used_teams, true)) continue;
 	
 	if(!$one){
 		$ergebnis2 = safe_query("SELECT * FROM ".PREFIX."cup_all_clans WHERE ID = '".$db['clanID']."' ORDER BY name ASC");		
-		$ds=mysql_fetch_array($ergebnis2);
+		$ds=mysqli_fetch_array($ergebnis2);
 	}
 	
 	$cup_type=($_GET['cup']=="ladders" ? "&& type='ladder'" : "&& type='cup'");
@@ -243,7 +243,7 @@ while($db=mysql_fetch_array($ergebnis)) {
 	
 	$awards_sql=safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE clanID = '".$db['clanID']."' &&  1on1='$one' $cup_type");
 	
-	$joincups=mysql_num_rows($awards_sql);
+	$joincups=mysqli_num_rows($awards_sql);
 	$joincups=($joincups==1 ? $joincups.$cup_name : $joincups.$cup_name.'s');
 	
 	$teamname=($one ? getnickname($db['clanID']) : $ds['name']);
@@ -329,8 +329,8 @@ foreach($all_teams as $all_teams_for){
 		
 		safe_query("UPDATE ".PREFIX."cup_clans SET rt = '$score_ratio' WHERE clanID='$teamID' && 1on1='$one'");
 	
-	        $cd=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_all_clans WHERE ID='$teamID'"));
-		$md=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE (clan1='$teamID' || clan2='$teamID') && einspruch='0' && confirmscore='1' && 1on1='$one' ORDER BY matchID DESC LIMIT 0,1"));
+	        $cd=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_all_clans WHERE ID='$teamID'"));
+		$md=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE (clan1='$teamID' || clan2='$teamID') && einspruch='0' && confirmscore='1' && 1on1='$one' ORDER BY matchID DESC LIMIT 0,1"));
 	
 	        if($_GET['type']=='one') {
 		        $r_bgcolor = ($teamID==$userID ? $bg2 : $bg1);
@@ -358,7 +358,7 @@ foreach($all_teams as $all_teams_for){
 		    $arrow = '<img src="images/cup/icons/refresh.png" width="15" height="12" alt="Last match draw">';
 		}
 		
-		$cl=mysql_fetch_array(safe_query("SELECT count(*) as num FROM ".PREFIX."cup_clans WHERE clanID='$teamID' && 1on1='$one' && type='ladder'"));
+		$cl=mysqli_fetch_array(safe_query("SELECT count(*) as num FROM ".PREFIX."cup_clans WHERE clanID='$teamID' && 1on1='$one' && type='ladder'"));
 		
                 echo '<tr>
 		         <td bgcolor="'.$r_bgcolor.'" align="center">'.$arrow.$n.'</td>

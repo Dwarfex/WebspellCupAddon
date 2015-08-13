@@ -14,7 +14,7 @@ $bg4=BG_1;
 //date and timezone
 
 $timezone = safe_query("SELECT timezone FROM ".PREFIX."cup_settings");
-$tz = mysql_fetch_array($timezone); $gmt = $tz['timezone'];
+$tz = mysqli_fetch_array($timezone); $gmt = $tz['timezone'];
 date_default_timezone_set($tz['timezone']);
 
 //get members in team
@@ -47,16 +47,16 @@ gettimezone();
    
          echo ' <li><a href="?site=login">- login account -</a></li>';
    }
-   elseif(!mysql_num_rows($getteams)) {
+   elseif(!mysqli_num_rows($getteams)) {
    
          echo ' <li><a href="#">- no teams -</a></li>';
    }   
 
-   while($te=mysql_fetch_array($getteams)) { 
+   while($te=mysqli_fetch_array($getteams)) {
       $teaminfo = safe_query("SELECT * FROM ".PREFIX."cup_all_clans WHERE ID='".$te['clanID']."'");
-         while($tt=mysql_fetch_array($teaminfo)) {   
+         while($tt=mysqli_fetch_array($teaminfo)) {
       
-         $isfounder = mysql_num_rows(safe_query("SELECT ID FROM ".PREFIX."cup_all_clans WHERE leader = '".$userID."' AND ID='".$te['clanID']."'"));
+         $isfounder = mysqli_num_rows(safe_query("SELECT ID FROM ".PREFIX."cup_all_clans WHERE leader = '".$userID."' AND ID='".$te['clanID']."'"));
 
          if($isfounder) {
 	    $removal='<option value="?site=clans&action=delclan&clanID='.$tt['ID'].'" onclick="return confirm(\'This will delete all your team data! \r Are you sure you want to delete this team? If you want to leave this team instead, promote a leader as owner.\');">Delete Team</option>';
@@ -102,9 +102,9 @@ gettimezone();
         $query_teams=safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE (clan1='".participantTeamID($userID)."' || clan2='".participantTeamID($userID)."') AND (clan1 != '0' AND clan2 != '0') AND (clan1 !='2147483647' AND clan2 !='2147483647') AND confirmscore='0' AND 1on1='0'");
      }
 
-     $totalRows = mysql_num_rows($query_1on1)+mysql_num_rows($query_teams);
+     $totalRows = mysqli_num_rows($query_1on1)+mysqli_num_rows($query_teams);
      
-     while($cids=mysql_fetch_array($query_1on1)) {
+     while($cids=mysqli_fetch_array($query_1on1)) {
           
         $league = league($cids['matchID']);  
         $type = getleagueType($cids['matchID']);
@@ -137,7 +137,7 @@ gettimezone();
            $report1.='<a href="'.$report_link.'"><img src="images/cup/icons/edit.png" width="16" height="16"> '.getname2($cids['clan1'],$cids[$type],$ac=0,$league).' vs '.getname2($cids['clan2'],$cids[$type],$ac=0,$league).'</a>';
         }
      }
-     while($cids1=mysql_fetch_array($query_teams)) 
+     while($cids1=mysqli_fetch_array($query_teams))
      {
      
         $league = league($cids1['matchID']);  

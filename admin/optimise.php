@@ -18,7 +18,7 @@ $result	= safe_query($sql);
  
 //initialize array
 $tables = array();
-while($row = mysql_fetch_array($result))
+while($row = mysqli_fetch_array($result))
 {
     // return the size in Kilobytes
     $table_size = ($row[ "Data_length" ] + $row[ "Index_length" ]) / 1024;
@@ -38,7 +38,7 @@ $sql = "SHOW TABLE STATUS";
 //initialize array
 $optimised_tables = array();
 $result	= safe_query($sql);
-while($row = mysql_fetch_array($result))
+while($row = mysqli_fetch_array($result))
 {
 	// return the size in Kilobytes
 	$table_size = ($row[ "Data_length" ] + $row[ "Index_length" ]) / 1024;

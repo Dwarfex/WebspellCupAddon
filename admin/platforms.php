@@ -41,7 +41,7 @@ else $id = '';
 if($action=="edit") {
  
  
-  $ds=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_platforms WHERE ID='$id'"));
+  $ds=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_platforms WHERE ID='$id'"));
   
     if($ds['status']) 
        $status = '<option value="1" selected>Enable Ladders</option>
@@ -53,8 +53,8 @@ if($action=="edit") {
         $platforms = '<option value="'.$ds['platform'].'" selected>'.$ds['platform'].'</option>';
 
   $query = safe_query("SELECT platform FROM ".PREFIX."cup_platforms WHERE platform!='".$ds['platform']."' GROUP BY platform");
-    $num_platforms = mysql_num_rows($query);
-      while($pt = mysql_fetch_array($query)) {
+    $num_platforms = mysqli_num_rows($query);
+      while($pt = mysqli_fetch_array($query)) {
          $platforms.='<option value="'.$pt['platform'].'">'.$pt['platform'].'</option>';
      }
      
@@ -108,8 +108,8 @@ elseif($action=="add") {
         $platforms = '-- Select Platform --';
 
   $query = safe_query("SELECT platform FROM ".PREFIX."cup_platforms GROUP BY platform");
-    $num_platforms = mysql_num_rows($query);
-      while($ds = mysql_fetch_array($query)) {
+    $num_platforms = mysqli_num_rows($query);
+      while($ds = mysqli_fetch_array($query)) {
          $platforms.='<option value="'.$ds['platform'].'">'.$ds['platform'].'</option>';
      }
      
@@ -192,13 +192,13 @@ elseif(isset($_POST["saveedit"])) {
 elseif($action=="delete") {
 
 $ladder_id = safe_query("SELECT ID FROM ".PREFIX."cup_ladders WHERE platID='".$_GET['platID']."'");
-  if(!mysql_num_rows($ladder_id)) {
+  if(!mysqli_num_rows($ladder_id)) {
     safe_query("DELETE FROM ".PREFIX."cup_platforms WHERE ID='".$_GET['platID']."'");
     redirect("admincenter.php?site=platforms","",0);
   }  
   else{
 
-    while($ds = mysql_fetch_array($ladder_id)) { 
+    while($ds = mysqli_fetch_array($ladder_id)) {
 
        safe_query("DELETE FROM ".PREFIX."cup_platforms WHERE ID='".$_GET['platID']."'");
        safe_query("DELETE FROM ".PREFIX."cup_ladders WHERE platID='".$_GET['platID']."'");
@@ -221,7 +221,7 @@ else {
   	     <input type="button" class="button" onClick="MM_goToURL(\'parent\',\'../?site=platforms\');return document.MM_returnValue" value="Front-End Platforms"><br><br>';
   
     $platforms = safe_query("SELECT platform FROM ".PREFIX."cup_platforms GROUP BY platform");
-        while($pt=mysql_fetch_array($platforms)) {
+        while($pt=mysqli_fetch_array($platforms)) {
         
         echo '
          <table width="50%" cellpadding="2" cellspacing="1" bgcolor="'.$border.'">
@@ -230,7 +230,7 @@ else {
           </tr>';
           
   $getplatforms = safe_query("SELECT * FROM ".PREFIX."cup_platforms WHERE platform='".$pt['platform']."'"); 
-    while($pl=mysql_fetch_array($getplatforms)) { $platID = $pl['ID'];
+    while($pl=mysqli_fetch_array($getplatforms)) { $platID = $pl['ID'];
   
       $logo = getplatlogo($platID,$admin=1);
           

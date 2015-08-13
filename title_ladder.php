@@ -40,7 +40,7 @@ if(isset($_GET['ladderID']) || isset($_GET['ID']) || isset($_GET['laddID']))
   
   $title_cuptype = (ladderis1on1($id) ? '&type=1' : '');
   
-  $stl=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='$id'"));
+  $stl=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_ladders WHERE ID='$id'"));
   
   if($stl['gs_start'] || $stl['gs_end'])  {
      $groups_tit = '<td class="title"><img border="0" src="images/cup/icons/groups.png"> <a class="titlelink" href="?site=groups&laddID='.$id.'">Groups</a></td>';
@@ -75,15 +75,15 @@ if(isset($_GET['ladderID']) || isset($_GET['ID']) || isset($_GET['laddID']))
 	 if($parti_clanID) $sh_ext_id = "&clanID=$parti_clanID";
 
       $checked = safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE clanID='$parti_clanID' && ladID='$id' && 1on1='0' && checkin='1'");
-      $checkedinlined=mysql_num_rows($checked); 				  
+      $checkedinlined=mysqli_num_rows($checked);
 	 
            if(!ladderis1on1($id)) 
            {
               
            $teams = safe_query("SELECT * FROM ".PREFIX."cup_clan_members WHERE userID='$userID'");
-               while($te=mysql_fetch_array($teams))
+               while($te=mysqli_fetch_array($teams))
                 {             
-                    if(mysql_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE clanID='".$te['clanID']."' && 1on1='0' && ladID='$id'")))
+                    if(mysqli_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_clans WHERE clanID='".$te['clanID']."' && 1on1='0' && ladID='$id'")))
                     {
                        $mylineup = '<td class="title"><img border="0" src="images/cup/icons/random.png" width="16" height="16"> <a class="titlelink" href="?site=ladders&action=lineup&ID='.$id.$sh_ext_id.'">Lineup</a></td>';  
                  }

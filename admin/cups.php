@@ -160,7 +160,7 @@ if($_POST['save']) {
 						                    '".$_POST['timezone']."',
 											'".$_POST['discheck']."',
 											'".$_POST['agents']."')");
-    $cupID=mysql_insert_id();
+    $cupID=mysqli_insert_id();
 	
 	safe_query("INSERT INTO ".PREFIX."cup_baum 
 					SET
@@ -332,7 +332,7 @@ $alpha_groups = "cupID='a' || cupID='b' || cupID='c' || cupID='d' || cupID='e' |
 		$clan2=$i1+1;
 		$clan2=$_POST['clan'.$clan2.''];	
 		if(!empty($clan1) || !empty($clan2)){
-			if(!mysql_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE cupID='".$_POST['cupID']."' && matchno='$i2'")))
+			if(!mysqli_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE cupID='".$_POST['cupID']."' && matchno='$i2'")))
 				safe_query("INSERT INTO ".PREFIX."cup_matches (cupID, ladID, matchno, date, clan1, clan2, score1, score2, server, hltv, report, comment) VALUES ('".$_POST['cupID']."', '0', '$i2', '".time()."', '$clan1', '$clan2', '', '', '', '', '', '2')");
 			else
 				safe_query("UPDATE ".PREFIX."cup_matches SET clan1='$clan1', clan2='$clan2' WHERE cupID='".$_POST['cupID']."' && matchno='$i2'");
@@ -372,7 +372,7 @@ $cupID = ($_GET['cupID'] ? $_GET['cupID'] : $_GET['ID']);
 echo'<h2>'.getcupname($cupID).'</h2>';
 
 $gamesa=safe_query("SELECT tag, name FROM ".PREFIX."games ORDER BY name");
-while($dv=mysql_fetch_array($gamesa)) {
+while($dv=mysqli_fetch_array($gamesa)) {
 		$games.='<option value="'.$dv['tag'].'">'.$dv['name'].'</option>';
 }
 
@@ -385,7 +385,7 @@ while($dv=mysql_fetch_array($gamesa)) {
 if($_GET['action']=="checkmatch") {
 
    $query = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE cupID='".$_GET['cupID']."' && matchno='".$_GET['match']."'");
-   if(mysql_num_rows($query)) $message = "Match couldn't delete, perhaps Wildcard?"; else $message = "Match successfully removed!";
+   if(mysqli_num_rows($query)) $message = "Match couldn't delete, perhaps Wildcard?"; else $message = "Match successfully removed!";
    
    redirect('admincenter.php?site=cups&action=baum&ID='.$_GET['cupID'], $message, 2);
 }
@@ -399,7 +399,7 @@ if($_GET['action']=="delmatch") {
 
 if($_GET['action']=="add") {
 	$ergebnis=safe_query("SELECT * FROM ".PREFIX."gameacc ORDER BY type");
-	while($ds=mysql_fetch_array($ergebnis)) {
+	while($ds=mysqli_fetch_array($ergebnis)) {
 		$gameaccs.='<option value="'.$ds['gameaccID'].'">'.$ds['type'].'</option>';
 	}
 	
@@ -407,8 +407,8 @@ if($_GET['action']=="add") {
 	$gameaccs=str_replace('value="'.$_POST['gameacc'].'"', 'value="'.$_POST['gameacc'].'" selected', $gameaccs);
 	
   $query = safe_query("SELECT * FROM ".PREFIX."cup_platforms");
-    $num_platforms = mysql_num_rows($query);
-      while($pt = mysql_fetch_array($query)) {
+    $num_platforms = mysqli_num_rows($query);
+      while($pt = mysqli_fetch_array($query)) {
          $platforms.='<option value="'.$pt['ID'].'">'.$pt['name'].' ('.$pt['platform'].')</option>';
      }
 	 
@@ -443,7 +443,7 @@ if($_GET['action']=="add") {
     
 //timezones
 
-$tz=mysql_fetch_array(safe_query("SELECT timezone FROM ".PREFIX."cup_settings"));
+$tz=mysqli_fetch_array(safe_query("SELECT timezone FROM ".PREFIX."cup_settings"));
 
 if(!$_POST['timezone']) $sh_timez = $tz['timezone'];
 else $sh_timez = $_POST['timezone'];
@@ -748,7 +748,7 @@ else $sh_timez = $_POST['timezone'];
 	}
 	
 	$clans=safe_query("SELECT clanID FROM ".PREFIX."cup_clans WHERE cupID='$cupID' && checkin='1'");
-	while($dv=mysql_fetch_array($clans)) {
+	while($dv=mysqli_fetch_array($clans)) {
 		if($n < 1)
 			$n=1;
 		$clan[$n] = $dv['clanID'];
@@ -794,14 +794,14 @@ echo '
 </table><br><br>';
 	
 	$ergebnis=safe_query("SELECT * FROM ".PREFIX."cups WHERE ID='".$ID."'");
-	$ds=mysql_fetch_array($ergebnis);
+	$ds=mysqli_fetch_array($ergebnis);
 
 	$games=str_replace(' selected', '', $games);
 	$games=str_replace('value="'.$ds['game'].'"', 'value="'.$ds['game'].'" selected', $games);
 	
   $query = safe_query("SELECT * FROM ".PREFIX."cup_platforms");
-    $num_platforms = mysql_num_rows($query);
-      while($pt = mysql_fetch_array($query)) {
+    $num_platforms = mysqli_num_rows($query);
+      while($pt = mysqli_fetch_array($query)) {
          $platforms.='<option value="'.$pt['ID'].'">'.$pt['name'].' ('.$pt['platform'].')</option>';
      }
 	 
@@ -894,7 +894,7 @@ echo '
 	}
 	
 	$ergebnis=safe_query("SELECT gameaccID, type FROM ".PREFIX."gameacc ORDER BY type");
-	while($dd=mysql_fetch_array($ergebnis)) {
+	while($dd=mysqli_fetch_array($ergebnis)) {
 		$gameaccs.='<option value="'.$dd['gameaccID'].'">'.$dd['type'].'</option>';
 	}	
 	$gameaccs=str_replace(' selected', '', $gameaccs);
@@ -926,7 +926,7 @@ echo '
 	
 //timezones
 
-$tz=mysql_fetch_array(safe_query("SELECT timezone FROM ".PREFIX."cup_settings"));
+$tz=mysqli_fetch_array(safe_query("SELECT timezone FROM ".PREFIX."cup_settings"));
 
 if(!$ds['timezone']) $sh_timez = $tz['timezone'];
 else $sh_timez = $ds['timezone'];
@@ -1214,9 +1214,9 @@ echo '
 	echo'<form method="post" action="admincenter.php?site=cups">
 	       <select name="admins[]" multiple size="10">';
 		   
-	while($dm=mysql_fetch_array($admins)) {
+	while($dm=mysqli_fetch_array($admins)) {
 	    $nick=getnickname($dm['userID']);
-	    $isadmin=mysql_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_admins WHERE cupID='$cupID' AND userID='".$dm['userID']."'"));
+	    $isadmin=mysqli_num_rows(safe_query("SELECT * FROM ".PREFIX."cup_admins WHERE cupID='$cupID' AND userID='".$dm['userID']."'"));
 		if($isadmin) 
 			echo'<option value="'.$dm['userID'].'" selected>'.$nick.'</option>';
 		else 
@@ -1249,7 +1249,7 @@ echo '
 </table><br><br>';
 	
 	$rule=safe_query("SELECT * FROM ".PREFIX."cup_rules WHERE cupID='".$cupID."'");
-	$dd=mysql_fetch_array($rule);
+	$dd=mysqli_fetch_array($rule);
 	echo '<form method="post" name="post" action="admincenter.php?site=cups">
 		     <table cellpadding="4" cellspacing="0">
 	    <tr> 
@@ -1298,15 +1298,15 @@ echo '
 </table><br><br>';
 
 	$ergebnis1 = safe_query("SELECT maxclan FROM ".PREFIX."cups WHERE ID = '".$ID."'");		
-	$dr=mysql_fetch_array($ergebnis1);
+	$dr=mysqli_fetch_array($ergebnis1);
 	$max=$dr['maxclan'];
 
 	
 	$clan_select = '<option value="0"></option><option value="2147483647" style="font-weight: bold; background-color: #c1c1c1;">Wildcard</option>';
 	$ergebnis = safe_query("SELECT clanID FROM ".PREFIX."cup_clans WHERE cupID = '$ID' ORDER BY clanID ASC");		
-	while($db=mysql_fetch_array($ergebnis)) {
+	while($db=mysqli_fetch_array($ergebnis)) {
 		$ergebnis2 = safe_query("SELECT ID, name FROM ".PREFIX."cup_all_clans WHERE ID = '".$db['clanID']."' ORDER BY name ASC");		
-		$dv=mysql_fetch_array($ergebnis2);
+		$dv=mysqli_fetch_array($ergebnis2);
 
 		if(is1on1($ID)){
 			$dv['name'] = getnickname($db['clanID']);
@@ -1327,10 +1327,10 @@ echo '
 	$d = 1;
 	for ($i=1; $i<128; $i++) {
 		$matches = safe_query("SELECT clan1, clan2 FROM ".PREFIX."cup_matches WHERE cupID='$ID' && matchno='$i'");
-		if(!mysql_num_rows($matches))
+		if(!mysqli_num_rows($matches))
 			$match[$i] = '<a href="javascript:alert(\'You must add both teams to register match.">(Match)</a>'; 
 		else{
-			while($db = mysql_fetch_array($matches)){
+			while($db = mysqli_fetch_array($matches)){
 				$d2 = $d+1;
 				$clan[$d] = str_replace('value="'.$db['clan1'].'"', 'value="'.$db['clan1'].'" selected', $clan[$d]);
 				$clan[$d2] = str_replace('value="'.$db['clan2'].'"', 'value="'.$db['clan2'].'" selected', $clan[$d2]);
@@ -1349,7 +1349,7 @@ echo '
 
 
 	$baum = safe_query("SELECT * FROM ".PREFIX."cup_baum WHERE cupID='".$ID."'");
-	$db = mysql_fetch_array($baum);
+	$db = mysqli_fetch_array($baum);
 	$clan['wb_winner'] = $clan_select;
 	$clan['wb_winner'] = str_replace('value="'.$db['wb_winner'].'"', 'value="'.$db['wb_winner'].'" selected', $clan['wb_winner']);
 	$clan['lb_winner'] = $clan_select;
@@ -1398,14 +1398,14 @@ echo '
 }else{
 
   $query = safe_query("SELECT ID, platform FROM ".PREFIX."cup_platforms GROUP BY platform");
-   if(!mysql_num_rows($query)) echo 'You must create at least one platform before you can create ladders. (<a href="admincenter.php?site=platforms&action=add">add platform</a>)';
+   if(!mysqli_num_rows($query)) echo 'You must create at least one platform before you can create ladders. (<a href="admincenter.php?site=platforms&action=add">add platform</a>)';
    
   else{
 
 	echo'<input type="button" class="button" onClick="MM_goToURL(\'parent\',\'admincenter.php?site=cups&action=add\');return document.MM_returnValue" value="new Cup"> <input type="button" class="button" onClick="MM_goToURL(\'parent\',\'admincenter.php?site=gameaccounts\');return document.MM_returnValue" value="Gameaccounts"><br><br>';
 
 	$ergebnis=safe_query("SELECT * FROM ".PREFIX."cups ORDER BY ID DESC");
-	$anz=mysql_num_rows($ergebnis);
+	$anz=mysqli_num_rows($ergebnis);
 	if($anz) {
    		echo'<form method="post" name="ws_cups" action="admincenter.php?site=cups"><table width="100%" cellpadding="4" cellspacing="1" bgcolor="#999999">
 	       		<tr bgcolor="#CCCCCC">
@@ -1421,7 +1421,7 @@ echo '
 				</td>
 				</tr>';
 	
-		while($ds=mysql_fetch_array($ergebnis)) {
+		while($ds=mysqli_fetch_array($ergebnis)) {
 			if(is1on1($ds['ID'])) {
 				$cupinfo='(1on1)';
 				$participants = 'Players';

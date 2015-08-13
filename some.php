@@ -9,8 +9,8 @@ $limit = 30;
 
 /* CUP INTEGRATION */
 
-$channelID = mysql_real_escape_string($_GET['id']);
-$type = mysql_real_escape_string($_GET['type']);
+$channelID = mysqli_real_escape_string($_GET['id']);
+$type = mysqli_real_escape_string($_GET['type']);
 
 if($channelID != "" AND $type == 'userID') {
 
@@ -32,13 +32,13 @@ else{
 if(isset($_GET['action']) AND $_GET['action'] == "refresh"){
 
 $requete = "SELECT * FROM ".PREFIX."tchat WHERE $channel ORDER BY ID DESC LIMIT $limit";
-$reponse = safe_query($requete) or die (mysql_error());
+$reponse = safe_query($requete) or die (mysqli_error());
 
         /* CUP INTEGRATION */
 		
 		if($type=='clanID') {
 
-                $ds=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_all_clans WHERE ID='$channelID'"));
+                $ds=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_all_clans WHERE ID='$channelID'"));
 	   
 	           if(iscupadmin($userID)) {
 		           $rank = '(admin)'; 
@@ -61,7 +61,7 @@ $reponse = safe_query($requete) or die (mysql_error());
          
 
 $texte = "";
-while($donnees = mysql_fetch_array($reponse)){
+while($donnees = mysqli_fetch_array($reponse)){
 $date = date($_language->module['date'], $donnees['heure']);
 $time = date("H:i", $donnees['heure']);
 
@@ -120,7 +120,7 @@ else{
 
 if($channelID AND $type=='userID') {
 
-  $co=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."whoisonline WHERE userID='$channelID'"));
+  $co=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."whoisonline WHERE userID='$channelID'"));
   
   $onclick = 'onclick="popupcentree(\'some.php?action=call&id='.$channelID.'&call=now\',\'550\',\'300\')"';
   
@@ -150,7 +150,7 @@ elseif(isset($_GET['action']) AND $_GET['action'] == "refreshPrivate" AND isset(
 $requete = safe_query("SELECT * FROM ".PREFIX."tchat_private WHERE (userID=".$_GET['user']." AND friend =".$_GET['guess']." OR userID=".$_GET['guess']." AND friend =".$_GET['user'].") ORDER BY ID DESC");
 
 $texte = "";
-while($donnees = mysql_fetch_array($requete)){
+while($donnees = mysqli_fetch_array($requete)){
 $date = date($_language->module['date'], $donnees['heure']);
 $time = date("H:i", $donnees['heure']);
 if(iscupadmin($donnees['userID'])) {
@@ -198,7 +198,7 @@ elseif(isset($_POST['action']) AND isset($_POST['pseudo']) AND isset($_POST['mes
 	
 	safe_query("INSERT INTO ".PREFIX."tchat (`channelID`,`pseudo`,`message`,`heure`,`type`,`sound`) VALUES ('$post_id','$pseudo','$message','$heure','$post_type','1')");
 	
-	if(mysql_num_rows(safe_query("SELECT userID FROM ".PREFIX."whoisonline WHERE userID='$userID'"))) {
+	if(mysqli_num_rows(safe_query("SELECT userID FROM ".PREFIX."whoisonline WHERE userID='$userID'"))) {
 		safe_query("UPDATE ".PREFIX."whoisonline SET time='".time()."', ip='$ip', site='shout', url='$site_url', channelID='$post_id', type='$post_type' WHERE userID='$userID'");
 		safe_query("UPDATE ".PREFIX."user SET lastlogin='".time()."' WHERE userID='$userID'");
 	}
@@ -216,7 +216,7 @@ elseif(isset($_POST['action']) AND isset($_POST['pseudoPrivate']) AND isset($_PO
 	
 	safe_query("INSERT INTO ".PREFIX."tchat_private VALUES('','$pseudo','$guess','$message','$heure')"); 
 	
-	if(mysql_num_rows(safe_query("SELECT userID FROM ".PREFIX."whoisonline WHERE userID='$userID'"))) {
+	if(mysqli_num_rows(safe_query("SELECT userID FROM ".PREFIX."whoisonline WHERE userID='$userID'"))) {
 		safe_query("UPDATE ".PREFIX."whoisonline SET time='".time()."', ip='$ip', site='shout', url='?site=shout' WHERE userID='$userID'");
 		safe_query("UPDATE ".PREFIX."user SET lastlogin='".time()."' WHERE userID='$userID'");
 	}
@@ -244,17 +244,17 @@ elseif(isset($_GET['action']) AND $_GET['action'] == 'delMsg' AND isset($_GET['i
 elseif(isset($_GET['action']) AND $_GET['action'] == "refreshUser"){
 	$requete = safe_query("SELECT * FROM ".PREFIX."whoisonline $whois_qry ORDER BY userID");
 	$private = safe_query("SELECT * FROM ".PREFIX."tchat_private");
-	$d = mysql_num_rows($private);
+	$d = mysqli_num_rows($private);
 	$privateArray = array();
 	$array = array();
-	while($dm = mysql_fetch_assoc($private)){
+	while($dm = mysqli_fetch_assoc($private)){
 		$privateArray[] = $dm['userID'].','.$dm['friend'];
 	}
 	
 	//total connected
 	$connected = safe_query("SELECT count(*) AS TOTAL_USERS FROM ".PREFIX."whoisonline $whois_qry && userID != 0");
-	$ds = mysql_num_rows($connected);
-	$dm = mysql_fetch_assoc($connected);
+	$ds = mysqli_num_rows($connected);
+	$dm = mysqli_fetch_assoc($connected);
 	$req = safe_query("SELECT * FROM ".PREFIX."whoisonline $whois_qry");
 	
 	if($dm['TOTAL_USERS'] == 1){
@@ -268,7 +268,7 @@ elseif(isset($_GET['action']) AND $_GET['action'] == "refreshUser"){
 	}
 	//	
 	
-	while($ds=mysql_fetch_assoc($requete)){
+	while($ds=mysqli_fetch_assoc($requete)){
 		if($ds['userID'] != 0){
 			echo '<li style="list-style:none;">';
 			
@@ -337,8 +337,8 @@ echo '<div id="live">';
     safe_query("UPDATE ".PREFIX."whoisonline SET calltimer='0' WHERE `call`='0' AND calltimer!='0'");
     safe_query("UPDATE ".PREFIX."whoisonline SET `call`='0' WHERE `call`='1' AND calltimer<='".$calltimer."'");
 
-    $ds=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."whoisonline WHERE userID='$channelID'"));
-    $db=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."whoisonline WHERE userID='$channelID' && channelID='$channelID' && type='userID'"));
+    $ds=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."whoisonline WHERE userID='$channelID'"));
+    $db=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."whoisonline WHERE userID='$channelID' && channelID='$channelID' && type='userID'"));
     
         if($channelID && $ds['call']==0 && $ds['calltimer']==0 && $_GET['call']=='now') {
 	      safe_query("UPDATE ".PREFIX."whoisonline SET `call`='1', calltimer='".time()."' WHERE userID='$channelID'");

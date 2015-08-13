@@ -5,15 +5,15 @@
 
 <!-- CUP INTEGRATION -->
 <?php 
-$channelID = mysql_real_escape_string($_GET['id']);
-$type = mysql_real_escape_string($_GET['type']);
+$channelID = mysqli_real_escape_string($_GET['id']);
+$type = mysqli_real_escape_string($_GET['type']);
 
    if($_GET['call']=='true') {
        redirect('popup.php?site=shout&id='.$channelID.'&type=userID', '<font color="red"><strong>You have been called to your chat!</strong></font>', 5);
    }
    
    if($type=='matchID') {
-       $md=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID='$channelID'"));    
+       $md=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE matchID='$channelID'"));
    }
 
    switch($type) {
@@ -51,7 +51,7 @@ $type = mysql_real_escape_string($_GET['type']);
    }
    elseif($type=='clanID') {
  
-          $td=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_all_clans WHERE ID='$channelID'"));
+          $td=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_all_clans WHERE ID='$channelID'"));
  
           $validation_pass = 0;	
 
@@ -86,7 +86,7 @@ $type = mysql_real_escape_string($_GET['type']);
    
       $validation_pass = 0;			  
 	  $iscup = ($type=='cupID' ? 1 : 0);
-      $cup=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX.($type=='cupID' ? 'cups' : 'cup_ladders')." WHERE ID='$channelID'"));  
+      $cup=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX.($type=='cupID' ? 'cups' : 'cup_ladders')." WHERE ID='$channelID'"));
 		  
       if((!$iscup && isladparticipant_memin($userID,$channelID)) || ($iscup && iscupparticipant_memin($userID,$channelID)) && $cup['status']==2) {
                  $validation_pass = "true";	 

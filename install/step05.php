@@ -70,25 +70,25 @@ if($_POST['installtype']=="full" AND $_POST['hp_url']) {
       <span><?php echo $_language->module['tooltip_1']; ?></span></a></td>
      </tr>
      <tr>
-      <td><?php echo $_language->module['mysql_username']; ?>:</td>
+      <td><?php echo $_language->module['mysqli_username']; ?>:</td>
       <td><input type="text" name="user" size="30" />
       <a class="tooltip" href="#"><img src="images/tooltip.png" alt="" />
       <span><?php echo $_language->module['tooltip_2']; ?></span></a></td>
      </tr>
      <tr>
-      <td><?php echo $_language->module['mysql_password']; ?>:</td>
+      <td><?php echo $_language->module['mysqli_password']; ?>:</td>
       <td><input type="password" name="pwd" size="30" />
       <a class="tooltip" href="#"><img src="images/tooltip.png" alt="" />
       <span><?php echo $_language->module['tooltip_3']; ?></span></a></td>
      </tr>
      <tr>
-      <td><?php echo $_language->module['mysql_database']; ?>:</td>
+      <td><?php echo $_language->module['mysqli_database']; ?>:</td>
       <td><input type="text" name="db" size="30" />
       <a class="tooltip" href="#"><img src="images/tooltip.png" alt="" />
       <span><?php echo $_language->module['tooltip_4']; ?></span></a></td>
      </tr>
      <tr>
-      <td><?php echo $_language->module['mysql_prefix']; ?>:</td>
+      <td><?php echo $_language->module['mysqli_prefix']; ?>:</td>
       <td><input name="prefix" type="text" value="<?php echo 'ws_'.RandPass(3).'_'; ?>" size="10" />
       <a class="tooltip" href="#"><img src="images/tooltip.png" alt="" />
       <span><?php echo $_language->module['tooltip_5']; ?></span></a></td>

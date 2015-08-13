@@ -24,7 +24,7 @@
   
   gettimezone();
 
-  $set = mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_settings"));
+  $set = mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_settings"));
   
   if($set['ccupgamelimit']==0 && !$loggedin) {
        echo $_language->module['logged_in'];
@@ -88,20 +88,20 @@
             redirect('?site=matches&action=viewmatches&clanID='.$clanID.'&'.$cuptype.'='.$cupID.'&type=1', '...', 0);
         
     	    $count = safe_query("SELECT count(*) as allmatches FROM ".PREFIX."cup_matches WHERE $typename='$cupID'");
-	        $dv=mysql_fetch_array($count); 
+	        $dv=mysqli_fetch_array($count);
             
 		          
             if(!$one_check($cupID)){	
                 $link = "?site=clans&action=show&clanID=$clanID"; 
 	            $id = 'ID'; 
 	            $short = 'clantag';                            
-	            $cc=mysql_fetch_array(safe_query("SELECT $id, $short FROM ".PREFIX."cup_all_clans WHERE ID='$clanID'"));
+	            $cc=mysqli_fetch_array(safe_query("SELECT $id, $short FROM ".PREFIX."cup_all_clans WHERE ID='$clanID'"));
             }
             else{   
                 $link = "?site=profile&id=$clanID";
 	            $id = 'userID';   
 	            $short = 'firstname';
-	            $cc=mysql_fetch_array(safe_query("SELECT $id, $short FROM ".PREFIX."user WHERE userID='$clanID'"));
+	            $cc=mysqli_fetch_array(safe_query("SELECT $id, $short FROM ".PREFIX."user WHERE userID='$clanID'"));
             }
             		          
             $cupname = ($cuptitle=="Cup" ? getcupname($cupID) : getladname($cupID));           
@@ -155,7 +155,7 @@
 		      
 	           $getmatches = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE $typename='$cupID' && (clan1='$clanID' || clan2='$clanID') && (clan1 != '0' AND clan2 != '0') && (clan1 !='2147483647' AND clan2 !='2147483647') && $one_query ORDER BY date DESC");
 	               
-		       if(mysql_num_rows($getmatches)) {
+		       if(mysqli_num_rows($getmatches)) {
 			   
 			          //echo '<div '.$error_box.'> Matches for '.$clanname.' on '.$cuplink.'</div>';
 		       
@@ -166,10 +166,10 @@
                       echo '<div '.$error_box.'> No matches found for '.$clanname.' on '.$cuplink.'</a></div>';
 			   }
 		   
-	                 while($dm = mysql_fetch_array($getmatches)) 
+	                 while($dm = mysqli_fetch_array($getmatches))
 	                  { 
 	                     
-                         $ed=mysql_fetch_array(safe_query("SELECT game FROM ".PREFIX."$game_query WHERE ID='$cupID'"));
+                         $ed=mysqli_fetch_array(safe_query("SELECT game FROM ".PREFIX."$game_query WHERE ID='$cupID'"));
 	                 
 	                     $image = $ed['game'];
 	                     $matchid = $dm['matchID'];
@@ -180,13 +180,13 @@
 	                     
 	                     if(!$one_check($cupID)){	 
 	                        $id = 'ID';                             
-    	                    $cc1=mysql_fetch_array(safe_query("SELECT $id FROM ".PREFIX."cup_all_clans WHERE ID='".$dm['clan1']."'"));
-                            $cc2=mysql_fetch_array(safe_query("SELECT $id FROM ".PREFIX."cup_all_clans WHERE ID='".$dm['clan2']."'"));
+    	                    $cc1=mysqli_fetch_array(safe_query("SELECT $id FROM ".PREFIX."cup_all_clans WHERE ID='".$dm['clan1']."'"));
+                            $cc2=mysqli_fetch_array(safe_query("SELECT $id FROM ".PREFIX."cup_all_clans WHERE ID='".$dm['clan2']."'"));
     	                 }
     	                 else{
 	                        $id = 'userID';   
-    	                    $cc1=mysql_fetch_array(safe_query("SELECT $id FROM ".PREFIX."user WHERE userID='".$dm['clan1']."'"));
-    	                    $cc2=mysql_fetch_array(safe_query("SELECT $id FROM ".PREFIX."user WHERE userID='".$dm['clan2']."'"));
+    	                    $cc1=mysqli_fetch_array(safe_query("SELECT $id FROM ".PREFIX."user WHERE userID='".$dm['clan1']."'"));
+    	                    $cc2=mysqli_fetch_array(safe_query("SELECT $id FROM ".PREFIX."user WHERE userID='".$dm['clan2']."'"));
     	                 }
     	                                
 	                     if($clanID == $dm['clan1']){
@@ -271,8 +271,8 @@
                  }
 
                  $getcups = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE $one_query && type='$query_where' && (clan1='$clanID' || clan2='$clanID') GROUP BY $query_grouping ORDER BY date DESC");
-                   if(!mysql_num_rows($getcups)) echo "<br /><br /> <strong>No $no_match_return matches</strong>";
-                     while($da=mysql_fetch_array($getcups)) {
+                   if(!mysqli_num_rows($getcups)) echo "<br /><br /> <strong>No $no_match_return matches</strong>";
+                     while($da=mysqli_fetch_array($getcups)) {
                      
                      $cupID = getleagueID($da['matchID']);
                      $cuptitle = league($da['matchID']);
@@ -301,7 +301,7 @@
   	 
                      
                           $getmatches = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE $leaguetype='$cupID' && (clan1='$clanID' || clan2='$clanID') && (clan1 != '0' AND clan2 != '0') && (clan1 !='2147483647' AND clan2 !='2147483647') && $one_query ORDER BY date DESC");
-	                        if(mysql_num_rows($getmatches)) {
+	                        if(mysqli_num_rows($getmatches)) {
 							
 							  if(!isset($result_head ))
 							  $result_head  = "";
@@ -310,11 +310,11 @@
                               echo $one_head;
 			  }		  
 				  
-    	                      while($dm = mysql_fetch_array($getmatches)) 
+    	                      while($dm = mysqli_fetch_array($getmatches))
     	                       { 
     	                       
-	                              $dd=mysql_fetch_array(safe_query("SELECT $leaguetype FROM ".PREFIX."cup_matches WHERE matchID='".$dm['matchID']."'"));
-	                              $ed=mysql_fetch_array(safe_query("SELECT game FROM ".PREFIX."$game_query WHERE ID='$cupID'"));
+	                              $dd=mysqli_fetch_array(safe_query("SELECT $leaguetype FROM ".PREFIX."cup_matches WHERE matchID='".$dm['matchID']."'"));
+	                              $ed=mysqli_fetch_array(safe_query("SELECT game FROM ".PREFIX."$game_query WHERE ID='$cupID'"));
 	                              
 	                              $image = $ed['game'];
 	                              $clan1 = $dm['clan1'];
@@ -399,7 +399,7 @@
         }elseif(isset($cupID) && $cupID!=0) {      
         		          
     	    $count = safe_query("SELECT count(*) as allmatches FROM ".PREFIX."cup_matches WHERE $typename='$cupID' && (clan1 != '0' AND clan2 != '0') && (clan1 !='2147483647' AND clan2 !='2147483647')");
-		    $dv=mysql_fetch_array($count);  
+		    $dv=mysqli_fetch_array($count);
 		    
 		      if(isset($_GET['laddID'])) {
 		         include("title_ladder.php");
@@ -415,7 +415,7 @@
 		      		    			                 
                 $getmatches = safe_query("SELECT * FROM ".PREFIX."cup_matches WHERE $typename='$cupID' AND (clan1 != '0' AND clan2 != '0') AND (clan1 != '2147483647' AND clan2 != '2147483647') ORDER BY date DESC");
 	                        
-				if(mysql_num_rows($getmatches)) {
+				if(mysqli_num_rows($getmatches)) {
 		             
 			                  eval ("\$one_head = \"".gettemplate("cup_matches_head")."\";");
 		                      echo $one_head;
@@ -425,23 +425,23 @@
 						      echo '<div '.$error_box.'> <strong>No matches found</strong></div>';
 			    }
 				
-    	                      while($dm = mysql_fetch_array($getmatches)) 
+    	                      while($dm = mysqli_fetch_array($getmatches))
     	                       { 
     	                          
-	                              $dd=mysql_fetch_array(safe_query("SELECT $typename FROM ".PREFIX."cup_matches WHERE matchID='".$dm['matchID']."'"));
-	                              $ed=mysql_fetch_array(safe_query("SELECT game FROM ".PREFIX."$table WHERE ID='$cupID'"));
+	                              $dd=mysqli_fetch_array(safe_query("SELECT $typename FROM ".PREFIX."cup_matches WHERE matchID='".$dm['matchID']."'"));
+	                              $ed=mysqli_fetch_array(safe_query("SELECT game FROM ".PREFIX."$table WHERE ID='$cupID'"));
 	                              
 	                              if(!$one_check($cupID))
 	                              {	 
 	                                 $id = 'ID';                             
-    	                             $cc1=mysql_fetch_array(safe_query("SELECT $id FROM ".PREFIX."cup_all_clans WHERE ID='".$dm['clan1']."'"));
-    	                             $cc2=mysql_fetch_array(safe_query("SELECT $id FROM ".PREFIX."cup_all_clans WHERE ID='".$dm['clan2']."'"));
+    	                             $cc1=mysqli_fetch_array(safe_query("SELECT $id FROM ".PREFIX."cup_all_clans WHERE ID='".$dm['clan1']."'"));
+    	                             $cc2=mysqli_fetch_array(safe_query("SELECT $id FROM ".PREFIX."cup_all_clans WHERE ID='".$dm['clan2']."'"));
     	                          }
     	                          else
     	                          {
 	                                 $id = 'userID';   
-    	                             $cc1=mysql_fetch_array(safe_query("SELECT $id FROM ".PREFIX."user WHERE userID='".$dm['clan1']."'"));
-    	                             $cc2=mysql_fetch_array(safe_query("SELECT $id FROM ".PREFIX."user WHERE userID='".$dm['clan2']."'"));
+    	                             $cc1=mysqli_fetch_array(safe_query("SELECT $id FROM ".PREFIX."user WHERE userID='".$dm['clan1']."'"));
+    	                             $cc2=mysqli_fetch_array(safe_query("SELECT $id FROM ".PREFIX."user WHERE userID='".$dm['clan2']."'"));
     	                          }
     	                          	                              
 	                              $image = $ed['game'];
@@ -510,7 +510,7 @@
 	}
 	
 	if($type=='username' || $type=='nickname' || $type=='userID') {	
-	        $ds=mysql_fetch_array(safe_query("SELECT userID FROM ".PREFIX."user WHERE $type='$search'"));
+	        $ds=mysqli_fetch_array(safe_query("SELECT userID FROM ".PREFIX."user WHERE $type='$search'"));
 		
 		if(is_array($ds)) {
 		           redirect('?site=matches&action=viewmatches&memberID='.$ds['userID'], '...', 0);
@@ -521,7 +521,7 @@
 	      
 	}
 	elseif($type=='name' || $type=='short' || $type=='clantag' || $type=='ID') {	
-	        $ds=mysql_fetch_array(safe_query("SELECT ID FROM ".PREFIX."cup_all_clans WHERE $type='$search'"));
+	        $ds=mysqli_fetch_array(safe_query("SELECT ID FROM ".PREFIX."cup_all_clans WHERE $type='$search'"));
 		
 		
 		if(is_array($ds)) {
@@ -623,8 +623,8 @@
 					$gt_lg_tp = getleagueType($matchid);
 					$cuptype = $typee;
 	
-	                        $dd=mysql_fetch_array(safe_query("SELECT $typename FROM ".PREFIX."cup_matches WHERE matchID='$matchid'"));
-	                        $ed=mysql_fetch_array(safe_query("SELECT game FROM ".PREFIX."$table WHERE ID='$cupID'"));
+	                        $dd=mysqli_fetch_array(safe_query("SELECT $typename FROM ".PREFIX."cup_matches WHERE matchID='$matchid'"));
+	                        $ed=mysqli_fetch_array(safe_query("SELECT game FROM ".PREFIX."$table WHERE ID='$cupID'"));
 	
 	                        $image = $ed['game'];
 	                        $game = '<img src="images/games/'.$image.'.gif" width="20" height="20" border="0">';
@@ -633,14 +633,14 @@
 	                              if(!$one_check($cupID)){	 
 				                             $tag = 'clanID';
 	                                         $id = 'ID';                             
-    	                                     $cc1=mysql_fetch_array(safe_query("SELECT $id FROM ".PREFIX."cup_all_clans WHERE ID='".$row['clan1']."'"));
-    	                                     $cc2=mysql_fetch_array(safe_query("SELECT $id FROM ".PREFIX."cup_all_clans WHERE ID='".$row['clan2']."'"));
+    	                                     $cc1=mysqli_fetch_array(safe_query("SELECT $id FROM ".PREFIX."cup_all_clans WHERE ID='".$row['clan1']."'"));
+    	                                     $cc2=mysqli_fetch_array(safe_query("SELECT $id FROM ".PREFIX."cup_all_clans WHERE ID='".$row['clan2']."'"));
     	                              }
     	                              else{
 				                             $tag = 'memberID';
 	                                         $id = 'userID';   
-    	                                     $cc1=mysql_fetch_array(safe_query("SELECT $id FROM ".PREFIX."user WHERE userID='".$row['clan1']."'"));
-    	                                     $cc2=mysql_fetch_array(safe_query("SELECT $id FROM ".PREFIX."user WHERE userID='".$row['clan2']."'"));
+    	                                     $cc1=mysqli_fetch_array(safe_query("SELECT $id FROM ".PREFIX."user WHERE userID='".$row['clan1']."'"));
+    	                                     $cc2=mysqli_fetch_array(safe_query("SELECT $id FROM ".PREFIX."user WHERE userID='".$row['clan2']."'"));
     	                              }
     	                          	                              
 	                              $clan1 = $row['clan1'];

@@ -12,7 +12,7 @@ $cpr=ca_copyr();
 
 !$cpr || !ca_copyr() ? die() : '';
 
-$user = mysql_real_escape_string(getuserid2($_GET['login']));
+$user = mysqli_real_escape_string(getuserid2($_GET['login']));
 $id = (!$user ? $userID : $user);
 $nick = '<a href="?site=profile&id='.$id.'">'.getnickname($id).'</a>';
 
@@ -25,12 +25,12 @@ $nick = '<a href="?site=profile&id='.$id.'">'.getnickname($id).'</a>';
 	    </tr>";
   
       $query = safe_query("SELECT * FROM ".PREFIX."cup_clan_members WHERE userID='$id'");
-        if(mysql_num_rows($query)) {
+        if(mysqli_num_rows($query)) {
 	
-	    while($ds = mysql_fetch_assoc($query)) {
+	    while($ds = mysqli_fetch_assoc($query)) {
 	    
-	        $team=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_all_clans WHERE ID='".$ds['clanID']."'"));
-		$count=mysql_fetch_array(safe_query("SELECT count(*) AS TOTAL_MEMBERS FROM ".PREFIX."cup_clan_members WHERE clanID='".$ds['clanID']."'"));
+	        $team=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_all_clans WHERE ID='".$ds['clanID']."'"));
+		$count=mysqli_fetch_array(safe_query("SELECT count(*) AS TOTAL_MEMBERS FROM ".PREFIX."cup_clan_members WHERE clanID='".$ds['clanID']."'"));
 	    
 	        $clanID = $ds['clanID'];
 	        $clanhp = $team['clanhp'];

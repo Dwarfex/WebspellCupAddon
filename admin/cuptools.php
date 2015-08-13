@@ -34,13 +34,13 @@ if(!issuperadmin($userID) OR substr(basename($_SERVER[REQUEST_URI]),0,15) != "ad
 
     $cups = '<option selected value="">-- Select Tournament --</option>';
       $cups_query = safe_query("SELECT ID FROM ".PREFIX."cups WHERE maxclan='8' || maxclan='16' || maxclan='32'");
-        while($ds=mysql_fetch_array($cups_query)) {
+        while($ds=mysqli_fetch_array($cups_query)) {
             $cups.='<option value="'.$ds['ID'].'">('.$ds['ID'].') '.getcupname($ds['ID']).'</option>';
         }
         
     $ladders = '<option selected value="">-- Select Ladder --</option>';
       $ladders_query = safe_query("SELECT ID FROM ".PREFIX."cup_ladders");
-        while($ds=mysql_fetch_array($ladders_query)) {
+        while($ds=mysqli_fetch_array($ladders_query)) {
             $ladders.='<option value="'.$ds['ID'].'">('.$ds['ID'].') '.getladname($ds['ID']).'</option>';
         }
 

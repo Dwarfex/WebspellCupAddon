@@ -57,17 +57,17 @@ else {
 	$filepath = "languages/";
 	$langs = array();
 	// Select all possible languages
-	$mysql_langs = array();
+	$mysqli_langs = array();
 	$query = safe_query("SELECT lang, language FROM ".PREFIX."news_languages");
-	while($ds = mysql_fetch_assoc($query)){
-		$mysql_langs[$ds['lang']] = $ds['language'];
+	while($ds = mysqli_fetch_assoc($query)){
+		$mysqli_langs[$ds['lang']] = $ds['language'];
 	}
 	
 	if($dh = opendir($filepath)) {
 		while($file = mb_substr(readdir($dh), 0, 2)) {
 			if($file != "." and $file!=".." and is_dir($filepath.$file)) {
-				if(isset($mysql_langs[$file])){
-					$name = $mysql_langs[$file];
+				if(isset($mysqli_langs[$file])){
+					$name = $mysqli_langs[$file];
 					$name = ucfirst($name);
 					$langs[] = array($file,$name);
 				}

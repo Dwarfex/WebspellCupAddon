@@ -12,7 +12,7 @@ $bg2=BG_1;
 $bg3=BG_1;
 $bg4=BG_1;
 
-   $set=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_settings"));
+   $set=mysqli_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_settings"));
     
    $show_finished_cup = ($set['cupgamelimit']==1 ? "WHERE status != '3'" : "");
    $cupsclimit = ($set['cupsclimit']==0 ? 1 : $set['cupsclimit']);
@@ -20,9 +20,9 @@ $bg4=BG_1;
    //tournaments
    
       $tournaments_sc = safe_query("SELECT * FROM ".PREFIX."cups $show_finished_cup ORDER BY ID DESC LIMIT 0,$cupsclimit");
-         while($ds = mysql_fetch_array($tournaments_sc)) {
+         while($ds = mysqli_fetch_array($tournaments_sc)) {
 	 
-	    $cupID_sc = mysql_real_escape_string($ds['ID']);
+	    $cupID_sc = mysqli_real_escape_string($ds['ID']);
 	    $game_sc = '<img src="images/games/'.$ds['game'].'.gif" width="20" height="20" border="0">';
 
 	    $gs_true = ($ds['gs_start'] >= time() && time() < $ds['start'] ? true : false);   
@@ -48,8 +48,8 @@ $bg4=BG_1;
 	            $elimination_sc = 'Single Elimination';
 	    }
 	    
-	    $dv= mysql_fetch_array(safe_query("SELECT count(*) as count FROM ".PREFIX."cup_clans WHERE cupID='$cupID_sc' && type='cup'"));
-	    $db=mysql_fetch_array(safe_query("SELECT count(*) as count FROM ".PREFIX."cup_clans WHERE groupID='$cupID_sc' && ladID='0' && type='gs'"));
+	    $dv= mysqli_fetch_array(safe_query("SELECT count(*) as count FROM ".PREFIX."cup_clans WHERE cupID='$cupID_sc' && type='cup'"));
+	    $db=mysqli_fetch_array(safe_query("SELECT count(*) as count FROM ".PREFIX."cup_clans WHERE groupID='$cupID_sc' && ladID='0' && type='gs'"));
             
 	    $count_sc = (!is_array($dv) ? '0' : $dv['count']);
 	    $count_sc2= (!is_array($db) ? '0' : $db['count']);
@@ -129,9 +129,9 @@ $bg4=BG_1;
    //ladders
    
       $ladders_sc = safe_query("SELECT * FROM ".PREFIX."cup_ladders $show_finished_cup ORDER BY ID DESC LIMIT 0,$cupsclimit");
-         while($ds = mysql_fetch_array($ladders_sc)) {
+         while($ds = mysqli_fetch_array($ladders_sc)) {
 	 
-	    $cupID_sc = mysql_real_escape_string($ds['ID']);
+	    $cupID_sc = mysqli_real_escape_string($ds['ID']);
 	    $game_sc = '<img src="images/games/'.$ds['game'].'.gif" width="20" height="20" border="0">';
 
 	    $gs_true = ($ds['gs_start'] >= time() && time() < $ds['start'] ? true : false);
@@ -153,8 +153,8 @@ $bg4=BG_1;
 		    $out_of_gs = '';
 	    }
 	    
-	    $dv= mysql_fetch_array(safe_query("SELECT count(*) as count FROM ".PREFIX."cup_clans WHERE ladID='$cupID_sc' && type='ladder'"));
-	    $db=mysql_fetch_array(safe_query("SELECT count(*) as count FROM ".PREFIX."cup_clans WHERE groupID='$cupID_sc' && cupID='0' && type='gs'"));
+	    $dv= mysqli_fetch_array(safe_query("SELECT count(*) as count FROM ".PREFIX."cup_clans WHERE ladID='$cupID_sc' && type='ladder'"));
+	    $db=mysqli_fetch_array(safe_query("SELECT count(*) as count FROM ".PREFIX."cup_clans WHERE groupID='$cupID_sc' && cupID='0' && type='gs'"));
             
 	    $count_sc = (!is_array($dv) ? '0' : $dv['count']);
 	    $count_sc2= (!is_array($db) ? '0' : $db['count']);

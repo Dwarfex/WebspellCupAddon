@@ -242,12 +242,12 @@ if(isset($uid)) {
 		$birthday = $b_year.'-'.$b_month.'-'.$b_day;
 
 		$qry = "SELECT userID FROM ".PREFIX."user WHERE username = '".$usernamenew."' AND userID != ".$userID." LIMIT 0,1";
-		if(mysql_num_rows(safe_query($qry))) {
+		if(mysqli_num_rows(safe_query($qry))) {
 			$error_array[] = $_language->module['username_aleady_in_use'];
 		}
 		
 		$qry = "SELECT userID FROM ".PREFIX."user WHERE nickname = '".$nickname."' AND userID!=".$userID." LIMIT 0,1";
-		if(mysql_num_rows(safe_query($qry))) {
+		if(mysqli_num_rows(safe_query($qry))) {
 				$error_array[] = $_language->module['nickname_already_in_use'];
 		}
 
@@ -277,15 +277,15 @@ if(isset($uid)) {
 						        xfire='".$xfire."',
                                                         xfirec='".$xfirec."',
                                                         steam='".$steam."',
-					                xfirestyle='".mysql_escape_string($xfirestyle)."',	 
-						        xfiregroesse='".mysql_escape_string($xfiregroesse)."',
+					                xfirestyle='".mysqli_escape_string($xfirestyle)."',
+						        xfiregroesse='".mysqli_escape_string($xfiregroesse)."',
 							usertext='".$usertext."',
 							clantag='".$clantag."',
 							clanname='".$clanname."',
-                                                        skype='".mysql_escape_string($skype)."',
-						        msn='".mysql_escape_string($msn)."',
-						        aim='".mysql_escape_string($aim)."',
-						        yahoo='".mysql_escape_string($yahoo)."',
+                                                        skype='".mysqli_escape_string($skype)."',
+						        msn='".mysqli_escape_string($msn)."',
+						        aim='".mysqli_escape_string($aim)."',
+						        yahoo='".mysqli_escape_string($yahoo)."',
                                                         clanhp='".$clanhp."',
 							clanirc='".$clanirc."',
 							clanhistory='".$clanhistory."',
@@ -301,19 +301,19 @@ if(isset($uid)) {
 							keyboard='".$keyboard."',
 							mouse='".$mouse."',
 							mousepad='".$mousepad."',
-							fgame='".mysql_escape_string($fgame)."',
- 						    fclan='".mysql_escape_string($fclan)."',
- 						    fmap='".mysql_escape_string($fmap)."',
- 					        fweapon='".mysql_escape_string($fweapon)."',
- 				       	    ffood='".mysql_escape_string($ffood)."',
- 				      	    fdrink='".mysql_escape_string($fdrink)."',
- 						    fmovie='".mysql_escape_string($fmovie)."',
- 		    		        fmusic='".mysql_escape_string($fmusic)."',
- 					    	fsong='".mysql_escape_string($fsong)."',
- 					  	    fbook='".mysql_escape_string($fbook)."',
- 					   	    factor='".mysql_escape_string($factor)."',
- 					   		fcar='".mysql_escape_string($fcar)."',
- 						  	fsport='".mysql_escape_string($fsport)."',
+							fgame='".mysqli_escape_string($fgame)."',
+ 						    fclan='".mysqli_escape_string($fclan)."',
+ 						    fmap='".mysqli_escape_string($fmap)."',
+ 					        fweapon='".mysqli_escape_string($fweapon)."',
+ 				       	    ffood='".mysqli_escape_string($ffood)."',
+ 				      	    fdrink='".mysqli_escape_string($fdrink)."',
+ 						    fmovie='".mysqli_escape_string($fmovie)."',
+ 		    		        fmusic='".mysqli_escape_string($fmusic)."',
+ 					    	fsong='".mysqli_escape_string($fsong)."',
+ 					  	    fbook='".mysqli_escape_string($fbook)."',
+ 					   	    factor='".mysqli_escape_string($factor)."',
+ 					   		fcar='".mysqli_escape_string($fcar)."',
+ 						  	fsport='".mysqli_escape_string($fsport)."',
                             mailonpm='".$pm_mail."',
 							newsletter='".$newsletter."',
 							jgrowl='".$jgrowl."',
@@ -332,7 +332,7 @@ if(!$_GET['userID']) echo '<meta http-equiv="refresh" content="0; URL=?site=mypr
 
 if($_GET['type']=='redir') echo '<div class="errorbox"><img src="images/cup/icons/contact_info.png"> You have been automatically redirected to set your timezone.<br> You can change your timezone in future by editing your profile.<br><br> <img src="images/cup/icons/contact_info.png"> To prevent redirection and void setting your timezone select "<b>Unset and do not ask again</b>" under User Options.</div>';
 
-$DSZ=mysql_fetch_array(safe_query("SELECT timezone FROM ".PREFIX."user WHERE userID='".$_GET['userID']."'"));
+$DSZ=mysqli_fetch_array(safe_query("SELECT timezone FROM ".PREFIX."user WHERE userID='".$_GET['userID']."'"));
 
 if(empty($DSZ['timezone']) OR $DSZ['timezone']==1) {
       $curr_tz = '(timezone unset)';
@@ -476,14 +476,14 @@ if($_POST['savetz']) {
 }elseif($_GET['action']=="gameaccounts") {
   
 			$gamesa=safe_query("SELECT gameaccID,type FROM ".PREFIX."gameacc ORDER BY type");
-	 		while($dv=mysql_fetch_array($gamesa)) {
+	 		while($dv=mysqli_fetch_array($gamesa)) {
 			 $games.='<option value="'.$dv[gameaccID].'">'.$dv[type].'</option>';
 			}
 
 			$gamea=safe_query("SELECT gameaccID, type, value FROM ".PREFIX."user_gameacc WHERE userID='$userID' && log='0' ORDER BY type");
-	 		while($dv=mysql_fetch_array($gamea)) {
+	 		while($dv=mysqli_fetch_array($gamea)) {
 				$gamesa=safe_query("SELECT * FROM ".PREFIX."gameacc WHERE gameaccID='".$dv[type]."'");
-				$db=mysql_fetch_array($gamesa);
+				$db=mysqli_fetch_array($gamesa);
 			 $game.='<option value="'.$dv[gameaccID].'">'.$db[type].'</option>';
 			}	
 
@@ -616,16 +616,16 @@ if($_POST['savetz']) {
 		if(is_array($logins)){
 			foreach($logins as $data){
 				$check_type=safe_query("SELECT * FROM ".PREFIX."gameacc WHERE type ='".$data[0]."'");
-				if(!mysql_num_rows($check_type)){
+				if(!mysqli_num_rows($check_type)){
 					safe_query("INSERT INTO ".PREFIX."gameacc (type) VALUES ('".$data[0]."')");
-					$typeID=mysql_insert_id();
+					$typeID=mysqli_insert_id();
 				}else{
-					$dl=mysql_fetch_array($check_type);
+					$dl=mysqli_fetch_array($check_type);
 					$typeID=$dl['gameaccID'];
 				}			
 				$get=safe_query("SELECT * FROM ".PREFIX."user_gameacc WHERE userID='$id' AND type='$typeID' && log='0'");
 				$get2=safe_query("SELECT * FROM ".PREFIX."user_gameacc WHERE value='".$data[1]."' && log='0'");
-				if(!mysql_num_rows($get) && !mysql_num_rows($get2)){
+				if(!mysqli_num_rows($get) && !mysqli_num_rows($get2)){
 					safe_query("INSERT INTO ".PREFIX."user_gameacc (userID,value,type) VALUES ('$id','".$data[1]."','$typeID')");
 				}
 			}
@@ -643,7 +643,7 @@ if($_POST['savetz']) {
 
 
 		$ergebnis = safe_query("SELECT * FROM ".PREFIX."user_gameacc WHERE value = '$value' && type = '$type' && log='0'");
-		$num = mysql_num_rows($ergebnis);
+		$num = mysqli_num_rows($ergebnis);
 		if($num) $error[]="The Gameaccount already exists!";
 
 		if(!(strlen(trim($value)))) $error[]="You have to enter a Value!";
@@ -685,13 +685,13 @@ if($_POST['savetz']) {
 	  $id = $_POST['id'];
 
 	  $ergebnis=safe_query("SELECT * FROM ".PREFIX."user_gameacc WHERE userID='$id'");
-		$ds=mysql_fetch_array($ergebnis);
+		$ds=mysqli_fetch_array($ergebnis);
 		
 	  $inlog=safe_query("SELECT * FROM ".PREFIX."user_gameacc WHERE userID='$id' AND gameaccID='$type'");
-		$dd=mysql_fetch_array($inlog);
+		$dd=mysqli_fetch_array($inlog);
 		
 	  $ergebnis2 = safe_query("SELECT value FROM ".PREFIX."user_gameacc WHERE value = '$value' && type = '".$dd['type']."' && log='0'");
-		$num_gameacc = mysql_num_rows($ergebnis2);
+		$num_gameacc = mysqli_num_rows($ergebnis2);
 		
 		if($num_gameacc)  {
 		    $error="Already in-use!";
@@ -729,7 +729,7 @@ if($_POST['savetz']) {
 		$id = $userID;
 
 		$ergebnis = safe_query("SELECT password FROM ".PREFIX."user WHERE userID='".$id."'");
-		$ds = mysql_fetch_array($ergebnis);
+		$ds = mysqli_fetch_array($ergebnis);
 
 		if(!(mb_strlen(trim($oldpwd)))) {
 			$error = $_language->module['forgot_old_pw'];
@@ -786,7 +786,7 @@ if($_GET['type']=='redir') echo '<div class="errorbox"><img src="images/cup/icon
 		$mail2 = $_POST['mail2'];
 
 		$ergebnis = safe_query("SELECT password, username FROM ".PREFIX."user WHERE userID='".$userID."'");
-		$ds = mysql_fetch_array($ergebnis);
+		$ds = mysqli_fetch_array($ergebnis);
 		$username = $ds['username'];
 		if(!(mb_strlen(trim($pwd)))) {
 			$error = $_language->module['forgot_old_pw'];
@@ -828,9 +828,9 @@ if($_GET['type']=='redir') echo '<div class="errorbox"><img src="images/cup/icon
 	
 	else {
 		$ergebnis = safe_query("SELECT * FROM ".PREFIX."user WHERE userID='".$userID."'");
-		$anz = mysql_num_rows($ergebnis);
+		$anz = mysqli_num_rows($ergebnis);
 		if($anz) {
-			$ds = mysql_fetch_array($ergebnis);
+			$ds = mysqli_fetch_array($ergebnis);
 			$flag = '[flag]'.$ds['country'].'[/flag]';
 			$country = flags($flag);
 			$country = str_replace("<img","<img id='county'",$country);
@@ -921,16 +921,16 @@ if($_GET['type']=='redir') echo '<div class="errorbox"><img src="images/cup/icon
 			$filepath = "languages/";
 			
 			// Select all possible languages
-			$mysql_langs = array();
+			$mysqli_langs = array();
 			$query = safe_query("SELECT lang, language FROM ".PREFIX."news_languages");
-			while($dx = mysql_fetch_assoc($query)){
-				$mysql_langs[$dx['lang']] = $dx['language'];
+			while($dx = mysqli_fetch_assoc($query)){
+				$mysqli_langs[$dx['lang']] = $dx['language'];
 			}
 			if($dh = opendir($filepath)) {
 				while($file = mb_substr(readdir($dh), 0, 2)) {
 					if($file != "." and $file!=".." and is_dir($filepath.$file)) {
-						if(isset($mysql_langs[$file])){
-							$name = $mysql_langs[$file];
+						if(isset($mysqli_langs[$file])){
+							$name = $mysqli_langs[$file];
 							$name = ucfirst($name);
 							$langdirs .= '<option value="'.$file.'">'.$name.'</option>';
 						}

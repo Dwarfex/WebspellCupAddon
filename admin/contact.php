@@ -104,7 +104,7 @@ if(isset($_GET['action'])) {
 		$contactID = (int)$_GET['contactID'];
 
 		$ergebnis=safe_query("SELECT * FROM ".PREFIX."contact WHERE contactID='$contactID'");
-		$ds=mysql_fetch_array($ergebnis);
+		$ds=mysqli_fetch_array($ergebnis);
     
     $CAPCLASS = new Captcha;
     $CAPCLASS->create_transaction();
@@ -147,14 +147,14 @@ else {
 
 	$ergebnis=safe_query("SELECT * FROM ".PREFIX."contact ORDER BY sort");
 	$anz=safe_query("SELECT count(contactID) FROM ".PREFIX."contact");
-	$anz=mysql_result($anz, 0);
+	$anz=mysqli_result($anz, 0);
 
 	$i=1;
 	$CAPCLASS = new Captcha;
 	$CAPCLASS->create_transaction();
 	$hash = $CAPCLASS->get_hash();
   
-  while($ds=mysql_fetch_array($ergebnis)) {
+  while($ds=mysqli_fetch_array($ergebnis)) {
     if($i%2) { $td='td1'; }
     else { $td='td2'; }
   
