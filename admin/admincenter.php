@@ -52,23 +52,25 @@ if(!isset($_SERVER['REQUEST_URI'])) {
 }
 
 	if(function_exists('file_get_contents')){
+        if(cupIsInstalled()) {
 
-		include "cupversion.php";
-		
+
+            include "cupversion.php";
+        }
 		if($version_num==5.2 && $version_num==5.2) {
 		   $version_num = '5201';
 		}
 
 		$get_version = file_get_contents($updateserver.'/getupdates.php?action=checkversion&version='.$version.'&versionnum='.$version_num);
 		$chk_version = explode("###",$get_version);
-		
+		if(cupIsInstalled()){
 		if($version_num!=$chk_version[1]) {
 		       $sh_cup_update = '<blink><font color="red"><strong>Update Available</strong></font></blink> <img src="../images/cup/icons/notification.png" width="16" height="16">';
 		}
 		else{
 		       $sh_cup_update = 'Cup Update';
 		}
-		
+        }
         }
 
 ?>
@@ -142,7 +144,7 @@ if(!isset($_SERVER['REQUEST_URI'])) {
       <li><a href="admincenter.php?site=faqcategories"><?php echo $_language->module['faq_categories']; ?></a></li>
       <li><a href="admincenter.php?site=linkcategorys"><?php echo $_language->module['link_categories']; ?></a></li>
     </ul>
-    <?php } if(iscupadmin($userID)) { $query=safe_query("SELECT * FROM ".PREFIX."cup_tickets"); while($ds=mysql_fetch_array($query)) {  if($ds['status']==1 || $ds['status']==2) $star = '*'; }  ?>
+    <?php }if(cupIsInstalled()){ if(iscupadmin($userID)) { $query=safe_query("SELECT * FROM ".PREFIX."cup_tickets"); while($ds=mysql_fetch_array($query)) {  if($ds['status']==1 || $ds['status']==2) $star = '*'; }  ?>
     <h2>&not; Cup Menu</h2>
     <ul>
       <li><a href="admincenter.php?site=ladders">Ladders</a></li>
@@ -159,7 +161,7 @@ if(!isset($_SERVER['REQUEST_URI'])) {
       <li><a href="http://teamx1.com/" target="_blank">FAQ & Help</a></li>
       <li><a href="admincenter.php?site=cupupdate"><?php echo $sh_cup_update; ?></a></li>
     </ul>
-    <?php } if(ispageadmin($userID)) { ?>
+    <?php }} if(ispageadmin($userID)) { ?>
     <h2>&not; <?php echo $_language->module['settings']; ?></h2>
     <ul>
       <li><a href="admincenter.php?site=settings"><?php echo $_language->module['settings']; ?></a></li>

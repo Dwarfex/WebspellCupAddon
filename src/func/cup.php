@@ -1,4 +1,8 @@
 <?php
+function cupIsInstalled(){
+	//safe_query("SELECT EXISTS(SELECT * FROM ".PREFIX."cup_settings)");
+	return false;
+}
 function safe_sql_br($value) { 
 
      $value = nl2br($value); 
@@ -4869,6 +4873,8 @@ function rating($S1, $S2, $R1, $R2, $ladderID, $clanID) {
 }
 
 //global call func
+if(cupIsInstalled()){
+	add_date();
+}
 
-add_date();
 ?>

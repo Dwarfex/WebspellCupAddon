@@ -26,8 +26,15 @@
 */
 
 function isanyadmin($userID) {
-	$anz=mysql_num_rows(safe_query("SELECT userID FROM ".PREFIX."user_groups WHERE userID='".$userID."' AND (page='1' OR forum='1' OR user='1' OR news='1' OR clanwars='1' OR feedback='1' OR super='1' OR gallery='1' OR cash='1' OR files='1' OR cup='1') "));
-	return $anz;
+	if (cupIsInstalled()) {
+
+
+		$anz = mysql_num_rows(safe_query("SELECT userID FROM " . PREFIX . "user_groups WHERE userID='" . $userID . "' AND (page='1' OR forum='1' OR user='1' OR news='1' OR clanwars='1' OR feedback='1' OR super='1' OR gallery='1' OR cash='1' OR files='1' OR cup='1') "));
+	} else{
+		$anz = mysql_num_rows(safe_query("SELECT userID FROM " . PREFIX . "user_groups WHERE userID='" . $userID . "' AND (page='1' OR forum='1' OR user='1' OR news='1' OR clanwars='1' OR feedback='1' OR super='1' OR gallery='1' OR cash='1' OR files='1') "));
+
+	}
+		return $anz;
 }
 
 function issuperadmin($userID) {

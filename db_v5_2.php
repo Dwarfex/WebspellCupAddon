@@ -604,7 +604,7 @@ else{
 		  PRIMARY KEY  (`gameaccID`)
 		) AUTO_INCREMENT=1 ;");
 		
-	  $db_status = '<font color="red"><strong>The cup has been successfully installed! Proceed to uploading part 2.</strong></font>';
+	  $db_status = '<font color="red"><strong>The cup has been successfully installed! </strong></font>';
    
    }elseif(isset($_GET['action']) && $_GET['action']=="uninstall") {
    
