@@ -1,0 +1,20 @@
+ <form method="post" name="post" action="admincenter.php?site=ladders&action=standings&do=save&ID=$ID">
+   <tr bgcolor="#FFFFFF">
+    <td width="5%"  align="center">#$rank</td>
+    <td align="center">$country $user</td>
+    <td align="center">
+      <input name="credit" type="text" class="form_off" onfocus="this.className='form_on'" onblur="this.className='form_off'" style="text-align: center;" size="5" value="$ds[credit]"> / 
+      $xp <select name="plusminus_xp"><option value="1">+</option><option value="0">-</option></select> <input name="xp" type="text" class="form_off" onfocus="this.className='form_on'" onblur="this.className='form_off'" style="text-align: center;" size="5">
+     </td>
+    <td align="center">$won <select name="plusminus_w"><option value="1">+</option><option value="0">-</option></select> <input name="won" type="text" class="form_off" onfocus="this.className='form_on'" onblur="this.className='form_off'" style="text-align: center;" size="2"></td>
+    <td align="center">$draw <select name="plusminus_d"><option value="1">+</option><option value="0">-</option></select> <input name="draw" type="text" class="form_off" onfocus="this.className='form_on'" onblur="this.className='form_off'" style="text-align: center;" size="2"></td>
+    <td align="center">$lost <select name="plusminus_l"><option value="1">+</option><option value="0">-</option></select> <input name="lost" type="text" class="form_off" onfocus="this.className='form_on'" onblur="this.className='form_off'" style="text-align: center;" size="2"></td>  
+    <td align="center">
+      <input name="clanID" type="hidden" value="$ds[clanID]" />
+      <input name="ladID" type="hidden" value="$ds[ladID]" />
+      <input type="image" value="savestandings" src="../images/cup/icons/server_edit.gif" width="16" height="16" border="0" alt="Save Standings" name="savestandings">
+     </td>
+   </tr>
+ </form>
+ 
+ <!--     <td align="center">$streak <select name="plusminus_s"><option value="1">+</option><option value="0">-</option></select> <input name="streak" type="text" class="form_off" onfocus="this.className='form_on'" onblur="this.className='form_off'" style="text-align: center;" size="2"></td> -->

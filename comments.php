@@ -10,7 +10,7 @@
 #                                   /                                    #
 #                                                                        #
 #                                                                        #
-#   Copyright 2005-2011 by webspell.org                                  #
+#   Copyright 2005-2010 by webspell.org                                  #
 #                                                                        #
 #   visit webSPELL.org, webspell.info to get webSPELL for free           #
 #   - Script runs under the GNU GENERAL PUBLIC LICENSE                   #
@@ -24,6 +24,10 @@
 #                                                                        #
 ##########################################################################
 */
+//Start recaptcha Mod
+include("_recaptcha.php");
+require_once('recaptchalib.php');
+//End recaptcha Mod
 $bg1 = BG_1;
 function checkCommentsAllow($type, $parentID){
 	global $userID;
@@ -34,20 +38,55 @@ function checkCommentsAllow($type, $parentID){
 	$moduls['cw'] = array("clanwars","cwID","comments");
 	$moduls['de'] = array("demos","demoID","comments");
 	$moduls['po'] = array("poll","pollID","comments");
+	$moduls['cm'] = array("cup_matches","matchID","comment");
+	$moduls['tc'] = array("cup_all_clans","ID","comment");
+	
+/* V5 Tickets*/	
+
+	$moduls['ts'] = array("cup_tickets","ticketID",4);
+
+/* BUG TRACKER */	
+
+	$moduls['bt'] = array("bugtracker","bugID","comments");
+	
 	$allowed = 0;
 	$modul = $moduls[$type];
 	$get = safe_query("SELECT ".$modul[2]." FROM ".PREFIX.$modul[0]." WHERE ".$modul[1]."='".$parentID."'");
-	if(mysql_num_rows($get)){
-		$data = mysql_fetch_assoc($get);
-		switch($data[$modul[2]]){
+	if(mysql_num_rows($get)){ 
+		$data = mysql_fetch_assoc($get); 
+		switch($data[$modul[2]]){ 
 			case 0: $allowed = 0; break;
 			case 1: if($userID) $allowed = 1; break;
 			case 2: $allowed = 1; break;
+			case 3: if(memin($userID,$clanID)) $allowed = 1; break;
+			case 4: if($userID) $allowed = 1; break;
 			default: $allowed=0;
 		}
 	}
 	return $allowed;
 }
+
+//Start recaptcha Mod
+$resp = null;
+# the error code from reCAPTCHA, if any
+$error = null;
+
+# was there a reCAPTCHA response?
+$recaptcha_response_field = "";
+
+if(isset($_POST["recaptcha_response_field"])) {
+    $recaptcha_response_field = $_POST["recaptcha_response_field"];
+}
+
+if ($recaptcha_response_field) {
+        $resp = recaptcha_check_answer ($privatekey,
+                                        $_SERVER["REMOTE_ADDR"],
+                                        $_POST["recaptcha_challenge_field"],
+                                        $_POST["recaptcha_response_field"]);
+
+        if ($resp->is_valid) {
+//End rechaptcha Mod
+
 if(isset($_POST['savevisitorcomment'])) {
 	include("_mysql.php");
 	include("_settings.php");
@@ -59,8 +98,8 @@ if(isset($_POST['savevisitorcomment'])) {
 	$parentID = (int)$_POST['parentID'];
 	$type = $_POST['type'];
 	$message = $_POST['message'];
+	
 	$ip = $GLOBALS['ip'];
-	$CAPCLASS = new Captcha;
 
 	setcookie("visitor_info", $name."--||--".$mail."--||--".$url, time()+(3600*24*365));
 	$query = safe_query("SELECT nickname, username FROM ".PREFIX."user ORDER BY nickname");
@@ -71,42 +110,57 @@ if(isset($_POST['savevisitorcomment'])) {
 	$_SESSION['comments_message'] = $message;
 
 	if(in_array(trim($name), $nicks)) header("Location: ".$_POST['referer']."&error=nickname#addcomment");
-	elseif(!($CAPCLASS->check_captcha($_POST['captcha'], $_POST['captcha_hash']))) header("Location: ".$_POST['referer']."&error=captcha#addcomment");
 	elseif(checkCommentsAllow($type,$parentID) == false ) header("Location: ".$_POST['referer']);
 	else {
+		header("Location: ".$_POST['referer']);
 		$date=time();
 		safe_query("INSERT INTO ".PREFIX."comments ( parentID, type, nickname, date, comment, url, email, ip )
 		            values( '".$parentID."', '".$type."', '".$name."', '".$date."', '".$message."', '".$url."', '".$mail."', '".$ip."' ) ");
 		unset($_SESSION['comments_message']);
-		header("Location: ".$_POST['referer']);
 	}
 }
+//Start recaptcha Mod
+} else {
+                # set the error code so that we can display it
+                header("Location: ".$_POST['referer']."&error=captcha#addcomment");
+				}
+}
+//End recaptcha Mod
+
 elseif(isset($_POST['saveusercomment'])) {
 	include("_mysql.php");
 	include("_settings.php");
 	include("_functions.php");
+	
+	header("Location: ".$_POST['referer']);	
+	
+	include("config.php");
 	$_language->read_module('comments');
 	if(!$userID) die($_language->module['access_denied']);
 
 	$parentID = $_POST['parentID'];
 	$type = $_POST['type'];
 	$message = $_POST['message'];
-	if(checkCommentsAllow($type,$parentID)){
+	
+	if(checkCommentsAllow($type,$parentID)){ 
 		$date=time();
+		$ti=mysql_fetch_array(safe_query("SELECT * FROM ".PREFIX."cup_tickets WHERE ticketID='$parentID'"));
+		$reply_status = (!$ti['adminID'] ? 1 : $user_reply_status);
 		safe_query("INSERT INTO ".PREFIX."comments ( parentID, type, userID, date, comment ) values( '".$parentID."', '".$type."', '".$userID."', '".$date."', '".$message."' ) ");
+		if($_POST['v5']=="true") safe_query("UPDATE ".PREFIX."cup_tickets SET status='$reply_status', updated = '".time()."' WHERE ticketID='".$parentID."'");
 	}
-	header("Location: ".$_POST['referer']);
 }
 elseif(isset($_GET['delete'])) {
 	include("_mysql.php");
 	include("_settings.php");
 	include("_functions.php");
+	
+    header("Location: ".$_POST['referer']);
 	$_language->read_module('comments');
 	if(!isanyadmin($userID)) die($_language->module['access_denied']);
 	foreach($_POST['commentID'] as $id) {
 		safe_query("DELETE FROM ".PREFIX."comments WHERE commentID='".$id."'");
 	}
-	header("Location: ".$_POST['referer']);
 }
 elseif(isset($_GET['editcomment'])) {
 	$id=$_GET['id'];
@@ -281,6 +335,9 @@ else {
 			if(isfeedbackadmin($userID)) $actions='<input class="input" type="checkbox" name="commentID[]" value="'.$ds['commentID'].'" />';
 			else $actions='';
 
+			if(!isset($adminaction))
+			$adminaction = '';
+			
 			eval ("\$comments = \"".gettemplate("comments")."\";");
 			echo $comments;
 
@@ -309,15 +366,47 @@ else {
 		echo $comments_foot;
 
 	}
+	
+	$v5_input = "";
 
 	if($comments_allowed) {
+	  if($comments_allowed == 1) {
 		if($loggedin) {
       
       		eval ("\$addbbcode = \"".gettemplate("addbbcode")."\";");
 			eval ("\$comments_add_user = \"".gettemplate("comments_add_user")."\";");
 			echo $comments_add_user;
-		}
-		elseif($comments_allowed == 2) {
+		}else 
+		   echo 'You must be logged in to post comments';
+		
+		}elseif($comments_allowed == 3) {
+		if(memin($userID,$clanID)) {
+      
+      		eval ("\$addbbcode = \"".gettemplate("addbbcode")."\";");
+			eval ("\$comments_add_user = \"".gettemplate("comments_add_user")."\";");
+			echo $comments_add_user;
+		}else 
+		   echo '';
+		
+		
+		}elseif($comments_allowed == 4) {
+		
+/* V5 TICKETS */
+  
+           if(valid_ticketer($_GET['tickID'],$userID)) {
+           
+            $v5_input = '<input type="hidden" name="v5" value="true" />';
+           
+              eval ("\$addbbcode = \"".gettemplate("addbbcode")."\";");
+			  eval ("\$comments_add_user = \"".gettemplate("comments_add_user")."\";");
+			  echo $comments_add_user;
+			  
+		   }	  
+   
+
+/* END V5 */ 
+		
+		}elseif($comments_allowed == 2) {
     
 			$ip = getenv('REMOTE_ADDR');
 			
@@ -332,6 +421,7 @@ else {
 				$name = "";
 				$mail = "";
 			}
+			
 			
 			if(isset($_GET['error'])) $err = $_GET['error'];
 			else $err = "";
@@ -350,14 +440,20 @@ else {
 				$message = "";
 			}
 			
-			$CAPCLASS = new Captcha;
-			$captcha = $CAPCLASS->create_captcha();
-			$hash = $CAPCLASS->get_hash();
-			$CAPCLASS->clear_oldcaptcha();
-
+			if(!$userID) {
+			//Start recaptcha Mod
+			$recaptcha = recaptcha_get_html($publickey, $error);
+			//End recaptcha Mod
       		eval ("\$addbbcode = \"".gettemplate("addbbcode")."\";");
 			eval ("\$comments_add_visitor = \"".gettemplate("comments_add_visitor")."\";");
 			echo $comments_add_visitor;
+			
+	    }else{
+			
+      		eval ("\$addbbcode = \"".gettemplate("addbbcode")."\";");
+			eval ("\$comments_add_user = \"".gettemplate("comments_add_user")."\";");
+			echo $comments_add_user;
+		     }	
 		}
 		else echo $_language->module['no_access'];
 	}

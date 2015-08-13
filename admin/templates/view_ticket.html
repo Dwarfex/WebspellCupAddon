@@ -1,0 +1,46 @@
+﻿	<table width="100%" border="0" cellspacing="1" cellpadding="3" bgcolor="#DDDDDD">
+		<tr> 
+			<td align="center" class="title"><img src="../images/cup/icons/forward.gif"> <b>Ticket ID #$ds[ticketID]</b></td>
+		</tr>
+		<tr>
+			<td>
+				<table width="100%" border="0" cellspacing="1" cellpadding="3" bgcolor="#DDDDDD">
+				    <tr>
+				        <td class="td2" width="15%"><b>Department</b></td>
+					    <td class="td1">$ticket_departments</td>					
+				    </tr>
+                         $select_match
+                         $select_league
+					<tr> 
+						<td class="td2"valign="top"><b>Added</b></td>
+						<td class="td1"colspan="2" valign="top">$date by $user</td>
+					</tr> 
+					<tr> 
+						<td class="td2" valign="top"><b>Updated</b></td>
+						<td class="td1" colspan="2" valign="top">$updated_date 
+						$updated_by</td>
+					</tr> 
+					<tr> 
+						<td class="td2"><b>Subject</b></td>
+						<td class="td1">$subject</td>
+					</tr>
+					<tr> 
+						<td class="td2"valign="top"><b>Info</b></td>
+						<td class="td1"colspan="2" valign="top">$desc</td>
+					</tr>
+$mmedia
+					<tr> 
+						<td class="td2"valign="top"><b>Status</b></td>
+						<td class="td1"colspan="2" valign="top">$status</td>
+					</tr> 
+					</table>
+					<table width="100%" border="0" cellspacing="1" cellpadding="3" bgcolor="#DDDDDD">
+                    <tr>
+                        $ticket_options
+						<td class="td_head" align="center" width="20%"><img src="../images/cup/icons/tchat.png" border="0"> $irc</td>
+						<td class="td_head" align="center" width="20%"><img src="../images/cup/icons/leave.gif" border="0"> <a href="?site=cuptickets&action=delete&ticketID=$ds[ticketID]" onclick="return confirm('Deleting this ticket is non recoverable. Important: If you are deleting a protest ticket you can only confirm the result from brackets.');"><strong>Delete Ticket</strong></a></td>
+                    </tr> 
+				</table>
+			</td>
+		</tr>
+	</table>

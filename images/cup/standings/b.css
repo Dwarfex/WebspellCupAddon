@@ -1,0 +1,855 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline;background:transparent}:focus{outline:0}body{line-height:1;color:black;background:white}ol,ul{list-style:none}table{border-collapse:collapse;border-spacing:0}caption,th,td{text-align:left;font-weight:normal}blockquote:before,blockquote:after,q:before,q:after{content:""}blockquote,q{quotes:"" ""}.Clear{clear:both}.Hidden{display:none}.Show{display:block}.Invisible{visibility:hidden}.Left{position:relative;float:left}.Right{position:relative;float:right}.Top.Left{position:absolute;top:0px;left:0px}.Top.Right{position:absolute;top:0px;right:0px}.Bottom.Left{position:absolute;bottom:0px;left:0px}.Bottom.Right{position:absolute;bottom:0px;right:0px}.ZTop{z-index:100}.ZBottom{z-index:0}.FontSize13{font-size:1.3em}.FontSize12{font-size:1.2em}.FontSize11{font-size:1.1em}.FontSize10{font-size:1.0em}.FontSize08{font-size:0.8em}.FontSize07{font-size:0.7em}.Bold{font-weight:bold}.Center{text-align:center;display:block}.Justify{text-align:justify}.Verdana{font-family:Verdana}.Pointer{cursor:pointer}strong{font-weight:bold}em{font-style:italic}.Font9px{font-size:9px}.Font12px{font-size:12px}.Font14px{font-size:14px}.White{color:#fff}.Black{color:#000}.Capitalize{text-transform:capitalize}.Uppercase{text-transform:uppercase}.Lowercase{text-transform:lowercase}.NoWrap{white-space:nowrap}body{font-family:Tahoma,Verdana,Arial,Helvetica,sans-serif;font-size:8pt;color:#d9d9d9;background-color:#131313;line-height:1.3em}pre{font-family:Tahoma,Verdana,Arial,Helvetica,sans-serif;white-space:pre-wrap}ul
+li{list-style-type:disc}ol
+li{list-style-type:decimal}table[align=center]{margin:auto}.Spacer8{width:8px;height:8px}.Spacer10{width:10px;height:10px}#Page{position:relative;width:922px;margin:auto}#PageSimple{position:relative;background:#3C3C3C}#Header{position:relative;width:100%;height:146px;background-image:url(http://static1.4pl.4players.de/dist/htdocs/images/themes/playnow/header.jpg);background-repeat:no-repeat}#Footer{position:relative;width:906px;height:192px;margin-top:8px}#Footer
+.Border{width:100%;height:5px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png)}#Footer
+.Border.Top{position:relative;top:0px;background-position:0px -724px}#Footer
+.Border.Bottom{position:absolute;bottom:0px;background-position:0px -729px}#Footer
+.Content{position:relative;width:886px;height:166px;border-left:solid 2px #4b4b4b;border-right:solid 2px #4b4b4b;padding:8px;background-color:#131313}#Footer .Content
+b{position:relative;top: -5px;line-height:20px}#Footer .Content
+a{color:#f1af35;line-height:18px}#Footer .Content a:hover{color:#fff}#Navigation{position:absolute;top:116px;left:0px;width:915px;height:30px;line-height:30px;padding-left:8px}#Navigation
+div{position:relative;float:left;width:114px;text-align:center}#Navigation div a:link{display:block;font-size:10pt;font-weight:bold;color:#3C3C3C;text-decoration:none}#Navigation div a:visited{display:block;font-size:10pt;font-weight:bold;color:#3C3C3C;text-decoration:none}#Navigation div a:focus{display:block;font-size:10pt;font-weight:bold;color:#3C3C3C;text-decoration:none}#Navigation div a:hover{display:block;font-size:10pt;font-weight:bold;color:#FFF;text-decoration:none}#Navigation div a:active{display:block;font-size:10pt;font-weight:bold;color:#3C3C3C;text-decoration:none}#Navigation div a:hover{border-width:0 2px;border-style:solid;border-color:#CA880D}#Navigation div.First a:hover{border-width:0 2px 0 0}#Navigation div.Last a:hover{border-width:0 0 0 2px}#QuickLinksContainer{position:absolute;top:2px;left:8px;width:717px;height:19px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-repeat:no-repeat;background-position:-101px -458px;background-color:#606060}#QuickLinks{padding-left:10px;line-height:19px}#IconsContainer{position:absolute;top:5px;left:435px;height:16px;width:60px}#IconsContainer
+div{margin-right:4px}#Time{position:absolute;top:2px;left:597px;height:11px;width:120px;padding:5px
+4px 0px 0px;text-align:right;line-height:1em}#SiteSearch{position:absolute;top:2px;left:726px;height:19px;padding:0px}#SiteSearch
+#sa{width:24px;height:19px;margin-left:1px;background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png);background-position:0px -357px}#Content{position:relative;width:914px;min-height:1000px;padding:8px
+0px 8px 8px;background-color:#3c3c3c}div{position:relative}#Update{width:706px;height:auto;overflow:hidden}#RightColumn{width:208px;height:auto;overflow:hidden}#TopThema{width:100%}#TopThema
+.Image{width:242px;height:242px;border:1px
+solid black}.TopTopic{width:242px;height:273px;padding:10px;margin-right:8px;margin-bottom:8px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-position:0px 0px}.TopTopic
+img{width:240px;height:238px;border:1px
+solid black}.TopNews{width:408px;height:139px;padding:10px;margin-right:8px;margin-bottom:8px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-position:-262px 0px}.TopNews
+.Image{width:150px;height:104px;margin-right:4px;border:1px
+solid black}.TopNews
+.Heading{margin-bottom:4px;font-weight:bold}.TopNews
+.Summary{line-height:1.35em}.TopNews .Heading a, .TopNews .Heading a:active, .TopNews .Heading a:visited{display:block;text-decoration:none;color:#fabf3f}.GamesList
+.Image{border:solid 1px #131313}.Games{width:242px;height:349px;padding:10px;margin-right:8px;margin-bottom:8px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-position:0px -293px}.Games
+.Image{margin-bottom:8px}.NewGames{width:242px;height:279px;padding:10px;margin-right:8px;margin-bottom:8px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-position:-0px -662px}.NewGames
+.Image{margin-bottom:8px}.NewGames
+.NewGamesFooter{position:absolute;width:242px;left:10px;height:16px;padding-top:3px;padding-bottom:9px;padding-right:10px;padding-left:10px;bottom:0px;margin-left:		-10px;text-align:right}div.button{width:106px;height:16px;margin:0px;background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png);background-position:0px -36px;text-align:center;font-size:7pt;font-weight:bold;line-height:15px;color:#3c3c3c;cursor:pointer}div.button_big{width:146px;height:14px;margin:0px;background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png);background-position:0px -22px;text-align:center;font-size:7pt;font-weight:bold;line-height:15px;color:#3c3c3c;cursor:pointer}div.button_big_disabled{background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png);background-position:-105px -154px;color:#3C3C3C;font-size:7pt;font-weight:bold;height:16px;line-height:15px;margin:0;text-align:center;width:147px}div.button
+a{line-height:11px ! important}div.button_disabled{background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png);background-position:-138px -52px;color:#3C3C3C;font-size:7pt;font-weight:bold;height:16px;line-height:15px;margin:0;text-align:center;width:106px}div.button_disabled
+a{color:#3C3C3C;font-size:7pt;font-weight:bold;text-decoration:none;line-height:11px ! important}div.button.yellow{background-position:-138px -36px}div.button.green65{width:65px;background-position:-0px -309px}div.button_disabled65{background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png);background-position:-65px -309px;color:#3C3C3C;font-size:7pt;font-weight:bold;height:16px;line-height:15px;margin:0;text-align:center;width:65px}div.button.friends{background-position:-0px -376px}div.button a, div.button_75
+a{display:block;padding:2px;height:100%;color:#3c3c3c}div.button:hover, div.button a:hover, div.button_75:hover, div.button_75 a:hover{text-decoration:none;color:#FFF}div.buttonZZZ:active,div.button_75ZZZ:active{position:relative;top:1px;left:1px}div.button_75{width:75px;height:16px;margin:0px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/75x16_green.png);text-align:center;font-size:7pt;font-weight:bold;line-height:11px;color:#3c3c3c;cursor:pointer}div.button.small{width:65px;background-position: -0px -309px}div.button.small.red{background-position: -0px -325px}div.button.small.yellow{background-position: -0px -341px}button,input[type=button],input[type=submit]{height:16px;padding-bottom:2px;border:1px
+solid #5b9400;color:#3C3C3C;font-family:Tahoma,Verdana,Arial,Helvetica,sans-serif;font-size:7pt;font-weight:bold;text-decoration:none;background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/button_back_green.gif);background-position:0 -1px;cursor:pointer;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px}button.red,input[type=button].red,input[type=submit].red{border:1px
+solid #940a00;background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/button_back_red.gif)}button.yellow,input[type=button].yellow,input[type=submit].yellow{border:1px
+solid #ca8a0b;background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/button_back_yellow.gif)}button.grey,input[type=button].grey,input[type=submit].grey{border:1px
+solid #919191;background-image:url(http://static1.4pl.4players.de/dist/htdocs/images/themes/playnow/button_back_grey.gif)}button:hover,input[type=button]:hover,input[type=submit]:hover{color:#FFF}buttonZZZ:active,input[type=button].ZZZ:active,input[type=submit].ZZZ:active{position:relative;top:1px;left:1px}button:focus::-moz-focus-inner,input[type=button]:focus::-moz-focus-inner,input[type=submit]:focus::-moz-focus-inner{border:1px
+dotted transparent}.News{width:408px;height:655px;padding:10px;margin-right:8px;margin-bottom:8px}#NewsHeader{margin-top:			-10px;margin-left:		-10px;margin-bottom:0px;padding:10px;width:408px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);height:26px;background-position:-262px -293px}.BoxHeader{margin-top:0px;margin-left:0px;margin-bottom:0px;padding:0px;width:100%;font-weight:bold;height:33px}.NewsFooter{margin-top:0px;margin-left:		-10px;margin-bottom:0px;padding-top:6px;padding-left:8px;padding-bottom:8px;padding-right:12px;width:408px;height:15px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-position:-262px -459px;text-align:right}.NewsEntry{width:408px;height:104px;padding:8px
+8px 0px 8px;margin:2px
+0px 0px -10px;border:2px
+solid #4B4B4B;border-bottom:0px}.NewsEntry.Small{height:37px}.TopNewsEntry{width:408px;height:110px;margin-left:		-10px;padding:10px;padding-top:0px;padding-bottom:0px;margin-bottom:0px;border-top:2px solid #4b4b4b}.NewsEntry
+.Image{position:relative;top:				-9px;width:55px;height:91px;margin-right:8px;border:1px
+solid #131313}.NewsEntry
+.NewsHeader{width:auto;height:23px;margin:				-8px -10px 0px -10px;padding:6px
+6px 0px 6px;border:2px
+solid #4B4B4B;background-color:#4B4B4B;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-position:0px -732px;border-top:1px solid #3c3c3c}#TopThema
+.NewsHeader{width:246px;height:23px;margin:6px
+-10px 0px -10px;padding:6px
+6px 0px 6px;border:2px
+solid #4B4B4B;background-color:#4B4B4B;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-position:-160px -732px;border-top:1px solid #3c3c3c}.TopThemaEntry{margin-bottom:2px;width:402px;height:34px;border:2px
+solid #4b4b4b;background-color:#4b4b4b;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-position:-2px -994px}.TopThemaEntry a:link,
+.TopThemaEntry a:visited{color:#d9d9d9}.TopThemaEntry:hover a:link,
+.TopThemaEntry:hover a:visited,
+.TopThemaEntry.Active
+a{color:#fabf37}.TopThemaEntry a:hover{color:#fabf37;text-decoration:none}#TopThemasButtons{top:9px;right:7px;padding-left:2px;background:#4A4A4A;-moz-box-shadow: -2px 2px 2px #131313;-webkit-box-shadow: -2px 2px 2px #131313;box-shadow: -2px 2px 2px #131313;border-bottom-left-radius:5px;-moz-border-radius-bottomleft:5px;-webkit-border-bottom-left-radius:5px}#TopThemasButtons
+div.Rounded{width:16px;height:16px;line-height:16px;margin:2px
+2px 2px 0;border:1px
+solid #3C3C3C;background:#4A4A4A}#TopThemasButtons div:hover,
+#TopThemasButtons
+div.Active{border-color:#000;color:#fabf37;background-image:url('http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png');background-position: -8px; }.TopNewsEntry
+.NewsHeader{width:auto;height:23px;margin:0px
+-10px 0px -10px;padding:6px
+6px 0px 168px;border:2px
+solid #4B4B4B;background-color:#4B4B4B;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-position:0px -732px;border-top:1px solid #3c3c3c}.NewsHeader
+.Info{position:relative;top:				-3px;height:auto;font-size:7pt;line-height:14px;color:#f0f0f0}.NewsEntry.Small
+.Info{padding-left:65px}.NewsHeader
+.Titel{position:relative;margin-top:2px;display:block;font-size:11pt;color:#FABF37}.NewsEntry.Small
+.Titel{padding-left:65px}.NewsEntry .Text, .TopNewsEntry
+.Text{position:absolute;top:30px;right:8px;width:345px;line-height:14px;height:auto;margin-top:8px;font-size:9pt;text-align:justify}.TopThema
+.Text{line-height:14px;height:auto;margin-top:2px;font-size:9pt;text-align:justify}.TopNewsEntry
+.Text{width:248px;margin-left:		-8px}.NewsEntry
+.Heading{width:234px;margin-bottom:4px;white-space:nowrap}.NewsEntry .Heading a, .News .Heading a:active, .News .Heading a:visited{display:block;text-decoration:none;color:#fabf3f}.NewsEntry
+.Date{width:100px;padding-right:4px;text-align:right}.NewsEntry
+.Summary{width:346px;padding-right:4px;line-height:1.35em}.TopNewsEntry
+.Image{position:absolute;top:				-3px;left:10px;width:150px;height:104px;margin-right:14px;border:1px
+solid black}.NewsEntry .news_buttons, .TopNewsEntry
+.news_buttons{position:absolute;padding:0px;bottom:2px;right:0px;width:170px;height:18px}.news_buttons
+a{font-size:7pt;color:#FABF37}.news_buttons
+img{position:relative;top:4px}.Videos{width:180px;height:308px;padding:10px;margin-bottom:8px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/backgrounds.png);background-position:0px -386px}.Videos
+.Button{width:88px;height:22px;line-height:22px;text-align:center;background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png);background-position:-71px 0px}.Videos .Button:hover{text-decoration:underline}.Videos a, .Videos a:active, .Videos a:visited{display:block;text-decoration:none;color:#131313}.Videos
+.Description{width:116px;height:45px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/backgrounds.png);background-position:-724px -328px}.Videos .Description, .Videos
+.Image{margin-top:8px}.Videos
+.Title{margin-bottom:4px}.Videos .Description a, .Videos .Description a:active, .Videos .Description a:visited{display:block;text-decoration:none;font-weight:bold;color:#fabf3f}.Videos
+#VideoFooter{position:absolute;width:166px;left:24px;bottom:10px}.Settings{width:106px;height:16px;line-height:16px;margin:0px;margin-left:20px;text-align:center;color:#131313;background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png);background-position:0px -36px}.Posts{width:180px;height:254px;padding:10px;margin-bottom:8px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/backgrounds.png);background-position:-200px -386px}.Posts
+.Button{width:88px;height:22px;line-height:22px;text-align:center;background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png);background-position:-71px 0px}.Posts .Button:hover{text-decoration:underline}.Posts a, .Posts a:active, .Posts a:visited{display:block;text-decoration:none;color:#131313}.Posts
+.Image{width:26px;height:26px;margin-top:8px}.Posts
+.Post{height:26px;width:146px;margin-top:8px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/backgrounds.png);background-position:-724px -250px}.Post .BoardTitle a, .Post .BoardTitle a:visited, .Post .BoardTitle a:active{color:#fabf3f;text-decoration:none}.Post .TopicTitle a, .Post .TopicTitle a:visited, .Post .TopicTitle a:active{color:#d9d9d9;text-decoration:none}.Post .TopicTitle a:hover{text-decoration:underline}.Posts
+#PostsFooter{position:absolute;width:166px;left:24px;bottom:10px}.TopPlayers{width:678px;height:254px;padding:10px;margin-bottom:8px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/backgrounds.png);background-position:-400px -386px}.TopPlayers
+.TopPlayer{width:162px;height:220px;margin-right:10px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/backgrounds.png);background-position:-986px 0px}.TopPlayers
+.TopPlayer.Last{margin-right:0px}.TeamExchange{width:180px;height:254px;padding:10px;margin-bottom:8px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/backgrounds.png);background-position:-200px -386px}.HeaderOLD{margin-top:			-10px;margin-left:		-10px;margin-bottom:10px;padding:12px
+10px 8px 10px;width:100%;height:14px}.FooterOLD{width:695px;height:0px;padding-left:1px;margin-top:8px;margin-bottom:		-9px;margin-left:		-7px;border-top:1px solid #4a4a4a}.Footer
+div{width:694px;height:0px;border-top:1px solid #4a4a4a}.Scroll{width:16px;height:16px;margin-left:4px;margin-right:0px;cursor:pointer}.ScrollZZZ:active{top:1px;left:1px}.Scroll.Left{background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png);background-position:-106px -36px}.Scroll.Left.Horizontal{background-position:-106px -84px}.Scroll.Left.Horizontal:hover{background-position:-106px -116px}.Scroll.Left.previous_button_over{background-position:-106px -68px}.Scroll.Left.previous_button_disabled{background-position:-106px -52px}.Scroll.Left.previous_button_disabledZZZ:active{top:0px;left:0px}.Scroll.Right{background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png);background-position:-122px -36px}.Scroll.Right.Horizontal{background-position:-122px -84px}.Scroll.Right.Horizontal:hover{background-position:-122px -116px}.Scroll.Right.next_button_over{background-position:-122px -68px}.Scroll.Right.next_button_disabled{background-position:-122px -52px}.Scroll.Right.next_button_disabledZZZ:active{top:0px;left:0px}.Orange{color:#fabf3f}.Black{color:#131313}.White{color:#fff}.Button a, .Button a:active, .Button a:visited{display:block;color:#131313;text-decoration:none;white-space:nowrap;height:100%}.ButtonZZZ:active{top:1px;left:1px}#Navigation div aZZZ:active{margin-top:1px;margin-left:1px}.InnerBox{width:662px;min-height:102px;padding:8px;border:2px
+solid #656565;background-color:#424242}.InnerBox a, .InnerBox a:active, .InnerBox a:visited{text-decoration:none;color:#fabf3f}.InnerBox a:hover{text-decoration:underline}.InnerBox a[href^='http://']{padding-right:18px;background:transparent url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/icon_external.gif) no-repeat center right}.InnerBox a[target=_blank]{padding-right:18px;background:transparent url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/icon_popup.gif) no-repeat center right}.InnerBox
+.InnerBoxHeader{position:absolute;top:0px;left:0px;width:682px;height:63px;margin:				-2px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/backgrounds.png);background-position:-428px -660px}.InnerBox
+.InnerBoxFooter{position:absolute;bottom:0px;left:0px;width:682px;height:63px;margin:				-2px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/backgrounds.png);background-position:-428px -723px}.OuterBox{padding:8px;width:678px;border:2px
+solid #4a4a4a;margin-bottom:8px;background-color:#3c3c3c}.OuterBox
+.OuterBoxHeader{position:absolute;width:698px;height:34px;top:0px;left:0px;margin:				-2px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/backgrounds.png);background-position:-428px -936px}.OuterBox
+.OuterBoxFooter{position:absolute;width:698px;height:10px;bottom:0px;left:0px;margin:				-2px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/backgrounds.png);background-position:-428px -970px}.OuterBox
+.Header{height:14px;line-height:14px;margin:0px;margin-top:			-10px;margin-left:		-10px;margin-bottom:8px;padding:10px}#Monitor{z-index:100}#Monitor
+.ContentBox{height:242px}#Monitor
+.Right{margin-right:0px}#Monitor
+.Button{width:71px;height:22px;margin-bottom:4px;line-height:22px;text-align:center;background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png);background-position:0px 0px}#Monitor
+.Button.Disabled{background-position:-106px -132px}#Monitor .Button a, #Monitor .Button a:active, #Monitor .Button a:visited{display:block;text-decoration:none;color:#131313}#Monitor
+#FriendsOnline{width:146px;height:14px;line-height:14px;text-align:center;color:#131313;background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png);background-position:0px -22px}#Monitor
+#FriendsOnline.Disabled{background-position:-106px -154px}#Monitor
+#Messages{width:196px;height:170px;padding:0px;margin:3px
+-8px 0px -8px;overflow:hidden}#Monitor
+.Message{width:100%;height:34px;margin:0px;z-index:10;list-style:none;overflow:hidden}#Monitor
+.Message.Uneven{background:#4a4a4a}#Monitor
+#MessageSession.Message{cursor:pointer;background:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/monitor_green.jpg)}#Monitor
+.MessageSystem.Message{position:absolute;top:0px;left:0px;z-index:20;background:url(http://static1.4pl.4players.de/dist/htdocs/images/themes/playnow/monitor_red.jpg)}#Monitor
+.MessageButtonLeft{width:26px;height:25px;padding-top:1px;margin:4px
+8px;background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/monitor_icons.png);background-position:0px -52px}#Monitor
+.MessageButtonLeft.Open{background-position:0px -104px}#Monitor
+.MessageButtonLeft.OpenSession{background-position:0px 0px}#Monitor
+.MessageButtonLeft.System{background-position:0px -78px}#Monitor
+.MessageButtonLeft.NotLoggedIn{background-position:0px 0px}#Monitor
+.MessageButtonLeft.AllMessages{background-position:0px -26px}#Monitor
+.MessageButtonRight{width:13px;height:34px;margin:3px
+8px 0px 0px}#Monitor .MessageButtonRight
+.Delete{width:13px;height:13px;margin-bottom:1px;cursor:pointer;background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png);background-position:-171px -22px}#Monitor .MessageButtonRight
+.Close{width:13px;height:13px;margin:0px;cursor:pointer;background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png);background-position:-158px -13px}#Monitor .MessageButtonRight
+.Open{width:13px;height:13px;margin:0px;cursor:pointer;background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png);background-position:-158px 0px}#Monitor .MessageButtonRight .DeleteZZZ:active, #Monitor .MessageButtonRight .CloseZZZ:active, #Monitor .MessageButtonRight .OpenZZZ:active{top:1px;left:1px}#Monitor
+.MessageSubject{width:130px;height:26px;margin-top:3px;line-height:13px;white-space:nowrap}#Monitor
+.MonitorText{position:absolute;top:47px;left:				-8px;width:196px;height:172px;margin:0px;line-height:13px;background-color:#474747;z-index:20}#Monitor .MonitorText
+.Text{width:180px;height:134px;padding:0px
+8px;line-height:13px;overflow:auto;background-color:#3C3C3C}#Monitor .MonitorText .Text a, #Monitor .MonitorText .Text a:visited, #Monitor .MonitorText .Text aZZZ:active{color:#fabf3f;text-decoration:none}#Monitor .MonitorText .Text a:hover{text-decoration:underline}#Monitor
+.MessageAnswer{position:absolute;top:80px;left:0px;width:180px;height:136px;margin:0px;line-height:13px;background-color:#474747;z-index:20}#Monitor
+#TextMessageAnswer{width:174px;height:100px;margin-bottom:8px}#Monitor
+#MonitorFooter{position:absolute;bottom:0px;left:0px}#Monitor
+#Logout{position:absolute;bottom:0px;left:0px;width:30px;height:16px}#Monitor
+#Settings{width:106px;height:16px;line-height:16px;margin-left:34px}#Monitor #SettingsZZZ:active{top:1px;left:1px}#Monitor #Settings
+a{display:block;text-decoration:none}#Monitor
+#MonitorFooter{position:absolute;width:180px;left:10px;bottom:10px}#Monitor
+#GameSession{width:172px;padding:4px;background:#f00;cursor:pointer}#Monitor #GameSession:hover
+a{text-decoration:underline;color:#fff}#Monitor
+.NotLoggedInText{line-height:26px;text-align:center}#Monitor
+.LoginBox{width:auto;overflow:hidden}#NextMatches
+.NextMatch{padding:4px}#Fade{position:fixed;top:0px;left:0px;width:100%;height:100%;background-color:#131313;opacity:0.5}#Editor{position:fixed;top:0px;left:0px;padding:4px;border:1px
+solid black;background-color:#3c3c3c}#Editor
+#CloseEditor{width:100%;text-align:right}#Editor #CloseEditor
+span{cursor:pointer}#Editor
+.EditLabel{width:30%;min-height:36px}#Editor
+.EditData{width:70%;min-height:36px}#SwitchEdit{position:fixed;top:0px;left:0px;padding:2px;background-color:red;color:white;cursor:pointer}.EditorTag{position:relative;float:left;top:				-10px;left:0px;height:10px;line-height:10px;margin:0px;margin-bottom:		-10px;margin-left:4px;text-align:center}.EditorTag .New, .EditorTag .Edit, .EditorTag
+.Delete{padding-left:2px;padding-right:2px;background-color:red;color:white;cursor:pointer}#ProfileDetails{margin:8px
+0px 0px 8px;overflow:hidden}#ProfileDetails .Alt1, #ProfileDetails
+.Alt2{padding:0px
+0px 0px 8px;width:300px;line-height:22px}#ProfileDetails
+.Alt1{background:#4B4B4B}#ProfileRating{padding:8px
+0px 0px 16px}#ProfileRating
+div{height:16px}#ProfilePenalty,#ProfileNoPenalty{margin:4px
+0px 0px 16px;width:85px;height:30px;padding:2px;text-align:center;background:url(http://static1.4pl.4players.de/dist/htdocs/images/themes/playnow/profil_backgrounds.png) 0px -80px}#ProfilePenalty
+span{font-size:18px;font-weight:bold}#ProfileNoPenalty{background:url(http://static1.4pl.4players.de/dist/htdocs/images/themes/playnow/profil_backgrounds.png) -217px -80px}#ProfileVerified .VerifiedLevel, #TeamVerified
+.VerifiedLevel{margin:8px
+0px 0px 22px;width:80px;height:80px;background:url(http://static1.4pl.4players.de/dist/htdocs/images/themes/playnow/profil_backgrounds.png) #3C3C3C}#ProfileVerified
+.VerifiedLevel0{background-position:0px 0px}#ProfileVerified
+.VerifiedLevel1{background-position:-80px 0px}#ProfileVerified
+.VerifiedLevel2{background-position:-160px 0px}#ProfileVerified
+.VerifiedLevel3{background-position:-240px 0px}#TeamVerified
+.VerifiedLevel0{background-position:-50px 336px}#TeamVerified
+.VerifiedLevel1{background-position:-130px 336px}#TeamVerified
+.VerifiedLevel2{background-position:-210px 336px}#TeamVerified
+.VerifiedLevel3{background-position:-290px 336px}#ProfileVerified .MemberSince, #TeamVerified
+.MemberSince{margin-top:22px;width:100%;text-align:center}.ProfileTeam{width:334px;height:40px;margin:8px
+0px 0px 8px;background:#4B4B4B;line-height:12px;white-space:nowrap}.ProfileTeam
+img{width:24px;height:24px;margin:8px}.ProfileTeam
+div.Left{margin-top:8px;width:250px;overflow:visible}.LastVisitor{padding:4px
+8px;line-height:12px}.LastVisitor.Alt2{background:#4B4B4B}.LastVisitor
+img{margin-right:4px}.ContactData{padding:4px
+8px;height:12px;line-height:12px}.ContactData.Alt1{background:#4B4B4B}.Icon{top:				-2px;width:16px;height:16px;margin-right:4px;background:url(http://static1.4pl.4players.de/dist/htdocs/images/themes/playnow/profil_backgrounds.png) #3C3C3C}.ContactData.Alt1
+.Icon{background-color:#4B4B4B}.Icon.IconFriend{background-position:0px -326px}.Icon.IconPm{background-position:0px -390px}.Icon.IconIcq{background-position:0px -358px}.Icon.IconIrc{background-position:0px -406px}.Icon.IconMsn{background-position:0px -374px}.Icon.IconAim{background-position:0px -502px}.Icon.IconYim{background-position:0px -518px}.Icon.IconSkype{background-position:0px -534px}.Icon.IconFriendscode{background-position:0px -566px}.Icon.IconXboxgamertag{background-position:0px -550px}.Icon.IconPsn_id{background-position:0px -582px}.Icon.IconXfire{background-position:0px -598px}.Icon.IconCpu{background-position:-16px -326px}.Icon.IconRam{background-position:-16px -342px}.Icon.IconMotherboard{background-position:-16px -358px}.Icon.IconSoundcard{background-position:-16px -374px}.Icon.IconScreen{background-position:-16px -390px}.Icon.IconOs{background-position:-16px -406px}.Icon.IconMousepad{background-position:-16px -422px}.Icon.IconMouse{background-position:-16px -438px}.Icon.IconKeyboard{background-position:-16px -454px}.Icon.IconHeadset{background-position:-16px -470px}.Icon.IconGamepad{background-position:-16px -486px}.Icon.IconInternet_speed{background-position:-16px -502px}.Icon.IconConsoles{background-position:-16px -550px}.Icon.IconFavorite_food,.Icon.IconAnti_food{background-position:-16px -534px}.Icon.IconFavorite_music,.Icon.IconAnti_music{background-position:-16px -582px}.Icon.IconFavorite_movies,.Icon.IconAnti_movies{background-position:-16px -566px}.Icon.IconFavorite_books,.Icon.IconAnti_books{background-position:-16px -550px}.IconBig{top:				-2px;width:20px;height:20px;margin-right:4px;background:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/monitor_icons.png)}.IconBig.IconWarn{background-position: -3px; }.ProfileSessions{width:100%;margin:1px
+0px 3px 0px}.ProfileSessions{margin:1px
+0px 5px 0px\9}.ProfileSessions tr
+td{background:#4a4a4a}.ProfileSessions tr.Uneven
+td{background:#3c3c3c}.ProfileSessions
+th{padding:0px
+8px}.ProfileSessions
+td{padding:4px
+8px}.ProfileSessions
+tr{line-height:15px;cursor:pointer}.ProfileSessions tr.Uneven:hover td, .ProfileSessions tr.Even:hover
+td{background:#131313}.ProfileSessions td
+img{margin-right:4px}.ProfileCup{padding:8px;height:40px;line-height:14px}.ProfileCup.Uneven{background:#4a4a4a}.ProfileCup
+img{width:40px;height:40px;margin-right:8px}.ProfileCup
+.Rank{padding-top:4px;width:36px;height:32px;border:2px
+solid #6F5007;margin-right:4px;text-align:center;background:#FABF37;color:black}.ProfileCup .Rank a, .ProfileCup .Rank a:hover{color:#000;text-decoration:none}.Rank
+img{position:relative;top:				-4px}.LadderChange{width:16px;height:14px;background:url(http://static1.4pl.4players.de/dist/htdocs/images/themes/playnow/profil_backgrounds.png)}.LadderChange.Up{background-position:0px -423px}.LadderChange.Down{background-position:0px -439px}.LadderChange.No{background-position:0px -455px}.LadderChart{margin-top:			-4px;width:280px;height:48px}.Visibility{width:16px;height:16px;background:url(http://static1.4pl.4players.de/dist/htdocs/images/themes/playnow/profil_backgrounds.png)}.Visibility.Vis,.Visibility.Visa{background-position:0px -470px}.Visibility.Invis,.Visibility.Invisa{background-position:0px -486px}.Visibility.Vis,.Visibility.Invis{cursor:pointer}#Cups
+li{list-style:none}.DataRow{width:100%;height:19px;padding-bottom:4px}.DataRow>div{line-height:19px}.DataRow>div>input[type=text],.DataRow>div>input[type=password]{width:151px;margin-right:8px}.MoreRow>div{padding:2px
+8px;margin:0px}.DataDescription{padding:10px}.DataDescription ol, .DataDescription
+ul{margin-left:18px}#BoxSuccess{width:678px;text-align:center;padding:8px;margin-top:8px;color:#5B8A0C;background:#CEF48C;border:2px
+solid #5b9202}#BoxError{width:678px;text-align:center;padding:8px;margin-top:8px;color:#AA0B10;background:#FEE5E7;border:2px
+solid #AA0B10}#BoxWarning{width:678px;text-align:center;padding:8px;margin-top:8px;color:#C57904;background:#FFFFC6;border:2px
+solid #F0C828}#BoxInfo{width:678px;text-align:center;padding:8px;margin-top:8px;color:#004080;background:#E6EAFF;border:2px
+solid #436FB0}#BoxSuccess ul, #BoxError ul, #BoxWarning ul, #BoxInfo
+ul{padding-left:22px}.ErrorBox{padding:8px;margin-top:8px;color:#3c3c33;font-weight:bold;background:#FEE5E7;border:2px
+solid #AA0B10}.CenterChangeImage{padding:10px}.CenterChangeImage
+img{border:1px
+solid black}.CenterChangeImage img+img{position:absolute;top:10px;left:10px}.FadeGameBox{position:absolute;display:block;top:0px;left:0px;width:100%;height:100%;background:#131313;-moz-opacity:0.5;filter:alpha(opacity=50);opacity:			.5}.Blocker{position:absolute;display:block;top:0px;left:0px;width:100%;height:100%;background:url(http://static2.4pl.4players.de/dist/htdocs/images/transparent.png)}.FadeBackground{position:absolute;display:block;top:0px;left:0px;width:100%;height:100%;background:#3C3C3C;-moz-opacity:0.5;filter:alpha(opacity=50);opacity:			.5}img.FriendDeleteButtons{cursor:pointer}.SortBar{padding:0px
+8px;text-transform:uppercase;font-size:10px}.SortBar
+th{background:#4a4a4a}.SortButton{margin:5px
+4px 0px 4px;width:10px;height:6px;background:url(http://static1.4pl.4players.de/dist/htdocs/images/themes/playnow/profil_backgrounds.png);cursor:pointer}.SortUp{background-position:-0px -280px}#News{padding:6px;width:682px;border:2px
+solid #4a4a4a;background-color:#3c3c3c}#News
+.Header{padding-top:2px;width:100%;height:32px}#News
+#NewsHeader{position:absolute;width:698px;height:34px;top:0px;left:0px;margin:				-2px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-position:-0px -1177px;background-color:#3c3c3c}#News
+#NewsFooter{position:absolute;width:698px;height:10px;bottom:0px;left:0px;margin:				-2px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/backgrounds.png);background-position:-428px -970px}#NewsTitle{width:612px;height:21px;padding:0px
+8px 8px 74px;margin:				-4px 0px 0px -8px;background:#474747}#NewsTitle
+h1{margin-top:7px}#NewsTitle
+.Right{margin-top:10px}.Text p, .Text ol, .Text
+ul{margin:8px
+0px}.Text a, .Text a:active, .Text a:visited{text-decoration:none;color:#fabf3f}.Text a:hover{text-decoration:underline}.TextZZZ a[href^='http://']{padding-right:18px;background:transparent url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/icon_external.gif) no-repeat center right}.TextZZZ a[href^='http://4pl.4players.de']{padding-right:0;background:transparent}.TextZZZ a[target=_blank]{padding-right:18px;background:transparent url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/icon_popup.gif) no-repeat center right}.Text
+ul{padding-left:38px}.Text
+td{vertical-align:top}#News
+.Text{padding-left:66px}.NewsInfo{width:662px;height:80px;padding:10px;margin-top:8px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/backgrounds.png);background-position:-428px -786px}.NewsInfo
+.Label{width:80px}.NewsInfo .Label div, .NewsInfo .Data
+div{margin-bottom:8px}.NewsInfo
+.Center{width:356px}.NewsInfo
+.Scroller{position:absolute;bottom:10px;right:10px;height:46px;width:356px}.NewsInfo .Scroller
+div.Left{width:16px;height:46px;background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png);background-position:-251px 0px;cursor:pointer}.NewsInfo .Scroller
+div.Right{width:16px;height:46px;margin-left:4px;background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png);background-position:-267px 0px;cursor:pointer}.NewsInfo .Scroller
+a{display:block}.NewsInfo .Scroller
+img{width:56px;height:42px;margin-left:4px;border:2px
+solid black}.NewsInfo .Scroller
+img.Active{border:2px
+solid #fabf3f}.NewsInfo
+.Button{position:absolute;bottom:10px;left:10px;width:106px;height:16px;line-height:16px;text-align:center;background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png);background-position:0px -36px}.NewsBox{width:678px}.NewsBox
+.Text{padding-left:66px}.NewsBox
+.Image{position:absolute;top:4px;left:8px}.CommentsPaging{height:20px}.CommentsPaging
+.Button{width:106px;height:16px;line-height:16px;margin-top:			-2px;text-align:center;background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png);background-position:-138px -36px}.CommentsPaging .CommentsPage, .CommentsPaging .CommentsPage:active, .CommentsPaging .CommentsPage:visited{top:				-2px;right:8px;width:16px;height:12px;line-height:12px;margin-left:2px;border:1px
+solid #131313;text-align:center;background-image:url(http://static1.4pl.4players.de/dist/htdocs/images/themes/playnow/background_commentspaging.png);background-repeat:repeat-x;color:#fabf3f;text-decoration:none}.CommentsPaging .CommentsPage.Bold, .CommentsPaging .CommentsPage:hover{color:#D9D9D9;font-weight:bold}.CommentsPaging
+.CommentsPage.CommentsLastPage{width:40px}.CommentsPaging
+.CommentsPageNumbers{top:				-2px;right:8px;height:12px;line-height:12px;padding-left:2px;padding-right:2px;margin-left:2px;border:1px
+solid #131313;text-align:center;background-image:url(http://static1.4pl.4players.de/dist/htdocs/images/themes/playnow/background_commentspaging.png);background-repeat:repeat-x}.CommentsPageLinks .Button
+a{color:black;text-decoration:none}#CommentsContainer{width:698px;overflow:hidden}#CommentsContainer
+div.Comments{margin-top:0px;margin-bottom:		-2px;border-bottom-width:2px}#CommentsContainer div.Comments
+div.Header{position:absolute;top:0px;left:0px;height:22px;background-position:0px -642px;background-color:#4B4B4B}#CommentsContainer div.Comments.First
+div.Header{background-color:#3C3C3C}#CommentsContainer
+div.Comments.First{margin-top:8px}.BlogEntries{min-height:0px}.Comments.Uneven{}.Comments
+.CommentInfos{width:auto;height:16px;padding-left:8px;padding-right:8px;padding-top:4px;margin:0}.Comments .CommentInfos
+img{margin-right:4px}.Comments
+.CommentTimestamps{width:160px}.Comments
+.CommentNumbers{width:80px}.Comments
+.CommentOpinion{width:40px}.Comments .CommentHide, .Comments .CommentEdit, .Comments
+.CommentIcons{margin-top:			-2px}.Comments
+.Icons{cursor:pointer}.Comments
+.CommentBoxes{background-color:#4A4A4A}.Comments .CommentBoxes
+.CommentatorDetails{width:137px;height:57px;padding:8px
+0 8px 8px}.Comments .CommentBoxes .CommentatorDetails
+img{width:41px;height:55px;border:1px
+solid #131313}.Comments .CommentBoxes
+.CommentTexts{width:523px;min-height:57px;padding:8px;border-left:2px solid #3C3C3C;overflow:hidden}.Comments .Quote, .Comments
+.UserQuote{display:block;width:auto;padding:4px;border:1px
+solid #131313;background:#3C3C3C}.Comments
+.CommentHidden{padding:4px;text-align:center}.Comments.BlogEntries .CommentBoxes
+.CommentTexts{width:100%}.Comments
+.Button{margin:2px
+0px 8px}#CommentBox
+#SmiliesDiv{position:absolute;top:0px;left:26px}#CommentBox #Smilies a, #CommentBox #Smilies a:active, #CommentBox #Smilies a:visited{color:#fabf3f;text-decoration:none}#CommentBox #Smilies
+img{margin:4px
+4px 0 0}#CommentBox
+.CommentTextBox{width:523px;padding:8px;border-left:2px solid #4A4A4A;margin-top:			-3px}#CommentBox
+#CommentText{width:517px;height:120px}#CommentBox
+.button{margin:8px
+0px 0px 0px}.CommentTexts table, .GuestbookQuote
+table{margin-top:4px}td.quote{border:2px
+solid #4A4A4A;padding:4px}#CommentSubmit{border:2px
+solid #4A4A4A;padding:4px;margin-bottom:8px}#ColorPalette{margin-bottom:8px}#ColorPalette
+td{border-right:1px solid #3C3C3C;border-bottom:1px solid #3C3C3C}#CommentResize{position:absolute;bottom:0px;right:0px;width:12px;height:12px;background:transparent;cursor:se-resize;border-top:3px solid transparent;border-left:3px solid transparent;border-bottom:3px solid #fabf37;border-right:3px solid #fabf37}#CommentResize
+div{top:2px;left:2px;width:2px;height:2px;background:transparent;cursor:se-resize;border-top:3px solid transparent;border-left:3px solid transparent;border-bottom:3px solid #fabf37;border-right:3px solid #fabf37}.Comments div.PlayerCard
+.VerifiedLevel{background-color:transparent}#History
+.Header{padding:0px;margin:0px;margin-top:8px}#History
+.CommentsPaging{margin:0px;margin-bottom:8px}#History .CommentsPaging
+img{margin-top:			-2px;margin-right:4px;cursor:pointer}#History
+.InnerBox{padding-bottom:0px}#History
+.HistoryEntry{height:16px;width:100%;line-height:16px;margin-bottom:8px}#History .HistoryEntry
+div{margin-left:4px;white-space:nowrap;overflow:hidden}#History .HistoryEntry
+.Date{width:76px}#History .HistoryEntry
+.Time{width:56px}#History .HistoryEntry
+.Name{width:174px}#History .HistoryEntry
+.Type{width:154px}#History .HistoryEntry
+.Subject{width:166px}.Players{position:relative;float:left;margin:1px;padding:2px;width:210px;border:1px
+solid #5a5a5a}*html
+.Players{width:206px}.Players:hover{background-color:#fabf3f}.Players
+div{color:#131313}.Players
+a{display:block;color:#131313;text-decoration:none}.Players a:hover{text-decoration:underline}.Players
+img{float:left;margin-right:2px}.PlayerNames{font-weight:bold;height:1.5em}.Buttons{}.ButtonImgs,.ButtonImgHighlights{position:absolute;top:0px}.ButtonImgs{z-index:31}.ButtonImgHighlights{z-index:32}.ButtonImgContainers{position:absolute;top:0px;left:0px;z-index:30}.ButtonLinkContainers{position:absolute;top:0px;left:0px;z-index:40;color:#fff;text-decoration:none;text-align:center;padding-top:3px}.ButtonLinkContainers:hover{color:#131313}.RightBoxes{float:right;width:224px}.LeftBoxes{width:448px;border:1px
+solid #5a5a5a;padding:2px;padding-top:0px;padding-bottom:0px;background-color:#fff}#FusionLoginBoxContainer{position:relative;top:4px;right:4px}pre{padding-top:10px;padding-bottom:10px;font-family:Tahoma,Verdana,Arial,Helvetica,sans-serif;white-space:pre-wrap;white-space:		-moz-pre-wrap;white-space:		-pre-wrap;white-space:		-o-pre-wrap;word-wrap:break-word}#Error{position:absolute;top:400px;left:300px;padding:4px;border:1px
+solid black;background-color:white;color:red;text-align:center;z-index:100;cursor:pointer}#Error
+span{display:block;color:#fff}#Notice{position:absolute;top:400px;left:300px;padding:4px;border:1px
+solid black;background-color:white;color:green;text-align:center;z-index:100;cursor:pointer}#Notice
+span{display:block;color:#fff}a:link{color:#FABF37;text-decoration:none}a:visited{color:#FABF37;text-decoration:none}a:focus{color:#FABF37;text-decoration:none}a:hover{color:#FFF;text-decoration:underline}a:active{color:#FABF37;text-decoration:none}.PlaynowOrange,.Orange{color:#FABF37}.Green{color:#7FD753}.Red{color:#F30505}.Silver{color:#d9d9d9}.Pointer{cursor:pointer}.Arrow{cursor:default}.Blink{text-decoration:blink}.Rounded{border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px}.Fade{-moz-opacity:0.5;filter:alpha(opacity=50);opacity:			.5}#SPIELINFO_HEADER{width:698px;height:60px;padding:0;margin:0;overflow:hidden}#SPIELINFO_HEADER>h1,#SPIELINFO_HEADER>h2{display:block;position:relative;margin-left:8px;top:16px;color:#fff;font-weight:bold;text-decoration:none}#SPIELINFO_HEADER
+a{color:#fff;text-decoration:none}#SPIELINFO_HEADER>h1{font-size:16pt}#SPIELINFO_HEADER>h2{font-size:13pt;margin-top:8px}#SPIELINFO_TOPNAVIGATION{position:relative;float:left;width:698px;height:20px;background:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-repeat:no-repeat;background-position:0px -438px}#SPIELINFO_TOPNAVIGATION
+.naviitem{position:relative;float:left;top:0px;left:		-1px;width:98px;height:20px;margin-left:1px;margin-right:0px;padding:0px;text-align:center}#SPIELINFO_TOPNAVIGATION .naviitem
+a{display:block;font-weight:bold;text-decoration:none;height:20px;line-height:16px;color:#131313}#SPIELINFO_TOPNAVIGATION .naviitem a:hover{text-decoration:none;color:#FFF}#SPIELINFO_TOPNAVIGATION
+.naviitem.active{background:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-repeat:no-repeat;background-position:0px -478px}#SPIELINFO_TOPNAVIGATION
+.naviitem.highlight{}#SPIELINFO_TOPNAVIGATION .naviitem.active
+a{text-decoration:none;color:#FFF}#SPIELINFO_TOPNAVIGATION
+.naviitem_left{width:101px}#SPIELINFO_TOPNAVIGATION
+.naviitem_left.active{background:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-repeat:no-repeat;background-position:0px -458px}#SPIELINFO_TOPNAVIGATION
+.naviitem_right{width:100px}#SPIELINFO_TOPNAVIGATION
+.naviitem_right.active{background:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-repeat:no-repeat;background-position:0px -498px}#SPIELINFO_MAININFOS{height:196px}.paddingbox1{height:8px;border-bottom:2px solid #4b4b4b}.paddingbox2{height:1px;margin-left:-2px;background-color:#3c3c3c}.labelBox{top:0px;height:30px;background-color:#4b4b4b;font-weight:bold;z-index:0}#SPIELINFO_MAININFOS
+.label{float:left;width:92px;height:14px;padding-left:8px;padding-top:2px;margin-top:4px;background-color:#4b4b4b}#SPIELINFO_MAININFOS
+.content{float:left;width:129px;height:14px;padding-left:0px;padding-top:2px;margin-top:4px;background-color:#4b4b4b}#SPIELINFO_MAININFOS
+.Image{float:left;border:solid 1px #4b4b4b;margin-top:8px;margin-left:8px}#SPIELINFO_MAININFOS
+#Spielname{position:absolute;top:42px;left:0px;width:220px;height:20px;margin-left:0px;margin-top:0px;padding-left:121px;padding-top:10px;background-color:#4b4b4b;font-weight:bold;z-index:0}#SPIELINFO_PLAYNOW{width:325px;height:180px;padding:10px;margin-top:8px;margin-right:8px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-position: -262px -688px}#SPIELINFO_TOPTEAMS{height:153px}.scrolling_button_left{float:left;width:16px;height:153px;margin-right:2px;cursor:pointer;background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png);background-position:0px -52px}.scrolling_button_leftZZZ:active{top:1px;right:1px}.scrolling_button_left.previous_button_disabledZZZ:active{top:0px;right:0px}.scrolling_button_left.previous_button_over{background-position: -64px -52px}.scrolling_button_left.previous_button_disabled{background-position: -32px -52px}.scrolling_button_right{float:left;width:16px;height:153px;margin-left:2px;cursor:pointer;background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png);background-position: -16px -52px}.scrolling_button_rightZZZ:active{top:1px;left:1px}.scrolling_button_right.next_button_disabledZZZ:active{top:0px;left:0px}.scrolling_button_right.next_button_over{background-position: -80px -52px}.scrolling_button_right.next_button_disabled{background-position: -48px -52px}.scrolling_window{float:left;height:153px;width:640px;overflow:hidden}.scrolling_scrollbar{height:153px;padding-left:28px}.scrolling_scrollbar
+.topuserBox{list-style:none;width:125px;height:153px;padding-right:28px;background:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/topuser.jpg) 0px 0px no-repeat;cursor:pointer}.scrolling_scrollbar .topuserBox
+.usename{position:absolute;width:125px;top:115px;text-align:center;font-weight:bold}.scrolling_scrollbar .topuserBox
+.laddername{position:absolute;width:125px;top:23px;text-align:center;font-weight:bold}.scrolling_scrollbar .topuserBox
+.stage{position:absolute;top:5px;left:32px;font-size:13pt;font-weight:bold;color:#FFF}.scrolling_scrollbar .topuserBox
+.Image{position:absolute;top:52px;left:42px}.scrolling_scrollbar
+.topteamBox{list-style:none;width:125px;height:153px;padding-right:28px;background:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/topteam.jpg) 0px 0px no-repeat;cursor:pointer}.scrolling_scrollbar .topteamBox
+.usename{position:absolute;width:125px;top:115px;text-align:center;font-weight:bold}.scrolling_scrollbar .topteamBox
+.laddername{position:absolute;width:125px;top:23px;text-align:center;font-weight:bold}.scrolling_scrollbar .topteamBox
+.stage{position:absolute;top:5px;left:32px;font-size:13pt;font-weight:bold;color:#FFF}.scrolling_scrollbar .topteamBox
+.Image{position:absolute;top:59px;left:42px}#SPIELINFO_CUPS{height:334px}div.cuplistitem{margin-left:-8px;height:26px;width:246px;padding:6px}div.downloadsitem{margin-left:-8px;height:26px;width:246px;padding:6px}div.downloadsitem
+.Image{float:left;margin-top:-3px;margin-right:6px}div.ladderlistitem{margin-left:-8px;height:26px;width:412px;padding:6px}#SPIELINFO_NEWS{height:334px}#SPIELINFO_DOWNLOADS{height:340px}div.DownloadsFooter{position:absolute;width:242px;height:25px;bottom:0px}
+
+#SPIELINFO_TEILNAHME_LANDL{height:340px}div.allicons{height:16px;width:16px;background:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/alle_icons.png);background-repeat:no-repeat}div.allicons.account{background-position:0px -64px}div.allicons.account.inactive{background-position:0px -80px}div.allicons.spielerbild{background-position:0px -32px}div.allicons.spielerbild.inactive{background-position:0px -48px}div.allicons.checkedgamer.level_0{background-position:0px -272px}div.allicons.checkedgamer.level_1{background-position:0px -288px}div.allicons.checkedgamer.level_2{background-position:0px -304px}div.allicons.checkedgamer.level_3{background-position:0px -320px}div.allicons.arrowup{background-position:0px -160px}div.allicons.arrowdown{background-position:0px -176px}div.allicons.arrowunchanged{background-position:0px -224px}div.allicons.incoming{background-position:0px -240px}div.allicons.outgoing{background-position:0px -256px}div.allicons.closed_green{background-position:0px -336px}div.allicons.opened_yellow{background-position:0px -352px}div.allicons.closed_red{background-position:0px -368px}div.allicons.flame{background-position:0px -96px}div.allicons.schneeflocke{background-position:0px -191px}div.allicons.wolke{background-position:0px -208px}div.allicons.wolke_warning{background-position:0px -560px}div.allicons.success{background-position:0px -448px}div.allicons.error{background-position:0px -432px}div.allicons.warning{background-position:0px -464px}div.allicons.info{background-position:0px -480px}div.allicons.twitter{background-position:0px -496px}div.allicons.facebook{background-position:0px -512px}div.allicons.steam{background-position:0px -528px}div.allicons.irc{background-position:0px -544px}div.allicons.stream{background-position:0px -660px}#BACKBUTTON{float:left;width:100%;text-align:right;height:30px;line-height:25px}#SPIELINFO_TEILNAHME_LANDL
+.legende{position:absolute;bottom:8px;padding-bottom:0px;width:410px;height:18px}#CUPINFO_NAVIGATION{position:relative;float:left;width:698px;height:31px;border-bottom:solid 2px #4B4B4B}#CUPINFO_TOPLINKS{float:left;width:698px;height:22px;background-color:#4b4b4b;margin-top:1px}#CUPINFO_NAVIGATION
+.naviitem{position:relative;float:left;top:0px;left:0px;width:96px;height:31px;margin-left:4px;margin-right:0px;padding:0px;text-align:center;background:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-repeat:no-repeat;background-position:0px -561px}#CUPINFO_NAVIGATION .naviitem
+a{display:block;font-weight:bold;text-decoration:none;height:31px;line-height:30px;color:#DEDEDE}#CUPINFO_NAVIGATION .naviitem a:hover{text-decoration:none;color:#FFF}#CUPINFO_NAVIGATION
+.naviitem.active{background:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-repeat:no-repeat;background-position:0px -528px}#CUPINFO_NAVIGATION .naviitem.active
+a{color:#fabf37}div.cup_join_buttons{width:233px;height:17px;padding-top:5px;background:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/cup_checkin_button.png);background-repeat:no-repeat;text-align:center}div.cup_join_buttons.cjb_grau{background-position:0px -22px}div.cup_join_buttons
+a{display:block;margin-left:-20px;font-weight:bold;color:#3C3C3C}#joinImage{float:left;width:77px;height:77px;background-repeat:no-repeat}#joinImage.success{background:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/cup_icons.png);background-position:0px -497px}#joinImage.warning{background:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/cup_icons.png);background-position:0px -731px}#joinImage.error{background:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/cup_icons.png);background-position:0px -420px}#joinImage.info{background:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/cup_icons.png);background-position:0px -654px}div.ConditionRow{float:left;width:662px;height:60px;background-color:#4a4a4a;margin-top:8px;padding:8px}div.ConditionRow
+.icon{float:left;width:60px;height:60px;margin-right:8px;background:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/cup_icons.png)}div.ConditionRow
+.icon.pnaccount{background-position:0px 0px}div.ConditionRow
+.icon.sperre{background-position:0px -60px}div.ConditionRow
+.icon.alterscheck{background-position:0px -120px}div.ConditionRow
+.icon.gameaccount{background-position:0px -180px}div.ConditionRow
+.icon.spielerbild{background-position:0px -240px}div.ConditionRow
+.icon.trusted{background-position:0px -300px}div.ConditionRow
+.icon.checkintime{background-position:0px -360px}div.ConditionRow
+.icon.success{width:40px;height:40px;margin-top:10px;margin-left:20px;background-position:0px -614px}div.ConditionRow
+.icon.error{width:40px;height:40px;margin-top:10px;margin-left:20px;background-position:0px -574px}div.ConditionRow
+.conditionname{float:left;width:140px;height:35px;padding-top:25px;font-weight:bold;color:#FABF37}div.ConditionRow
+.description{float:left;width:385px;height:60px;line-height:14px;text-align:justify}
+
+#LADDERINFO_NAVIGATION{position:relative;float:left;width:698px;height:31px;border-bottom:solid 2px #4B4B4B}
+
+#LADDERINFO_NAVIGATION
+.naviitem{position:relative;float:left;top:0px;left:0px;width:98px;height:31px;margin-left:2px;margin-right:0px;padding:0px;text-align:center;background:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-repeat:no-repeat;background-position:0px -561px}
+
+#LADDERINFO_NAVIGATION .naviitem
+a{display:block;font-weight:bold;text-decoration:none;margin-top:10px;color:#DEDEDE}
+
+#LADDERINFO_NAVIGATION .naviitem a:hover{text-decoration:none;color:#FFF}
+
+#LADDERINFO_NAVIGATION
+.naviitem.active{background:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-repeat:no-repeat;background-position:0px -528px}
+
+#LADDERINFO_NAVIGATION .naviitem.active
+a{color:#fabf37}div.ranking{float:left;margin-left:1px}div.ranking.menu{font-size:7pt;font-weight:bold;text-align:center;height:12px;cursor:arrow}div.ranking.cell{height:28px}div.ranking.text{height:21px;padding-top:7px}div.ranking.platz{width:50px;margin-left:2px}div.ranking.spieler{width:234px}div.ranking.punkte{width:47px;text-align:center}div.ranking.pdiff{width:48px;text-align:center}div.ranking.werte{width:31px;text-align:center}div.ranking.form{width:43px;text-align:center}div.ranking.bewertung{width:60px;text-align:center}
+
+div.ranking.fordern
+{
+width:95px;
+text-align:left
+}
+
+div.ranking.form.U{color:#D9D9D9}div.ranking.form.S{color:#7FD753}div.ranking.form.N{color:#F30505}div.ranking.datum{width:48px;text-align:center;margin-left:2px}div.ranking.zeit{width:48px;text-align:center}div.ranking.challenger{width:230px;text-align:left}div.ranking.ergebnis{width:48px;text-align:center}div.ranking.opponent{width:260px;text-align:left}div.ranking.kommentare{width:54px;text-align:center;color:#FABF37}div.ranking.strafspieler{width:271px}div.ranking.strafpunkte{width:90px;text-align:center}div.ranking.strafpunkte.text{width:88px;text-align:center;font-weight:bold;border-left:solid 1px #FABF37;border-right:solid 1px #FABF37}div.ranking.strafpunkte.text.top{height:20px;border-top:solid 1px #FABF37}div.ranking.strafpunkte.text.bottom{height:20px;border-bottom:solid 1px #FABF37}div.ranking.matches{width:60px;text-align:center}div.ContainerBox{position:relative;left:				-8px;padding:0;border:2px
+solid #4a4a4a;margin:8px
+0px 0px 8px;background-color:#3c3c3c}div.ContainerBox.Width698{width:694px}div.ContainerBox.Width428{width:424px}div.ContainerBox.Width428.NoHeader{padding-top:8px;width:424px}div.ContainerBox.Width378{width:374px}div.ContainerBox.Width378.NoHeader{padding-top:8px;width:374px}div.ContainerBox.Width345{width:341px}div.ContainerBox.Width335{width:331px}div.ContainerBox.Width335.NoHeader{width:331px}div.ContainerBox.Width325{width:321px}div.ContainerBox.Width312{width:308px}div.ContainerBox.Width262{width:258px}div.ContainerBox.Width200{width:196px}div.ContainerBox.Width127{width:123px}div.ContainerBox
+div.Header{position:relative;padding:11px
+10px 8px 10px;margin:				-2px -2px 0px -2px;height:14px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-position:0px 0px;background-color:#3c3c3c}div.ContainerBox.Width698
+div.Header{width:678px;background-position:0px -152px}div.ContainerBox.Width698.NoHeader
+div.Header{width:698px;height:5px;padding:0;background-position:0px -518px}div.ContainerBox.Width428
+div.Header{width:408px;background-position:0px -266px}div.ContainerBox.Width428.NoHeader
+div.Header{width:428px;height:5px;padding:0;background-position:0px -342px}div.ContainerBox.Width378
+div.Header{width:358px;background-position:0px -385px}div.ContainerBox.Width378.NoHeader
+div.Header{width:378px;height:5px;padding:0;background-position:0px -423px}div.ContainerBox.Width345
+div.Header{width:325px;background-position:0px -114px}div.ContainerBox.Width335.NoHeader
+div.Header{width:335px;height:5px;padding:0;background-position:0px -428px}div.ContainerBox.Width325.NoHeader
+div.Header{width:325px;height:5px;padding:0;background-position:0px -632px}div.ContainerBox.Width312
+div.Header{width:292px;background-position:0px -347px}div.ContainerBox.Width262
+div.Header{width:242px;background-position:0px 0px}div.ContainerBox.Width200
+div.Header{width:180px;background-position:0px -76px}div.ContainerBox.Width127
+div.Header{width:107px;background-position:0px -594px}div.ContainerBox
+div.Footer{bottom:0px;left:0px;position:absolute;height:5px;margin:3px
+-2px -2px -2px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-position:0px -1377px;background-color:#3C3C3C}div.ContainerBox.Width698
+div.Footer{width:698px;background-position:0px -185px}div.ContainerBox.Width428
+div.Footer{width:428px;background-position:0px -299px}div.ContainerBox.Width378
+div.Footer{width:378px;background-position:0px -418px}div.ContainerBox.Width345
+div.Footer{width:345px;background-position:0px -147px}div.ContainerBox.Width335
+div.Footer{width:335px;background-position:0px -433px}div.ContainerBox.Width325
+div.Footer{width:325px;background-position:0px -637px}div.ContainerBox.Width312
+div.Footer{width:312px;background-position:0px -380px}div.ContainerBox.Width262
+div.Footer{width:262px;background-position:0px -33px}div.ContainerBox.Width200
+div.Footer{width:200px;background-position:0px -109px}div.ContainerBox.Width127
+div.Footer{width:127px;background-position:0px -627px}div.ContentBox{position:relative;padding:39px
+8px 8px 8px;border:2px
+solid #4a4a4a;margin:8px
+8px 0px 0px;background-color:#3c3c3c}div.ContentBox
+div.Header{position:absolute;padding:11px
+10px 8px 10px;height:14px;top:				-2px;left:				-2px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-position:0px 0px;background-color:#3c3c3c}div.ContentBox.ContentBox698{width:678px}div.ContentBox.ContentBox698.NoHeader{padding-top:8px;width:678px}div.ContentBox.ContentBox428{width:408px}div.ContentBox.ContentBox428.NoHeader{padding-top:8px;width:408px}div.ContentBox.ContentBox378{width:358px}div.ContentBox.ContentBox378.NoHeader{padding-top:8px;width:358px}div.ContentBox.ContentBox345{width:325px}div.ContentBox.ContentBox335{width:315px}div.ContentBox.ContentBox335.NoHeader{padding-top:8px;width:315px}div.ContentBox.ContentBox312{width:292px}div.ContentBox.ContentBox262{width:242px}div.ContentBox.ContentBox200{width:180px}div.ContentBox698
+div.Header{width:678px;background-position:0px -152px}div.ContentBox428
+div.Header{width:408px;background-position:0px -266px}div.ContentBox428.NoHeader
+div.Header{width:428px;height:5px;padding:0;background-position:0px -342px}div.ContentBox378
+div.Header{width:358px;background-position:0px -385px}div.ContentBox378.NoHeader
+div.Header{width:378px;height:5px;padding:0;background-position:0px -423px}div.ContentBox345
+div.Header{width:325px;background-position:0px -114px}div.ContentBox335.NoHeader
+div.Header{width:335px;height:5px;padding:0;background-position:0px -428px}div.ContentBox312
+div.Header{width:292px;background-position:0px -347px}div.ContentBox262
+div.Header{width:242px;background-position:0px 0px}div.ContentBox200
+div.Header{width:180px;background-position:0px -76px}div.ContentBox
+div.Footer{position:absolute;height:5px;bottom:				-2px;left:				-2px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-position:0px -1377px;background-color:#3C3C3C}div.ContentBox698
+div.Footer{width:698px;background-position:0px -185px}div.ContentBox428
+div.Footer{width:428px;background-position:0px -299px}div.ContentBox378
+div.Footer{width:378px;background-position:0px -418px}div.ContentBox345
+div.Footer{width:345px;background-position:0px -147px}div.ContentBox335
+div.Footer{width:335px;background-position:0px -433px}div.ContentBox312
+div.Footer{width:312px;background-position:0px -380px}div.ContentBox262
+div.Footer{width:262px;background-position:0px -33px}div.ContentBox200
+div.Footer{width:200px;background-position:0px -109px}div.ContentBox .Inner, div.ContainerBox
+.Inner{top:0px;left:0px;width:auto;height:auto;border:2px
+solid #4a4a4a;padding:4px;margin:0;background-color:#3C3C3C}div.PlayerCard
+.CardTop{height:22px;padding:8px
+8px 0px 8px;margin:				-3px 0px 0px 0px;background:#4B4B4B}div.PlayerCard .CardTop
+img{margin:0px
+8px 8px 0px}div.PlayerCard
+.CardBottom{height:31px;padding:2px
+8px 8px 57px;line-height:16px}div.PlayerCard
+.VerifiedLevel{width:32px;height:32px;background:url(http://static1.4pl.4players.de/dist/htdocs/images/themes/playnow/profil_backgrounds.png) #3C3C3C}div.PlayerCard
+.VerifiedLevel0{background-position:-89px -80px}div.PlayerCard
+.VerifiedLevel1{background-position:-121px -80px}div.PlayerCard
+.VerifiedLevel2{background-position:-153px -80px}div.PlayerCard
+.VerifiedLevel3{background-position:-185px -80px}div.PlayerCard
+.DYNAMIC_FIELD{right:0px;top:0px;height:30px;position:absolute}div.PlayerCard
+.TeamVerifiedLevel0{background-position:-50px -360px}div.PlayerCard
+.TeamVerifiedLevel1{background-position:-82px -360px}div.PlayerCard
+.TeamVerifiedLevel2{background-position:-114px -360px}div.PlayerCard
+.TeamVerifiedLevel3{background-position:-146px -360px}.ScrollerContainer{position:relative}.ScrollerSmall .ScrollButton.Left, .ScrollerSmall
+.ScrollButton.Right{top:				-1px;width:16px;background:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png);cursor:pointer}.ScrollerSmall .ScrollButton.LeftZZZ:active{top:0px;left:				-1px}.ScrollerSmall .ScrollButton.RightZZZ:active{top:0px;left:1px}.ScrollerSmall .ScrollButton.Left.previous_button_disabledZZZ:active, .ScrollerSmall .ScrollButton.Right.next_button_disabledZZZ:active{top:				-1px;left:0px}.ScrollerSmall
+.ScrollerContent{padding:1px
+0px;overflow:hidden}#CupsScrollBox{float:left;left:-8px;height:228px;width:258px}#CupsScrollButtons{float:left;left:-8px;padding-top:8px;height:22px;width:258px}#cups_button_up{float:right;margin-right:8px;margin-top:11px}#cups_button_down{float:right;margin-right:5px;margin-top:11px}.ScrollingCarouselContainer.Width262{float:left;width:258px;height:228px}.ScrollingCarouselContainer.Width262
+.ScrollingCarouselWindow{float:left;width:258px;height:228px;overflow:hidden}.ScrollingCarouselContainer.Width262 .ScrollingCarouselWindow
+.ScrollingCarouselItem{position:relative;list-style:none;height:26px;width:246px;padding:6px}.ScrollingCarouselContainer.Width345
+.ScrollingCarouselWindow{float:left;width:345px;height:280px;overflow:hidden}.ScrollingCarouselContainer.Width345 .ScrollingCarouselWindow
+.ScrollingCarouselItem{position:relative;list-style:none;height:26px;width:329px;padding:6px}.ScrollingCarouselContainer.Width428{float:left;width:424px;height:190px}.ScrollingCarouselContainer.Width428
+.ScrollingCarouselWindow{float:left;width:424px;height:190px;overflow:hidden}.ScrollingCarouselContainer.Width428 .ScrollingCarouselWindow
+.ScrollingCarouselItem{position:relative;list-style:none;height:26px;width:412px;padding:6px}.ScrollingCarouselContainer.Width698{float:left;width:698px;height:168px}.ScrollingCarouselContainer.Width698
+.ScrollingCarouselWindow{float:left;width:698px;height:168px;overflow:hidden}.ScrollingCarouselContainer.Width698 .ScrollingCarouselWindow
+.ScrollingCarouselItem{position:relative;list-style:none;height:28px;width:682px;padding:0px}.ScrollingNavigation
+.ScrollingCarouselButton{height:16px;width:16px;background:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png);cursor:pointer}.ScrollingNavigation
+.ScrollingCarouselButton.Left{float:left;background-position:-106px -36px}.ScrollingNavigation .ScrollingCarouselButton.LeftZZZ:active{top:1px;right:1px}.ScrollingNavigation .ScrollingCarouselButton.Left.previous_button_disabledZZZ:active{top:0px;right:0px}.ScrollingNavigation
+.ScrollingCarouselButton.Left.previous_button_over{background-position: -106px -69px}.ScrollingNavigation
+.ScrollingCarouselButton.Left.previous_button_disabled{background-position: -106px -52px}.ScrollingNavigation
+.ScrollingCarouselButton.Right{float:right;background-position:-122px -36px}.ScrollingNavigation .ScrollingCarouselButton.RightZZZ:active{top:1px;left:1px}.ScrollingNavigation .ScrollingCarouselButton.Right.next_button_disabledZZZ:active{top:0px;left:0px}.ScrollingNavigation
+.ScrollingCarouselButton.Right.next_button_over{background-position: -122px -68px}.ScrollingNavigation
+.ScrollingCarouselButton.Right.next_button_disabled{background-position: -122px -52px}.ScrollerSmall.Width358{width:358px}.ScrollerSmall.Width678{width:678px}.ScrollerSmall.Width358
+.ScrollerContent{width:326px;margin-right:		-4px}.ScrollerSmall.Width678
+.ScrollerContent{margin-left:12px;width:630px}.ScrollerSmall.Height57{height:57px}.ScrollerSmall.Height57 .Left, .ScrollerSmall.Height57
+.Right{height:57px}.ScrollerSmall.Height57
+.ScrollButton.Left{background-position:-32px -252px}.ScrollerSmall.Height57
+.ScrollButton.Right{background-position:-48px -252px}.ScrollerSmall.Height57
+.ScrollButton.Left.previous_button_over{background-position:-160px -252px}.ScrollerSmall.Height57
+.ScrollButton.Right.next_button_over{background-position:-176px -252px}.ScrollerSmall.Height57
+.ScrollButton.Left.previous_button_disabled{background-position:-96px -252px}.ScrollerSmall.Height57
+.ScrollButton.Right.next_button_disabled{background-position:-112px -252px}.ScrollerSmall.Height104{height:104px}.ScrollerSmall.Height104 .Left, .ScrollerSmall.Height104
+.Right{height:104px}.ScrollerSmall.Height104
+.ScrollButton.Left{background-position:0px -205px}.ScrollerSmall.Height104
+.ScrollButton.Right{background-position:-16px -205px}.ScrollerSmall.Height104
+.ScrollButton.Left.previous_button_over{background-position:-128px -205px}.ScrollerSmall.Height104
+.ScrollButton.Right.next_button_over{background-position:-144px -205px}.ScrollerSmall.Height104
+.ScrollButton.Left.previous_button_disabled{background-position:-64px -205px}.ScrollerSmall.Height104
+.ScrollButton.Right.next_button_disabled{background-position:-80px -205px}.ScrollerSmall.Height153{height:153px}.ScrollerSmall.Height153 .Left, .ScrollerSmall.Height153
+.Right{height:153px}.ScrollerSmall.Height153
+.ScrollButton.Left{background-position:0px -52px}.ScrollerSmall.Height153
+.ScrollButton.Right{background-position:-16px -52px}.ScrollerSmall.Height153
+.ScrollButton.Left.previous_button_over{background-position:-64px -52px}.ScrollerSmall.Height153
+.ScrollButton.Right.next_button_over{background-position:-80px -52px}.ScrollerSmall.Height153
+.ScrollButton.Left.previous_button_disabled{background-position:-32px -52px}.ScrollerSmall.Height153
+.ScrollButton.Right.next_button_disabled{background-position:-48px -52px}.ScrollerContent
+.ScrollerItem{list-style:none}.ScrollerSmall.Height104
+.ScrollerContent{margin-left:4px}.ScrollerSmall.Height104 .ScrollerContent
+.ScrollerItem{list-style:none;width:81px}.ScrollerSmall.Height57 .ScrollerContent
+.ScrollerItem{width:55px;height:55px;padding-right:8px}.ScrollerSmall.Height104 .ScrollerContent .ScrollerItem
+img{width:75px;height:100px}.ContentBox.GenreBox{width:688px;margin-bottom:8px;padding-left:0px;padding-top:28px}.genresGameBox{width:335px;height:136px;margin-left:8px;margin-top:8px}.genresGameBox:hover{color:#FFF}.genresGameBox
+.genreName{position:relative;float:right;top:13px;right:34px;font-size:11pt}.genresGameBox .genreName
+a{color:#F6B22D}.genresGameBox:hover .genreName
+a{color:#FFF}.genresGameBox .genreName a:hover{color:#FFF}.genresGameBox
+.gameName{position:relative;float:right;top:13px;right:20px;font-size:11pt}.genresGameBox .gameName
+a{color:#3c3c3c}.genresGameBox:hover .gameName
+a{color:#FFF}.genresGameBox .gameName a:hover{color:#FFF;text-decoration:none}.genresGameBox
+.gameInfo{position:absolute;top:50px;right:8px;width:100px}.genresGameBox .gameInfo .Left+.Left{text-align:right}.genresGameBox
+.demnaechst{position:absolute;float:left;top:0px;left:0px;width:100px;height:100px;background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/genres/demnaechst.png)}.genresGameBox
+.neu{position:absolute;float:left;top:0px;left:0px;width:100px;height:100px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/genres/neuesspiel.png)}.SessionSelect div
+.Left{width:36%;line-height:24px}.SessionSelect div
+.Right{width:64%;margin-top:2px;line-height:24px}.SessionSelect div
+.Right.Checkbox{height:12px;line-height:12px;margin-top:1px;margin-bottom:4px}.SessionSelect div .Right.Checkbox
+img{position:relative;top:2px}.SessionsTable{border-top:1px solid #3c3c3c;margin:				-8px -10px 0px -10px;padding:0px
+2px;width:694px}.SessionsTable
+table{width:100%}.SessionsTable
+thead{background:#4b4b4b}.SessionsTable thead
+tr.SortSessions{cursor:pointer}.SessionsTable thead
+td{padding:1px
+4px 2px 4px;font-size:7pt;font-weight:bold;text-transform:uppercase}.SessionsTable tbody tr:hover, .SessionsTable tbody tr.Uneven:hover, .SessionsTable tbody tr.Even:hover{background:#131313;cursor:pointer}.SessionsTable tbody
+tr{}.SessionsTable tbody
+tr.Uneven{background:#4b4b4b}.SessionsTable tbody
+td{height:20px;line-height:18px;padding:4px;text-align:center;vertical-align:middle}.SessionsTable tbody td.SessionName, .SessionsTable tbody
+td.SessionState{text-align:left}.SessionsTable tbody td.SessionName
+a{display:block}.SessionsTable tbody tr:hover td.SessionName
+a{color:#fff;text-decoration:underline}.SessionsTable
+.SessionsSortDir{display:block;width:12px;height:12px;margin:2px
+0 0 2px;background:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/sessions_icons.png) no-repeat 0 0}.SessionsTable
+.SessionsSortDir.Down{background-position:0 -12px}.SessionsTable .SessionState.Open, .SessionsTable
+.SessionState.Closed{width:18px;height:18px;margin:0
+8px 0 2px;background:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/sessions_icons.png) no-repeat 0 -70px}.SessionsTable
+.SessionState.Open.Private{background-position:-18px -70px}.SessionsTable
+.SessionState.Closed{background-position:-36px -70px}.SessionsTable
+.SessionState.Closed.Private{background-position:-54px -70px}.SessionsTable
+.SessionType{width:64px;height:14px;margin:2px
+0 0 0;background:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/sessions_icons.png) no-repeat -12px 0}.SessionsTable
+.SessionType.Team{background-position:-12px -14px}.SessionIcon{width:18px;height:18px;margin:auto;background:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/sessions_icons.png) no-repeat -0px -88px}.SessionIcon.SessionServer{background-position:0px -88px}.SessionIcon.SessionInsight0{background-position:-18px -128px}.SessionIcon.SessionInsight1{background-position:0px -128px}.SessionIcon.SessionVerified0{background-position:0px -107px}.SessionIcon.SessionVerified1{background-position:-18px -107px}.SessionIcon.SessionVerified2{background-position:-36px -107px}.SessionIcon.SessionVerified3{background-position:-54px -107px}.SessionsTable
+.SessionSkill{width:56px;height:14px;margin:2px
+0 0 0;background:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/sessions_icons.png) no-repeat 0 -28px}.SessionsTable
+.SessionSkill.Medium{background-position:0 -42px}.SessionsTable
+.SessionSkill.Pro{background-position:0 -56px}.LoaderDiv{position:absolute;top:0px;left:0px;width:100%;height:100%;padding-bottom:10px;background:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/ajax-loader-282828.gif) center no-repeat #131313;-moz-opacity:0.5;filter:alpha(opacity=50);opacity:.5}#GoSessions
+a{display:block}#GoSessions
+#SessionsGamer{position:absolute;top:38px;left:				-2px;width:108px;padding-right:40px;line-height:18px;text-align:right;background:#4B4B4B}#GoSessions
+#SessionsSessions{position:absolute;top:38px;left:190px;width:116px;padding-left:36px;line-height:18px;background:#4B4B4B}#GoSessions
+#SessionsFriends{position:absolute;top:61px;left:				-2px;width:345px;line-height:18px;text-align:center;background:#4B4B4B;color:#80c217}#GoSessions
+#SessionsStart{position:absolute;bottom:15px;left:216px}#GoSessions #SessionsStart
+a{display:block;width:106px;height:10px;padding:6px;color:#3c3c3c}#GoSessions
+img{position:absolute}.SessionInfo{background-color:red}.SessionInfo
+.TeamInfo{min-height:102px;background:url(http://static1.4pl.4players.de/dist/htdocs/images/themes/playnow/session_vs.jpg) center top no-repeat;padding-top:8px}.SessionInfo
+.TeamImage{border:1px
+solid #131313}.SessionInfo#MatchInfos{padding-top:32px;padding-bottom:0px}.SessionInfo .Result1, .SessionInfo
+.Result2{height:22px;width:72px;border:2px
+solid #666;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;margin-top:76px;line-height:20px;font-size:16px;text-align:center}.SessionInfo .Result1, .SessionInfo
+.Change1{margin-left:158px}.SessionInfo .Result2, .SessionInfo
+.Change2{margin-left:40px}.SessionInfo .Change1, .SessionInfo
+.Change2{height:22px;width:72px;border:2px
+solid #666;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;margin-top:8px;line-height:20px;font-size:16px;text-align:center}.SessionInfo .Row1, .SessionInfo
+.Row2{width:100%;margin:0
+0 0 -8px;padding:0
+0 0 8px;line-height:28px}.SessionInfo
+.Row1{background:#4B4B4B}.SessionInfo
+.SessionImage{margin:16px
+0 0 58px;text-align:center;font-weight:bold}.SessionButton{margin:0
+auto 8px auto;width:174px;height:22px;background:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/gelber_button.png) left no-repeat}.SessionButton.Disabled{background:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/grauer_button.png) left no-repeat}.SessionButton a, .SessionButton
+span{position:relative;display:block;line-height:22px;color:#131313;text-align:center}.SessionButton.Lineup a, .SessionButton.Lineup
+span{text-align:center}.SessionButton a:hover{text-decoration:none}.SessionButton aZZZ:active{top:1px;left:1px}.SessionInfo
+.MatchData{width:111px;height:66px;text-align:center}.SessionInfo
+.MatchDataItem{width:111px;height:33px}.SessionInfo
+.MatchDataIcon{width:30px;height:30px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/session_icons.png);background-position:0 0px;margin:2px
+0 0 2px}.SessionInfo
+.MatchDataIcon.DemoUpload{background-position:0 -30px}.SessionInfo
+.MatchDataIcon.Screenshots{background-position:0 -120px}.SessionInfo
+.MatchDataIcon.Config{background-position:0 -60px}.SessionInfo
+.SessionDemoCall{background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/session_icons.png);background-position:0 -178px;height:32px}.SessionInfo .SessionDemoCall
+a{}.SessionInfo
+.Link{margin:11px
+0 0 4px}.WhatIfRow{width:100%;height:26px;margin:4px
+0 0 0}div.WhatIfRow
+.Inner{width:49px;text-align:center}.WhatIfText{width:120px;line-height:24px}div#WERBUNG{padding:35px
+12px 4px 4px}.ListNews{height:91px;overflow:hidden}.ListNews
+.Text{width:250px}.ListNews
+.NewsEntry{width:315px}#CalendarBox{position:absolute;width:360px;height:20px;top:5px;left:180px;text-align:center}.prev_time{position:relative;display:inline;height:20px;margin-right:20px}.start_time{position:relative;display:inline;height:20px}.next_time{position:relative;display:inline;height:20px;margin-left:20px}#AKTUELLE_DOWNLOADS{height:605px}.Width345
+.Listheader{width:345px;height:13px;left:-2px;background-color:#4B4B4B;border-top:solid 1px #3C3C3C}.Width345
+.downloadBox{width:341px;height:55px}div.downloadBox
+a{position:relative;top:3px;left:8px;font-weight:bold;line-height:20px}div.downloadBox
+.Info{position:relative;top:3px;left:8px;height:auto;font-size:7pt;line-height:14px;color:#f0f0f0}div.downloadBox
+.DownloadButton{position:absolute;top:5px;left:300px}div.downloadBox
+.Voting{position:absolute;top:36px;left:190px;width:90px}div.downloadBox
+.Counts{position:absolute;top:38px;left:275px;width:70px;font-size:7pt}#TOPRATING_DOWNLOADS{height:605px}#SUCHE_DOWNLOADS{height:163px}#TOP_DOWNLOADS{height:1222px}#SUCHE_DOWNLOADS
+.label{position:relative;height:15px;width:127px;padding-left:8px;padding-top:10px}#SUCHE_DOWNLOADS
+.content{position:relative;height:21px;width:200px;padding-top:4px}#LATEST_DWL{height:163px}#LATEST_DWL
+.label{position:relative;height:15px;width:100px;padding-left:8px;padding-top:10px}#LATEST_DWL
+.content{position:relative;height:15px;width:227px;padding-top:10px}#LATEST_DWL
+.DownloadButton{position:absolute;top:128px;left:308px}#LATEST_DWL
+.Voting{position:absolute;top:133px;left:190px;width:90px}#DWL_SEARCH_RESULTS
+.dwlrow{position:relative;float:left;width:694px}#DWL_SEARCH_RESULTS .dwlrow
+.name{width:276px;padding-left:8px}#DWL_SEARCH_RESULTS .dwlrow
+.type{width:100px}#DWL_SEARCH_RESULTS .dwlrow
+.date{width:110px}#DWL_SEARCH_RESULTS .dwlrow
+.vote{width:100px}#DWL_SEARCH_RESULTS .dwlrow
+.dwls{width:100px}#DWL_SEARCH_RESULTS
+.dwlrow.header{background-color:#4B4B4B}#DWL_SEARCH_RESULTS .dwlrow
+div{float:left}#DWL_SEARCH_RESULTS .dwlrow.header
+div{color:#FABF37;font-size:7pt;font-weight:bold;text-align:left;height:11px;padding-top:2px}#DWL_SEARCH_RESULTS .dwlrow.dwlitem
+div{height:15px;padding-top:2px}#DWL_SEARCH_RESULTS .dwlrow.dwlitem:hover{background-color:#131313}#DWL_SEARCH_RESULTS
+.dwlrow.alternative_header{background-color:#4b4b4b;text-align:left;width:686px;height:20px;padding-top:10px;padding-left:8px}select{border:solid 2px #666;padding:0;height:19px;line-height:13px;font-size:8pt;color:#fabf37;cursor:pointer;font-weight:normal;font-family:Tahoma,Verdana,Arial,Helvetica,sans-serif;background-color:#4A4A4A;vertical-align:middle}input[type=text],input[type=password],textarea{border:solid 2px #666;padding:1px
+0px 0px 2px;height:14px;line-height:13px;font-size:8pt;color:#fabf37;font-family:Tahoma,Verdana,Arial,Helvetica,sans-serif;background-color:#4A4A4A}input[type=checkbox]{display:none}textarea{font-size:8pt;height:auto}fieldset{border:1px
+solid #4B4B4B}input[type=text],input[type=password]{height:14px}input[type=text]:focus,input[type=password]:focus,textarea:focus,select:focus{border:solid 2px #fabf37;background-color:#666;color:#f0f0f0;-moz-box-shadow:0 0 2px rgba(250, 191, 55, 0.75), 0 0 6px rgba(250, 191, 55, 0.5) inset}input[type=text].Disabled,textarea.Disabled{background:#626262}input[disabled='disabled']{color:#e5e5e5}div[disabled='disabled']{cursor:default}.SelectDivs{height:14px;line-height:14px;min-width:100px;padding:1px
+2px 0px 2px;border:2px
+solid #666;background-image:url(https://login.4players.de/grafik/themes/playnow/select_dropdown.png);background-position:right -1px;background-repeat:no-repeat;background-color:#4A4A4A;cursor:pointer;color:#fabf37;font-size:8pt;font-weight:normal}.SelectDivs:hover{border:2px
+solid #fabf3f;background-image:url(https://login.4players.de/grafik/themes/playnow/select_dropdown_highlight.png);background-position:right -1px;background-repeat:no-repeat}.OptionsDivs{top:5px;min-width:100px;max-height:300px;margin:				-3px;border:2px
+solid #666;border-top:0px;z-index:100;background-color:#4A4A4A;white-space:nowrap;overflow:hidden;overflow-y:auto;color:#fabf37}.OptionsDivs:hover{border:2px
+solid #fabf3f;border-top:0px}.OptionDivs{padding:0px
+2px}.OptionDivs:hover{background-color:#dedede;cursor:pointer;color:#131313}.SelectedDivs{overflow:hidden;width:90%}#AD_BOX{height:289px}#AD_BOX
+.werbung{padding:4px}.Width378
+.downloadBox{width:374px;height:55px}.Width378 .downloadBox
+.DownloadButton{left:335px}.Width378 .downloadBox
+.Voting{left:190px;width:90px}.Width378 .downloadBox
+.Counts{left:295px;text-align:right}#INFOS_TABLE{position:relative;float:left;width:400px;height:170px;padding-top:8px}#INFOS_TABLE
+.label{position:relative;float:left;width:120px;height:19px;margin-top:1px;margin-left:8px}#INFOS_TABLE
+.content{position:relative;float:left;width:262px;height:19px;margin-top:1px}#DWL_NAME{position:relative;background-color:#4a4a4a;margin-top:8px;height:28px;clear:both}#DWL_NAME
+h1{font-size:11pt;font-weight:bold;line-height:25px;margin-left:8px;color:#fabf37}#Screenshots{position:relative;padding-left:20px}#DOWNLOAD_BUTTON{position:relative;top:60px;background:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/button_download.png) left no-repeat;width:210px;height:27px;padding-top:8px;text-align:center}#DOWNLOAD_BUTTON
+a{display:block;color:#3b3c41;font-size:13pt;font-weight:bold}#VotingContainer{position:absolute;width:55px;height:16px;left:0px}#VotingVoted{position:absolute;display:block;width:55px;height:11px;left:0px;top:2px}#VotingUservote{position:absolute;display:none;width:55px;height:11px;left:0px;top:2px}#antwort_Message{position:absolute;display:none;width:200px;height:16px;left:0px;top:18px;color:#fff;padding:3px;text-align:left}#anz_Stimmen{position:absolute;display:block;width:200px;height:16px;left:0px;top:18px;color:#fff;padding:3px;text-align:left}#voted_Message{position:absolute;display:none;width:200px;height:16px;left:0px;top:18px;color:#fff;padding:3px;text-align:left;line-height:1.0em}#votingid{display:none}#votingtyp{display:none}#hasvoted{display:none}#DOWNLOAD_DESCRIPTION{float:left;width:660px;margin-left:8px;margin-bottom:8px}div.schellinfoitem{margin-left:-8px;height:22px;width:246px;padding:6px}div.schellinfoitem
+a{position:relative;line-height:20px;font-weight:bold}#SCHNELLINFO
+.infoheader{width:254px;height:21px;margin-left:-10px;padding-top:8px;padding-left:8px;background-color:#4B4B4B;border-top:solid 1px #3c3c3c;font-size:11pt;font-weight:bold}#ABLAUFPLAN
+.space{width:424px;height:2px;background-color:#4B4B4B;margin-left:-8px}#ABLAUFPLAN
+.infoheader{width:418px;height:21px;margin-left:-10px;padding-top:8px;padding-left:8px;background-color:#4B4B4B;border-top:solid 1px #3c3c3c;font-size:11pt;font-weight:bold;color:#f4bb48}#ABLAUFPLAN
+.list{display:block;width:416px;height:auto;padding-top:4px;padding-bottom:8px}#ABLAUFPLAN .list
+.titel{color:#FABF37;font-size:7pt;font-weight:bold;text-align:left;height:14px;padding-top:2px;padding-left:8px;margin-top:-3px;background-color:#4B4B4B}#WINNER_BOX{height:172px;background:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/bg_platz1.jpg) left no-repeat}#bg_winner{position:absolute;width:350px;height:188px;left:172px;top:30px;z-index:0}#WINNER_BOX
+.winner{position:relative;float:left;width:117px;height:100px;margin-left:1px}#WINNER_BOX .winner
+div{text-align:center;margin-top:2px}#WINNER_BOX .winner div
+.Image{border:solid 1px #090909;margin-top:3px;margin-bottom:5px}#WINNER_BOX
+.winner.winner_1{margin-top:17px;z-index:1}#WINNER_BOX
+.winner.winner_2{margin-left:165px;margin-top:55px;z-index:2}#WINNER_BOX
+.winner.winner_3{margin-top:55px;z-index:3}#IANDD_DETAILS{height:345px;margin-top:2px}.IANDD_MAPPOOL{height:auto}#IANDD_CONDITIONS{height:auto}#IANDD_CONDITIONS_INFOS{height:auto;margin-top:2px;padding-bottom:20px}#IANDD_DETAILS
+.label{float:left;width:117px;height:16px;padding-top:2px;padding-left:8px}#IANDD_DETAILS
+.value{float:left;width:133px;height:16px;padding-top:2px}.IANDD_MAPPOOL
+.map{top:8px;height:16px;padding:2px
+0 0 8px}#IANDD_CONDITIONS
+.cond{top:8px;height:48px;padding-left:8px}#IANDD_CONDITIONS .cond
+.condname{float:left;font-weight:bold;color:#FABF37;line-height:40px}#IANDD_CONDITIONS .cond
+.icon{float:right;width:40px;height:40px;margin-right:8px;margin-top:4px;background:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/cup_icons.png)}#IANDD_CONDITIONS .cond
+.icon.success{background-position:0px -614px}#IANDD_CONDITIONS .cond
+.icon.error{background-position:0px -574px}#IANDD_CONDITIONS_INFOS
+ul{list-style-type:none;padding-left:8px;margin-top:-5px}#IANDD_CONDITIONS_INFOS
+li{list-style-position:outside;list-style-type:none;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/infobutton.png);background-repeat:no-repeat;padding-left:28px;padding-top:2px;padding-bottom:5px;margin-top:16px}#IANDD_CONDITIONS_INFOS li
+b{position:relative;line-height:16px;top:-3px}.gerade{background-color:#4b4b4b}.ungerade{background-color:#3c3c3c}div.cup_encountrow{height:28px;background-color:#3c3c3c}div.cup_encountrow.Uneven{background-color:#4b4b4b}div.cup_encountrow:hover{background-color:#131313;cursor:pointer}div.cup_encountrow
+.rollover{position:absolute;top: -14px;left:-4px;z-index:100}div.cup_encountrow .rollover
+.imgleft{position:absolute;float:left;left:0px;border:solid 3px #3C3C3C}div.cup_encountrow .rollover
+.imgright{position:absolute;float:left;left:377px;border:solid 3px #3C3C3C}div.encountsTableHeader{height:14px;background-color:#4b4b4b;margin-top:1px}div.encountsTableHeader
+.header{float:left;height:12px;padding:1px
+0;font-size:7pt;font-weight:bold;color:#FABF37}div.cup_encountrow
+.challengerimg{float:left;width:40px;margin-bottom: -4px}div.cup_encountrow .challengerimg
+.userbild{margin-left:8px;margin-top:2px}div.cup_encountrow
+.challengername{float:left;width:283px;padding:7px
+0px 0px 5px}div.cup_encountrow
+.ergebnis{float:left;width:61px;padding-top:7px}div.cup_encountrow
+.opponentimg{float:left;width:32px;margin-bottom: -4px}div.cup_encountrow .opponentimg
+.userbild{margin-top:2px}div.cup_encountrow
+.opponentname{float:left;width:220px;padding:7px
+0px 0px 5px}div.cup_encountrow
+.comments{float:left;height:16px;width:34px;margin-top:4px;line-height:16px}div.cup_encountrow:hover .challengername, div.cup_encountrow:hover
+.opponentname{color:#fabf3f;font-weight:bold}div.GB_Window
+div.content{border:2px
+solid #4a4a4a;border-top-width:0px;border-bottom-right-radius:5px;-moz-border-radius-bottomright:5px;-webkit-border-bottom-right-radius:5px;border-bottom-left-radius:5px;-moz-border-radius-bottomleft:5px;-webkit-border-bottom-left-radius:5px;background:#3c3c3c}div#GB_window
+div.content{background:#3c3c3c}div.GB_Window
+.header{height:33px;color:#DEDEDE;border:0px
+solid #4a4a4a;background:transparent}div.GB_Window .header
+td{vertical-align:middle;padding:8px
+12px;font-size:8pt}div.GB_Window .header
+.Delete{float:right;width:13px;height:13px;cursor:pointer;background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png);background-position:-171px -22px}div.GB_Window .header .DeleteZZZ:active{top:1px;left:1px}div.GB_Window
+.on{border:0px}div.GB_Window
+.caption{background:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-position:0 -152px}div.GB_Window
+.close{background:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/background_full_header.png);background-position:right top}#TOP_CUP
+.Image{margin-top:		-1px;margin-left:	-1px;border:1px
+solid #131313}.TopCupEntry{width:408px;height:110px;margin-left:		-10px;padding:10px;padding-top:0px;padding-bottom:0px;margin-bottom:0px;border-top:2px solid #4b4b4b}.TopCupEntry
+.CupHeader{width:auto;height:23px;margin:0px
+-10px 0px -10px;padding:6px
+8px 2px 170px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-position:2px -732px;background-color:#4B4B4B;border-top:1px solid #3c3c3c}.TopCupEntry
+.Image{position:absolute;top:				-3px;left:10px;width:150px;height:104px;margin-right:14px;border:1px
+solid black}.CupHeader
+.Info{position:relative;top:				-3px;height:auto;font-size:7pt;line-height:14px;color:#f0f0f0}.CupHeader
+.Titel{position:relative;margin-top:2px;display:block;font-size:11pt;color:#FABF37}.TopCupEntry
+.Text{position:relative;width:248px;line-height:14px;height:auto;margin-top:8px;margin-left:		-8px;font-size:9pt;text-align:justify}div.wlinks{position:relative;background-color:#4a4a4a;height:44px;width:225px;padding:8px;top:0px;margin-bottom:8px}div.wlinks
+.wlitem{float:left;width:40px;height:40px;margin-top:2px;margin-right:16px;background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/cupportal_grafiken.png);background-repeat:no-repeat}div.wlinks
+a{display:block;font-weight:bold;line-height:40px}.next_match_row{position:relative;float:left;left:-8px;top:-7px;height:67px;width:424px;cursor:pointer}.next_match_row:hover
+div{background-color:#131313}.next_match_row:hover
+div.ldrname{background-color:#4b4b4b}.next_match_row
+.ldrname{position:relative;float:left;height:15px;width:424px}.match_part1{position:relative;float:left;height:50px;width:187px;background-color:#3c3c3c;text-align:left}.match_part1
+.userbild{position:relative;float:left;margin-top:5px;margin-left:6px}.match_part1
+.userbild.member{margin-right:20px}.match_part1
+.userbild.team{margin-right:5px}.match_part1
+span{position:relative;top:20px;font-weight:bold;color:#FABF37}.match_vs{position:relative;float:left;height:50px;width:50px;background:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/kranz.png);background-repeat:no-repeat;background-position:0px 3px;background-color:#3c3c3c}.match_part2{position:relative;float:right;height:50px;width:187px;background-color:#3c3c3c;text-align:right}.match_part2
+.userbild{position:relative;float:right;margin-top:5px;margin-right:6px}.match_part2
+.userbild.member{margin-left:19px}.match_part2
+.userbild.team{margin-left:4px}.match_part2
+span{position:relative;top:20px;font-weight:bold;color:#FABF37}.m_trenner{position:relative;float:left;width:428px;height:1px;left:-10px;top:-7px;background-color:#3c3c3c}.ranking.cell.spieler .userbild, .ranking.cell.strafspieler .userbild, .ranking.cell.challenger .userbild, .ranking.cell.opponent
+.userbild{float:left;margin-left:8px;margin-right:5px;margin-top:2px}.ranking.cell.spieler a, .ranking.cell.strafspieler a, .ranking.cell.challenger span, .ranking.cell.opponent
+span{position:relative;line-height:26px;margin-left:8px}div.rankingrow:hover .challenger, div.rankingrow:hover
+.opponent{color:#fabf3f;font-weight:bold}.rankingrow:hover{z-index:100}.rankingrow:hover
+div{background-color:#131313}.rankingrow:hover
+a{font-weight:bold}.rankingrow
+.rollover{position:absolute;display:none;top: -14px;left:-4px;z-index:900}.rankingrow:hover
+.rollover{display:block}#ULLIST_1 .rankingrow:hover{cursor:pointer}#ULLIST_2 .rankingrow:hover{cursor:pointer}.moveDown
+.rollover{margin-top:14px}.moveUp
+.rollover{margin-top:-19px}.TeamLadderInfo .moveDown
+.rollover{margin-top:10px}.TeamLadderInfo .moveUp
+.rollover{margin-top:-6px}.moveUp .rollover
+.imgleft{bottom:0px}.moveUp .rollover
+.imgright{bottom:0px}.rankingrow .rollover
+.imgleft{position:absolute;float:left;left:45px;border:solid 3px #3C3C3C}.rankingrow .rollover
+.imgright{position:absolute;float:left;left:372px;border:solid 3px #3C3C3C}
+
+div.button.fordern
+{
+float:left;
+width:40px;
+margin-left:5px;
+margin-top:5px;
+background-position: -0px -309px
+}
+
+div.button.fordern2
+{
+float:left;
+width:80px;
+margin-left:5px;
+margin-top:5px;
+}
+
+div.forderungen
+{
+float:left;margin-top:8px;margin-left:5px;font-family:Arial;font-size:10px}#LaddersScrollBox{float:left;left:0px;height:560px;width:698px}#LaddersErgebnisseScrollBox{float:left;left:0px;height:168px;width:698px}#LaddersNextMatchesScrollBox{float:left;left:0px;height:168px;width:698px}#MessageContainer{margin:10px
+0px 2px 0px;width:698px}*+html
+#MessageContainer{margin:18px
+0px 2px 0px}#MessageContainer
+.ContainerBox{margin:				-2px 0px 0px 8px;height:48px}#MessageContainer .ContainerBox
+.ContainerBox{margin:8px
+0px 0px 8px}#MessageContainer
+.Header{background-color:transparent}#MessageContainer
+.MessageContent{margin:1px
+0px 0px 4px;height:47px}#MessageContainer .MessageContent>.ContainerBox{position:absolute;top:6px;left:100px;width:564px;height:28px;padding:0px
+8px;line-height:28px;border-width:2px 0px 0px 2px;background:transparent}#MessageContainer .MessageSubjectContainer:hover, #MessageContainer .MessageSubjectContainer.Highlight, #MessageContainer .MessageIcons:hover+.MessageSubjectContainer{color:#F4B333;background:#131313}.MessageProfileName{position:absolute;top:0px;left:34px}.MessageTime{margin-right:4px}.MessageIcons{position:absolute;width:50px;bottom:8px;right:4px}#MessageContainer
+.MessageText{height:auto}.MessageText>p,.MessageText>pre{margin:4px}.ChallengeRow{height:40px;padding:8px
+4px;line-height:20px}.ChallengeRow.Even{background:#4A4A4A}.ChallengeRow>.Left{margin-right:8px}.ChallengeRow>.Left>.Left{margin-right:8px}.ChallengeRow>.Info{width:192px}.ChallengeRow>.Enemy{width:226px}.ChallengeRow>.Status{width:174px}#UMFRAGE_CONTENT{width:100%}div.PoolHeaderSpacer{float:left;height:8px;left:0px;width:341px;border-bottom:solid 2px #4b4b4b}div.PoolQuestion{float:left;height:31px;left:2px;margin-left:-4px;width:345px;background-color:#4b4b4b;border-top:solid 1px #3c3c3c}div.PoolQuestion
+p{margin-left:8px;margin-top:8px;font-weight:bold}div.pollAnsText{position:relative;float:left;width:100%;height:24px;line-height:24px}.pollAnsTextSmall{position:relative;float:left;width:100%;height:19px;line-height:19px;font-size:10px}div.pollAnsVoted{position:relative;float:left;height:16px;background:url(http://static1.4pl.4players.de/dist/htdocs/images/themes/playnow/voting/umfragenleiste_green.jpg)}div.pollAnsVotedSmall{position:relative;float:left;height:12px;background:url(http://static1.4pl.4players.de/dist/htdocs/images/themes/playnow/voting/umfragenleiste_green.jpg);background-position:0px -2px}#LADDERS_TEILNAHME_LANDL{height:242px}#LADDERS_TEILNAHME_LANDL
+.legende{position:absolute;left:8px;bottom:8px;padding-bottom:0px;width:410px;height:18px}#LaddersUndLigenScrollBox{float:left;margin: -0px -8px;height:190px;width:345px}#lundl_button_down{margin-right:4px;margin-top:0px}#lundl_button_up{margin-right:4px;margin-top:0px}#GAMESNAVI{position:absolute;top:148px;left:9px;width:698px;height:auto;color:#131313;z-index:1001}#GAMESNAVI
+.Bottom{position:absolute;bottom:0px;left:0px;height:12px;width:698px;background-image:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/gamenavi/gamenavi_bottom.png);background-repeat:no-repeat;z-index:3}#GAMESNAVI
+.Top{position:absolute;top:0px;left:0px;height:4px;width:698px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/gamenavi/gamenavi_top.png);background-repeat:no-repeat;z-index:3}#GAMESNAVI
+.Background{position:absolute;top:0px;left:0px;width:694px;height:100%;border-left:solid 2px #ca8a0b;border-right:solid 2px #ca8a0b;background-image:url(http://static1.4pl.4players.de/dist/htdocs/images/themes/playnow/gamenavi/gamenavi_trenner.png);background-color:#4f4635;-moz-opacity:0.95;filter:alpha(opacity=95);opacity:.95;z-index:1}#GAMESNAVI
+.Content{position:relative;float:left;padding:0px;padding-top:8px;margin:4px
+0 12px 0;z-index:2}#GAMESNAVI
+.Genrebox{position:relative;float:left;width:172px;margin-left:2px}#GAMESNAVI .Genrebox
+.Header{position:relative;float:left;width:170px;height:29px;left:0px;margin-left:1px;background-image:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png);background-position:0px -695px;font-weight:bold;color:#D9D9D9;line-height:26px;text-align:center}#GAMESNAVI .Genrebox
+.Menuitem{width:172px;height:22px}#GAMESNAVI .Genrebox .Menuitem:hover{background-color:#131313}#GAMESNAVI .Genrebox .Menuitem
+a{padding-left:6px;height:100%;line-height:22px;display:block;text-decoration:none}.linkrollover{color:#fff}.navirollover{color:#fff}.GameRow{height:40px;line-height:40px}.GameRow
+img{margin:4px
+8px 0 8px}.GameRow
+.Link{display:block}.GameRow:hover{background:#000}.TeamManageBox{width:674px;height:116px;border:2px
+solid #4b4b4b;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;margin-bottom:8px}.TeamManageBox
+.TeamLogo{margin:8px}.TeamManageBox
+.TeamData{margin-top:8px;width:288px}.TeamManageBox .TeamData>.Left{padding:6px
+8px}.TeamSearchInfo
+.TeamData{width:224px;margin-top:8px}.TeamSearchInfo
+.TeamLogo{margin:8px}.TeamSearchInfo .TeamData>.Left{padding:6px
+8px}#FEATURES_BOX
+.features_link{position:relative;float:left;width:155px;height:27px;margin-bottom:10px;background:url(http://static1.4pl.4players.de/dist/htdocs/images/themes/playnow/features_bg.png)}#FEATURES_BOX .features_link
+a{position:relative;display:block;left:30px;color:#3C3C3C;font-weight:bold;font-size:11px;line-height:25px}#FEATURES_BOX .features_link a:hover{color:#000}#HALLOFFAME_BUNNER{height:154px;background:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/halloffame_banner.jpg);background-repeat:no-repeat;background-position:0px 35px}#HALLOFFAME_TOP_MEMBERS{height:360px}#HALLOFFAME_TOP_TEAMS{height:360px}#HALLOFFAME_CUPS_MEMBERS{height:770px}#HALLOFFAME_CUPS_TEAMS{height:770px}.hofBoxHeader{position:relative;float:left;width:345px;background-color:#4B4B4B;height:16px;margin-top:32px;left:-2px}.hofBoxHeader
+div{float:left}div.ranking.partNum{width:30px;margin-left:2px}div.ranking.partName{width:219px}div.ranking.winnerGold{width:29px;text-align:center}div.ranking.winnerSilver{width:29px;text-align:center}div.ranking.winnerBronze{width:29px;text-align:center}#RangScrollBox_MEMBERS{float:left;left:0px;height:280px;width:345px}#RangScrollBox_TEAMS{float:left;left:0px;height:280px;width:345px}#CupsScrollBox_MEMBERS{float:left;left:0px;height:690px;width:345px}div.ranking.partName
+.userbild{float:left;margin-left:8px;margin-right:5px;margin-top:2px}div.ranking.partName
+a{position:relative;line-height:26px;margin-left:8px}.hofCupName{float:left;height:30px;width:262px;padding-left:8px;font-weight:bold;line-height:28px}.hofCupDate{float:left;height:30px;width:70px;line-height:28px}.hofCupWinner{top:-7px}.hofCupWinner
+.userbild{position:relative;margin-left:6px;margin-right:8px;top:7px}.hofCupWinner
+a{text-decoration:none}.achievement_row{float:left;width:678px;height:71px;background-color:#4b4b4b;margin-top:8px;margin-left:8px}.user_achievement{float:left;width:329px;height:71px;cursor:default}
+
+.middle_frame{
+float:left;width:13px;height:71px;background:url(http://static1.4pl.4players.de/dist/htdocs/images/themes/playnow/achievement_layout.png)}
+
+.next_achievement{float:left;width:336px;height:71px;cursor:default}.next_achievement_norollover{float:left;width:336px;height:71px;cursor:default}.next_achievement:hover{background:url(http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/nextbg.png);background-position:0px 4px;background-repeat:no-repeat}.achievement_logo{position:relative;float:left;width:55px;height:55px;margin:8px}.user_achievement
+.ach_name{float:left;margin-top:6px;width:240px;height:33px;font-weight:bold}.next_achievement
+.ach_name{float:left;margin-top:6px;width:185px;height:33px;font-weight:bold}.user_achievement
+.num_user{float:left;width:240px;line-height:11px;font-size:10px}.user_achievement
+.ach_date{float:left;width:240px;line-height:11px;font-size:10px}.next_achievement
+.next_percent{float:left;width:71px;height:46px;padding-left:8px;padding-top:25px;font-weight:bold;font-size:24px}.next_achievement
+.counter{float:left;width:185px;line-height:11px;font-size:10px}.MedalContainer{width:86px;height:16px;margin:0
+0 8px 8px}.Medal{width:8px;height:15px;margin:0
+2px 0 0;background:url(http://static1.4pl.4players.de/dist/htdocs/images/themes/playnow/profil_backgrounds.png) -178px -360px no-repeat}.Medal.I{background-position:-178px -360px}.Medal.V{background-position:-187px -360px}.Medal.X{background-position:-196px -360px}.Medal.O{background-position:-205px -360px}#ADMIN_NAVI{float:left;width:110px}#ADMIN_CONTENT{float:right;width:560px;background-color:#4B4B4B}#ADMIN_NAVI
+.navi_item{float:left;width:102px;padding-left:8px;height:20px;line-height:18px;margin-top:2px;background-color:#4B4B4B}#ADMIN_NAVI .navi_item
+a{display:block}#ADMIN_NAVI .navi_item:hover{background-color:#7FC116;color:#3C3C3C}#ADMIN_NAVI .navi_item a:hover{color:#D9D9D9}#ADMIN_NAVI
+.navi_item.active{width:98px;padding-left:12px;background-color:#131313}#ADMIN_NAVI
+.navi_item.first{margin-top:0px}#ADMIN_NAVI
+.admin_actions{float:left;width:102px;padding-left:8px;height:18px;line-height:16px;margin-top:2px}#CATEGORIES
+.item_row{background-color:#3C3C3C;height:22px;width:540px;line-height:18px;cursor:default;margin-top:1px}#CATEGORIES .item_row
+div{float:left}#CATEGORIES
+.item_row.trennlinie{background-color:#4B4B4B}#CATEGORIES .item_row
+div.header{font-weight:bold}#CATEGORIES .item_row.values:hover{background-color:#4B4B4B}#CATEGORIES
+.datumsheader{height:25px;font-size:11px;font-weight:normal;font-style:italic;color:#D9D9D9}.game_item{float:left;height:90px;width:544px;margin-top:8px;margin-left:8px;background-color:#3C3C3C}.game_item.active{background-color:#545454}.game_item.active:hover{background-color:#131313;cursor:pointer}.ForumItems
+li{width:auto;height:30px;list-style-type:none;margin:0px
+-8px;padding:8px
+8px 8px 38px;background:url(http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/topic_read.gif) 8px 9px no-repeat}.ForumItems
+.Even{background-color:#4a4a4a}#AdBanner,#AdSky,#AdRectangle{z-index:1000}#AdBanner{margin:4px
+auto 4px auto;width:728px}#AdSky{position:absolute;left:930px;top:0px}#Vietnam{position:absolute;left:				-275px;top:0px;z-index:1}#Xmas{position:absolute;left:				-170px;top:0px;z-index:1}#Content{z-index:2}#Header{z-index:3}.EventItems
+li{height:32px;padding:4px;list-style:none outside none}.EventItems
+li.Uneven{background:#4a4a4a}.videotainment{width:196px !important;margin-top:8px;height:293px;padding-left:0px !important;padding-right:0px !important}.navitab_active{width:97px;height:31px;background-image:url('http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png');background-position:0px -664px;margin-left:			-2px;float:left}.navitab_inactive{width:97px;height:31px;background-image:url('http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png');background-position:	-102px -664px;margin-left:			-2px;float:left}.tab_distance_line{width:6px;height:31px;background-image:url('http://static3.4pl.4players.de/dist/htdocs/images/themes/playnow/playnow_backgrounds.png');background-position:	-200px -664px;float:left}.navitab_desc_player_videos{padding-top:10px;text-align:center;width:95px;height:20px}.navitab_desc_playnow_videos{padding-top:10px;text-align:center;width:95px;height:20px}.fake_link{cursor:pointer;margin-left:1px}.movie_container{clear:both;height:232px;margin-top:0px}#MovieTabContainer{height:263px}.videotainment_footer{padding-left:43px;padding-top:12px;width:155px;height:20px}.disabled_button{background-image:url('http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/106x16_grey.png');color:#3C3C3C;font-family:Tahoma,Verdana;font-size:7pt;font-weight:bold;height:12px;line-height:11px;margin:0;padding:2px;text-align:center;width:102px}#vertical_carousel_videotainment{float:left;width:197px;height:232px;position:relative}#vertical_carousel_videotainment
+.container{float:left;width:197px;height:232px;overflow:hidden}#vertical_carousel_videotainment
+ul{margin:0px;padding:0px;height:100000px;position:relative;top:0px;left:0px}#vertical_carousel_videotainment ul
+li{text-align:center;list-style:none;float:left;height:58px;width:197px}.LI_DUMMY{text-align:center;list-style:none;float:left;height:92px}#vertical_carousel_videotainment
+.previous_button{height:16px;width:16px;background:url('http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png');background-position:	-106px -36px;cursor:pointer;left:153px;margin-top:244px;position:absolute;z-index:200}#vertical_carousel_videotainment
+.previous_button_over{background:url('http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png');background-position:	-106px -68px;z-index:200}#vertical_carousel_videotainment
+.previous_button_disabled{background:url('http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png');background-position:	-106px -52px;cursor:default}#vertical_carousel_videotainment
+.next_button{height:16px;width:16px;background:url('http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png');background-position:	-122px -36px;display:inline;left:172px;margin-top:244px;cursor:pointer;position:absolute;z-index:200}#vertical_carousel_videotainment
+.next_button_over{background:url('http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png');background-position:	-122px -68px;z-index:200}#vertical_carousel_videotainment
+.next_button_disabled{background:url('http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png');background-position:	-122px -52px;cursor:default}.carousel_left_dummy{background:url('http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png');background-position:	-106px -52px;cursor:default;margin-left:110px;margin-top:				-16px;width:16px;height:16px}.carousel_right_dummy{background:url('http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png');background-position:	-122px -52px;cursor:default;margin-left:130px;margin-top:				-16px;width:16px;height:16px}.BorderTopCell{margin-left:10px;margin-top:10px;width:650px;height:550px;border:2px
+solid #4A4A4A;padding:10px}.Height10px{height:10px}.LeftSideColumn{left:10px;float:left;position:absolute;top:3px;width:225px}.RightSideColumn{left:300px;float:left;position:absolute;width:355px}.SearchContainer{width:698px;height:auto}.SearchHeader{height:22px;background-image:url('http://static2.4pl.4players.de/dist/htdocs/images/exchange/search_header.jpg');background-repeat:no-repeat}.ProfileLink{top:5px;left:6px;position:absolute}.ProfileImage{padding-top:7px;padding-left:10px;width:50px;height:45px;float:left}.SearchInsertDateTime{top:5px;left:485px;position:absolute}.SearchContainerPosition{top:12px;width:50px;height:12px;float:left}.SearchContainerPositionResult{top:12px;left:30px;width:50px;height:12px;float:left}.SearchContainerInfo1{width:200px;height:50px;float:left}.SearchContainerSkill{top:32px;width:50px;height:12px;float:left;position:absolute}.SearchContainerSkillResult{top:34px;left:80px;width:50px;height:12px;float:left;position:absolute}.SearchContainerInfo2{width:430px;height:50px;float:left}.SearchContainerSearchType{top:12px;left:20px;width:120px;height:12px;float:left;position:absolute}.SearchContainerResultFinished{top:12px;left:180px;width:80px;height:12px;float:left;position:absolute;color:red}.SearchContainerSubject{top:32px;left:20px;width:410px;height:12px;float:left;position:absolute}.SearchContainerDetailsButton{top:12px;left:320px;float:left;position:absolute}.SearchContainerText{left:10px;width:650px}.SearchTimeNeeded{left:10px;width:570px}.SearchDetailsInfo{left:5px;width:680px}.SearchDetailsRepliesContainer{width:676px;background-color:#4b4b4b;padding-left:0px;padding-right:5px;padding-top:25px;padding-bottom:8px}.SearchDetailsReplies{left:7px;width:665px;border:1px
+solid #767676;background-color:#3c3c3c}.SearchDetailsNewReply{left:7px;width:680px;height:70px;border:1px
+solid #fabf3f}.SearchAnswers{left:10px;width:650px}.TopLeft5px{top:5px;left:5px}.HeaderDesignBar{width:341px;height:20px;background-color:#4A4A4A;top:10px}.SearchFilterDescription{margin-top:12px;left:10px;width:100px;height:12px}.SearchFilterValue{margin-top:8px;left:10px;width:215px;height:12px}#SearchTabContainer{height:263px}#vertical_carousel_exchange{float:left;width:197px;height:232px;position:relative}#vertical_carousel_exchange
+.container{float:left;width:197px;height:232px;overflow:hidden}#vertical_carousel_exchange
+ul{margin:0px;padding:0px;height:100000px;position:relative;top:0px;left:0px}#vertical_carousel_exchange ul
+li{text-align:center;list-style:none;float:left;height:58px;width:197px}.LI_DUMMY{text-align:center;list-style:none;float:left;height:92px}#vertical_carousel_exchange
+.previous_button{height:16px;width:16px;background:url('http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png');background-position:	-106px -36px;cursor:pointer;left:153px;margin-top:244px;position:absolute;z-index:100}#vertical_carousel_exchange
+.previous_button_over{background:url('http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png');background-position:	-106px -68px;z-index:100}#vertical_carousel_exchange
+.previous_button_disabled{background:url('http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png');background-position:	-106px -52px;cursor:default}#vertical_carousel_exchange
+.next_button{height:16px;width:16px;background:url('http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png');background-position:	-122px -36px;display:inline;left:172px;margin-top:244px;cursor:pointer;position:absolute;z-index:100}#vertical_carousel_exchange
+.next_button_over{background:url('http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png');background-position:	-122px -68px;z-index:100}#vertical_carousel_exchange
+.next_button_disabled{background:url('http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png');background-position:	-122px -52px;cursor:default}.carousel_left_dummy{background:url('http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png');background-position:	-106px -52px;cursor:default;margin-left:110px;margin-top:				-16px;width:16px;height:16px}.carousel_right_dummy{background:url('http://static2.4pl.4players.de/dist/htdocs/images/themes/playnow/buttons.png');background-position:	-122px -52px;cursor:default;margin-left:130px;margin-top:				-16px;width:16px;height:16px}#PNC_FRAME{position:absolute;top:30px;left:0px;min-width:300px;min-height:330px;padding:10px;border:solid 1px #3C3C3C;background:url(http://static3.4pl.4players.de/dist/htdocs/images/admin/playnow/bg.png);z-index:1}#FRAME_TREE{position:relative;float:left;display:block;min-width:300px;min-height:295px;border:solid 1px #3C3C3C;background-color:#FFF;color:#333;z-index:1}#FRAME_LOADER_BG{position:absolute;top:0px;left:0px;float:left;width:100%;height:100%;padding:0px;background-color:#000;filter:alpha(opacity=60);-moz-opacity:0.6;opacity:0.6;z-index:2}#FRAME_LOADER_IMG{position:absolute;top:100px;left:0px;float:left;width:100%;height:50px;padding:0px;text-align:center;z-index:3}#FRAME_BUTTONS{position:relative;display:block;width:100%;height:30px;text-align:center}#FRAME_BUTTONS
+input{border-style:solid;border-width:1px;border-color:#FFF;background-color:#727272;margin-top:10px;width:120px;color:#FFF;font-size:8pt;padding:2px;font-weight:bold;cursor:default}#FRAME_CONTENT{position:relative;float:left;display:block;min-width:185px;height:100%;margin-left:10px;border:solid 1px #3C3C3C;background-color:#FFF}.folder{position:relative;padding-left:5px;padding-right:5px;margin-top:1px;font-family:Arial;font-size:8pt;cursor:pointer}.folder
+img{position:relative;top:2px}.folder_open{position:relative;padding-left:5px;padding-right:5px;margin-top:1px;font-family:Arial;font-size:8pt;background-color:#E8E8E8;cursor:pointer}.folder_open
+img{position:relative;top:2px}.fld_active{background-color:#039;color:#FFF}#catalog_chooser{position:relative;float:left;width:320px;height:16px;padding-left:30px;padding-top:5px;padding-bottom:5px;font-family:Verdana;font-size:9pt;color:#333;background:url(http://static3.4pl.4players.de/dist/htdocs/images/admin/playnow/catalog_chooser.png) no-repeat}.catalog_chooser{position:relative;float:left;width:320px;height:16px;padding-left:30px;padding-top:5px;padding-bottom:5px;font-family:Verdana;font-size:9pt;color:#333;background:url(http://static3.4pl.4players.de/dist/htdocs/images/admin/playnow/catalog_chooser.png) no-repeat}ul.profile_menu{width:150px;margin:0px;padding:0px;list-style:none;color:#fabf37;background-color:#3c3c3c;text-align:left;z-index:4000}ul.profile_menu
+li{list-style-type:none}ul.profile_menu li
+a{padding-left:5px;list-style-position:inside;list-style-type:circle;display:list-item;line-height:21px;color:#fabf37;-moz-border-radius:4px;-webkit-border-radius:4px;border-radius:4px;-o-border-radius:4px;-khtml-border-radius:4px}ul.profile_menu li a:hover{background:url(http://static.4players.de/sourcen/portal/tmp/contextmenu_itemhover.png) repeat-x center bottom;color:#131313;-moz-border-radius:4px;-webkit-border-radius:4px;text-decoration:none}.ptt_image{width:150px;margin-bottom:5px;padding-top:5px;padding-bottom:5px;text-align:center;border-bottom:solid 1px #fabf37}.ptt_image
+img{margin-bottom:5px;border:solid 1px #131313}#lightview{position:absolute;top:50%;left:50%;height:150px;width:150px;margin: -75px 0 0 -75px;padding:0;text-align:left}.lv_Container{position:relative;width:100%;height:100%;background:none;padding:0;margin:0}.lv_Button{cursor:pointer;text-decoration:none;border:none;background:none;margin:0;padding:0}.lv_Sides{position:absolute;top:50%;left:0;clear:both;width:100%;padding:0;margin:0}.lv_Sides
+*{padding:0;margin:0}.lv_Sides
+li{list-style-type:none;position:relative}.lv_PrevSide{float:left}.lv_NextSide{float:right}.lv_Sides
+.lv_Wrapper{width:100%;height:100%;cursor:pointer}.lv_Sides
+.lv_Button{float:left;background:none}.lv_Frames{width:100%;height:100%;position:relative;padding:0;margin:0}.lv_Frames
+li{list-style-type:none;margin:0;padding:0}.lv_Frame{width:100%;display:block}.lv_Frame
+*{padding:0;margin:0}.lv_FrameTop{position:absolute;left:0;width:100%;display:block}.lv_FrameBottom{position:relative;float:left;clear:both}.lv_Liquid{position:relative;float:left;width:100%;overflow:hidden;clear:both}.lv_Liquid
+.lv_Filler{position:absolute;height:100%;width:2px;top:0;left:50%}.lv_Half{display:block;height:100%;clear:both;line-height:0px}.lv_Half
+li{list-style-type:none}.lv_Corner{float:left;position:relative}.lv_CornerTr,.lv_CornerBr{float:right}.lv_Fill{position:absolute;top:0;width:100%;height:100%}.lv_Half
+.lv_CornerWrapper{float:left;position:relative;width:50%;height:100%;overflow:hidden}.lv_HalfRight
+.lv_CornerWrapper{float:right}.lv_Corner{position:relative}.lv_Corner
+canvas{position:relative}.lv_HalfLeft
+.lv_Corner{float:left}.lv_HalfRight
+.lv_Corner{position:relative;float:right}.lv_Center{position:relative;clear:both;height:100%;overflow:hidden;background:none;padding:0;margin:0}.lv_WrapUp{position:absolute;left:0;height:100%;width:100%;overflow:hidden;padding:0;margin:0}.lv_WrapDown{position:relative;height:100%;width:100%;overflow:hidden;padding:0;margin:0}.lv_WrapCenter{position:relative;padding:0;margin:0}.lv_Loading{position:absolute;top:50%;left:50%}.lv_Loading
+.lv_Button{float:left;height:100%;width:100%}.lv_MediaWrapper{position:relative;width:100%;display:block;overflow:hidden;clear:both;padding:0;margin:0}.lv_MediaWrapper
+img{position:relative;float:left;padding:0;margin:0}.lv_PrevNext{position:absolute;top:0;left:0;width:100%;height:100%;padding:0;margin:0}.lv_PrevNext
+*{padding:0;margin:0}.lv_PrevNext
+.lv_Button{position:relative;height:100%}.lv_PrevButton{float:left}.lv_NextButton{float:right}.lv_MenuBar{clear:both;position:relative;width:100%;font:11px Arial, Helvetica, sans-serif;padding:0;margin:0;text-align:left}.lv_MenuBar
+*{padding:0;margin:0}.lv_Close{position:relative;float:right;overflow:hidden;width:100%;height:100%}.lv_Data{position:relative;float:left;padding-bottom:3px;line-height:13px;overflow:hidden}.lv_Data
+li{list-style-type:none;float:left;margin-top:3px}.lv_DataText{width:100%}.lv_DataText
+.lv_Title{font-weight:bold;margin-bottom:2px}.lv_DataText
+.lv_Caption{clear:both}.lv_Data
+.lv_ImgNumber{color:#a7a7a7;margin-right:5px;margin-top:5px}.lv_Data .lv_innerPrevNext,
+.lv_Data
+.lv_Slideshow{position:relative;border-left:1px solid #d7d7d7;padding:0
+5px;margin-top:5px;vertical-align:middle}.lv_Data
+.lv_Slideshow{padding-right:0px}.lv_Data .lv_innerPrevNext .lv_Button,
+.lv_Data .lv_Slideshow
+.lv_Button{float:left;background-position:center left;background-repeat:no-repeat}.lv_contentTop,.lv_contentBottom{position:relative;float:left;margin:0;padding:0;clear:both}#lightview
+
+iframe
+{
+float:left;border:0;clear:both;padding:0;margin:0;background:none
+}
+
+.lv_topButtons{position:absolute;left:0;width:100%;overflow:hidden;margin:0;padding:0}.lv_topcloseButtonImage{cursor:pointer}#lightviewError
+p{padding:0
+0 10px 0}#lightviewError
+div{padding:6px;font:11px Arial, Helvetica, sans-serif}#lightviewError
+.message{background:#fcb5b5;color:#dd1f1f;margin-bottom:3px}#lightviewError
+.type{font-weight:bold}#lightviewError
+.pluginspage{background:#b5fcbd;color:#21be30}#lightviewError a,
+#lightviewError a:hover,
+#lightviewError a:visited{color:#21be30;text-decoration:none;background:none;font-weight:bold;border-bottom:1px solid #7de689}#lightviewError
+p{margin-left:0;padding:0}#lv_overlay{position:absolute;top:0;left:0;height:100%;width:100%}#lightviewController{position:fixed;bottom:0;top:0;left:50%;margin:0;padding:0;color:#d2d2d2;font:11px Arial, Helvetica, sans-serif}* html body
+#lightviewController{position:absolute;top:auto;margin-top:expression( (-1 * this.offsetHeight / 2 + (document.documentElement ? document.documentElement.scrollTop : 0) + (Lightview.controllerOffset || 0)) + 'px')}#lightviewController
+ul{display:block;height:100%;float:left;margin:0;padding:0;position:relative}.lv_controllerTop,.lv_controllerMiddle,.lv_controllerBottom{list-style-type:none;float:left;display:block;position:relative;clear:both;overflow:hidden;margin:0;padding:0}.lv_controllerCenter{width:auto;float:left}.lv_controllerCornerWrapper{position:absolute;width:100%;height:100%;margin:0;padding:0}.lv_controllerCornerWrapperTopLeft,.lv_controllerCornerWrapperBottomLeft{top:0;left: -100%}.lv_controllerCornerWrapperTopRight,.lv_controllerCornerWrapperBottomRight{top:0;left:100%}#lightviewController
+.lv_CornerWrapper{width:100%}#lightviewController
+.lv_Corner{float:left}#lightviewController
+.lv_Corner{float:right;position:relative}#lightviewController .lv_CornerTr, #lightviewController
+.lv_CornerBr{float:left}.lv_controllerBetweenCorners{position:relative;height:100%;overflow:hidden}.lv_controllerMiddle{position:relative;height:100%;float:left}.lv_controllerCenter{float:left;width:auto}.lv_controllerCenter
+li{list-style-type:none;float:left;display:inline;position:relative;clear:none}.lv_controllerSetNumber{float:left;text-align:center}#lightviewController
+.lv_Button{float:left;position:relative;height:100%;clear:none}.lv_controllerSetNumber{position:relative;height:100%;padding-right:3px}.lv_controllerPrev,.lv_controllerNext,.lv_controllerSlideshow,.lv_controllerClose{float:left;position:relative;height:100%;padding-left:3px}.lv_controllerPrev{border-left:1px solid #3c3c3c}#lightviewController
+.lv_controllerNext{padding-right:3px;border-right:1px solid #3c3c3c}* html
+#lightview{position:absolute;margin-top:expression( (-1 * this.offsetHeight / 2 + (document.documentElement ? document.documentElement.scrollTop : 0) - (Lightview.controllerHeight || 0)) + 'px');margin-left:expression( -1 * this.offsetWidth / 2 + (document.documentElement ? document.documentElement.scrollLeft : 0) + 'px')}html
+#lv_overlay{position:absolute;height:expression(((window.Enumerable && window.Enumerable.max) ? [document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight].max() : document.documentElement.scrollHeight) + 'px' );width:expression(((window.Enumerable && window.Enumerable.max) ? [document.body.scrollWidth, document.documentElement.scrollWidth, document.body.offsetWidth, document.documentElement.clientHeight].max() : document.documentElement.scrollWidth) + 'px' )}

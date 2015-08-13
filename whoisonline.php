@@ -10,7 +10,7 @@
 #                                   /                                    #
 #                                                                        #
 #                                                                        #
-#   Copyright 2005-2011 by webspell.org                                  #
+#   Copyright 2005-2010 by webspell.org                                  #
 #                                                                        #
 #   visit webSPELL.org, webspell.info to get webSPELL for free           #
 #   - Script runs under the GNU GENERAL PUBLIC LICENSE                   #
@@ -32,9 +32,10 @@ $_language->read_module('whoisonline');
 eval ("\$title_whoisonline = \"".gettemplate("title_whoisonline")."\";");
 echo $title_whoisonline;
 
-$result_guests = safe_query("SELECT * FROM ".PREFIX."whoisonline WHERE userID=''");
+$ip_head=(issuperadmin($userID) ? '<td class="title" align="center">IP Address:</td>' : ""); 
+$result_guests = safe_query("SELECT * FROM ".PREFIX."whoisonline WHERE userID='0'");
 $guests = mysql_num_rows($result_guests);
-$result_user = safe_query("SELECT * FROM ".PREFIX."whoisonline WHERE ip=''");
+$result_user = safe_query("SELECT * FROM ".PREFIX."whoisonline WHERE userID!='0'");
 $user = mysql_num_rows($result_user);
 $useronline = $guests + $user;
 if($user==1) $user_on='<b>1</b> '.$_language->module['registered_user'];
@@ -66,6 +67,8 @@ else{
 
 $ergebnis = safe_query("SELECT w.*, u.nickname FROM ".PREFIX."whoisonline w LEFT JOIN ".PREFIX."user u ON u.userID = w.userID ORDER BY $sort $type");
 
+
+
 eval ("\$whoisonline_head = \"".gettemplate("whoisonline_head")."\";");
 echo $whoisonline_head;
 
@@ -79,8 +82,10 @@ while($ds=mysql_fetch_array($ergebnis)) {
 		$bg1=BG_3;
 		$bg2=BG_4;
 	}
-	if($ds['ip']=='') {
-		$nickname='<a href="index.php?site=profile&amp;id='.$ds['userID'].'"><b>'.$ds['nickname'].'</b></a>';
+	
+	$ip_content=(issuperadmin($userID) ? '<td bgcolor="'.$bg1.'" align="center">'.(!$ds['ip'] ? "n/a" : $ds['ip']).'</td>' : ""); 
+    
+		$nickname=($ds['userID'] ? '<a href="index.php?site=profile&amp;id='.$ds['userID'].'"><b>'.$ds['nickname'].'</b></a>' : $_language->module['guest']);
 		if(isclanmember($ds['userID'])) $member=' <img src="images/icons/member.gif" width="6" height="11" alt="Clanmember" />';
 		else $member='';
 		if(getemailhide($ds['userID'])) $email = '';
@@ -101,39 +106,10 @@ while($ds=mysql_fetch_array($ergebnis)) {
 			elseif($userID==$ds['userID']) $buddy='';
 			else $buddy='<a href="buddys.php?action=add&amp;id='.$ds['userID'].'&amp;userID='.$userID.'"><img src="images/icons/buddy_add.gif" width="16" height="16" border="0" alt="add to buddylist" /></a>';
 		}
-	}
-	else {
-		$nickname=$_language->module['guest'];
-		$member="";
-		$email="";
-		$country="";
-		$homepage="";
-		$pm="";
-		$buddy="";
-	}
 
-	$array_watching = array('about', 'awards', 'calendar', 'clanwars', 'counter_stats', 'demos', 'files', 'forum', 'gallery', 'links', 'linkus', 'loginoverview', 'members', 'polls', 'registered_users', 'server', 'sponsors', 'squads', 'whoisonline', 'newsletter');
-	$array_reading = array('articles', 'contact', 'faq', 'guestbook', 'history', 'imprint');
 
-	if(in_array($ds['site'], $array_watching))
-	{
-		$status = $_language->module['is_watching_the'].' <a href="index.php?site='.$ds['site'].'">'.$_language->module[$ds['site']].'</a>';
-	}
-	elseif(in_array($ds['site'], $array_reading))
-	{
-		$status = $_language->module['is_reading_the'].' <a href="index.php?site='.$ds['site'].'">'.$_language->module[$ds['site']].'</a>';
-	}
-	elseif($ds['site']=="buddys") $status=$_language->module['is_watching_his'].' <a href="index.php?site=buddys">'.$_language->module['buddys'].'</a>';
-	elseif($ds['site']=="clanwars_details") $status=$_language->module['is_watching_details_clanwar'];
-	elseif($ds['site']=="forum_topic") $status=$_language->module['is_reading_forum'];
-	elseif($ds['site']=="messenger") $status=$_language->module['is_watching_his'].' <a href="index.php?site=messenger">'.$_language->module['messenger'].'</a>';
-	elseif($ds['site']=="myprofile") $status=$_language->module['is_editing_his'].' <a href="index.php?site=profile&amp;id='.$ds['userID'].'">'.$_language->module['profile'].'</a>';
-	elseif($ds['site']=="news_comments") $status=$_language->module['is_reading_newscomments'];
-	elseif($ds['site']=="profile") $status=$_language->module['is_watching_profile'];
-	else
-	{
-		$status = $_language->module['is_watching_the'].' <a href="index.php?site=news">'.$_language->module['news'].'</a>';
-	}
+    $url_site=(empty($ds['url']) ? "?site=".$ds['site'] : $ds['url']);
+    $status = "viewing ". "<a href='$url_site'><strong>$ds[site]</strong></a>";
 
 	eval ("\$whoisonline_content = \"".gettemplate("whoisonline_content")."\";");
 	echo $whoisonline_content;
@@ -142,7 +118,6 @@ while($ds=mysql_fetch_array($ergebnis)) {
 
 eval ("\$whoisonline_foot = \"".gettemplate("whoisonline_foot")."\";");
 echo $whoisonline_foot;
-
 
 // WHO WAS ONLINE
 
@@ -166,9 +141,11 @@ while($ds=mysql_fetch_array($ergebnis)) {
 		$bg1=BG_3;
 		$bg2=BG_4;
 	}
+	
+    $ip_content=(issuperadmin($userID) ? '<td bgcolor="'.$bg1.'" align="center">'.(!$ds['ip'] ? "n/a" : $ds['ip']).'</td>' : ""); 
 
 	$date=date("d.m.Y - H:i", $ds['time']);
-	$nickname='<a href="index.php?site=profile&amp;id='.$ds['userID'].'"><b>'.$ds['nickname'].'</b></a>';
+	$nickname=($ds['userID'] ? '<a href="index.php?site=profile&amp;id='.$ds['userID'].'"><b>'.$ds['nickname'].'</b></a>' : $_language->module['guest']);
 	if(isclanmember($ds['userID'])) $member=' <img src="images/icons/member.gif" width="6" height="11" alt="Clanmember" />';
 	else $member='';
 	if(getemailhide($ds['userID'])) $email = '';
@@ -190,28 +167,8 @@ while($ds=mysql_fetch_array($ergebnis)) {
 		else $buddy='<a href="buddys.php?action=add&amp;id='.$ds['userID'].'&amp;userID='.$userID.'"><img src="images/icons/buddy_add.gif" width="16" height="16" border="0" alt="add to buddylist" /></a>';
 	}
 
-	$array_watching = array('about', 'awards', 'calendar', 'clanwars', 'counter_stats', 'demos', 'files', 'forum', 'gallery', 'links', 'linkus', 'loginoverview', 'members', 'polls', 'registered_users', 'server', 'sponsors', 'squads', 'whoisonline', 'newsletter');
-	$array_reading = array('articles', 'contact', 'faq', 'guestbook', 'history', 'imprint');
-
-	if(in_array($ds['site'], $array_watching))
-	{
-		$status = $_language->module['was_watching_the'].' <a href="index.php?site='.$ds['site'].'">'.$_language->module[$ds['site']].'</a>';
-	}
-	elseif(in_array($ds['site'], $array_reading))
-	{
-		$status = $_language->module['was_reading_the'].' <a href="index.php?site='.$ds['site'].'">'.$_language->module[$ds['site']].'</a>';
-	}
-	elseif($ds['site']=="buddys") $status=$_language->module['was_watching_his'].' <a href="index.php?site=buddys">'.$_language->module['buddys'].'</a>';
-	elseif($ds['site']=="clanwars_details") $status=$_language->module['was_watching_details_clanwar'];
-	elseif($ds['site']=="forum_topic") $status=$_language->module['was_reading_forum'];
-	elseif($ds['site']=="messenger") $status=$_language->module['was_watching_his'].' <a href="index.php?site=messenger">'.$_language->module['messenger'].'</a>';
-	elseif($ds['site']=="myprofile") $status=$_language->module['was_editing_his'].' <a href="index.php?site=profile&amp;id='.$ds['userID'].'">'.$_language->module['profile'].'</a>';
-	elseif($ds['site']=="news_comments") $status=$_language->module['was_reading_newscomments'];
-	elseif($ds['site']=="profile") $status=$_language->module['was_watching_profile'];
-	else
-	{
-		$status = $_language->module['was_watching_the'].' <a href="index.php?site=news">'.$_language->module['news'].'</a>';
-	}
+    $url_site=(empty($ds['url']) ? "?site=".$ds['site'] : $ds['url']);
+    $status = "viewed ". "<a href='$url_site'><strong>$ds[site]</strong></a>";
 
 	eval ("\$whowasonline_content = \"".gettemplate("whowasonline_content")."\";");
 	echo $whowasonline_content;

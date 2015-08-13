@@ -38,194 +38,322 @@ function chkFormular() {
 	}
 
 }
--->
 </script>
 
-<form method="post" name="post" action="index.php?site=myprofile" enctype="multipart/form-data" onsubmit="return chkFormular()">
+<form method="post" name="post" action="?site=myprofile" enctype="multipart/form-data" onsubmit="return chkFormular()">
 <center>$showerror</center>
-<table width="100%" border="0" cellspacing="0" cellpadding="2" bgcolor="$border">
-  <tr bgcolor="$bghead">
+<table width="100%" border="0" cellspacing="$cellspacing" cellpadding="$cellpadding" class="formtable">
+  <tr>
     <td colspan="2" class="title">&nbsp; &#8226; %profile-info%:</td>
   </tr>
-  <tr><td colspan="2" bgcolor="$pagebg"></td></tr>
-  <tr>
-    <td align="right" bgcolor="$bg1">%nickname%:*</td>
+  <tr> 
+      <td colspan="2" bgcolor="$pagebg"></td>
+    </tr>
+
+   <tr>
+    <td bgcolor="$bg1" align="right" >%nickname%:*</td>
     <td bgcolor="$bg2"><input type="text" name="nickname" id="nickname" value="$nickname" maxlength="30" size="30" /></td>
   </tr>
-  <tr bgcolor="$bg2">
-    <td align="right" bgcolor="$bg3">%username%:*</td>
-    <td bgcolor="$bg4"><input name="usernamenew" type="text" id="usernamenew" value="$username" maxlength="30" size="30" /></td>
+  <tr>
+    <td bgcolor="$bg1" align="right" bgcolor="$bg3">%username%:*</td>
+    <td bgcolor="$bg2"><input name="usernamenew" type="text" id="usernamenew" value="$username" maxlength="30" size="30" /></td>
+  </tr>
+    <tr>
+      <td bgcolor="$bg1" align="right" bgcolor="$bg1">Password:</td>
+      <td bgcolor="$bg2">
+		<img border="0" src="images/cup/icons/password.png" width="16" height="16">
+		<a href="?site=myprofile&amp;action=editpwd" target="_blank">Edit 
+        Password</a></td>
+    </tr>
+	<tr>
+      <td align="right" bgcolor="$bg1">Timezone:</td>
+      <td bgcolor="$bg2">
+		<img border="0" src="images/cup/icons/time.png" width="16" height="16">
+		<a href="?site=myprofile&action=timezone&userID=$userID" target="_blank">Set Timezone</a> </td>
+    </tr>
+	<tr>
+      <td align="right" bgcolor="$bg1">Cup Teams:</td>
+      <td bgcolor="$bg2">
+		<img border="0" src="images/cup/icons/yourteams.png" width="16" height="16">
+		<a href="?site=teams" target="_blank">Manage Teams</a> </td>
+    </tr>
+	<tr>
+      <td align="right" bgcolor="$bg1">Game Accounts:</td>
+      <td bgcolor="$bg2">
+		<img border="0" src="images/cup/icons/edit.png" width="16" height="16">
+		<a href="?site=myprofile&amp;action=gameaccounts" target="_blank">Manage Gameaccounts</a> </td>
+    </tr>
+  <tr>
+    <td align="right" bgcolor="$bg1">%e-mail%:*</td>
+    <td bgcolor="$bg2">
+		<img border="0" src="images/cup/icons/message.png" width="16" height="16">
+		<a href="?site=myprofile&amp;action=editmail" target="_blank">Edit Email</a> - $email</td>
   </tr>
   <tr>
-    <td align="right" bgcolor="$bg1">%password%:</td>
-    <td bgcolor="$bg2">&#8226; <a href="index.php?site=myprofile&amp;action=editpwd">%edit_password%</a></td>
-  </tr>
-  <tr bgcolor="$bg2">
-    <td align="right" bgcolor="$bg3">%e-mail%:*</td>
-    <td bgcolor="$bg4">$email</td>
-  </tr>
-  <tr bgcolor="$bg2">
-    <td align="right" bgcolor="$bg3"></td>
-    <td bgcolor="$bg4">&#8226; <a href="index.php?site=myprofile&amp;action=editmail">%edit_mail%</a></td>
+    <td align="right" bgcolor="$bg1">Steam:</td>
+    <td bgcolor="$bg2">$GET_BY_STEAM  <br> <input type="text" name="sc_id" value="$steam_comm_id" size="30" /></td>
   </tr>
   <tr>
-    <td align="right" bgcolor="$bg1" valign="top">$viewavatar</td>
+    <td bgcolor="$bg1" align="right"  valign="top">$viewavatar</td>
     <td bgcolor="$bg2"><input name="avatar" type="file" size="30" />
     <input class="input" name="delavatar" type="checkbox" value="1" />
     <small>%delete_max_90_90%</small><br />%or%<br />
-    <input name="avatar_url" type="text" size="30" value="http://" /></td>
+    <input name="avatar_url" id="avatarurl" type="text" size="30" value="http://" /><br />
+    $fbimg</td>
   </tr>
   <tr bgcolor="$bg4">
-    <td align="right" bgcolor="$bg3" valign="top">$viewpic</td>
-    <td bgcolor="$bg4"><input name="userpic" type="file" size="30" />
+    <td align="right" bgcolor="$bg1" valign="top">$viewpic</td>
+    <td bgcolor="$bg2"><input name="userpic" type="file" size="30" />
     <input class="input" name="deluserpic" type="checkbox" value="1" />
     <small>%delete_max_230_210%</small><br />%or%<br />
     <input name="userpic_url" type="text" size="30" value="http://" /></td>
   </tr>
   <tr>
-    <td align="right" valign="top" bgcolor="$bg1">%signature%:</td>
+    <td bgcolor="$bg1" align="right" valign="top" >%signature%:</td>
     <td bgcolor="$bg2"><textarea name="usertext" cols="70" rows="5" style="width:100%">$usertext</textarea></td>
   </tr>
   <tr><td colspan="2" bgcolor="$pagebg"></td></tr>
-  <tr bgcolor="$bghead">
+  <tr>
     <td colspan="2" class="title">&nbsp; &#8226; %personal-info%:</td>
   </tr>
   <tr><td colspan="2" bgcolor="$pagebg"></td></tr>
-  <tr>
-    <td align="right" bgcolor="$bg1">%first_name%:*</td>
+ <tr>
+    <td bgcolor="$bg1" align="right" >%first_name%:*</td>
     <td bgcolor="$bg2"><input type="text" name="firstname" id="firstname" value="$firstname" size="30" /></td>
   </tr>
-  <tr bgcolor="$bg2">
-    <td align="right" bgcolor="$bg3">%last_name%:</td>
-    <td bgcolor="$bg4"><input type="text" name="lastname" value="$lastname" size="30" /></td>
-  </tr>
   <tr>
-    <td align="right" bgcolor="$bg1">%date_of_birth%:*</td>
+    <td align="right" bgcolor="$bg1">%last_name%:</td>
+    <td bgcolor="$bg2"><input type="text" name="lastname" value="$lastname" size="30" /></td>
+  </tr>
+   <tr>
+    <td bgcolor="$bg1" align="right" >%date_of_birth%:*</td>
     <td bgcolor="$bg2"><input type="text" name="b_day" id="b_day" value="$b_day" size="2" />
     .
     <input type="text" name="b_month" id="b_month" value="$b_month" size="2" />
     .
-    <input type="text" name="b_year" id="b_year" value="$b_year" size="4" /></td>
-  </tr>
-  <tr bgcolor="$bg2">
-    <td align="right" bgcolor="$bg3">%sexuality%:</td>
-    <td bgcolor="$bg4"><select name="sex">$sex</select></td>
+    <input type="text" name="b_year" id="b_year" value="$b_year" size="4" /> Format is DD/MM/YYYY (I.e. 15/12/ and not 12/15/) </td> 
   </tr>
   <tr>
-    <td align="right" bgcolor="$bg1">%country%:</td>
+    <td align="right" bgcolor="$bg1">%sexuality%:</td>
+    <td bgcolor="$bg2"><select name="sex">$sex</select></td>
+  </tr>
+  <tr>
+    <td bgcolor="$bg1" align="right" >%country%:</td>
     <td bgcolor="$bg2"><select name="flag" onchange="document.getElementById('county').src='images/flags/'+this.options[this.selectedIndex].value+'.gif'">$countries</select> $country</td>
   </tr>
   <tr>
-    <td align="right" bgcolor="$bg3">%town%:</td>
-    <td bgcolor="$bg4"><input type="text" name="town" size="30" value="$town" /></td>
+    <td align="right" bgcolor="$bg1">%town%:</td>
+    <td bgcolor="$bg2"><input type="text" name="town" size="30" value="$town" /></td>
   </tr>
-  <tr bgcolor="$bg2">
-    <td align="right" bgcolor="$bg1">Icq#:</td>
+  <tr>
+    <td bgcolor="$bg1" align="right" >ICQ#:</td>
     <td bgcolor="$bg2"><input type="text" name="icq" value="$icq" size="30" /></td>
   </tr>
+    <tr>
+      <td align="right" bgcolor="$bg1">Skype:</td>
+      <td bgcolor="$bg2"><input type="text" name="skype" value="$skype" size="30" /></td>
+    </tr>
+
+    <input type="hidden" name="xfirec" value="$ds[xfire]"" size="30" READONLY>
+    <input type="hidden" name="steam" value="$ds[sc_id]" size="30" READONLY>
+
+    <tr>
+      <td align="right" bgcolor="$bg1">Xfire:</td>
+      <td bgcolor="$bg2"><input type="text" name="xfire" value="$ds[xfire]""></td>
+    </tr>
+	<tr>
+      <td align="right" bgcolor="$bg1">Xfire-Style:</td>
+      <td bgcolor="$bg2"><select name="xfirestyle">'.$xlist.'</select>&nbsp;<select name="xfiregroesse">'.$xflist.'</select>
+    </tr>
+    <tr>
+      <td align="right" bgcolor="$bg1">MSN:</td>
+      <td bgcolor="$bg2"><input type="text" name="msn" value="$msn" size="30"></td>
+    </tr>
+    <tr>
+      <td align="right" bgcolor="$bg1">AIM:</td>
+      <td bgcolor="$bg2"><input type="text" name="aim" value="$aim" size="30"></td>
+    </tr>
+    <tr>
+      <td align="right" bgcolor="$bg1">Yahoo:</td>
+      <td bgcolor="$bg2"><input type="text" name="yahoo" value="$yahoo" size="30"></td>
+    </tr>
   <tr bgcolor="$bg3">
-    <td align="right" bgcolor="$bg3">%homepage%:</td>
-    <td bgcolor="$bg4"><input type="text" name="homepage" value="$homepage" size="30" maxlength="255" /></td>
+    <td align="right" bgcolor="$bg1">%homepage%:</td>
+    <td bgcolor="$bg2"><input type="text" name="homepage" value="$homepage" size="30" maxlength="255" /></td>
   </tr>
-  <tr bgcolor="$bg2">
-    <td align="right" valign="top" bgcolor="$bg1">%about_myself%:<br /><br />
+  <tr>
+    <td bgcolor="$bg1" align="right" valign="top" >%about_myself%:<br /><br />
     <small><b>%options%:</b><br />%html%<br />%bbcode%<br />%smilies%</small></td>
     <td bgcolor="$bg2"><textarea name="messageabout" cols="70" rows="8" style="width:100%">$about</textarea></td>
   </tr>
   <tr><td colspan="2" bgcolor="$pagebg"></td></tr>
-  <tr bgcolor="$bghead">
+  <tr>
     <td colspan="2" class="title">&nbsp; &#8226; %options%:</td>
   </tr>
   <tr><td colspan="2" bgcolor="$pagebg"></td></tr>
-  <tr bgcolor="$bg2">
-    <td align="right" bgcolor="$bg1">%newsletter%</td>
+  <tr>
+    <td bgcolor="$bg1" align="right" ><a name="jgrowl"></a>JGrowl Notifcation?</td>
+    <td bgcolor="$bg2"><select name="jgrowl">$jgrowl</select></td>
+  </tr>
+  <tr>
+    <td bgcolor="$bg1" align="right" >%newsletter%</td>
     <td bgcolor="$bg2"><select name="newsletter">$newsletter</select></td>
   </tr>
-  <tr bgcolor="$bg2">
-    <td align="right" bgcolor="$bg3">%language%</td>
-    <td bgcolor="$bg4"><select name="language">$langdirs</select></td>
+  <tr>
+    <td align="right" bgcolor="$bg1">%language%</td>
+    <td bgcolor="$bg2"><select name="language">$langdirs</select></td>
   </tr>
-  <tr bgcolor="$bg2">
-    <td align="right" bgcolor="$bg1">%mail_on_new_pm%</td>
+  <tr>
+    <td bgcolor="$bg1" align="right" >%mail_on_new_pm%</td>
     <td bgcolor="$bg2"><select name="pm_mail">$pm_mail</select></td>
   </tr>
-  <tr bgcolor="$bg2">
-    <td align="right" bgcolor="$bg3">%hide_e-mail%</td>
-    <td bgcolor="$bg4"><input type="checkbox" name="mail_hide" value="1"$email_hide /></td>
+  <tr>
+    <td align="right" bgcolor="$bg1">%hide_e-mail%</td>
+    <td bgcolor="$bg2"><input type="checkbox" name="mail_hide" value="1"$email_hide /></td>
   </tr>
   <tr><td colspan="2" bgcolor="$pagebg"></td></tr>
-  <tr bgcolor="$bghead">
+  <tr>
     <td colspan="2" class="title">&nbsp; &#8226; %clan-info%:</td>
   </tr>
   <tr><td colspan="2" bgcolor="$pagebg"></td></tr>
-  <tr>
-    <td align="right" bgcolor="$bg1">%clan-tag%:</td>
+   <tr>
+    <td bgcolor="$bg1" align="right" >%clan-tag%:</td>
     <td bgcolor="$bg2"><input type="text" name="clantag" value="$clantag" size="30" /></td>
   </tr>
-  <tr bgcolor="$bg2">
-    <td align="right" bgcolor="$bg3">%clan-name%:</td>
-    <td bgcolor="$bg4"><input type="text" name="clanname" value="$clanname" size="30" /></td>
-  </tr>
   <tr>
-    <td align="right" bgcolor="$bg1">%clan-hp%:</td>
+    <td align="right" bgcolor="$bg1">%clan-name%:</td>
+    <td bgcolor="$bg2"><input type="text" name="clanname" value="$clanname" size="30" /></td>
+  </tr>
+   <tr>
+    <td bgcolor="$bg1" align="right" >%clan-hp%:</td>
     <td bgcolor="$bg2"><input type="text" name="clanhp" value="$clanhp" size="30" /></td>
   </tr>
-  <tr bgcolor="$bg2">
-    <td align="right" bgcolor="$bg3">%clan-irc%:</td>
-    <td bgcolor="$bg4"><input type="text" name="clanirc" value="$clanirc" size="30" /></td>
-  </tr>
   <tr>
-    <td align="right" bgcolor="$bg1">%clan-history%:</td>
+    <td align="right" bgcolor="$bg1">%clan-irc%:</td>
+    <td bgcolor="$bg2"><input type="text" name="clanirc" value="$clanirc" size="30" /></td>
+  </tr>
+    <tr>
+      <td align="right" bgcolor="$bg1">ESL-Nick:</td>
+      <td bgcolor="$bg2"><input type="text" name="clanesl" value="$clanesl"></td>
+    </tr>
+   <tr>
+    <td bgcolor="$bg1" align="right" >%clan-history%:</td>
     <td bgcolor="$bg2"><input type="text" name="clanhistory" value="$clanhistory" size="30" /></td>
   </tr>
-  <tr><td colspan="2" bgcolor="$pagebg"></td></tr>
-  <tr bgcolor="$bghead">
+  <tr>
     <td colspan="2" class="title">&nbsp; &#8226; %equipment-info%:</td>
    </tr>
-   <tr><td colspan="2" bgcolor="$pagebg"></td></tr>
-   <tr>
-    <td align="right" bgcolor="$bg1">%cpu%:</td>
+   <tr><td colspan="2" bgcolor="$pagebg"></td>
+   </tr>
+    <tr>
+    <td bgcolor="$bg1" align="right" >%cpu%:</td>
     <td bgcolor="$bg2"><input type="text" name="cpu" value="$cpu" size="30" /></td>
   </tr>
   <tr>
-    <td align="right" bgcolor="$bg3">%mainboard%:</td>
-    <td bgcolor="$bg4"><input type="text" name="mainboard" value="$mainboard" size="30" /></td>
+    <td bgcolor="$bg1" align="right" bgcolor="$bg3">%mainboard%:</td>
+    <td bgcolor="$bg2"><input type="text" name="mainboard" value="$mainboard" size="30" /></td>
   </tr>
   <tr>
-    <td align="right" bgcolor="$bg1">%ram%:</td>
+    <td bgcolor="$bg1" align="right" >%ram%:</td>
     <td bgcolor="$bg2"><input type="text" name="ram" value="$ram" size="30" /></td>
   </tr>
   <tr>
-    <td align="right" bgcolor="$bg3">%monitor%:</td>
-    <td bgcolor="$bg4"><input type="text" name="monitor" value="$monitor" size="30" /></td>
+    <td bgcolor="$bg1" align="right" bgcolor="$bg3">%monitor%:</td>
+    <td bgcolor="$bg2"><input type="text" name="monitor" value="$monitor" size="30" /></td>
   </tr>
-  <tr>
-    <td align="right" bgcolor="$bg1">%graphiccard%:</td>
+ <tr>
+    <td bgcolor="$bg1" align="right" >%graphiccard%:</td>
     <td bgcolor="$bg2"><input type="text" name="graphiccard" value="$graphiccard" size="30" /></td>
   </tr>
   <tr>
-    <td align="right" bgcolor="$bg3">%soundcard%:</td>
-    <td bgcolor="$bg4"><input type="text" name="soundcard" value="$soundcard" size="30" /></td>
+    <td bgcolor="$bg1" align="right" bgcolor="$bg3">%soundcard%:</td>
+    <td bgcolor="$bg2"><input type="text" name="soundcard" value="$soundcard" size="30" /></td>
+  </tr>
+   <tr>
+    <td bgcolor="$bg1" align="right" >Storage:</td>
+    <td bgcolor="$bg2"><input type="text" name="storage" value="$storage" size="30" /></td>
   </tr>
   <tr>
-    <td align="right" bgcolor="$bg1">%i-connection%:</td>
+    <td bgcolor="$bg1" align="right" >%i-connection%:</td>
     <td bgcolor="$bg2"><input type="text" name="connection" value="$connection" size="30" /></td>
   </tr>
-  <tr>
-    <td align="right" bgcolor="$bg3">%keyboard%:</td>
-    <td bgcolor="$bg4"><input type="text" name="keyboard" value="$keyboard" size="30" /></td>
+   <tr>
+    <td bgcolor="$bg1" align="right" >Headset:</td>
+    <td bgcolor="$bg2"><input type="text" name="headset" value="$headset" size="30" /></td>
   </tr>
   <tr>
-    <td align="right" bgcolor="$bg1">%mouse%:</td>
+    <td bgcolor="$bg1" align="right" bgcolor="$bg3">%keyboard%:</td>
+    <td bgcolor="$bg2"><input type="text" name="keyboard" value="$keyboard" size="30" /></td>
+  </tr>
+  <tr>
+    <td bgcolor="$bg1" align="right" >%mouse%:</td>
     <td bgcolor="$bg2"><input type="text" name="mouse" value="$mouse" size="30" /></td>
   </tr>
   <tr>
-    <td align="right" bgcolor="$bg3">%mousepad%:</td>
-    <td bgcolor="$bg4"><input type="text" name="mousepad" value="$mousepad" size="30" /></td>
+    <td bgcolor="$bg1" align="right" bgcolor="$bg3">%mousepad%:</td>
+    <td bgcolor="$bg2"><input type="text" name="mousepad" value="$mousepad" size="30" /></td>
   </tr>
-  <tr bgcolor="$bghead">
-    <td bgcolor="$bg1"></td>
-    <td bgcolor="$bg2"><input type="submit" name="submit" value="%update_profile%" /><br /><br />%fields_star_required%</td>
+  	<tr>
+      <td colspan="2" class="title">&nbsp; &#8226; Favourites:</td>
+    </tr>
+	<tr>
+      <td colspan="2" bgcolor="$pagebg"></td>
+    </tr>
+        <tr>
+      <td bgcolor="$bg1" align="right" bgcolor="$bg1">Game:</td>
+      <td bgcolor="$bg2"><input type="text" name="fgame" value="$fgame"></td>
+    </tr>
+	<tr>
+      <td bgcolor="$bg1" align="right" bgcolor="$bg3">Clan:</td>
+      <td bgcolor="$bg2"><input type="text" name="fclan" value="$fclan"></td>
+    </tr>
+	<tr>
+      <td bgcolor="$bg1" align="right" bgcolor="$bg1">Map:</td>
+      <td bgcolor="$bg2"><input type="text" name="fmap" value="$fmap"></td>
+    </tr>
+	<tr>
+      <td bgcolor="$bg1" align="right" bgcolor="$bg3">Weapon:</td>
+      <td bgcolor="$bg2"><input type="text" name="fweapon" value="$fweapon"></td>
+    </tr>
+	<tr>
+      <td bgcolor="$bg1" align="right" bgcolor="$bg1">Food:</td>
+      <td bgcolor="$bg2"><input type="text" name="ffood" value="$ffood"></td>
+    </tr>
+	<tr>
+      <td bgcolor="$bg1" align="right" bgcolor="$bg3">Drink:</td>
+      <td bgcolor="$bg2"><input type="text" name="fdrink" value="$fdrink"></td>
+    </tr>
+	<tr>
+      <td bgcolor="$bg1" align="right" bgcolor="$bg1">Movie:</td>
+      <td bgcolor="$bg2"><input type="text" name="fmovie" value="$fmovie"></td>
+    </tr>
+	<tr>
+      <td bgcolor="$bg1" align="right" bgcolor="$bg3">Music:</td>
+      <td bgcolor="$bg2"><input type="text" name="fmusic" value="$fmusic"></td>
+    </tr>
+	<tr>
+      <td bgcolor="$bg1" align="right" bgcolor="$bg1">Song:</td>
+      <td bgcolor="$bg2"><input type="text" name="fsong" value="$fsong"></td>
+    </tr>
+	<tr>
+      <td bgcolor="$bg1" align="right" bgcolor="$bg3">Book:</td>
+      <td bgcolor="$bg2"><input type="text" name="fbook" value="$fbook"></td>
+    </tr>
+	<tr>
+      <td bgcolor="$bg1" align="right" bgcolor="$bg1">Actor / Actress:</td>
+      <td bgcolor="$bg2"><input type="text" name="factor" value="$factor"></td>
+    </tr>
+	<tr>
+      <td bgcolor="$bg1" align="right" bgcolor="$bg3">Car:</td>
+      <td bgcolor="$bg2"><input type="text" name="fcar" value="$fcar"></td>
+    </tr>
+	<tr>
+      <td bgcolor="$bg1" align="right" bgcolor="$bg1">Sport:</td>
+      <td bgcolor="$bg2"><input type="text" name="fsport" value="$fsport"></td>
+    </tr>
+  <tr>
+    <td align="right"></td>
+    <td><input type="submit" name="submit" value="%update_profile%" /><br /><br />%fields_star_required%</td>
   </tr>
 </table>
 </form>

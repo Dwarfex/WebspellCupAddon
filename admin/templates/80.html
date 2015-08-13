@@ -1,0 +1,133 @@
+<form method="post" name="cuptree" id="cuptree" action="admincenter.php?site=cups&action=baum&ID=$ID">
+	<table align="center" cellpadding="2" cellspacing="0" width="100%">
+		<tr valign="top" bgcolor="#CCCCCC">
+			<td class="title" align="center"><b>$round1</b></td>
+			<td class="title" align="center"><b>$round2</b></td>
+			<td class="title" align="center"><b>$round_sf_ub</b></td>
+			<td class="title" align="center"><b>$winner</b></td>
+		</tr>
+	    <tr valign="top">
+	        <td bgcolor="#efefef" align="center">Map: <input name="map1" type="text" class="form_off" onFocus="this.className='form_on'" onBlur="this.className='form_off'" value="$db[map1]" size="15" /></td>
+			<td bgcolor="#efefef" align="center">Map: <input name="map2" type="text" class="form_off" onFocus="this.className='form_on'" onBlur="this.className='form_off'" value="$db[map2]" size="15" /></td>
+			<td bgcolor="#efefef" align="center">Map: <input name="map3" type="text" class="form_off" onFocus="this.className='form_on'" onBlur="this.className='form_off'" value="$db[map3]" size="15" /></td>
+			<td bgcolor="#efefef">&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td colspan="4"></td>
+		</tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan1">$clan[1]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+		</tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[1]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan9">$clan[9]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan2">$clan[2]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">$match[5]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan13">$clan[13]</select></td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan3">$clan[3]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[2]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan10">$clan[10]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan4">$clan[4]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">$match[7]</td>
+	        <td bgcolor="#efefef" align="center"><select name="wb_winner">$clan[wb_winner]</select></td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan5">$clan[5]</select></td>
+			<td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+	    </tr>
+	    <tr>
+			<td style="border-right:2px solid #000000;" align="center">$match[3]</td>
+			<td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan11">$clan[11]</select></td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+	    </tr>
+	    <tr>
+			<td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan6">$clan[6]</select></td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+	    </tr>
+	    <tr>
+			<td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;" align="center">$match[6]</td>
+			<td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan14">$clan[14]</select></td>
+			<td>&nbsp;</td>    
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan7">$clan[7]</select></td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[4]</td>
+			<td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan12">$clan[12]</select></td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+	    </tr>
+	    <tr>
+			<td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan8">$clan[8]</select></td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan15">$clan[15]</select></td>
+	        <td>3rd place</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">$match[8]</td>
+	        <td bgcolor="#efefef" align="center"><select name="third_winner">$clan[third_winner]</select></td>
+	    </tr>
+	    <tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan16">$clan[16]</select></td>
+			<td>&nbsp;</td>
+	    </tr>  
+	</table>
+	<div align="right">
+		<input type="hidden" name="cupID" value="$ID">
+		<input type="hidden" name="max" value="$max">	  
+		<input type="button" class="button" onClick="MM_confirm('Swap contestants to different brackets?', 'admincenter.php?site=cups&action=randombaum&cupID=$ID&max=$max'); return false;" value="Randomize">  
+	    <input name="savebaum" type="submit" id="savebaum" value="Save">
+	</div>
+</form>

@@ -1,0 +1,12 @@
+<tr bgcolor="#FFFFFF">
+		       		<td> - $ds[name]</td>
+			   		<td align="center">
+					$status</td>
+			   		<td align="center"><input type="button" class="button" onClick="MM_goToURL('parent','admincenter.php?site=clans&action=edit&clanID=$ds[ID]');return document.MM_returnValue" value="Edit"</td>
+					<td align="center"><input type="button" class="button" onClick="MM_confirm('Really delete this clan? - All team data will be lost!', 'admincenter.php?site=clans&delete=true&clanID=$ds[ID]')" value="Delete"></td>
+                                        <td align="center"><input type="button" class="button" onClick="MM_goToURL('parent','admincenter.php?site=clans&action=addpoints&clanID=$ds[ID]')" value="Add"></td>
+                                        <td align="center"><input type="button" class="button" onClick="MM_goToURL('parent','admincenter.php?site=clans&action=block&clanID=$ds[ID]')" value="Block"></td>
+                                        <td align="center"><input type="button" class="button" onClick="MM_goToURL('parent','admincenter.php?site=clans&action=addcups&clanID=$ds[ID]')" value="Enter Cup"></td>
+                                        <td align="center"><input type="button" class="button" onClick="MM_goToURL('parent','admincenter.php?site=clans&action=addcheckin&clanID=$ds[ID]')" value="Checkin Cup"></td>
+                                        <td align="center"><input type="button" class="button" onClick="MM_goToURL('parent','admincenter.php?site=clans&action=delcups&clanID=$ds[ID]')" value="x"></td>
+			 	</tr>

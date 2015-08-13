@@ -10,7 +10,7 @@
 #                                   /                                    #
 #                                                                        #
 #                                                                        #
-#   Copyright 2005-2011 by webspell.org                                  #
+#   Copyright 2005-2009 by webspell.org                                  #
 #                                                                        #
 #   visit webSPELL.org, webspell.info to get webSPELL for free           #
 #   - Script runs under the GNU GENERAL PUBLIC LICENSE                   #
@@ -48,6 +48,13 @@ elseif(isset($_GET['articlesID'])) {
 	$table = "articles";
 	$tableid = "articlesID";
 	$id = $_GET['articlesID'];
+}
+elseif($_GET['matchID']) {
+    $filepath = "./images/cup-screens/";
+	$webpath = "images/cup-screens/";
+	$table = "cup_matches";
+	$tableid = "matchID";
+	$id = $_GET['matchID'];
 }
 else die($_language->module['invalid_access']);
 
@@ -97,7 +104,7 @@ echo'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.
 	<meta name="description" content="Clanpage using webSPELL 4 CMS" />
 	<meta name="author" content="webspell.org" />
 	<meta name="keywords" content="webspell, webspell4, clan, cms" />
-	<meta name="copyright" content="Copyright &copy; 2005 - 2011 by webspell.org" />
+	<meta name="copyright" content="Copyright &copy; 2005 - 2009 by webspell.org" />
 	<meta name="generator" content="webSPELL" />
 	<title>'.$_language->module['file_upload'].'</title>
   <script src="js/bbcode.js" language="jscript" type="text/javascript"></script>

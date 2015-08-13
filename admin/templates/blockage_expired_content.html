@@ -1,0 +1,23 @@
+	   <form method="post" name="post" action="admincenter.php?site=clans&action=addpoints&clanID=$clanID&history=show$type">	  
+		   <tr bgcolor="#FFFFFF">
+		    <td align="center"><input type="text" name="points" value="$dd[points]" size="3"></td>
+            <td align="center"><select name="member" onChange="MM_confirm('Confirm?', 'admincenter.php?site=clans&action=addpoints&clanID=$clanID&warnID=$dd[warnID]&query=addedby&history=show$type&adminID='+this.value)">$member</select></td>
+		    <td align="center"><input type="text" name="title" value="$dd[title]" size="8"></td>
+		    <td align="center"><input type="text" name="desc" value="$dd[desc]" size="14"></td>
+		    <td align="center"><input type="text" name="matchlink" value="$dd[matchlink]" size="18"></td>
+		      <td align="center">
+		      <input name="day" type="text" size="2" value="$day" class="form_off" onFocus="this.className='form_on'" onBlur="this.className='form_off'" style="text-align:center">.
+		      <input name="month" type="text" size="2" value="$month" class="form_off" onFocus="this.className='form_on'" onBlur="this.className='form_off'" style="text-align:center">. 
+              <input name="year" type="text" size="4" value="$year" class="form_off" onFocus="this.className='form_on'" onBlur="this.className='form_off'" style="text-align:center"> at 
+		      <input name="hour" type="text" size="2" value="$hour" class="form_off" onFocus="this.className='form_on'" onBlur="this.className='form_off'" style="text-align:center">:
+              <input name="min" type="text" size="2" value="$min" class="form_off" onFocus="this.className='form_on'" onBlur="this.className='form_off'" style="text-align:center">
+		    </td>
+		      <td align="center">     
+	          <input type="hidden" name="warnID" value="$dd[warnID]">
+		      <input type="hidden" name="clanID" value="$dd[clanID]">
+		      <input type="image" value="editpoints" src="../images/cup/icons/server_edit.gif" width="16" height="16" border="0" alt="Edit Points" name="editpoints">
+		      <a href="admincenter.php?site=clans&action=addpoints&clanID=$clanID&warnID=$dd[warnID]$type&query=valid&history=show" onclick="return confirm('Make penalty ID $dd[warnID] valid again? Ensure you set the correct date and time to avoid auto-expiry.');"><img border="0" src="../images/cup/icons/refresh.png" width="16" height="16"></a>
+		      <a href="admincenter.php?site=clans&action=addpoints&clanID=$clanID&warnID=$dd[warnID]$type&query=delete&history=show" onclick="return confirm('Permanently delete penalty ID $dd[warnID]?');"><img border="0" src="../images/cup/error.png" width="16" height="16"></a>   
+		    </td>
+         </tr>
+	   </form>

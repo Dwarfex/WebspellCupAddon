@@ -1,0 +1,3459 @@
+
+<head>
+</head>
+
+<script>
+	function change_clan(entry, clan2){
+	 	document.forms[0].elements[clan2].value = entry;
+	}
+</script>
+<form method="post" name="cuptree" id="cuptree" action="admincenter.php?site=cups&action=baum&ID=$ID">
+	<table align="center" cellpadding="2" cellspacing="0" width="100%">
+		<tr valign="top" bgcolor="#CCCCCC">
+			<td width="100" align="center" class="title" nowrap="nowrap"><b>$round1</b></td>
+			<td width="100" align="center" class="title" nowrap="nowrap"><b>$round2</b></td>
+			<td width="100" align="center" class="title" nowrap="nowrap"><b>$round3</b></td>
+			<td width="100" align="center" class="title" nowrap="nowrap"><b>$round4</b></td>
+			<td width="100" align="center" class="title" nowrap="nowrap"><b>$round_qf_ub</b></td>
+			<td width="100" align="center" class="title" nowrap="nowrap"><b>$round_sf_ub</b></td>
+			<td width="100" align="center" class="title" nowrap="nowrap"><b>$round_gf_ub</b></td>
+			<td width="100" align="center" class="title" nowrap="nowrap"><b>$winner</b></td>
+		</tr>      
+	    <tr valign="top">
+	        <td bgcolor="#efefef" align="center" nowrap="nowrap">Map: <input name="map1" type="text" class="form_off" onFocus="this.className='form_on'" onBlur="this.className='form_off'" value="$db[map1]" size="15"></td>
+			<td bgcolor="#efefef" align="center" nowrap="nowrap">Map: <input name="map2" type="text" class="form_off" onFocus="this.className='form_on'" onBlur="this.className='form_off'" value="$db[map2]" size="15"></td>
+			<td bgcolor="#efefef" align="center" nowrap="nowrap">Map: <input name="map3" type="text" class="form_off" onFocus="this.className='form_on'" onBlur="this.className='form_off'" value="$db[map3]" size="15"></td>
+			<td bgcolor="#efefef" align="center" nowrap="nowrap">Map: <input name="map4" type="text" class="form_off" onFocus="this.className='form_on'" onBlur="this.className='form_off'" value="$db[map4]" size="15"></td>
+			<td bgcolor="#efefef" align="center" nowrap="nowrap">Map: <input name="map5" type="text" class="form_off" onfocus="this.className='form_on'" onblur="this.className='form_off'" value="$db[map5]" size="15" /></td>
+			<td bgcolor="#efefef" align="center" nowrap="nowrap">Map: <input name="map6" type="text" class="form_off" onfocus="this.className='form_on'" onblur="this.className='form_off'" value="$db[map6]" size="15" /></td>
+			<td bgcolor="#efefef" align="center">Map: 
+			<input name="map7" type="text" class="form_off" onfocus="this.className='form_on'" onblur="this.className='form_off'" value="$db[map7]" size="15" /></td>
+			<td bgcolor="#efefef" align="center">&nbsp;</td>
+	  </tr>
+		<tr>
+	        <td colspan="8"></td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan1">$clan[1]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[1]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan65">$clan[65]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan2">$clan[2]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[33]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan97">$clan[97]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan3">$clan[3]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[2]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan66">$clan[66]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan4">$clan[4]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[49]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan113">$clan[113]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan5">$clan[5]</select></td>
+			<td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+	    <tr>
+			<td style="border-right:2px solid #000000;" align="center">$match[3]</td>
+			<td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan67">$clan[67]</select></td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+	    <tr>
+			<td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan6">$clan[6]</select></td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;" align="center">
+			$match[34]</td>
+			<td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan98">$clan[98]</select></td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan7">$clan[7]</select></td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[4]</td>
+			<td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan68">$clan[68]</select></td>
+			<td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+	    <tr>
+			<td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan8">$clan[8]</select></td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;" align="center">
+			$match[57]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan121">$clan[121]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan9">$clan[9]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+		  	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td>&nbsp;</td>
+		 	<td>&nbsp;</td>
+		 	<td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[5]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan69">$clan[69]</select></td>
+	        <td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td>&nbsp;</td>
+		 	<td>&nbsp;</td>
+		 	<td>&nbsp;</td>
+		</tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan10">$clan[10]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+		 	<td>&nbsp;</td>
+		 	<td>&nbsp;</td>
+		 	<td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[35]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan99">$clan[99]</select></td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td>&nbsp;</td>
+		 	<td>&nbsp;</td>
+		 	<td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan11">$clan[11]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td>&nbsp;</td>
+		 	<td>&nbsp;</td>
+		 	<td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[6]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan70">$clan[70]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+		 	<td>&nbsp;</td>
+		 	<td>&nbsp;</td>
+		 	<td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan12">$clan[12]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td>&nbsp;</td>
+		 	<td>&nbsp;</td>
+		 	<td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[50]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan114">$clan[114]</select></td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td>&nbsp;</td>
+		 	<td>&nbsp;</td>
+		 	<td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan13">$clan[13]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td>&nbsp;</td>
+		 	<td>&nbsp;</td>
+		 	<td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[7]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan71">$clan[71]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+		 	<td>&nbsp;</td>
+		 	<td>&nbsp;</td>
+		 	<td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan14">$clan[14]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td>&nbsp;</td>
+		 	<td>&nbsp;</td>
+		 	<td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[36]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan100">$clan[100]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan15">$clan[15]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[8]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan72">$clan[72]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan16">$clan[16]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">$match[61]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan125">$clan[125]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan17">$clan[17]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[9]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan73">$clan[73]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan18">$clan[18]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[37]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan101">$clan[101]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan19">$clan[19]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[10]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan74">$clan[74]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan20">$clan[20]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>      
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[51]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan115">$clan[115]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan21">$clan[21]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[63]</td>
+	        <td bgcolor="#efefef" align="center" style="border-right:2px solid #000000;"><select name="clan127">$clan[127]</select></td>
+            <td></td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[11]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan75">$clan[75]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan22">$clan[22]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;" align="center">
+			$match[38]</td>
+			<td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan102">$clan[102]</select></td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan23">$clan[23]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[12]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan76">$clan[76]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan24">$clan[24]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>      
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[58]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan122">$clan[122]</select></td>
+	        <td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan25">$clan[25]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[13]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan77">$clan[77]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan26">$clan[26]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;" align="center">
+			$match[39]</td>
+			<td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan103">$clan[103]</select></td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan27">$clan[27]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[14]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan78">$clan[78]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan28">$clan[28]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[52]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan116">$clan[116]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan29">$clan[29]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[15]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan79">$clan[79]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan30">$clan[30]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;" align="center">
+			$match[40]</td>
+			<td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan104">$clan[104]</select></td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+	    <tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan31">$clan[31]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+			<td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[16]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan80">$clan[80]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+			<td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan32">$clan[32]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+	        <td></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan33">$clan[33]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[17]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan81">$clan[81]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan34">$clan[34]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[41]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan105">$clan[105]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan35">$clan[35]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[18]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan82">$clan[82]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan36">$clan[36]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[53]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan117">$clan[117]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan37">$clan[37]</select></td>
+			<td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;" align="center">$match[64]</td>
+	        <td bgcolor="#efefef" align="center"><select name="wb_winner">$clan[wb_winner]</select></td>
+		</tr>
+		<tr>
+			<td style="border-right:2px solid #000000;" align="center">$match[19]</td>
+			<td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan83">$clan[83]</select></td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan38">$clan[38]</select></td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+			<td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;" align="center">
+			$match[42]</td>
+			<td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan106">$clan[106]</select></td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan39">$clan[39]</select></td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[20]</td>
+			<td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan84">$clan[84]</select></td>
+			<td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+			<td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan40">$clan[40]</select></td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;" align="center">$match[59]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan123">$clan[123]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan41">$clan[41]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+		  	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[21]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan85">$clan[85]</select></td>
+	        <td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td>&nbsp;</td>
+		</tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center"><select name="clan42">$clan[42]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[43]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan107">$clan[107]</select></td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan43">$clan[43]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[22]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan86">$clan[86]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan44">$clan[44]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[54]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan118">$clan[118]</select></td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan45">$clan[45]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[23]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan87">$clan[87]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan46">$clan[46]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td style="border-right:2px solid #000000;">&nbsp;</td>
+		 	<td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[44]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan108">$clan[108]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan47">$clan[47]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[24]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan88">$clan[88]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan48">$clan[48]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[62]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan126">$clan[126]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan49">$clan[49]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">$match[25]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan89">$clan[89]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan50">$clan[50]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+	        <td></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[45]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan109">$clan[109]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan51">$clan[51]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[26]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan90">$clan[90]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+	        <td></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan52">$clan[52]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[55]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan119">$clan[119]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan53">$clan[53]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td></td>
+	        <td bgcolor="#efefef" align="center" style="border-right:2px solid #000000;"><select name="clan128">$clan[128]</select></td>
+            <td></td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[27]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan91">$clan[91]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan54">$clan[54]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;" align="center">
+			$match[46]</td>
+			<td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan110">$clan[110]</select></td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan55">$clan[55]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[28]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan92">$clan[92]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan56">$clan[56]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">$match[60]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan124">$clan[124]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan57">$clan[57]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[29]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan93">$clan[93]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan58">$clan[58]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;" align="center">
+			$match[47]</td>
+			<td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan111">$clan[111]</select></td>
+			<td style="border-right:2px solid #000000;">&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan59">$clan[59]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[30]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan94">$clan[94]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan60">$clan[60]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[56]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan120">$clan[120]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan61">$clan[61]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[31]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan95">$clan[95]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan62">$clan[62]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;" align="center">
+			$match[48]</td>
+			<td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan112">$clan[112]</select></td>
+			<td>&nbsp;</td>
+			<td></td>
+			<td>&nbsp;</td>
+			<td></td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan63">$clan[63]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td></td>
+	        <td></td>
+	        <td></td>
+	        <td></td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[32]</td>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan96">$clan[96]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td></td>
+	        <td>&nbsp;</td>
+	        <td></td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td bgcolor="#efefef" style="border-right:2px solid #000000;" align="center">
+			<select name="clan64">$clan[64]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	</table><br><br>
+	<table align="center" cellpadding="2" cellspacing="0" width="100%">
+		<tr valign="top" bgcolor="#CCCCCC">
+			<td width="100" align="center" nowrap="nowrap"><strong>$round1_lb</strong></td>
+			<td width="100" align="center" nowrap="nowrap"><strong>$round2_lb</strong></td>
+	     	<td width="100" align="center" nowrap="nowrap"><strong>$round3_lb</strong></td>
+			<td width="100" align="center" nowrap="nowrap"><strong>$round4_lb</strong></td>
+		    <td width="100" align="center" nowrap="nowrap"><strong>$round5_lb</strong></td>
+		    <td width="100" align="center" nowrap="nowrap"><strong>$round6_lb</strong></td>
+		    <td width="100" align="center" nowrap="nowrap"><strong>$round7_lb</strong></td>
+		    <td width="100" align="center" nowrap="nowrap"><strong>$round_qf_lb</strong></td>
+		    <td width="100" align="center" nowrap="nowrap"><strong>$round_sf_lb</strong></td>
+		    <td width="100" align="center" nowrap="nowrap"><strong>$round_gf_lb</strong></td>
+		    <td width="100" align="center" nowrap="nowrap"><strong>$lower_winner</strong></td>
+	  	</tr>
+	    <tr valign="top">
+	        <td align="center" nowrap="nowrap">Map: 
+			<input name="map8" type="text" class="form_off" onFocus="this.className='form_on'" onBlur="this.className='form_off'" value="$db[map8]" size="15"></td>
+	      	<td align="center" nowrap="nowrap">Map: 
+			<input name="map9" type="text" class="form_off" onFocus="this.className='form_on'" onBlur="this.className='form_off'" value="$db[map9]" size="15"></td>
+	   	   	<td align="center" nowrap="nowrap">Map: 
+			<input name="map10" type="text" class="form_off" onFocus="this.className='form_on'" onBlur="this.className='form_off'" value="$db[map10]" size="15"></td>
+		  	<td align="center" nowrap="nowrap">Map: 
+			<input name="map11" type="text" class="form_off" onFocus="this.className='form_on'" onBlur="this.className='form_off'" value="$db[map11]" size="15"></td>
+		  	<td align="center" nowrap="nowrap">Map: 
+			<input name="map12" type="text" class="form_off" onFocus="this.className='form_on'" onBlur="this.className='form_off'" value="$db[map12]" size="15"></td>
+		  	<td align="center" nowrap="nowrap">Map: 
+			<input name="map13" type="text" class="form_off" onfocus="this.className='form_on'" onblur="this.className='form_off'" value="$db[map13]" size="15" /></td>
+			<td align="center" nowrap="nowrap">Map: 
+			<input name="map14" type="text" class="form_off" onfocus="this.className='form_on'" onblur="this.className='form_off'" value="$db[map14]" size="15" /></td>
+		  	<td align="center" nowrap="nowrap">Map: 
+			<input name="map15" type="text" class="form_off" onfocus="this.className='form_on'" onblur="this.className='form_off'" value="$db[map15]" size="15" /></td>
+		  			  	<td align="center" nowrap="nowrap">Map: 
+			<input name="map16" type="text" class="form_off" onfocus="this.className='form_on'" onblur="this.className='form_off'" value="$db[map16]" size="15" /></td>
+		  	<td align="center" nowrap="nowrap">Map: 
+			<input name="map17" type="text" class="form_off" onfocus="this.className='form_on'" onblur="this.className='form_off'" value="$db[map17]" size="15" /></td>
+		  	<td>&nbsp;</td>
+		</tr>
+		<tr>
+	        <td colspan="11"></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;" align="center"><select name="clan251">$clan[251]</select></td>
+			<td>&nbsp;</td>
+		</tr>	
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;" align="center"><select name="clan245">$clan[245]</select></td>
+			<td>&nbsp;</td>
+			<td style="border-right:2px solid #000000;"></td>
+			<td>&nbsp;</td>
+		</tr>	
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan233">$clan[233]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>	  
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan209">$clan[209]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan161">$clan[161]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+           <td></td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[81]</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan193">$clan[193]</select></td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[105]</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan225">$clan[225]</select></td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[117]</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan241">$clan[241]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan129">$clan[129]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[65]</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan162">$clan[162]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan130">$clan[130]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;"></td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[97]</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan210">$clan[210]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan131">$clan[131]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[66]</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan163">$clan[163]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan132">$clan[132]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center"> 
+			$match[82] </td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan194">$clan[194]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan164">$clan[164]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[113] </td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan234">$clan[234]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">$match[123]</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan249">$clan[249]</select></td>
+	        <td style="border-right:2px solid #000000;"></td>
+	        <td></td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan165">$clan[165]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[83]</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan195">$clan[195]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan133">$clan[133]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[67]</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan166">$clan[166]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan134">$clan[134]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[98]</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan211">$clan[211]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan135">$clan[135]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[68]</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan167">$clan[167]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan136">$clan[136]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center"> 
+			$match[84] </td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan196">$clan[196]</select></td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[106]</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan226">$clan[226]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan168">$clan[168]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan212">$clan[212]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center"> 
+			$match[121]</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan246">$clan[246]</select></td>
+	        <td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">$match[126]</td>
+	        <td align="center"><select name="lb_winner" onChange="change_clan(this.value, 'clan128')">$clan[lb_winner]</select></td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan213">$clan[213]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan169">$clan[169]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[85]</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan197">$clan[197]</select></td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[107]</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan227">$clan[227]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan137">$clan[137]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[69]</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan170">$clan[170]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan138">$clan[138]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[99]</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan214">$clan[214]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan139">$clan[139]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[70]</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan171">$clan[171]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan140">$clan[140]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center"> 
+			$match[86] </td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan198">$clan[198]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan172">$clan[172]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[114] </td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan235">$clan[235]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan173">$clan[173]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[87]</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan199">$clan[199]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan141">$clan[141]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[71]</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan174">$clan[174]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan142">$clan[142]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[100]</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan215">$clan[215]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">$match[125]</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan143">$clan[143]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[72]</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan175">$clan[175]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan144">$clan[144]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center"> 
+			$match[88] </td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan200">$clan[200]</select></td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[108]</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan228">$clan[228]</select></td>
+			<td style="border-right:2px solid #000000;" align="center">
+			$match[118]</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan242">$clan[242]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan176">$clan[176]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan216">$clan[216]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center"><select name="clan236">$clan[236]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>		  
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td></td>
+			<td align="center" style="border-right:2px solid #000000;">&nbsp;</td>
+			<td align="center" style="border-right:2px solid #000000;"><select name="clan252">$clan[252]</select></td>
+			<td></td>
+		</tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan237">$clan[237]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td></td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="height: 26px"></td>
+	        <td style="height: 26px"></td>
+	        <td style="height: 26px"></td>
+	        <td style="border-right:2px solid #000000; height: 26px;" align="center">
+			<select name="clan217">$clan[217]</select></td>
+	        <td style="height: 26px"></td>
+	        <td style="border-right:2px solid #000000; height: 26px;">&nbsp;</td>
+	        <td style="height: 26px"></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td></td>
+	        <td style="height: 26px"></td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan177">$clan[177]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td></td>
+            <td></td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[89]</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan201">$clan[201]</select></td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[109]</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan229">$clan[229]</select></td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[119]</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan243">$clan[243]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan145">$clan[145]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[73]</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan178">$clan[178]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan146">$clan[146]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[101]</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan218">$clan[218]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan147">$clan[147]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[74]</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan179">$clan[179]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan148">$clan[148]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center"> 
+			$match[90] </td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan202">$clan[202]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan180">$clan[180]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[115] </td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan238">$clan[238]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan181">$clan[181]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[91]</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan203">$clan[203]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan149">$clan[149]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[75]</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan182">$clan[182]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan150">$clan[150]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[102]</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan219">$clan[219]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan151">$clan[151]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[76]</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan183">$clan[183]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan152">$clan[152]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center"> 
+			$match[92] </td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan204">$clan[204]</select></td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[110]</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan230">$clan[230]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan184">$clan[184]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan220">$clan[220]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center"> 
+			$match[122]</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan247">$clan[247]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan221">$clan[221]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan185">$clan[185]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[93]</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan205">$clan[205]</select></td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[111]</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan231">$clan[231]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan153">$clan[153]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[77]</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan186">$clan[186]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan154">$clan[154]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[103]</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan222">$clan[222]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan155">$clan[155]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[78]</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan187">$clan[187]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan156">$clan[156]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center"> 
+			$match[94] </td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan206">$clan[206]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan188">$clan[188]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[116] </td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan239">$clan[239]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td align="center" style="border-right:2px solid #000000;">$match[124]</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan250">$clan[250]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan189">$clan[189]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[95]</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan207">$clan[207]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan157">$clan[157]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[79]</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan190">$clan[190]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan158">$clan[158]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[104]</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan225">$clan[223]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan159">$clan[159]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[80]</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan191">$clan[191]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan162">$clan[160]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center"> 
+			$match[96] </td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan208">$clan[208]</select></td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			$match[112]</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan232">$clan[232]</select></td>
+			<td style="border-right:2px solid #000000;" align="center">
+			$match[120]</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan244">$clan[244]</select></td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan192">$clan[192]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan226">$clan[224]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+		<tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">
+			<select name="clan242">$clan[240]</select></td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	    <tr>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td style="border-right:2px solid #000000;" align="center">&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td align="center" style="border-right:2px solid #000000;"><select name="clan248">$clan[248]</select></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>		  
+	</table>
+	<div align="right">
+		<input type="hidden" name="cupID" value="$ID">
+		<input type="hidden" name="max" value="$max">	  
+		<input type="button" class="button" onClick="MM_confirm('Swap contestants to different brackets?', 'admincenter.php?site=cups&action=randombaum&cupID=$ID&max=$max')" value="Randomize">  
+	    <input name="savebaum" type="submit" id="savebaum" value="Save">
+	</div>
+</form>

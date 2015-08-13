@@ -1,0 +1,13 @@
+<tr bgcolor="#FFFFFF">
+        <td>$country $clanname</td>
+		$tb_cnt_ga
+        $gs_group_content
+        $show_lineup_cnt
+		$tb_cnt_st
+        $chge_lineup_cnt
+        <td align="center"><input type="button" class="button" onClick="MM_goToURL('parent','admincenter.php?site=clans&action=edit&clanID=$ds[ID]');return document.MM_returnValue" value="Team"></td>
+        <td align="center"><input type="button" class="button" onClick="MM_goToURL('parent','admincenter.php?site=clans&action=addpoints&clanID=$ds[ID]')" value="$part_pp Points"></td>
+        <td align="center">$blockstatus</td>
+        $show_delete_cont
+		<td align="center"><a href="admincenter.php?site=teams&action=leavecup&clanID=$ds[ID]&$t_name2=$cupID$ext" onclick="return confirm('Are you sure you want to remove $clanname1 from $cupname1? If you are removing this participant from group league, it will also delete their matches.');"><img border="0" src="../images/cup/error.png" width="20" height="20"></a></td>
+  </tr>

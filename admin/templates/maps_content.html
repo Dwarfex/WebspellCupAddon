@@ -1,0 +1,12 @@
+		    <form method="post" name="post" action="admincenter.php?site=cupmaps&mapID=$ds[mapID]&mappack=$mp&editmap=true&edit=true">	  
+              <tr>
+                <td><input name="newmap" value="$ds[map]" type="text" class="form_off" onfocus="this.className='form_on'" onblur="this.className='form_off'"></td>
+                <td><input name="newpic" value="$ds[pic]" type="text" class="form_off" onfocus="this.className='form_on'" onblur="this.className='form_off'" size="60"></td>
+                <td><input type="image" value="savemap" src="../images/cup/icons/server_edit.gif" width="16" height="16" border="0" alt="Save Map" name="savemap"><a href="admincenter.php?site=cupmaps&action=removemap&pack=$mp&map=$ds[map]"><img src="../images/cup/error.png" width="16" height="16"></a></td>
+              </tr>
+			   <tr>
+				<td><hr></td>
+				<td><hr></td>
+				<td><hr></td>
+		      </tr>
+		    </form>

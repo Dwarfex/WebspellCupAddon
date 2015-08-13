@@ -32,8 +32,6 @@ include("../_functions.php");
 $_language->read_module('visitor_statistic_image');
 
 $admin=isanyadmin($userID);
-if(!$loggedin) die($_language->module['not_logged_in']);
-if(!$admin) die($_language->module['access_denied']);
 
 header("Content-type: image/png");
 
@@ -159,6 +157,27 @@ elseif(isset($_GET['last']))
 			$array[] = $month;
 		}
 	}
+	elseif($_GET['last'] == "clan" || $_GET['last'] == "user")
+	{
+		if(isset($_GET['count'])) {
+			$count = (int)$_GET['count'];
+			if($count <= 1) $count = 2;
+			$_SESSION['count_days'] = $count;
+		}
+		elseif(isset($_SESSION['count_days'])) {
+			$count = $_SESSION['count_days'];
+		}
+		else {
+			$count = 30;
+		}
+		for($i = $count; $i > 0; $i--)
+		{
+		    $chk_one = ($_GET['last']=='user' ? 1 : 0);
+			$day = date("d.m.Y", mktime(0, 0, 0, date("m"), date("d") - $i, date("Y")));
+			$tmp = mysql_fetch_array(safe_query("SELECT count(*) as number FROM ".PREFIX."cup_matches WHERE date2 LIKE '%".$day."' AND (clan1='".$_GET['id']."' || clan2='".$_GET['id']."') AND 1on1='$chk_one' AND confirmscore='1' AND einspruch='0'"));
+			$array[] = $tmp['number'] ? $tmp['number'] : 0;
+		}
+	}
 }
 else {
 	for($i = 1; $i < 100; $i++) {
@@ -214,6 +233,9 @@ foreach($array as $i => $int) {
 	if($i == $max_y_key) imagefilledrectangle($im, $nr - 2, $offset_top + $y1 - 2, $nr + 2, $offset_top + $y1 + 2, $gelb);
 
 	if(isset($_GET['last']) and $_GET['last'] == "days") {
+		imagestring($im, 2, $nr - 5, $offset_top + $size_y + 10, date("d", mktime(0, 0, 0, date("m"), date("d") - $count + $i, date("Y"))), $schwarz);
+	}
+	elseif(isset($_GET['last']) and ($_GET['last'] == "user" || $_GET['last'] == "clan")) {
 		imagestring($im, 2, $nr - 5, $offset_top + $size_y + 10, date("d", mktime(0, 0, 0, date("m"), date("d") - $count + $i, date("Y"))), $schwarz);
 	}
 	elseif(isset($_GET['last']) and $_GET['last'] == "months") {

@@ -20,14 +20,14 @@ function chkFormular() {
 
 <a name="addcomment"></a>
 <form id="post" name="post" action="comments.php" method="post" onsubmit="return chkFormular()">
-<table width="100%" border="0" cellspacing="0" cellpadding="2" bgcolor="$border">
+<table width="100%" border="0" cellspacing="$cellspacing" cellpadding="$cellpadding" bgcolor="$border">
   <tr>
     <td class="title" align="center" bgcolor="$bghead">%title_comment%</td>
   </tr>
   <tr><td bgcolor="$pagebg"></td></tr>
   <tr>
     <td bgcolor="$bg1">
-    <table width="100%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <table width="100%" border="0" align="center" cellpadding="$cellpadding" cellspacing="$cellspacing">
       <tr>
         <td>$addbbcode</td>
       </tr>
@@ -43,6 +43,7 @@ function chkFormular() {
         <input type="hidden" name="parentID" value="$parentID" />
         <input type="hidden" name="type" value="$type" />
         <input type="submit" name="saveusercomment" value="%post_comment%" /></td>
+        $v5_input
       </tr>
     </table>
     </td>

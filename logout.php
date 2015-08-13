@@ -25,8 +25,16 @@
 ##########################################################################
 */
 
+include("_mysql.php");
+include("_settings.php");
+include("_functions.php");
+
 session_name('ws_session');
 session_start();
+
+// unset from whoisonline
+
+safe_query("DELETE FROM ".PREFIX."whoisonline WHERE userID='$userID'");
 
 // unset session variables
 $_SESSION = Array();

@@ -149,6 +149,9 @@ else {
 	$count_months = 12;
 }
 
+$count_clan = 30;
+$count_user = 30;
+
 ?>
 <script language="javascript" type="text/javascript">
 <!--
@@ -159,6 +162,9 @@ year = 0;
 month = 0;
 count_days = <?php echo $count_days; ?>;
 count_months = <?php echo $count_months; ?>;
+
+count_clan = <?php echo $count_clan; ?>;
+count_user = <?php echo $count_user; ?>;
 
 function display_stat(new_year, new_month)
 {
@@ -200,11 +206,15 @@ function update_size(new_x, new_y)
 	
 	document.getElementById('last_days').src = 'visitor_statistic_image.php?last=days&count=' + count_days + '&size_x=' + size_x + '&size_y=' + size_y;
 	document.getElementById('last_months').src = 'visitor_statistic_image.php?last=months&count=' + count_months + '&size_x=' + size_x + '&size_y=' + size_y;
+	document.getElementById('last_clan').src = 'visitor_statistic_image.php?last=clan&count=' + count_clan + '&size_x=' + size_x + '&size_y=' + size_y;
+	document.getElementById('last_user').src = 'visitor_statistic_image.php?last=user&count=' + count_user + '&size_x=' + size_x + '&size_y=' + size_y;
 }
-function update_count(new_days, new_months)
+function update_count(new_days, new_months, new_clan, new_user)
 {
 	count_days = new_days;
 	count_months = new_months;
+	count_clan = new_clan;
+	count_user = new_user;
 	
 	if(count_days <= 1) {
 		count_days = 2;
@@ -214,12 +224,23 @@ function update_count(new_days, new_months)
 		count_months = 2;
 		document.getElementById('count_months').value = 2;
 	}
+	if(count_clan <= 1) {
+		count_clan = 2;
+		document.getElementById('count_clan').value = 2;
+	}
+	if(count_user <= 1) {
+		count_user = 2;
+		document.getElementById('count_user').value = 2;
+	}
 	
 	document.getElementById('last_days_h2').innerHTML = '&curren; <?php echo $_language->module['last']; ?> ' + count_days + ' <?php echo $_language->module['days']; ?>';
 	document.getElementById('last_months_h2').innerHTML = '&curren; <?php echo $_language->module['last']; ?> ' + count_months + ' <?php echo $_language->module['months']; ?>';
 	
 	document.getElementById('last_days').src = 'visitor_statistic_image.php?last=days&count=' + count_days + '&size_x=' + size_x + '&size_y=' + size_y;
 	document.getElementById('last_months').src = 'visitor_statistic_image.php?last=months&count=' + count_months + '&size_x=' + size_x + '&size_y=' + size_y;
+	
+	document.getElementById('last_clan').src = 'visitor_statistic_image.php?last=clan&count=' + count_clan + '&size_x=' + size_x + '&size_y=' + size_y;
+	document.getElementById('last_user').src = 'visitor_statistic_image.php?last=user&count=' + count_user + '&size_x=' + size_x + '&size_y=' + size_y;
 }
 -->
 </script>

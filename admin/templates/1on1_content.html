@@ -1,0 +1,10 @@
+<tr bgcolor="#FFFFFF">
+        <td>$country $nickname</td>
+		$tb_cnt_ga
+        $gs_group_content
+        $tb_st_cnt
+        <td align="center"><input type="button" class="button" onClick="MM_goToURL('parent','admincenter.php?site=clans&action=addpoints&clanID=$ds[userID]&type=1')" value="$part_pp Points"></td>
+        <td align="center">$blockstatus</td>
+        $show_delete_cont
+        <td align="center"><a href="admincenter.php?site=teams&action=leavecup&clanID=$ds[userID]&$t_name2=$cupID$ext" onclick="return confirm('Are you sure you want to remove $nickname1 from $cupname1? If you are removing this participant from group league, it will also delete their matches.');"><img border="0" src="../images/cup/error.png" width="20" height="20"></a></td>
+  </tr>

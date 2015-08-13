@@ -1,3 +1,11 @@
+<!--hier kannst du die Farbe des Captchas anpassen, wähle eine folgender Themes:
+'red','white','blackglass','clean','custom' | weitere Infos zum anpassen des Styles bzw. auch individueller Styles findest du auf www.recaptcha.net-->
+<script>
+var RecaptchaOptions = {
+   theme : 'white',
+   tabindex : 2
+};
+</script>
 <script language="JavaScript" type="text/javascript">
 <!--
 var comment_submit = false;
@@ -54,12 +62,11 @@ function chkFormular() {
         <td><input name="url" type="text" value="$url" size="35" /></td>
       </tr>
       <tr>
-        <td colspan="2">%enter_code%</td>
+        <td colspan="2">%enter_code%:</td>
       </tr>
       <tr>
-        <td>$captcha</td>
-        <td><input name="captcha" id="captcha" type="text" value="" size="5" />
-        <input name="captcha_hash" type="hidden" value="$hash" /></td>
+        <td>&nbsp;</td>
+        <td>$recaptcha</td>
       </tr>
       <tr>
         <td>%ip%:</td>

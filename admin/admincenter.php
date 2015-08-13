@@ -10,7 +10,7 @@
 #                                   /                                    #
 #                                                                        #
 #                                                                        #
-#   Copyright 2005-2011 by webspell.org                                  #
+#   Copyright 2005-2009 by webspell.org                                  #
 #                                                                        #
 #   visit webSPELL.org, webspell.info to get webSPELL for free           #
 #   - Script runs under the GNU GENERAL PUBLIC LICENSE                   #
@@ -29,7 +29,10 @@ chdir('../');
 include("_mysql.php");
 include("_settings.php");
 include("_functions.php");
+include("_config.php");
 chdir('admin');
+
+//if(issuperadmin($userID)) ini_set('display_errors', 'On');
 
 $_language->read_module('admincenter');
 
@@ -47,6 +50,27 @@ if(!isset($_SERVER['REQUEST_URI'])) {
 	if ($_SERVER['argv'][0]!="")
 	$_SERVER['REQUEST_URI'] .= "?" . $_SERVER['argv'][0];
 }
+
+	if(function_exists('file_get_contents')){
+
+		include "cupversion.php";
+		
+		if($version_num==5.2 && $version_num==5.2) {
+		   $version_num = '5201';
+		}
+
+		$get_version = file_get_contents($updateserver.'/getupdates.php?action=checkversion&version='.$version.'&versionnum='.$version_num);
+		$chk_version = explode("###",$get_version);
+		
+		if($version_num!=$chk_version[1]) {
+		       $sh_cup_update = '<blink><font color="red"><strong>Update Available</strong></font></blink> <img src="../images/cup/icons/notification.png" width="16" height="16">';
+		}
+		else{
+		       $sh_cup_update = 'Cup Update';
+		}
+		
+        }
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -55,7 +79,7 @@ if(!isset($_SERVER['REQUEST_URI'])) {
 	<meta name="description" content="Clanpage using webSPELL 4 CMS" />
 	<meta name="author" content="webspell.org" />
 	<meta name="keywords" content="webspell, webspell4, clan, cms" />
-	<meta name="copyright" content="Copyright &copy; 2005 - 2011 by webspell.org" />
+	<meta name="copyright" content="Copyright &copy; 2005 - 2009 by webspell.org" />
 	<meta name="generator" content="webSPELL" />
 	<title><?php echo $myclanname ?> - webSPELL AdminCenter</title>
 	<link href="_stylesheet.css" rel="stylesheet" type="text/css" />
@@ -84,7 +108,7 @@ if(!isset($_SERVER['REQUEST_URI'])) {
    </td>
   </tr>
   <tr>
-   <td colspan="5"><img src="images/2.jpg" width="1000" height="5" border="0" alt="" /></td>
+   <td colspan="5"><img src="../images/2.jpg" width="1000" height="5" border="0" alt="" /></td>
   </tr>
   <tr>
    <td style="background-image:url(images/3.jpg);" width="5" valign="top"></td>
@@ -117,6 +141,23 @@ if(!isset($_SERVER['REQUEST_URI'])) {
       <?php } if(ispageadmin($userID)) { ?>
       <li><a href="admincenter.php?site=faqcategories"><?php echo $_language->module['faq_categories']; ?></a></li>
       <li><a href="admincenter.php?site=linkcategorys"><?php echo $_language->module['link_categories']; ?></a></li>
+    </ul>
+    <?php } if(iscupadmin($userID)) { $query=safe_query("SELECT * FROM ".PREFIX."cup_tickets"); while($ds=mysql_fetch_array($query)) {  if($ds['status']==1 || $ds['status']==2) $star = '*'; }  ?>
+    <h2>&not; Cup Menu</h2>
+    <ul>
+      <li><a href="admincenter.php?site=ladders">Ladders</a></li>
+      <li><a href="admincenter.php?site=cups">Tournaments</a></li>
+      <li><a href="admincenter.php?site=cupmaps">Ladder Mappacks</a></li>
+      <li><a href="admincenter.php?site=platforms">Platforms</a></li>
+      <li><a href="admincenter.php?site=clans">Teams</a></li>
+      <li><a href="admincenter.php?site=teilnehmer">Players</a></li>
+      <li><a href="admincenter.php?site=gameaccounts">Gameaccounts</a></li>
+      <li><a href="admincenter.php?site=cuptools">Database & Tools</a></li>
+      <li><a href="admincenter.php?site=cupsettings">Settings / Cup-Admins</a></li>
+      <li><a href="admincenter.php?site=cuptickets">Support / Protest Tickets <?php echo "<font color='red'><blink>$star</blink></font>"; ?></a></li>
+      <li><a href="admincenter.php?site=cupinfo">Version / Bug Tracker</a></li>
+      <li><a href="http://teamx1.com/" target="_blank">FAQ & Help</a></li>
+      <li><a href="admincenter.php?site=cupupdate"><?php echo $sh_cup_update; ?></a></li>
     </ul>
     <?php } if(ispageadmin($userID)) { ?>
     <h2>&not; <?php echo $_language->module['settings']; ?></h2>
@@ -174,9 +215,9 @@ if(!isset($_SERVER['REQUEST_URI'])) {
    <td style="background-image:url(images/4.jpg);" width="5" valign="top"></td>
   </tr>
   <tr>
-   <td colspan="5"><img src="images/5.jpg" width="1000" height="7" border="0" alt="" /></td>
+   <td colspan="5"><img src="../images/5.jpg" width="1000" height="7" border="0" alt="" /></td>
   </tr>
 </table>
-<center><br />&copy; 2005 - 2011 <a href="http://www.webspell.org" target="_blank" class="white"><b>webSPELL.org</b></a> &amp; <a href="http://www.webspell.at" target="_blank" class="white"><b>webSPELL.at</b></a><br />&nbsp;</center>
+<center><br />&copy; 2002 - 2009 <a href="http://www.webspell.org" target="_blank" class="white"><b>webSPELL.org</b></a> &amp; <a href="http://www.webspell.at" target="_blank" class="white"><b>webSPELL.at</b></a><br />&nbsp;</center>
 </body>
 </html>
