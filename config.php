@@ -3,7 +3,7 @@
 /* CONFIGURATION */
 
 $debugging = 0;         // NOT USED
-$run_without_admin = 0; // 1 = WARNING: anyone can run this script and manipulate the database. Use it when needed then set to 0 when finished.
+$run_without_admin = 1; // 1 = WARNING: anyone can run this script and manipulate the database. Use it when needed then set to 0 when finished.
                         // 0 = only super admins can run this file. If you receive query failed set this option to 1 temporarily after finished.
 $enforce_timezone = 1;  // 1 = enforce user to set timezone (they can set their timezone to "Unset")
                         // 0 = do not enforce user to set timezone

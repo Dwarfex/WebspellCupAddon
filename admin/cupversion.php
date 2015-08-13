@@ -4,9 +4,9 @@
 		TO RECEIVE THE LATEST UPDATES AND BUG REPORTS, DO NOT EDIT!!
 	*/
 
-	$updateserver = 'http://team-x1.co.uk/cup';
+	$updateserver = 'http://update.wemake-it.de';
 	// Serveradresse
-    $supportserver = 'http://team-x1.co.uk';
+    $supportserver = 'http://wemake-it.de';
 	// Version
 	$version = '5.2';
 	// Versionsnummer

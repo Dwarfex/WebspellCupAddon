@@ -57,14 +57,15 @@ if(!isset($_SERVER['REQUEST_URI'])) {
 
             include "cupversion.php";
         }
-		if($version_num==5.2 && $version_num==5.2) {
+		if($version==5.2 && $version_num==5.2) {
 		   $version_num = '5201';
 		}
+        if(cupIsInstalled()){
 
 		$get_version = file_get_contents($updateserver.'/getupdates.php?action=checkversion&version='.$version.'&versionnum='.$version_num);
 		$chk_version = explode("###",$get_version);
-		if(cupIsInstalled()){
-		if($version_num!=$chk_version[1]) {
+
+		if($version_num<$chk_version[1]) {
 		       $sh_cup_update = '<blink><font color="red"><strong>Update Available</strong></font></blink> <img src="../images/cup/icons/notification.png" width="16" height="16">';
 		}
 		else{
@@ -110,7 +111,7 @@ if(!isset($_SERVER['REQUEST_URI'])) {
    </td>
   </tr>
   <tr>
-   <td colspan="5"><img src="../images/2.jpg" width="1000" height="5" border="0" alt="" /></td>
+   <td colspan="5"><img src="images/2.jpg" width="1000" height="5" border="0" alt="" /></td>
   </tr>
   <tr>
    <td style="background-image:url(images/3.jpg);" width="5" valign="top"></td>
@@ -158,7 +159,7 @@ if(!isset($_SERVER['REQUEST_URI'])) {
       <li><a href="admincenter.php?site=cupsettings">Settings / Cup-Admins</a></li>
       <li><a href="admincenter.php?site=cuptickets">Support / Protest Tickets <?php echo "<font color='red'><blink>$star</blink></font>"; ?></a></li>
       <li><a href="admincenter.php?site=cupinfo">Version / Bug Tracker</a></li>
-      <li><a href="http://teamx1.com/" target="_blank">FAQ & Help</a></li>
+      <li><a href="<?php echo $supportserver; ?>" target="_blank">FAQ & Help</a></li>
       <li><a href="admincenter.php?site=cupupdate"><?php echo $sh_cup_update; ?></a></li>
     </ul>
     <?php }} if(ispageadmin($userID)) { ?>
@@ -217,7 +218,7 @@ if(!isset($_SERVER['REQUEST_URI'])) {
    <td style="background-image:url(images/4.jpg);" width="5" valign="top"></td>
   </tr>
   <tr>
-   <td colspan="5"><img src="../images/5.jpg" width="1000" height="7" border="0" alt="" /></td>
+   <td colspan="5"><img src="images/5.jpg" width="1000" height="7" border="0" alt="" /></td>
   </tr>
 </table>
 <center><br />&copy; 2002 - 2009 <a href="http://www.webspell.org" target="_blank" class="white"><b>webSPELL.org</b></a> &amp; <a href="http://www.webspell.at" target="_blank" class="white"><b>webSPELL.at</b></a><br />&nbsp;</center>

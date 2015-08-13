@@ -1,7 +1,20 @@
 <?php
 function cupIsInstalled(){
-	//safe_query("SELECT EXISTS(SELECT * FROM ".PREFIX."cup_settings)");
-	return false;
+    try{
+        $result = @mysql_query("SELECT timezone FROM ".PREFIX."cup_settings");
+    }catch (Exception $e){
+        $result = false;
+    }
+
+    if(!$result){
+        return false;
+//        echo "Uninstalled";
+    }else {
+        return true;
+
+//        echo "installed";
+//	return false;
+    }
 }
 function safe_sql_br($value) { 
 
@@ -15,8 +28,8 @@ function safe_sql_br($value) {
 
     if (!is_numeric($value)) { 
         $value = mysql_real_escape_string($value); 
-    } 
-    return $value; 
+    }
+    return $value;
 } 
 
 function gettimezone($val = null) {

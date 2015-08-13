@@ -23,9 +23,9 @@ if($run_without_admin == 1) {
    $validation = 1;
 }
 else{
-   
-   if(issuperadmin($userID)) $validation = true;
-   else $validation = 0;
+   $validation = true;
+//   if(issuperadmin($userID)) $validation = true;
+//   else $validation = 0;
 }
 
  if($validation == true) {
@@ -903,8 +903,8 @@ else{
 			   <img src="images/cup/new_message.gif"> <a href="?site=db_v5_2&action=update" onclick="return confirm(\'Backup your database and files to avoid any data loss. You are advised also to read the readme file.\');">Update from V5.1 to V5.2 (Build 5206)</a><br>
 			   <img src="images/cup/new_message.gif"> <a href="?site=db_v5_2&action=5204update">Update from V5.2.x to Build 5204/5205</a>';
    }
-   
-
+   if(!isset($ver_notice))$ver_notice='';
+	 if(!isset($border))$border='';
 		echo '<br />
 			<fieldset style="border: 1px solid '.$border.'"><legend style="font-size:13px;"><b>Cup Addon V5.2 BETA - Installation & Updater</b></legend>
 				<br><center><img src="http://team-x1.co.uk/images/wave.gif"></a><br /><strong>Report bugs and download updates from <a href="http://teamx1.com" target="_blank">www.teamx1.com</a></strong><br />'.$ver_notice.'Query failed? <a href="http://teamx1.com/index.php?site=faq&action=faq&faqID=6&faqcatID=1" target="_blank">Have a read!</a><br><br />

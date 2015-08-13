@@ -82,7 +82,8 @@ if(!iscupadmin($userID) OR mb_substr(basename($_SERVER['REQUEST_URI']),0,15) != 
 				if($i%2) { $td='td1'; }
 				else { $td='td2'; }
 				$release = explode("||",$release);
-				
+
+
 				if($release[0] > $version_num && $release[0]==$chk_version[1]) {			
 				      $gt_update = '<input type="button" class="button" onClick="window.open(\''.$updateserver.'/getupdates.php?action=getupdate&update='.$release[0].'\');return document.MM_returnValue" value="Download" />';
 				}

@@ -168,7 +168,7 @@ hr.grey { margin: 3px 0 3px 0;}
 					<b><?php echo $myclanname.".".$index_language['content']; ?></b><br />
 					<!-- php site include -->
 					<?php
-					if(!isset($site)) $site="news";
+					if(!isset($site)) $site="cup_features";
 					$invalide = array('\\','/','/\/',':','.');
 					$site = str_replace($invalide,' ',$site);
 					if(!file_exists($site.".php")) $site = "news";
